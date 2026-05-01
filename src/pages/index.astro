@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+---
+
+<BaseLayout title="Les Myconautes — Champignons bio | Rive-de-Gier, Loire">
+  <Hero />
+
+  <section id="univers" class="bg-creme px-6 py-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Nos univers</span>
+        <h2 class="mt-2 text-3xl md:text-4xl text-brun">À chacun son champignon</h2>
+        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
+          Que vous soyez chef cuisinier, agriculteur professionnel ou passionné, nous avons ce qu'il vous faut.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="/particuliers" class="group bg-ivoire rounded-2xl border-t-4 border-lavande p-8 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md">
+          <div class="w-12 h-12 rounded-full bg-lavande/15 text-violet-profond font-display font-medium flex items-center justify-center text-xl">P</div>
+          <h3 class="mt-5 text-xl text-brun">Particuliers &amp; passionnés</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Champignons frais, séchés, épicerie fine. Kits de culture pour cultiver à la maison.
+          </p>
+          <span class="mt-4 inline-block text-sm font-semibold text-violet-profond group-hover:gap-3">Découvrir →</span>
+        </a>
+
+        <a href="/restaurateurs" class="group bg-ivoire rounded-2xl border-t-4 border-terracotta p-8 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md">
+          <div class="w-12 h-12 rounded-full bg-terracotta/15 text-terracotta font-display font-medium flex items-center justify-center text-xl">R</div>
+          <h3 class="mt-5 text-xl text-brun">Restaurateurs &amp; chefs</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Frais, en vrac ou conditionnement pro. Qualité constante, livraison hebdo Lyon &amp; Saint-Étienne.
+          </p>
+          <span class="mt-4 inline-block text-sm font-semibold text-terracotta group-hover:gap-3">L'offre pro →</span>
+        </a>
+
+        <a href="/agriculteurs" class="group bg-ivoire rounded-2xl border-t-4 border-turquoise p-8 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md">
+          <div class="w-12 h-12 rounded-full bg-turquoise/15 text-turquoise font-display font-medium flex items-center justify-center text-xl">A</div>
+          <h3 class="mt-5 text-xl text-brun">Agriculteurs &amp; champignonnistes</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Substrats inoculés certifiés bio, mycélium, conseils techniques. Pleurote, éryngii, hericium, shiitaké, nameko.
+          </p>
+          <span class="mt-4 inline-block text-sm font-semibold text-turquoise group-hover:gap-3">Substrats &amp; mycélium →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-20 text-center">
+    <p class="text-brun-clair max-w-md mx-auto">
+      <em class="font-display italic text-violet-profond">Reste de la home en cours de port…</em><br/>
+      Sections à venir : gamme, about lavande, comment ça marche, livraison, FAQ, contact, CTA final.
+    </p>
+  </section>
+</BaseLayout>

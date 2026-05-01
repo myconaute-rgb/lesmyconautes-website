@@ -1,0 +1,92 @@
+---
+interface Props {
+  badge?: string;
+  badgeColor?: "lavande" | "terracotta" | "turquoise";
+  title?: string;
+  highlight?: string;
+  highlightColor?: "lavande" | "terracotta" | "turquoise" | "violet-profond";
+  description?: string;
+  primaryCta?: { href: string; label: string };
+  secondaryCta?: { href: string; label: string };
+  /** Couleur du carré décoratif droite. */
+  visualColor?: "lavande" | "terracotta" | "turquoise" | "creme";
+}
+
+const {
+  badge = "Frais du jour · Lyon",
+  badgeColor = "turquoise",
+  title = "Explorez le monde des",
+  highlight = "champignons",
+  highlightColor = "lavande",
+  description = "Cultivés, récoltés à la main et conditionnés chaque jour à Rive-de-Gier (Loire). Pour particuliers, restaurateurs et agriculteurs.",
+  primaryCta = { href: "https://www.pourdebon.com/les-myconautes-s1527", label: "Commander en ligne" },
+  secondaryCta = { href: "#univers", label: "Découvrir nos univers" },
+  visualColor = "lavande",
+} = Astro.props;
+
+const badgeBg = {
+  lavande: "bg-lavande/15 text-violet-profond border-lavande/30",
+  terracotta: "bg-terracotta/15 text-terracotta border-terracotta/30",
+  turquoise: "bg-turquoise/15 text-turquoise border-turquoise/40",
+}[badgeColor];
+
+const highlightClass = {
+  lavande: "text-lavande",
+  terracotta: "text-terracotta",
+  turquoise: "text-turquoise",
+  "violet-profond": "text-violet-profond",
+}[highlightColor];
+
+const visualBg = {
+  lavande: "bg-lavande",
+  terracotta: "bg-terracotta",
+  turquoise: "bg-turquoise",
+  creme: "bg-creme",
+}[visualColor];
+---
+
+<section class="relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <span class={`inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-semibold uppercase tracking-widest ${badgeBg}`}>
+        {badge}
+      </span>
+
+      <h1 class="mt-5 text-4xl md:text-6xl leading-[1.05] text-brun">
+        {title} <em class={`italic ${highlightClass}`}>{highlight}</em>
+      </h1>
+
+      <p class="mt-6 text-base md:text-lg text-brun-clair leading-relaxed max-w-md">
+        {description}
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={primaryCta.href}
+          target={primaryCta.href.startsWith("http") ? "_blank" : undefined}
+          rel={primaryCta.href.startsWith("http") ? "noopener" : undefined}
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-terracotta text-ivoire font-semibold hover:brightness-110 transition shadow-sm"
+        >
+          {primaryCta.label} <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href={secondaryCta.href}
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-brun/15 text-brun font-semibold hover:border-brun/40 transition"
+        >
+          {secondaryCta.label}
+        </a>
+      </div>
+    </div>
+
+    <div class="relative aspect-square max-w-md mx-auto w-full">
+      <div class={`absolute inset-0 rounded-3xl ${visualBg}`}></div>
+      <div class="absolute -top-6 -left-6 w-28 h-28 rounded-full bg-turquoise/90 mix-blend-multiply"></div>
+      <div class="absolute -bottom-8 -right-8 w-36 h-36 rounded-full bg-terracotta/90 mix-blend-multiply"></div>
+      <img
+        src="/scaphandre-logo.svg"
+        alt="Logo scaphandre Les Myconautes"
+        class="relative w-full h-full object-contain p-10 brightness-0 invert opacity-90"
+      />
+    </div>
+  </div>
+</section>

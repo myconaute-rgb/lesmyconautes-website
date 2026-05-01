@@ -1,0 +1,92 @@
+---
+const links = [
+  { href: "/particuliers", label: "Particuliers" },
+  { href: "/restaurateurs", label: "Restaurateurs" },
+  { href: "/agriculteurs", label: "Agriculteurs" },
+  { href: "/a-propos", label: "À propos" },
+];
+const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
+---
+
+<nav
+  class="sticky top-0 z-50 backdrop-blur-md bg-ivoire/85 border-b border-brun/5"
+>
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3 text-brun" aria-label="Les Myconautes — accueil">
+      <img src="/scaphandre-logo.svg" alt="" width="32" height="32" class="h-8 w-8" />
+      <span class="font-display text-lg font-medium tracking-tight">Les Myconautes</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="text-sm font-medium text-brun-clair hover:text-violet-profond transition-colors"
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href={orderHref}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-terracotta text-ivoire text-sm font-semibold hover:brightness-110 transition"
+        >
+          Commander
+        </a>
+      </li>
+    </ul>
+
+    <button
+      type="button"
+      class="md:hidden p-2 -mr-2 text-brun"
+      aria-label="Ouvrir le menu"
+      data-mobile-toggle
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    class="md:hidden fixed inset-0 z-50 bg-ivoire flex-col items-center justify-center gap-6 hidden"
+    data-mobile-menu
+  >
+    <button
+      type="button"
+      class="absolute top-4 right-4 p-2 text-brun"
+      aria-label="Fermer le menu"
+      data-mobile-close
+    >
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M6 6l12 12M6 18L18 6" />
+      </svg>
+    </button>
+    {links.map((l) => (
+      <a href={l.href} class="font-display text-2xl text-brun">{l.label}</a>
+    ))}
+    <a
+      href={orderHref}
+      target="_blank"
+      rel="noopener"
+      class="mt-4 px-6 py-3 rounded-full bg-terracotta text-ivoire text-sm font-semibold"
+    >
+      Commander
+    </a>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.querySelector("[data-mobile-toggle]");
+  const menu = document.querySelector("[data-mobile-menu]");
+  const close = document.querySelector("[data-mobile-close]");
+  const open = () => menu?.classList.replace("hidden", "flex");
+  const shut = () => menu?.classList.replace("flex", "hidden");
+  toggle?.addEventListener("click", open);
+  close?.addEventListener("click", shut);
+  menu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", shut));
+</script>

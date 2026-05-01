@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  /* Aurore Terracotta — palette validée
+     Tokens sémantiques. NE PAS ajouter de couleurs ad hoc dans les composants. */
+  --color-ivoire: #fefcf7;
+  --color-creme: #f9f3e6;
+  --color-lavande: #c084fc;
+  --color-terracotta: #d97757;
+  --color-turquoise: #06b6d4;
+  --color-brun: #2d1010;
+  --color-brun-clair: #4d2424;
+  --color-violet-profond: #7c3aed;
+
+  /* Typographie
+     Fraunces : variable, opsz 9..144, ital. Italiques expressives pour mots accentués.
+     Outfit  : variable, wght 100..900. */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
+
+  /* Radius */
+  --radius-card: 1rem;
+  --radius-lg: 1.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ivoire);
+  color: var(--color-brun);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+}
