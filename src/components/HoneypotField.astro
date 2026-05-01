@@ -1,0 +1,25 @@
+---
+/**
+ * Champ honeypot pour filtrer les bots qui remplissent automatiquement tous les inputs.
+ *
+ * - Caché visuellement (display:none) ET sémantiquement (aria-hidden, tabindex -1, autocomplete off)
+ * - Si le champ est rempli → soumission rejetée (le bot a auto-rempli, pas un humain)
+ * - Le nom 'website' est volontairement appétissant pour les bots
+ *
+ * Côté JS : vérifier `form.querySelector('[data-honeypot]')?.value` à la soumission.
+ * Phase 1 : valider aussi côté webhook n8n (rejet 200 silencieux pour ne pas signaler aux bots).
+ */
+---
+
+<div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
+  <label>
+    Site web (laissez vide)
+    <input
+      type="text"
+      name="website"
+      tabindex="-1"
+      autocomplete="off"
+      data-honeypot
+    />
+  </label>
+</div>

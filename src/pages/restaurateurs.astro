@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import ProductCard from "../components/ProductCard.astro";
 import CTASection from "../components/CTASection.astro";
+import HoneypotField from "../components/HoneypotField.astro";
 import { VARIETIES } from "../data/varieties";
 ---
 
@@ -141,6 +142,7 @@ import { VARIETIES } from "../data/varieties";
       </div>
 
       <form class="grid gap-4 bg-ivoire rounded-2xl p-8 ring-1 ring-brun/5" data-pro-form>
+        <HoneypotField />
         <div>
           <label for="pf-etab" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Établissement</label>
           <input id="pf-etab" name="etablissement" type="text" required placeholder="Nom de votre restaurant / enseigne" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
@@ -166,6 +168,9 @@ import { VARIETIES } from "../data/varieties";
         <button type="submit" class="justify-self-start inline-flex items-center gap-2 px-6 py-3 rounded-full bg-terracotta text-ivoire font-semibold hover:brightness-110 transition shadow-sm">
           Envoyer ma demande →
         </button>
+        <p class="text-xs text-brun-clair/70 leading-relaxed">
+          En envoyant ce formulaire, vous acceptez que vos données (établissement, nom, email, tél., message) soient utilisées pour traiter votre demande. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
+        </p>
         <p class="hidden text-sm text-turquoise font-semibold" data-pro-success>
           Merci, votre demande est partie. On revient vers vous très vite.
         </p>
@@ -186,6 +191,8 @@ import { VARIETIES } from "../data/varieties";
   const proSuccess = document.querySelector<HTMLParagraphElement>("[data-pro-success]");
   proForm?.addEventListener("submit", (e) => {
     e.preventDefault();
+    const hp = proForm.querySelector<HTMLInputElement>("[data-honeypot]");
+    if (hp?.value) return;
     proSuccess?.classList.remove("hidden");
     proForm.reset();
   });

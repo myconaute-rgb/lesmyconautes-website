@@ -2,11 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
+import MailLink from "../components/MailLink.astro";
+import HoneypotField from "../components/HoneypotField.astro";
 ---
 
 <BaseLayout
   title="Contact — Les Myconautes | Champignonnière bio Rive-de-Gier"
-  description="Une question, un devis, une visite ? Écrivez-nous. Champignonnière artisanale FR-BIO-01 à Rive-de-Gier (Loire). Email myconaute@pm.me, Instagram @les_myconautes."
+  description="Une question, un devis, une visite ? Écrivez-nous. Champignonnière artisanale FR-BIO-01 à Rive-de-Gier (Loire), entre Lyon et Saint-Étienne."
 >
   <PageHero
     theme="lavande"
@@ -21,6 +23,7 @@ import CTASection from "../components/CTASection.astro";
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
       <form class="grid gap-4 bg-creme rounded-2xl p-8 ring-1 ring-brun/5" data-contact-form>
         <h2 class="text-2xl text-brun">Formulaire</h2>
+        <HoneypotField />
         <div>
           <label for="cf-name" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Nom</label>
           <input id="cf-name" name="name" type="text" required class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
@@ -40,6 +43,9 @@ import CTASection from "../components/CTASection.astro";
         <button type="submit" class="justify-self-start inline-flex items-center gap-2 px-6 py-3 rounded-full bg-terracotta text-ivoire font-semibold hover:brightness-110 transition shadow-sm">
           Envoyer →
         </button>
+        <p class="text-xs text-brun-clair/70 leading-relaxed">
+          En envoyant ce formulaire, vous acceptez que vos données soient utilisées pour répondre à votre demande. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
+        </p>
         <p class="hidden text-sm text-turquoise font-semibold" data-contact-success>
           Merci, votre message est parti. On vous répond très vite.
         </p>
@@ -66,7 +72,7 @@ import CTASection from "../components/CTASection.astro";
             <span class="w-10 h-10 rounded-full bg-creme flex-shrink-0 flex items-center justify-center" aria-hidden="true">📧</span>
             <div class="text-sm">
               <h3 class="font-semibold text-brun">Email</h3>
-              <p class="text-brun-clair"><a href="mailto:myconaute@pm.me" class="text-violet-profond hover:underline">myconaute@pm.me</a></p>
+              <p class="text-brun-clair"><MailLink email="myconaute@pm.me" /></p>
             </div>
           </li>
           <li class="flex items-start gap-3">
@@ -108,6 +114,8 @@ import CTASection from "../components/CTASection.astro";
   const success = document.querySelector<HTMLParagraphElement>("[data-contact-success]");
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
+    const hp = form.querySelector<HTMLInputElement>("[data-honeypot]");
+    if (hp?.value) return;
     success?.classList.remove("hidden");
     form.reset();
   });

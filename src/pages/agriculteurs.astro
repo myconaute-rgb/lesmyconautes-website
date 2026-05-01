@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
+import HoneypotField from "../components/HoneypotField.astro";
 import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
 ---
 
@@ -172,6 +173,7 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
       </div>
 
       <form class="grid gap-4 bg-ivoire rounded-2xl p-8 ring-1 ring-brun/5" data-agri-form>
+        <HoneypotField />
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label for="af-name" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Nom / structure</label>
@@ -201,6 +203,9 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
         <button type="submit" class="justify-self-start inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brun text-ivoire font-semibold hover:brightness-110 transition shadow-sm">
           Envoyer ma demande →
         </button>
+        <p class="text-xs text-brun-clair/70 leading-relaxed">
+          En envoyant ce formulaire, vous acceptez que vos données (nom, email, tél., espèces et volumes) soient utilisées pour établir un devis. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
+        </p>
         <p class="hidden text-sm text-turquoise font-semibold" data-agri-success>
           Merci, votre demande est partie. On revient vers vous très vite.
         </p>
@@ -221,6 +226,8 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
   const agriSuccess = document.querySelector<HTMLParagraphElement>("[data-agri-success]");
   agriForm?.addEventListener("submit", (e) => {
     e.preventDefault();
+    const hp = agriForm.querySelector<HTMLInputElement>("[data-honeypot]");
+    if (hp?.value) return;
     agriSuccess?.classList.remove("hidden");
     agriForm.reset();
   });

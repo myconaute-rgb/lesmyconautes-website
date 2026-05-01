@@ -1,0 +1,34 @@
+---
+/**
+ * Lien mailto: avec email HTML-encodé (&#xx;) pour filtrer les scrappers basiques.
+ *
+ * Le navigateur décode au rendu — l'utilisateur voit l'email normal, le mailto: marche.
+ * Le HTML source ne contient pas l'email en clair, juste des entités numériques.
+ * Pas de défense absolue (les bots avancés décodent), mais filtre la majorité du spam.
+ *
+ * On bypasse l'auto-escape Astro avec `set:html` pour que les `&#xx;` restent intacts.
+ */
+
+interface Props {
+  email: string;
+  /** Texte affiché. Par défaut : l'email obfusqué lui-même. */
+  label?: string;
+  class?: string;
+}
+
+const { email, label, class: className = "text-violet-profond hover:underline" } = Astro.props;
+
+const encode = (s: string): string =>
+  s.split("").map((c) => `&#${c.charCodeAt(0)};`).join("");
+
+const escapeAttr = (s: string): string =>
+  s.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+const obfuscatedEmail = encode(email);
+const displayedText = label ? escapeAttr(label) : obfuscatedEmail;
+const cls = escapeAttr(className);
+
+const html = `<a href="mailto:${obfuscatedEmail}" class="${cls}">${displayedText}</a>`;
+---
+
+<Fragment set:html={html} />

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import MailLink from "../components/MailLink.astro";
 ---
 
 <BaseLayout
@@ -34,7 +35,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="mt-12">
       <h2 class="text-2xl text-brun">Commandes &amp; tarifs</h2>
       <p class="mt-3 text-sm text-brun-clair leading-relaxed">
-        Les commandes professionnelles font l'objet d'un devis nominatif. La grille tarifaire est dégressive selon le volume et envoyée sur demande à <a href="mailto:myconaute@pm.me" class="text-violet-profond hover:underline">myconaute@pm.me</a>.
+        Les commandes professionnelles font l'objet d'un devis nominatif. La grille tarifaire est dégressive selon le volume et envoyée sur demande à <MailLink email="myconaute@pm.me" />.
       </p>
       <p class="mt-2 text-sm text-brun-clair leading-relaxed">
         Les particuliers commandent via <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="text-violet-profond hover:underline">Pour de Bon</a> ou directement par mail pour le retrait sur place.
@@ -71,7 +72,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="mt-12">
       <h2 class="text-2xl text-brun">Réclamations</h2>
       <p class="mt-3 text-sm text-brun-clair leading-relaxed">
-        Toute réclamation sur la marchandise doit être notifiée par email à <a href="mailto:myconaute@pm.me" class="text-violet-profond hover:underline">myconaute@pm.me</a> dans les 48 heures suivant la livraison ou le retrait, photo à l'appui pour les défauts visuels.
+        Toute réclamation sur la marchandise doit être notifiée par email à <MailLink email="myconaute@pm.me" /> dans les 48 heures suivant la livraison ou le retrait, photo à l'appui pour les défauts visuels.
       </p>
     </section>
 
