@@ -97,6 +97,7 @@ export interface SubstrateFormat {
   label: string;
   weight: string;
   description: string;
+  imagePath: string;
 }
 
 /**
@@ -109,17 +110,20 @@ export const SUBSTRATE_FORMATS: SubstrateFormat[] = [
     label: "Sac unitaire",
     weight: "2,5 kg",
     description: "Pour tester, démarrer une petite culture, ou compléter un volume.",
+    imagePath: "/photos/substrat-sac-2-5kg.jpg",
   },
   {
     formatCode: "FMT-{VAR}-SUB-DEMI-PAL",
     label: "Demi-palette",
     weight: "200 kg",
     description: "Production régulière à petite échelle. Tarif dégressif.",
+    imagePath: "/photos/substrat-demi-palette.jpg",
   },
   {
     formatCode: "FMT-{VAR}-SUB-PAL",
     label: "Palette complète",
     weight: "500 kg",
     description: "Production professionnelle. Meilleur tarif unitaire.",
+    imagePath: "/photos/substrat-pro.jpg",
   },
 ];
