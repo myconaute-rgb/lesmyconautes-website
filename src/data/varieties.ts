@@ -58,24 +58,6 @@ export const VARIETIES: Variety[] = [
     accent: "lavande",
     gradient: "from-creme via-lavande/30 to-ivoire",
   },
-  {
-    slug: "karabella",
-    varietyCode: "KARABELLA",
-    name: "Karabella",
-    latin: "Pleurotus ostreatus karabella",
-    emoji: "🍄",
-    blurb: "Pleurote bleu-anthracite. Chair plus ferme que le classique, parfaite en poêlée nerveuse ou marinée.",
-    accent: "violet-profond",
-    gradient: "from-violet-profond/70 via-lavande/40 to-creme",
-  },
-  {
-    slug: "purati",
-    varietyCode: "PURATI",
-    name: "Purati",
-    latin: "Pleurotus ostreatus purati",
-    emoji: "🍄",
-    blurb: "Pleurote rose. Esthétique sur l'assiette, parfumé. Excellent cru en salade ou très peu cuit pour préserver la couleur.",
-    accent: "lavande",
-    gradient: "from-terracotta/50 via-lavande/40 to-creme",
-  },
+  // Karabella et Purati restent gérées en DB (production) mais ne sont pas exposées
+  // sur la vitrine — ce sont des sous-variétés de pleurote, trop spécifiques pour le grand public.
 ];

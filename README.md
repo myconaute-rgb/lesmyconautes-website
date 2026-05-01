@@ -1,6 +1,6 @@
 # lesmyconautes-website
 
-Site marketing des **Myconautes** — champignonnière artisanale certifiée FR-BIO-01 à Rive-de-Gier (Loire). Cinq variétés cultivées (pleurote, éryngii, hericium, karabella, purati), substrats inoculés bio pour la production agricole, kits de culture pour la maison.
+Site marketing des **Myconautes** — champignonnière artisanale certifiée FR-BIO-01 à Rive-de-Gier (Loire). Trois variétés cultivées (pleurote, éryngii, hericium), substrats inoculés bio pour la production agricole, kits de culture pour la maison.
 
 → [lesmyconautes.fr](https://lesmyconautes.fr)
 
