@@ -51,34 +51,34 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
       </svg>
     </button>
   </div>
-
-  <div
-    class="md:hidden fixed inset-0 z-50 bg-ivoire flex-col items-center justify-center gap-6 hidden"
-    data-mobile-menu
-  >
-    <button
-      type="button"
-      class="absolute top-4 right-4 p-2 text-brun"
-      aria-label="Fermer le menu"
-      data-mobile-close
-    >
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <path d="M6 6l12 12M6 18L18 6" />
-      </svg>
-    </button>
-    {links.map((l) => (
-      <a href={l.href} class="font-display text-2xl text-brun">{l.label}</a>
-    ))}
-    <a
-      href={orderHref}
-      target="_blank"
-      rel="noopener"
-      class="mt-4 px-6 py-3 rounded-full bg-terracotta text-ivoire text-sm font-semibold"
-    >
-      Commander
-    </a>
-  </div>
 </nav>
+
+<div
+  class="md:hidden fixed inset-0 z-[60] bg-ivoire flex-col items-center justify-center gap-6 hidden"
+  data-mobile-menu
+>
+  <button
+    type="button"
+    class="absolute top-4 right-4 p-2 text-brun"
+    aria-label="Fermer le menu"
+    data-mobile-close
+  >
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M6 6l12 12M6 18L18 6" />
+    </svg>
+  </button>
+  {links.map((l) => (
+    <a href={l.href} class="font-display text-2xl text-brun">{l.label}</a>
+  ))}
+  <a
+    href={orderHref}
+    target="_blank"
+    rel="noopener"
+    class="mt-4 px-6 py-3 rounded-full bg-terracotta text-ivoire text-sm font-semibold"
+  >
+    Commander
+  </a>
+</div>
 
 <script>
   const toggle = document.querySelector("[data-mobile-toggle]");
