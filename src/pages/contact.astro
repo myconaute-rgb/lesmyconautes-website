@@ -46,8 +46,11 @@ import HoneypotField from "../components/HoneypotField.astro";
         <p class="text-xs text-brun-clair/70 leading-relaxed">
           En envoyant ce formulaire, vous acceptez que vos données soient utilisées pour répondre à votre demande. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
         </p>
-        <p class="hidden text-sm text-turquoise font-semibold" data-contact-success>
+        <p class="hidden text-sm text-turquoise font-semibold" data-form-success>
           Merci, votre message est parti. On vous répond très vite.
+        </p>
+        <p class="hidden text-sm text-terracotta font-semibold" data-form-error>
+          Une erreur est survenue. Réessayez, ou écrivez directement à <span class="underline">myconaute &#x40; pm.me</span>.
         </p>
       </form>
 
@@ -110,13 +113,7 @@ import HoneypotField from "../components/HoneypotField.astro";
 </BaseLayout>
 
 <script>
+  import { wireContactForm } from "../scripts/contact-form";
   const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
-  const success = document.querySelector<HTMLParagraphElement>("[data-contact-success]");
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const hp = form.querySelector<HTMLInputElement>("[data-honeypot]");
-    if (hp?.value) return;
-    success?.classList.remove("hidden");
-    form.reset();
-  });
+  if (form) wireContactForm(form, "contact");
 </script>

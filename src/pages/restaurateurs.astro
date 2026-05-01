@@ -171,8 +171,11 @@ import { VARIETIES } from "../data/varieties";
         <p class="text-xs text-brun-clair/70 leading-relaxed">
           En envoyant ce formulaire, vous acceptez que vos données (établissement, nom, email, tél., message) soient utilisées pour traiter votre demande. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
         </p>
-        <p class="hidden text-sm text-turquoise font-semibold" data-pro-success>
+        <p class="hidden text-sm text-turquoise font-semibold" data-form-success>
           Merci, votre demande est partie. On revient vers vous très vite.
+        </p>
+        <p class="hidden text-sm text-terracotta font-semibold" data-form-error>
+          Une erreur est survenue. Réessayez, ou écrivez directement à <span class="underline">myconaute &#x40; pm.me</span>.
         </p>
       </form>
     </div>
@@ -187,13 +190,7 @@ import { VARIETIES } from "../data/varieties";
 </BaseLayout>
 
 <script>
-  const proForm = document.querySelector<HTMLFormElement>("[data-pro-form]");
-  const proSuccess = document.querySelector<HTMLParagraphElement>("[data-pro-success]");
-  proForm?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const hp = proForm.querySelector<HTMLInputElement>("[data-honeypot]");
-    if (hp?.value) return;
-    proSuccess?.classList.remove("hidden");
-    proForm.reset();
-  });
+  import { wireContactForm } from "../scripts/contact-form";
+  const form = document.querySelector<HTMLFormElement>("[data-pro-form]");
+  if (form) wireContactForm(form, "contact_pro");
 </script>
