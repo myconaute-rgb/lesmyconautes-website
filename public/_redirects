@@ -9,3 +9,7 @@
 /faire-pousser-champignon/culture-champignons/shiitake-pleurote-hericium         /particuliers     301
 /cuisiner-champignon/recette-champignon                                          /restaurateurs    301
 /producteur-champignons/conditions-utilisation                                   /mentions-legales 301
+
+# Aliases sitemap (réflexes classiques bots SEO)
+/sitemap.xml                                                                     /sitemap-index.xml 301
+/sitemap_index.xml                                                               /sitemap-index.xml 301
