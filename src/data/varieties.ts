@@ -21,6 +21,10 @@ export interface Variety {
   accent: AccentColor;
   /** Dégradé Tailwind utilisé tant qu'on n'a pas de photo. */
   gradient: string;
+  /** Optionnel — chemin photo dans /public (ex `/photos/pleurote.jpg`). Si absent, fallback dégradé+emoji. */
+  imagePath?: string;
+  /** Texte alternatif accessibilité. Recommandé si imagePath est défini. */
+  imageAlt?: string;
 }
 
 export const VARIETIES: Variety[] = [

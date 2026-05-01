@@ -67,8 +67,18 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {AGRI_SPECIES.map((sp) => (
           <article class={`relative bg-ivoire rounded-2xl ring-1 ring-brun/5 overflow-hidden ${sp.available ? "" : "opacity-90"}`}>
-            <div class="aspect-[5/3] bg-gradient-to-br from-creme via-brun-clair/20 to-turquoise/20 flex items-center justify-center">
-              <span class="text-5xl" aria-hidden="true">🍄</span>
+            <div class={`aspect-[5/3] relative overflow-hidden ${sp.imagePath ? "bg-creme" : "bg-gradient-to-br from-creme via-brun-clair/20 to-turquoise/20"}`}>
+              {sp.imagePath ? (
+                <img
+                  src={sp.imagePath}
+                  alt={sp.imageAlt ?? `${sp.name} (${sp.latin})`}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover"
+                />
+              ) : (
+                <span class="absolute inset-0 flex items-center justify-center text-5xl" aria-hidden="true">🍄</span>
+              )}
             </div>
             {!sp.available && (
               <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-lavande/90 text-ivoire text-xs font-semibold uppercase tracking-wider">

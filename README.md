@@ -38,6 +38,40 @@ public/
 └── scaphandre-logo.svg
 ```
 
+## Photos produits
+
+Les photos de variétés (pour `/`, `/particuliers`, `/restaurateurs`) et d'espèces agri (pour `/agriculteurs`) sont **optionnelles** : tant qu'elles ne sont pas livrées, le site affiche un dégradé Aurore Terracotta + emoji en placeholder.
+
+**Pour ajouter une photo :**
+
+1. Drop le fichier dans `public/photos/` avec le slug correspondant.
+   Exemple : pour la variété `pleurote` → `public/photos/pleurote.jpg`.
+2. Édite la ligne dans `src/data/varieties.ts` (ou `src/data/agri_species.ts` pour la page agri) :
+
+   ```ts
+   {
+     slug: "pleurote",
+     // …
+     imagePath: "/photos/pleurote.jpg",
+     imageAlt: "Pleurote fraîche en grappe sur substrat",
+   },
+   ```
+
+3. Commit + push → CF Pages rebuild auto.
+
+**Specs photo recommandées :**
+
+| Item | Valeur |
+|---|---|
+| Format | JPG (ou WebP si dispo, plus léger) |
+| Aspect ratio | **1:1** carré pour les variétés (`ProductCard`), **5:3** paysage pour les espèces agri |
+| Taille mini | 800×800 (variétés) ou 1000×600 (agri) |
+| Taille idéale | 1200×1200 / 1500×900 |
+| Light | naturelle diffuse, pas de flash dur, pas d'ombres écrasées |
+| Sujet | champignon entier net, fond neutre ou substrat visible |
+| Compression | viser <150 Ko après compression (TinyPNG / Squoosh) |
+| Nommage | `<slug>.jpg` exactement (ex `eryngii.jpg`, pas `Eryngii.JPG`) |
+
 ## Identité visuelle
 
 Palette **Aurore Terracotta** : ivoire, crème, lavande, terracotta, turquoise, brun. Tokens dans `src/styles/global.css` (`@theme`).

@@ -19,6 +19,9 @@ export interface AgriSpecies {
   blurb: string;
   stats: [string, string, string];
   available: boolean;
+  /** Optionnel — chemin photo dans /public. Si absent, fallback dégradé+emoji. */
+  imagePath?: string;
+  imageAlt?: string;
 }
 
 export const AGRI_SPECIES: AgriSpecies[] = [
