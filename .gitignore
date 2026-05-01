@@ -13,9 +13,25 @@ yarn-error.log*
 pnpm-debug.log*
 
 
-# environment variables
+# environment variables — tout sauf .env.example
 .env
-.env.production
+.env.*
+!.env.example
+!.env.sample
+*.key
+*.pem
+*.pfx
+*.p12
+secrets/
+credentials/
+
+# data dumps / backups (jamais committer de données client)
+*.sql
+*.sql.gz
+*.dump
+*.backup
+backups/
+exports/
 
 # macOS-specific files
 .DS_Store

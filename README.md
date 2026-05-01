@@ -1,43 +1,59 @@
-# Astro Starter Kit: Minimal
+# lesmyconautes-website
 
-```sh
-npm create astro@latest -- --template minimal
+Site marketing des **Myconautes** — champignonnière artisanale certifiée FR-BIO-01 à Rive-de-Gier (Loire). Cinq variétés cultivées (pleurote, éryngii, hericium, karabella, purati), substrats inoculés bio pour la production agricole, kits de culture pour la maison.
+
+→ [lesmyconautes.fr](https://lesmyconautes.fr)
+
+## Stack
+
+- [Astro](https://astro.build) 6 — site statique, MDX-ready
+- [Tailwind CSS](https://tailwindcss.com) 4 — config CSS-first via `@theme` dans `src/styles/global.css`
+- [Cloudflare Pages](https://pages.cloudflare.com) — hébergement, build automatique sur push, redirections via `public/_redirects`, headers via `public/_headers`
+- [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) — sitemap-index.xml généré au build
+
+## Développement local
+
+```bash
+npm install
+npm run dev   # serveur dev http://localhost:4321
+npm run build # build statique dans ./dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Node 22+ requis (`engines` dans `package.json`).
 
-## 🚀 Project Structure
+## Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+```
+src/
+├── components/   composants réutilisables (Nav, Footer, Hero, PageHero, ProductCard, ...)
+├── data/         variétés et catalogue agri (alignés sur business keys de la DB Myconautes)
+├── layouts/      BaseLayout — meta SEO, Google Fonts, slot principal
+├── pages/        routes Astro (index, particuliers, restaurateurs, agriculteurs, contact, a-propos, mentions-legales, cgv)
+└── styles/       global.css — tokens Aurore Terracotta + fontes Fraunces & Outfit
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+public/
+├── _headers      headers HTTP (CSP, HSTS, X-Frame, ...) servis par Cloudflare Pages
+├── _redirects    301 préservation SEO (anciennes URLs → nouvelles)
+├── robots.txt    pointe vers /sitemap-index.xml
+└── scaphandre-logo.svg
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Identité visuelle
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Palette **Aurore Terracotta** : ivoire, crème, lavande, terracotta, turquoise, brun. Tokens dans `src/styles/global.css` (`@theme`).
+Typo : Fraunces (variable, italiques expressives) pour les titres, Outfit (variable) pour le corps.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Déploiement
 
-## 🧞 Commands
+Connecté à Cloudflare Pages. Chaque push sur `main` déclenche un build (`npm run build` → `dist/`).
 
-All commands are run from the root of the project, from a terminal:
+Variables d'environnement (Phase 1+, dashboard Cloudflare Pages) : voir `.env.example`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Contribuer
 
-## 👀 Want to learn more?
+Issues et PRs bienvenues. Pour toute question : [myconaute@pm.me](mailto:myconaute@pm.me).
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Licence
+
+- **Code** : [MIT](./LICENSE) — tu peux le forker, t'en inspirer pour ton propre site.
+- **Marque "Les Myconautes", logo scaphandre, photos, contenu rédactionnel** : tous droits réservés. Ne pas réutiliser sans autorisation.
