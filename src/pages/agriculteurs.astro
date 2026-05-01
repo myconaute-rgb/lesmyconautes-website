@@ -66,7 +66,7 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {AGRI_SPECIES.map((sp) => (
-          <article class={`relative bg-ivoire rounded-2xl ring-1 ring-brun/5 overflow-hidden ${sp.available ? "" : "opacity-90"}`}>
+          <article class={`relative bg-ivoire rounded-2xl ring-1 ring-brun/5 overflow-hidden ${sp.tag ? "opacity-95" : ""}`}>
             <div class={`aspect-[5/3] relative overflow-hidden ${sp.imagePath ? "bg-creme" : "bg-gradient-to-br from-creme via-brun-clair/20 to-turquoise/20"}`}>
               {sp.imagePath ? (
                 <img
@@ -74,17 +74,17 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
                   alt={sp.imageAlt ?? `${sp.name} (${sp.latin})`}
                   loading="lazy"
                   decoding="async"
-                  class="w-full h-full object-cover"
+                  class={`w-full h-full object-cover ${sp.tag ? "saturate-50" : ""}`}
                 />
               ) : (
                 <span class="absolute inset-0 flex items-center justify-center text-5xl" aria-hidden="true">🍄</span>
               )}
+              {sp.tag && (
+                <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-lavande/95 text-ivoire text-xs font-semibold uppercase tracking-wider shadow-sm backdrop-blur-sm">
+                  🟣 {sp.tag}
+                </span>
+              )}
             </div>
-            {!sp.available && (
-              <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-lavande/90 text-ivoire text-xs font-semibold uppercase tracking-wider">
-                À venir
-              </span>
-            )}
             <div class="p-6">
               <h3 class="text-lg text-brun">{sp.name}</h3>
               <p class="font-display italic text-xs text-brun-clair/70 mt-0.5">{sp.latin}</p>
@@ -150,6 +150,17 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
   <!-- Conditionnements -->
   <section class="px-6 py-20">
     <div class="max-w-6xl mx-auto">
+      <!-- Bandeau visuel substrat pro -->
+      <div class="aspect-[5/3] sm:aspect-[16/6] rounded-3xl overflow-hidden mb-12 ring-1 ring-brun/10 shadow-sm">
+        <img
+          src="/photos/substrat-pro-paysage.jpg"
+          alt="Substrat pro Les Myconautes — sac inoculé prêt à fructifier"
+          loading="lazy"
+          decoding="async"
+          class="w-full h-full object-cover"
+        />
+      </div>
+
       <div class="text-center mb-12">
         <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Conditionnements</span>
         <h2 class="mt-2 text-3xl md:text-4xl text-brun">Du sac unitaire à la palette</h2>
@@ -159,14 +170,31 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
       </div>
 
       <div class="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
-        {SUBSTRATE_FORMATS.map((fmt, i) => (
-          <div class="bg-creme rounded-2xl p-6 text-center ring-1 ring-brun/5 hover:-translate-y-1 transition">
-            <div class="text-3xl mb-3" aria-hidden="true">{["📦", "🚜", "🚛"][i]}</div>
-            <h3 class="text-lg text-brun">{fmt.label}</h3>
-            <div class="mt-1 font-display italic text-sm text-turquoise">{fmt.weight}</div>
-            <p class="mt-3 text-sm text-brun-clair leading-relaxed">{fmt.description}</p>
-          </div>
-        ))}
+        {SUBSTRATE_FORMATS.map((fmt, i) => {
+          // La card "Palette complète" (i=2) reçoit la photo carré substrat-pro.
+          const isPallet = i === 2;
+          return (
+            <div class={`rounded-2xl ring-1 ring-brun/5 hover:-translate-y-1 transition overflow-hidden ${isPallet ? "bg-ivoire" : "bg-creme p-6 text-center"}`}>
+              {isPallet && (
+                <div class="aspect-square overflow-hidden">
+                  <img
+                    src="/photos/substrat-pro.jpg"
+                    alt="Palette de substrat pro Les Myconautes"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+              <div class={`${isPallet ? "p-6 text-center" : ""}`}>
+                {!isPallet && <div class="text-3xl mb-3" aria-hidden="true">{["📦", "🚜"][i]}</div>}
+                <h3 class="text-lg text-brun">{fmt.label}</h3>
+                <div class="mt-1 font-display italic text-sm text-turquoise">{fmt.weight}</div>
+                <p class="mt-3 text-sm text-brun-clair leading-relaxed">{fmt.description}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   </section>

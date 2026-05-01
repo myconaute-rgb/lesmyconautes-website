@@ -25,6 +25,9 @@ export interface Variety {
   imagePath?: string;
   /** Texte alternatif accessibilité. Recommandé si imagePath est défini. */
   imageAlt?: string;
+  /** Optionnel — badge affiché sur la card si la variété n'est pas dispo cette saison
+   *  (ex "Bientôt de retour", "À venir"). Si absent, pas de badge. */
+  tag?: string;
 }
 
 export const VARIETIES: Variety[] = [
@@ -37,6 +40,8 @@ export const VARIETIES: Variety[] = [
     blurb: "L'incontournable. Cycle très court, grande tolérance — bon comestible, prix attractif, idéal pour démarrer en cuisine.",
     accent: "terracotta",
     gradient: "from-terracotta/80 via-terracotta/40 to-creme",
+    imagePath: "/photos/pleurote.jpg",
+    imageAlt: "Pleurote fraîche cultivée par Les Myconautes",
   },
   {
     slug: "eryngii",
@@ -47,6 +52,8 @@ export const VARIETIES: Variety[] = [
     blurb: "Pleurote du panicaut, dit « king oyster ». Texture proche des coquilles Saint-Jacques. Burger végétal, lasagnes, grillé.",
     accent: "terracotta",
     gradient: "from-brun-clair/70 via-terracotta/40 to-creme",
+    imagePath: "/photos/eryngii.jpg",
+    imageAlt: "Éryngii frais cultivé par Les Myconautes",
   },
   {
     slug: "hericium",
@@ -57,6 +64,22 @@ export const VARIETIES: Variety[] = [
     blurb: "Crinière de lion. Texture rappelant la chair de crabe ou de homard, parfum de fruits à coque. Études récentes sur la mémoire.",
     accent: "lavande",
     gradient: "from-creme via-lavande/30 to-ivoire",
+    imagePath: "/photos/hericium.jpg",
+    imageAlt: "Hericium (crinière de lion) cultivé par Les Myconautes",
+    tag: "Bientôt de retour",
+  },
+  {
+    slug: "black-pearl",
+    varietyCode: "BLACK_PEARL",
+    name: "Black Pearl",
+    latin: "Pleurotus ostreatus var. Black Pearl",
+    emoji: "🐚",
+    blurb: "Pleurote noire, chair dense et fumée naturellement. Sublime grillée, magnifique sur l'assiette.",
+    accent: "violet-profond",
+    gradient: "from-brun/60 via-violet-profond/40 to-creme",
+    imagePath: "/photos/black-pearl.jpg",
+    imageAlt: "Pleurote Black Pearl cultivée par Les Myconautes",
+    tag: "Bientôt de retour",
   },
   // Karabella et Purati restent gérées en DB (production) mais ne sont pas exposées
   // sur la vitrine — ce sont des sous-variétés de pleurote, trop spécifiques pour le grand public.

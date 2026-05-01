@@ -2,12 +2,10 @@
  * Catalogue substrat — page /agriculteurs.
  *
  * `varietyCode` est renseigné si l'espèce est en production active (cf. DB `public.varieties`).
- * `available: false` = catalogue commercial mais pas encore en DB / pas encore vendue.
- *
- * Aligner avec DB pour le sous-ensemble actif :
- *   SELECT v.variety_code FROM varieties v
- *   JOIN product_formats pf USING(variety_id)
- *   WHERE pf.format_code LIKE 'FMT-%-SUB-%' AND pf.is_active GROUP BY 1;
+ * `tag` optionnel = badge affiché si l'espèce n'est pas dispo cette saison ou pas encore produite :
+ *   - "Bientôt de retour" → on l'a déjà produite, hors saison cette fois
+ *   - "À venir"          → jamais produite, dans la pipeline future
+ * Si `tag` absent, l'espèce est en production active et dispo.
  */
 
 export interface AgriSpecies {
@@ -18,7 +16,8 @@ export interface AgriSpecies {
   latin: string;
   blurb: string;
   stats: [string, string, string];
-  available: boolean;
+  /** Optionnel — badge si pas dispo cette saison ("Bientôt de retour", "À venir"). */
+  tag?: string;
   /** Optionnel — chemin photo dans /public. Si absent, fallback dégradé+emoji. */
   imagePath?: string;
   imageAlt?: string;
@@ -32,7 +31,8 @@ export const AGRI_SPECIES: AgriSpecies[] = [
     latin: "Pleurotus ostreatus",
     blurb: "Cycle très court, grande tolérance aux aléas de culture. Bonne espèce pour démarrer. Entailler le sac, maintenir humide — ça pousse vite.",
     stats: ["Cycle très court", "Haute tolérance", "Rendement élevé"],
-    available: true,
+    imagePath: "/photos/agri-pleurote.jpg",
+    imageAlt: "Pleurote en culture sur sac substrat — Les Myconautes",
   },
   {
     slug: "eryngii",
@@ -41,7 +41,8 @@ export const AGRI_SPECIES: AgriSpecies[] = [
     latin: "Pleurotus eryngii",
     blurb: "Chair ferme rappelant les coquilles Saint-Jacques, conservation longue. Cycle court, tolérance faible. Sensible aux bactéries — salles propres indispensables.",
     stats: ["Cycle court", "Tolérance faible", "3-4 récoltes"],
-    available: true,
+    imagePath: "/photos/agri-eryngii.jpg",
+    imageAlt: "Éryngii en culture sur sac substrat — Les Myconautes",
   },
   {
     slug: "hericium",
@@ -50,7 +51,20 @@ export const AGRI_SPECIES: AgriSpecies[] = [
     latin: "Hericium erinaceus",
     blurb: "Crinière de lion. Texture de chair de crabe ou de homard, parfum de fruits à coque. Besoin d'air frais, ne tolère pas les espaces confinés. Rendement ~15%.",
     stats: ["Cycle court", "Tolérance faible", "2-3 récoltes"],
-    available: true,
+    tag: "Bientôt de retour",
+    imagePath: "/photos/agri-hericium.jpg",
+    imageAlt: "Hericium en culture sur sac substrat — Les Myconautes",
+  },
+  {
+    slug: "black-pearl",
+    varietyCode: "BLACK_PEARL",
+    name: "Black Pearl",
+    latin: "Pleurotus ostreatus var. Black Pearl",
+    blurb: "Pleurote noire à chair dense, parfum naturellement fumé. Cycle court, bonne tolérance — un atout différenciant en restauration et marché.",
+    stats: ["Cycle court", "Tolérance moyenne", "Rendement bon"],
+    tag: "Bientôt de retour",
+    imagePath: "/photos/agri-black-pearl.jpg",
+    imageAlt: "Pleurote Black Pearl en culture sur sac substrat — Les Myconautes",
   },
   {
     slug: "shiitake",
@@ -58,7 +72,7 @@ export const AGRI_SPECIES: AgriSpecies[] = [
     latin: "Lentinula edodes",
     blurb: "Champion des étals : conservation longue, chair moelleuse, parfum boisé, attrait gustatif majeur. Connu en médecine asiatique et des palais du monde entier.",
     stats: ["Cycle moyen", "Tolérance moyenne", "3-4 récoltes"],
-    available: false,
+    tag: "À venir",
   },
   {
     slug: "nameko",
@@ -66,7 +80,7 @@ export const AGRI_SPECIES: AgriSpecies[] = [
     latin: "Pholiota nameko",
     blurb: "Cycle ~3 semaines. Attendre l'apparition des primordias dans le sac avant de l'ouvrir. Sensible au CO₂ et aux courants d'air.",
     stats: ["Cycle ~3 semaines", "Sensible CO₂", "Salles propres"],
-    available: false,
+    tag: "À venir",
   },
   {
     slug: "pleurote-jaune",
@@ -74,7 +88,7 @@ export const AGRI_SPECIES: AgriSpecies[] = [
     latin: "Pleurotus citrinopileatus",
     blurb: "Chapeau jaune vif en éventail. Saveur douce, légèrement fruitée, notes boisées. Excellent sauté, grillé ou en papillote.",
     stats: ["Cycle court", "Tolérance très faible", "Rendement ~15%"],
-    available: false,
+    tag: "À venir",
   },
 ];
 
@@ -86,7 +100,7 @@ export interface SubstrateFormat {
 }
 
 /**
- * Conditionnements substrat actifs en DB pour les 3 variétés dispo.
+ * Conditionnements substrat actifs en DB pour les variétés dispo.
  * Pas de prix public — tarif sur devis (cf. brief restaurateurs/agri).
  */
 export const SUBSTRATE_FORMATS: SubstrateFormat[] = [

@@ -19,11 +19,12 @@ const accentTextClass = {
 
 const hasImage = !!variety.imagePath;
 const altText = variety.imageAlt ?? `${variety.name} (${variety.latin})`;
+const isOffSeason = !!variety.tag;
 ---
 
 <a
   href={href}
-  class="group block bg-ivoire rounded-2xl overflow-hidden ring-1 ring-brun/5 hover:ring-brun/15 hover:-translate-y-1 transition shadow-sm hover:shadow-md"
+  class={`group block bg-ivoire rounded-2xl overflow-hidden ring-1 ring-brun/5 hover:ring-brun/15 hover:-translate-y-1 transition shadow-sm hover:shadow-md ${isOffSeason ? "opacity-95" : ""}`}
 >
   <div class={`aspect-square relative overflow-hidden ${hasImage ? "bg-creme" : `bg-gradient-to-br ${variety.gradient}`}`}>
     {hasImage ? (
@@ -32,11 +33,16 @@ const altText = variety.imageAlt ?? `${variety.name} (${variety.latin})`;
         alt={altText}
         loading={loading}
         decoding="async"
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        class={`w-full h-full object-cover transition-transform duration-500 ${isOffSeason ? "saturate-50 group-hover:saturate-75" : "group-hover:scale-105"}`}
       />
     ) : (
       <span class="absolute inset-0 flex items-center justify-center text-6xl drop-shadow-sm" aria-hidden="true">
         {variety.emoji}
+      </span>
+    )}
+    {variety.tag && (
+      <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-lavande/95 text-ivoire text-xs font-semibold uppercase tracking-wider shadow-sm backdrop-blur-sm">
+        🟣 {variety.tag}
       </span>
     )}
   </div>
