@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import CTASection from "../components/CTASection.astro";
+---
+
+<BaseLayout
+  title="Contact — Les Myconautes | Champignonnière bio Rive-de-Gier"
+  description="Une question, un devis, une visite ? Écrivez-nous. Champignonnière artisanale FR-BIO-01 à Rive-de-Gier (Loire). Email myconaute@pm.me, Instagram @les_myconautes."
+>
+  <PageHero
+    theme="lavande"
+    label="Échangeons"
+    title="Une question ? Écrivez-nous"
+    description="Pour les pros : recevez la grille tarifaire et nos conditions de vente. Pour les particuliers : commandez directement sur Pour de Bon, ou venez nous rendre visite à Rive-de-Gier."
+    primaryCta={{ href: "https://www.pourdebon.com/les-myconautes-s1527", label: "Commander en ligne" }}
+    secondaryCta={{ href: "#form", label: "Formulaire" }}
+  />
+
+  <section id="form" class="px-6 py-20">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+      <form class="grid gap-4 bg-creme rounded-2xl p-8 ring-1 ring-brun/5" data-contact-form>
+        <h2 class="text-2xl text-brun">Formulaire</h2>
+        <div>
+          <label for="cf-name" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Nom</label>
+          <input id="cf-name" name="name" type="text" required class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+        </div>
+        <div>
+          <label for="cf-email" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Email</label>
+          <input id="cf-email" name="email" type="email" required class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+        </div>
+        <div>
+          <label for="cf-phone" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Téléphone</label>
+          <input id="cf-phone" name="phone" type="tel" class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+        </div>
+        <div>
+          <label for="cf-msg" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Message</label>
+          <textarea id="cf-msg" name="message" rows="6" required class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm resize-y"></textarea>
+        </div>
+        <button type="submit" class="justify-self-start inline-flex items-center gap-2 px-6 py-3 rounded-full bg-terracotta text-ivoire font-semibold hover:brightness-110 transition shadow-sm">
+          Envoyer →
+        </button>
+        <p class="hidden text-sm text-turquoise font-semibold" data-contact-success>
+          Merci, votre message est parti. On vous répond très vite.
+        </p>
+      </form>
+
+      <div>
+        <h2 class="text-2xl text-brun mb-6">Infos pratiques</h2>
+        <ul class="space-y-5">
+          <li class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-full bg-creme flex-shrink-0 flex items-center justify-center" aria-hidden="true">📍</span>
+            <div class="text-sm">
+              <h3 class="font-semibold text-brun">Adresse de production</h3>
+              <p class="text-brun-clair">5 rue Vallée de Couzon<br/>42800 Rive-de-Gier (Loire)</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-full bg-creme flex-shrink-0 flex items-center justify-center" aria-hidden="true">🕐</span>
+            <div class="text-sm">
+              <h3 class="font-semibold text-brun">Horaires retrait</h3>
+              <p class="text-brun-clair">Lun – Ven, 7h à 13h</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-full bg-creme flex-shrink-0 flex items-center justify-center" aria-hidden="true">📧</span>
+            <div class="text-sm">
+              <h3 class="font-semibold text-brun">Email</h3>
+              <p class="text-brun-clair"><a href="mailto:myconaute@pm.me" class="text-violet-profond hover:underline">myconaute@pm.me</a></p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-full bg-creme flex-shrink-0 flex items-center justify-center" aria-hidden="true">📸</span>
+            <div class="text-sm">
+              <h3 class="font-semibold text-brun">Instagram</h3>
+              <p class="text-brun-clair"><a href="https://www.instagram.com/les_myconautes/" target="_blank" rel="noopener" class="text-violet-profond hover:underline">@les_myconautes</a></p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-full bg-creme flex-shrink-0 flex items-center justify-center" aria-hidden="true">📘</span>
+            <div class="text-sm">
+              <h3 class="font-semibold text-brun">Facebook</h3>
+              <p class="text-brun-clair"><a href="https://www.facebook.com/p/Les-Myconautes-61577873314539/" target="_blank" rel="noopener" class="text-violet-profond hover:underline">Les Myconautes</a></p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-full bg-creme flex-shrink-0 flex items-center justify-center" aria-hidden="true">🛒</span>
+            <div class="text-sm">
+              <h3 class="font-semibold text-brun">Commander en ligne</h3>
+              <p class="text-brun-clair"><a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="text-violet-profond hover:underline">pourdebon.com/les-myconautes</a></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Plutôt l'envie d'une visite ?"
+    description="Sur rendez-vous, on peut vous faire visiter la champignonnière. Lun – Ven, 7h à 13h."
+    primaryCta={{ href: "#form", label: "Prendre rendez-vous" }}
+    secondaryCta={{ href: "/", label: "Retour accueil" }}
+  />
+</BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+  const success = document.querySelector<HTMLParagraphElement>("[data-contact-success]");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    success?.classList.remove("hidden");
+    form.reset();
+  });
+</script>

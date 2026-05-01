@@ -1,0 +1,11 @@
+# Redirections 301 — Cloudflare Pages
+# Préservation du jus SEO de l'ancien site lesmyconautes.fr (audit 2026-05-01).
+# Format : <source>  <destination>  <status>
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+/nous-contacter                                                                  /contact          301
+/culture-champignon-professionnel/shiitake-pleurote-hericium/substrat-champignon /agriculteurs     301
+/fournisseur-substrat-champignons/mycelium/shiitake-pleurote-hericium            /agriculteurs     301
+/faire-pousser-champignon/culture-champignons/shiitake-pleurote-hericium         /particuliers     301
+/cuisiner-champignon/recette-champignon                                          /restaurateurs    301
+/producteur-champignons/conditions-utilisation                                   /mentions-legales 301

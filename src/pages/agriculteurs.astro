@@ -6,8 +6,8 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
 ---
 
 <BaseLayout
-  title="Substrats &amp; mycélium bio pour champignonnistes | Les Myconautes"
-  description="Substrats inoculés certifiés bio pour la culture pro. Pleurote, éryngii, hericium et plus à venir. Sac, demi-palette ou palette. Devis sur demande."
+  title="Substrat champignon bio FR-BIO-01 — Producteur Rhône-Alpes | Les Myconautes"
+  description="Fournisseur direct de substrat champignon bio en France. Éryngii, hericium, pleurote — bientôt nameko, shiitaké et pleurote jaune. Certifié FR-BIO-01 par Ecocert. Sac 2,5 kg, demi-palette 200 kg, palette 500 kg. Devis sur demande."
 >
   <PageHero
     theme="turquoise"
@@ -18,6 +18,39 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
     primaryCta={{ href: "#contact-agri", label: "Demander un devis" }}
     secondaryCta={{ href: "#especes", label: "Voir le catalogue" }}
   />
+
+  <!-- Argument FR-BIO-01 (différenciant SEO principal) -->
+  <section class="bg-creme px-6 py-16">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-[2fr_1fr] gap-10 items-center">
+        <div>
+          <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Pourquoi nous</span>
+          <h2 class="mt-2 text-3xl md:text-4xl text-brun">Le seul fournisseur de substrat champignon <em class="italic text-turquoise">FR-BIO-01</em> en Rhône-Alpes</h2>
+          <div class="mt-6 text-brun-clair leading-relaxed space-y-3">
+            <p>
+              <strong class="text-brun">Bio FRANÇAIS, pas belge ni allemand.</strong> Certification FR-BIO-01.250-0043443.2026.003 délivrée par Ecocert.
+            </p>
+            <p>
+              <strong class="text-brun">Producteur direct.</strong> On fabrique nous-mêmes le substrat dans notre atelier — vous ne passez pas par un distributeur.
+            </p>
+            <p>
+              <strong class="text-brun">Variétés exotiques bio</strong> que les gros fabricants ne proposent pas en bio : Hericium, Nameko, Pleurote jaune.
+            </p>
+            <p>
+              <strong class="text-brun">Bio sans compromis.</strong> Aucun produit sur les champignons. Pas de produits dans la nourriture (paille, son de blé, céréales). Pas d'insecticides en salles. Tous les achats justifiés par certificat bio fournisseur.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5 text-center">
+          <div class="text-5xl mb-3" aria-hidden="true">🌱</div>
+          <div class="font-display text-lg text-brun leading-tight">Certifié<br/>FR-BIO-01</div>
+          <div class="mt-2 text-xs text-brun-clair break-words">FR-BIO-01.250-0043443<br/>.2026.003</div>
+          <div class="mt-3 inline-block px-3 py-1 rounded-full bg-turquoise/15 text-turquoise text-xs font-semibold">Ecocert</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Espèces -->
   <section id="especes" class="px-6 py-20">
