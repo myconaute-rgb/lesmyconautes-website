@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard.astro";
 import StepCard from "../components/StepCard.astro";
 import FAQItem from "../components/FAQItem.astro";
 import CTASection from "../components/CTASection.astro";
+import DeliveryGrid from "../components/DeliveryGrid.astro";
 import { VARIETIES } from "../data/varieties";
 ---
 
@@ -132,53 +133,7 @@ import { VARIETIES } from "../data/varieties";
     </div>
   </section>
 
-  <!-- Livraison -->
-  <section id="livraison" class="bg-creme px-6 py-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Livraison</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Comment recevoir vos champignons</h2>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="bg-ivoire rounded-2xl p-6 text-center ring-1 ring-brun/5">
-          <div class="text-3xl mb-3" aria-hidden="true">📦</div>
-          <h3 class="text-base text-brun">Retrait sur place</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
-            5 rue Vallée de Couzon<br/>42800 Rive-de-Gier<br/>Lun – Ven, 7h à 13h
-          </p>
-          <div class="mt-3 inline-block text-turquoise font-semibold text-sm">Gratuit</div>
-        </div>
-
-        <div class="bg-ivoire rounded-2xl p-6 text-center ring-1 ring-brun/5">
-          <div class="text-3xl mb-3" aria-hidden="true">🚛</div>
-          <h3 class="text-base text-brun">Livraison Lyon</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
-            Vendredi matin<br/>8h – 12h<br/>Rayon 5 km
-          </p>
-          <div class="mt-3 inline-block text-terracotta font-semibold text-sm">2,00 €</div>
-        </div>
-
-        <div class="bg-ivoire rounded-2xl p-6 text-center ring-1 ring-brun/5">
-          <div class="text-3xl mb-3" aria-hidden="true">🚛</div>
-          <h3 class="text-base text-brun">Livraison Saint-Étienne</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
-            Jeudi matin<br/>8h – 12h<br/>Rayon 5 km
-          </p>
-          <div class="mt-3 inline-block text-terracotta font-semibold text-sm">2,00 €</div>
-        </div>
-
-        <div class="bg-ivoire rounded-2xl p-6 text-center ring-1 ring-brun/5">
-          <div class="text-3xl mb-3" aria-hidden="true">📬</div>
-          <h3 class="text-base text-brun">Partout en France</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
-            Via <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="text-violet-profond font-semibold hover:underline">Pour de Bon</a>
-          </p>
-          <div class="mt-3 inline-block text-violet-profond font-semibold text-sm">Voir tarifs</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <DeliveryGrid />
 
   <!-- FAQ -->
   <section id="faq" class="px-6 py-20">

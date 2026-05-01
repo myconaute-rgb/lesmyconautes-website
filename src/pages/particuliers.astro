@@ -1,0 +1,154 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import ProductCard from "../components/ProductCard.astro";
+import DeliveryGrid from "../components/DeliveryGrid.astro";
+import FAQItem from "../components/FAQItem.astro";
+import CTASection from "../components/CTASection.astro";
+import { VARIETIES } from "../data/varieties";
+---
+
+<BaseLayout
+  title="Particuliers — Champignons bio livrés à domicile | Les Myconautes"
+  description="Champignons frais, séchés, épicerie fine et substrats pour cultiver chez vous. Retrait gratuit à Rive-de-Gier, livraison Lyon &amp; Saint-Étienne, France entière via Pour de Bon."
+>
+  <PageHero
+    theme="lavande"
+    label="Cuisine, plaisir & curiosité"
+    title="Bienvenue dans le monde extraordinaire des champignons"
+    highlight="champignons"
+    description="Frais, séchés, épicerie fine et substrats en petits volumes — la même qualité que pour les pros, mais à votre échelle."
+    primaryCta={{ href: "https://www.pourdebon.com/les-myconautes-s1527", label: "Commander sur Pour de Bon" }}
+    secondaryCta={{ href: "#culture", label: "Cultiver chez moi" }}
+  />
+
+  <!-- 3 catégories d'offre -->
+  <section class="px-6 py-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Notre offre</span>
+        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Tout un monde à explorer</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="group bg-creme rounded-2xl border-t-4 border-lavande p-8 hover:-translate-y-1 transition shadow-sm hover:shadow-md">
+          <div class="text-4xl mb-3" aria-hidden="true">🍄</div>
+          <h3 class="text-xl text-brun">Champignons frais</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Hericium, éryngii, pleurotes — récoltés chaque jour, livrés chez vous.
+          </p>
+          <span class="mt-4 inline-block text-sm font-semibold text-violet-profond">Commander →</span>
+        </a>
+        <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="group bg-creme rounded-2xl border-t-4 border-terracotta p-8 hover:-translate-y-1 transition shadow-sm hover:shadow-md">
+          <div class="text-4xl mb-3" aria-hidden="true">🫙</div>
+          <h3 class="text-xl text-brun">Épicerie fine</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Veloutés, champignons séchés, pickles et produits transformés artisanaux.
+          </p>
+          <span class="mt-4 inline-block text-sm font-semibold text-terracotta">Commander →</span>
+        </a>
+        <a href="#culture" class="group bg-creme rounded-2xl border-t-4 border-turquoise p-8 hover:-translate-y-1 transition shadow-sm hover:shadow-md">
+          <div class="text-4xl mb-3" aria-hidden="true">🌱</div>
+          <h3 class="text-xl text-brun">Faites pousser !</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Substrats en petits volumes pour cultiver vos champignons à la maison.
+          </p>
+          <span class="mt-4 inline-block text-sm font-semibold text-turquoise">Comment faire →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Variétés -->
+  <section class="bg-creme px-6 py-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Nos champignons</span>
+        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Une qualité <em class="italic text-lavande">incomparable</em></h2>
+        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
+          Propres, parés, aucun lavage nécessaire. Envoi frigorifique pour un résultat magnifique.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+        {VARIETIES.map((v) => <ProductCard variety={v} />)}
+      </div>
+    </div>
+  </section>
+
+  <DeliveryGrid minOrder="25 €" background="ivoire" />
+
+  <!-- Cultiver chez soi -->
+  <section id="culture" class="bg-creme px-6 py-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Cultiver chez vous</span>
+        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Lancez-vous dans la culture maison</h2>
+        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
+          La même offre que pour les pros, en petits volumes. Substrat prêt à l'emploi et conseils inclus.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5">
+          <h4 class="font-display text-base text-brun">🌱 Substrat prêt à l'emploi</h4>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Fabriqué et ensemencé chez nous. Vous, vous gardez la partie la plus gratifiante : voir pousser vos champignons.
+          </p>
+        </div>
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5">
+          <h4 class="font-display text-base text-brun">💧 Maintenez l'humidité</h4>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Munissez-vous d'un brumisateur. L'humidité est primordiale — sans elle, rien ne se passe.
+          </p>
+        </div>
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5">
+          <h4 class="font-display text-base text-brun">🌬️ Air frais</h4>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Exposez le substrat à l'air frais. Évitez les espaces confinés et la proximité d'un chauffage.
+          </p>
+        </div>
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5">
+          <h4 class="font-display text-base text-brun">⏱️ Patience</h4>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Laissez le sac fermé jusqu'à l'apparition des primordias (petits pompons blancs), puis ouvrez. Quelques jours plus tard, c'est prêt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="px-6 py-20">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Questions fréquentes</span>
+        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Tout savoir avant de commander</h2>
+      </div>
+
+      <FAQItem question="Vos champignons sont-ils bio ?">
+        Oui. Label FR-BIO-01, cultivés sans pesticide, pratiques durables et raisonnées.
+      </FAQItem>
+      <FAQItem question="Faut-il les laver ?">
+        Non, ils sont propres et parés. Un simple essuyage suffit si besoin.
+      </FAQItem>
+      <FAQItem question="Combien de temps se conservent-ils ?">
+        8 à 10 jours au réfrigérateur (0 à 4°C) dans leur emballage d'origine.
+      </FAQItem>
+      <FAQItem question="Puis-je les congeler ?">
+        Préférez les poêler légèrement avant congélation pour préserver texture et goût.
+      </FAQItem>
+      <FAQItem question="Y a-t-il un minimum de commande ?">
+        Aucun minimum sur Pour de Bon. Pour la livraison à domicile (Lyon / Saint-Étienne), minimum 25 €.
+      </FAQItem>
+      <FAQItem question="Comment fonctionne le retrait ?">
+        Récupérez gratuitement le lendemain de votre commande au 5 rue Vallée de Couzon, Rive-de-Gier. Lun – Ven, 7h à 13h. Conservation au frais 3 jours.
+      </FAQItem>
+    </div>
+  </section>
+
+  <CTASection
+    title="Envie de goûter ?"
+    description="Commandez en ligne, ou venez nous rendre visite à Rive-de-Gier."
+  />
+</BaseLayout>

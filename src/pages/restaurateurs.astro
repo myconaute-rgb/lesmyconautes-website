@@ -1,0 +1,192 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import ProductCard from "../components/ProductCard.astro";
+import CTASection from "../components/CTASection.astro";
+import { VARIETIES } from "../data/varieties";
+---
+
+<BaseLayout
+  title="Restauration & distribution — Champignons bio pour vos cuisines | Les Myconautes"
+  description="Champignons bio cultivés pour la restauration : volumes réguliers, qualité constante, livraison directe Lyon &amp; Saint-Étienne, France entière via Pour de Bon. Grille tarifaire pro sur demande."
+>
+  <PageHero
+    theme="terracotta"
+    label="Pour les pros de la cuisine"
+    title="Des champignons bio d'exception pour vos cuisines"
+    highlight="vos cuisines"
+    description="Restauration, distribution, épiceries fines, AMAP — gamme complète, volumes réguliers et qualité irréprochable toute l'année."
+    primaryCta={{ href: "#contact-pro", label: "Demander la grille tarifaire" }}
+    secondaryCta={{ href: "#gamme", label: "Voir la gamme" }}
+  />
+
+  <!-- Gamme -->
+  <section id="gamme" class="px-6 py-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Notre gamme</span>
+        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Cultivés pour les <em class="italic text-terracotta">palais exigeants</em></h2>
+        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
+          Récoltés chaque jour, livrés sous 48h. En vrac ou en conditionnement adapté aux circuits pro.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+        {VARIETIES.map((v) => <ProductCard variety={v} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Avantages -->
+  <section class="bg-creme px-6 py-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Pourquoi nous choisir</span>
+        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Un partenaire fiable pour vos approvisionnements</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5">
+          <div class="w-11 h-11 rounded-full bg-turquoise/15 text-turquoise flex items-center justify-center text-xl mb-3">🌿</div>
+          <h3 class="text-base text-brun">100% bio certifié</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Label FR-BIO-01. Cultivés sans pesticide, gestion raisonnée de l'eau et des emballages.
+          </p>
+        </div>
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5">
+          <div class="w-11 h-11 rounded-full bg-terracotta/15 text-terracotta flex items-center justify-center text-xl mb-3">📦</div>
+          <h3 class="text-base text-brun">Conditionnements pro</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Vrac ou conditionnement adapté. Caissettes, colis — on s'adapte à votre flux.
+          </p>
+        </div>
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5">
+          <div class="w-11 h-11 rounded-full bg-lavande/20 text-violet-profond flex items-center justify-center text-xl mb-3">📅</div>
+          <h3 class="text-base text-brun">Volumes réguliers</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Production maîtrisée toute l'année. Qualité constante, logistique fiable, livraison sous 48h.
+          </p>
+        </div>
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5">
+          <div class="w-11 h-11 rounded-full bg-terracotta/15 text-terracotta flex items-center justify-center text-xl mb-3">🚚</div>
+          <h3 class="text-base text-brun">Livraison directe</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Tournées Lyon (vendredi) et Saint-Étienne (jeudi). France entière via Pour de Bon.
+          </p>
+        </div>
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5">
+          <div class="w-11 h-11 rounded-full bg-turquoise/15 text-turquoise flex items-center justify-center text-xl mb-3">🤝</div>
+          <h3 class="text-base text-brun">Circuit court</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Cultivés, récoltés et conditionnés à Rive-de-Gier. Zéro intermédiaire, traçabilité totale.
+          </p>
+        </div>
+        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5">
+          <div class="w-11 h-11 rounded-full bg-lavande/20 text-violet-profond flex items-center justify-center text-xl mb-3">💰</div>
+          <h3 class="text-base text-brun">Tarifs pro</h3>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Grille tarifaire et conditions de vente sur demande, dégressifs selon les volumes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conseils conservation pro -->
+  <section class="px-6 py-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Conseils pro</span>
+        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Conservation &amp; utilisation</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="bg-creme rounded-2xl p-6 ring-1 ring-brun/5">
+          <h4 class="font-display text-base text-brun">🌡️ Température idéale</h4>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            1 à 2°C pour la plupart des champignons. Le développement est stoppé. Exception : pleurote rose (Purati) à ~10°C.
+          </p>
+        </div>
+        <div class="bg-creme rounded-2xl p-6 ring-1 ring-brun/5">
+          <h4 class="font-display text-base text-brun">💧 Atmosphère</h4>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Atmosphère humide et propre en chambre froide pour prévenir la déshydratation. Ne jamais arroser directement.
+          </p>
+        </div>
+        <div class="bg-creme rounded-2xl p-6 ring-1 ring-brun/5">
+          <h4 class="font-display text-base text-brun">📦 Durée</h4>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            8 à 10 jours au réfrigérateur dans l'emballage d'origine. Propres et parés — aucun lavage nécessaire.
+          </p>
+        </div>
+        <div class="bg-creme rounded-2xl p-6 ring-1 ring-brun/5">
+          <h4 class="font-display text-base text-brun">❄️ Congélation</h4>
+          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+            Poêlez légèrement avant congélation pour préserver texture et goût. Idéal pour vos préparations à l'avance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact pro -->
+  <section id="contact-pro" class="bg-creme px-6 py-20">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Contact pro</span>
+        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Demandez votre grille tarifaire</h2>
+        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
+          On peut convenir d'un rendez-vous pour échanger sur vos besoins et vous faire tester nos produits.
+        </p>
+      </div>
+
+      <form class="grid gap-4 bg-ivoire rounded-2xl p-8 ring-1 ring-brun/5" data-pro-form>
+        <div>
+          <label for="pf-etab" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Établissement</label>
+          <input id="pf-etab" name="etablissement" type="text" required placeholder="Nom de votre restaurant / enseigne" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="pf-name" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Nom</label>
+            <input id="pf-name" name="name" type="text" required class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label for="pf-email" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Email</label>
+            <input id="pf-email" name="email" type="email" required class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+          </div>
+        </div>
+        <div>
+          <label for="pf-phone" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Téléphone</label>
+          <input id="pf-phone" name="phone" type="tel" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+        </div>
+        <div>
+          <label for="pf-msg" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Message</label>
+          <textarea id="pf-msg" name="message" rows="4" required placeholder="Vos besoins, volumes estimés, fréquence souhaitée…" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm resize-y"></textarea>
+        </div>
+        <button type="submit" class="justify-self-start inline-flex items-center gap-2 px-6 py-3 rounded-full bg-terracotta text-ivoire font-semibold hover:brightness-110 transition shadow-sm">
+          Envoyer ma demande →
+        </button>
+        <p class="hidden text-sm text-turquoise font-semibold" data-pro-success>
+          Merci, votre demande est partie. On revient vers vous très vite.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <CTASection
+    title="On collabore ?"
+    description="Pour un échange direct, écrivez-nous ou venez visiter la champignonnière à Rive-de-Gier."
+    primaryCta={{ href: "#contact-pro", label: "Demander la grille" }}
+    secondaryCta={{ href: "/", label: "Retour accueil" }}
+  />
+</BaseLayout>
+
+<script>
+  const proForm = document.querySelector<HTMLFormElement>("[data-pro-form]");
+  const proSuccess = document.querySelector<HTMLParagraphElement>("[data-pro-success]");
+  proForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    proSuccess?.classList.remove("hidden");
+    proForm.reset();
+  });
+</script>

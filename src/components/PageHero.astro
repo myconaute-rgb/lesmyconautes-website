@@ -1,0 +1,93 @@
+---
+interface Props {
+  /** Couleur dominante de la page. */
+  theme: "lavande" | "terracotta" | "turquoise";
+  label: string;
+  title: string;
+  /** Mot ou portion mise en italique dans le H1. */
+  highlight?: string;
+  description: string;
+  primaryCta?: { href: string; label: string };
+  secondaryCta?: { href: string; label: string };
+}
+
+const { theme, label, title, highlight, description, primaryCta, secondaryCta } = Astro.props;
+
+const bg = {
+  lavande: "bg-lavande",
+  terracotta: "bg-terracotta",
+  turquoise: "bg-turquoise",
+}[theme];
+
+const labelText = {
+  lavande: "text-ivoire/85",
+  terracotta: "text-ivoire/90",
+  turquoise: "text-brun/85",
+}[theme];
+
+const titleText = {
+  lavande: "text-ivoire",
+  terracotta: "text-ivoire",
+  turquoise: "text-brun",
+}[theme];
+
+const descriptionText = {
+  lavande: "text-ivoire/85",
+  terracotta: "text-ivoire/90",
+  turquoise: "text-brun-clair",
+}[theme];
+
+const isLightTheme = theme === "turquoise";
+const primaryClass = isLightTheme
+  ? "bg-brun text-ivoire hover:brightness-110"
+  : "bg-ivoire text-brun hover:brightness-95";
+const secondaryClass = isLightTheme
+  ? "border-brun/30 text-brun hover:bg-brun/10"
+  : "border-ivoire/40 text-ivoire hover:bg-ivoire/10";
+---
+
+<section class={`${bg} px-6 py-20 md:py-24 relative overflow-hidden`}>
+  <!-- disques décoratifs -->
+  <div class="absolute -top-16 -left-16 w-64 h-64 rounded-full bg-ivoire/10 mix-blend-overlay"></div>
+  <div class="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-brun/10 mix-blend-multiply"></div>
+
+  <div class="relative max-w-4xl mx-auto text-center">
+    <span class={`inline-block text-xs font-semibold tracking-widest uppercase ${labelText}`}>
+      {label}
+    </span>
+    <h1 class={`mt-3 text-4xl md:text-5xl leading-[1.1] ${titleText}`}>
+      {highlight ? (
+        <>
+          {title.replace(highlight, "")}
+          <em class="italic">{highlight}</em>
+        </>
+      ) : title}
+    </h1>
+    <p class={`mt-5 max-w-2xl mx-auto leading-relaxed ${descriptionText}`}>
+      {description}
+    </p>
+
+    {(primaryCta || secondaryCta) && (
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        {primaryCta && (
+          <a
+            href={primaryCta.href}
+            target={primaryCta.href.startsWith("http") ? "_blank" : undefined}
+            rel={primaryCta.href.startsWith("http") ? "noopener" : undefined}
+            class={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition shadow-sm ${primaryClass}`}
+          >
+            {primaryCta.label} <span aria-hidden="true">→</span>
+          </a>
+        )}
+        {secondaryCta && (
+          <a
+            href={secondaryCta.href}
+            class={`inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 font-semibold transition ${secondaryClass}`}
+          >
+            {secondaryCta.label}
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+</section>
