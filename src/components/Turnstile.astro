@@ -1,0 +1,20 @@
+---
+/**
+ * Widget Cloudflare Turnstile (anti-bot, sans cookie, alternative captcha).
+ *
+ * - Mode "Managed" : challenge invisible la plupart du temps, visible uniquement
+ *   si Cloudflare détecte du trafic suspect.
+ * - Le widget injecte automatiquement un input <input name="cf-turnstile-response">
+ *   dans le form parent, récupéré par FormData côté contact-form.ts.
+ * - Côté n8n : valider le token via POST sur
+ *   https://challenges.cloudflare.com/turnstile/v0/siteverify avec le secret.
+ */
+const SITE_KEY = "0x4AAAAAADHIeuScqYJ0tn_S";
+---
+
+<div class="cf-turnstile" data-sitekey={SITE_KEY} data-theme="light"></div>
+<script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async
+  defer
+  is:inline></script>

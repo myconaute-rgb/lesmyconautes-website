@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
 import HoneypotField from "../components/HoneypotField.astro";
+import Turnstile from "../components/Turnstile.astro";
 import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
 ---
 
@@ -238,6 +239,7 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
           <label for="af-msg" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Détails</label>
           <textarea id="af-msg" name="message" rows="4" placeholder="Type de production, calendrier, contraintes…" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm resize-y"></textarea>
         </div>
+        <Turnstile />
         <button type="submit" class="justify-self-start inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brun text-ivoire font-semibold hover:brightness-110 transition shadow-sm">
           Envoyer ma demande →
         </button>

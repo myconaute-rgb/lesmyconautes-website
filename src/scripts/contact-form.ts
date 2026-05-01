@@ -8,6 +8,7 @@
  * Sécurité :
  *   - Honeypot field 'website' rempli → bot, drop côté serveur (silencieux)
  *   - 'loaded_at' (ms timestamp page load) — soumission < 3s → bot
+ *   - Cloudflare Turnstile : token 'cf-turnstile-response' validé côté webhook n8n
  *   - CORS strict côté serveur (Origin = https://lesmyconautes.fr seul)
  *   - CSP connect-src élargi à api.lesmyconautes.fr (cf public/_headers)
  *
@@ -42,6 +43,19 @@ export function wireContactForm(
     // Reset des messages
     successEl?.classList.add("hidden");
     errorEl?.classList.add("hidden");
+
+    // Turnstile : vérifier que le widget a généré un token avant d'envoyer
+    const turnstileToken = form
+      .querySelector<HTMLInputElement>('input[name="cf-turnstile-response"]')
+      ?.value?.trim();
+    if (!turnstileToken) {
+      if (errorEl) {
+        errorEl.textContent =
+          "Vérification de sécurité en cours, réessayez dans une seconde.";
+        errorEl.classList.remove("hidden");
+      }
+      return;
+    }
 
     // Disable bouton pendant l'envoi
     if (submitBtn) {
