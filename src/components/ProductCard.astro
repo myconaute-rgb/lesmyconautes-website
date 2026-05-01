@@ -1,0 +1,34 @@
+---
+import type { Variety } from "../data/varieties";
+
+interface Props {
+  variety: Variety;
+  href?: string;
+}
+
+const { variety, href = `/varietes/${variety.slug}` } = Astro.props;
+
+const accentTextClass = {
+  lavande: "text-violet-profond",
+  terracotta: "text-terracotta",
+  turquoise: "text-turquoise",
+  "violet-profond": "text-violet-profond",
+}[variety.accent];
+---
+
+<a
+  href={href}
+  class="group block bg-ivoire rounded-2xl overflow-hidden ring-1 ring-brun/5 hover:ring-brun/15 hover:-translate-y-1 transition shadow-sm hover:shadow-md"
+>
+  <div class={`aspect-square bg-gradient-to-br ${variety.gradient} flex items-center justify-center`}>
+    <span class="text-6xl drop-shadow-sm" aria-hidden="true">{variety.emoji}</span>
+  </div>
+  <div class="p-5">
+    <h3 class="font-display text-lg text-brun">{variety.name}</h3>
+    <p class="font-display italic text-xs text-brun-clair/70 mt-0.5">{variety.latin}</p>
+    <p class="mt-3 text-sm text-brun-clair leading-relaxed">{variety.blurb}</p>
+    <span class={`mt-4 inline-block text-xs font-semibold uppercase tracking-wider ${accentTextClass}`}>
+      Découvrir →
+    </span>
+  </div>
+</a>

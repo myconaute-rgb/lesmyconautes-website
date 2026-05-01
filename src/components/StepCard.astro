@@ -1,0 +1,25 @@
+---
+interface Props {
+  number: number;
+  title: string;
+  color: "turquoise" | "lavande" | "terracotta";
+}
+
+const { number, title, color } = Astro.props;
+
+const bg = {
+  turquoise: "bg-turquoise",
+  lavande: "bg-lavande",
+  terracotta: "bg-terracotta",
+}[color];
+---
+
+<div class="text-center">
+  <div class={`w-14 h-14 mx-auto rounded-full ${bg} text-ivoire font-display text-xl font-medium flex items-center justify-center shadow-md`}>
+    {number}
+  </div>
+  <h3 class="mt-5 text-lg text-brun">{title}</h3>
+  <div class="mt-2 text-sm text-brun-clair leading-relaxed max-w-xs mx-auto">
+    <slot />
+  </div>
+</div>

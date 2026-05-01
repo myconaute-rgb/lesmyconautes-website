@@ -1,0 +1,38 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  primaryCta?: { href: string; label: string };
+  secondaryCta?: { href: string; label: string };
+}
+
+const {
+  title = "Prêt·e à goûter ?",
+  description = "Commandez en ligne sur Pour de Bon, ou contactez-nous pour les volumes pro.",
+  primaryCta = { href: "https://www.pourdebon.com/les-myconautes-s1527", label: "Commander en ligne" },
+  secondaryCta = { href: "/contact", label: "Nous écrire" },
+} = Astro.props;
+---
+
+<section class="bg-brun text-ivoire px-6 py-20">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl text-ivoire">{title}</h2>
+    <p class="mt-4 text-ivoire/70 leading-relaxed">{description}</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a
+        href={primaryCta.href}
+        target={primaryCta.href.startsWith("http") ? "_blank" : undefined}
+        rel={primaryCta.href.startsWith("http") ? "noopener" : undefined}
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-terracotta text-ivoire font-semibold hover:brightness-110 transition shadow-sm"
+      >
+        {primaryCta.label} <span aria-hidden="true">→</span>
+      </a>
+      <a
+        href={secondaryCta.href}
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-ivoire/40 text-ivoire font-semibold hover:bg-ivoire/10 transition"
+      >
+        {secondaryCta.label}
+      </a>
+    </div>
+  </div>
+</section>
