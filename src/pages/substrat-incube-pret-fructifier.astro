@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import CTASection from "../components/CTASection.astro";
 ---
 
 <BaseLayout
@@ -18,6 +17,24 @@ import CTASection from "../components/CTASection.astro";
   />
 
   <article class="bg-ivoire">
+    <!-- Encart raccourci hub -->
+    <section class="bg-creme px-6 py-8 border-b border-brun/5">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-base font-display text-brun">Choisir directement votre substrat</h2>
+        <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+          Vous savez déjà ce que vous cherchez ? Accès direct aux 3 pages produit&nbsp;:
+        </p>
+        <ul class="mt-3 space-y-1.5 text-sm text-brun-clair">
+          <li><a href="/substrat-pleurote-pro" class="font-semibold text-violet-profond hover:underline">Substrat pleurote pro</a> — pleurote gris, hybride eryngii × ostreatus, 25 % de rendement, 2 à 3 volées</li>
+          <li><a href="/substrat-eryngii-panicaut" class="font-semibold text-violet-profond hover:underline">Substrat eryngii</a> — pleurote du panicaut, volée unique massive, 20 % de rendement, gamme premium</li>
+          <li><a href="/substrat-hericium-pro" class="font-semibold text-violet-profond hover:underline">Substrat hericium</a> — crinière de lion, méthode propriétaire, production saisonnière</li>
+        </ul>
+        <p class="mt-3 text-xs text-brun-clair/80 leading-relaxed">
+          Sinon, on continue plus bas avec la pédagogie de la phase IV active.
+        </p>
+      </div>
+    </section>
+
     <!-- H2 1 — Phase III vs phase IV : la pédagogie -->
     <section class="px-6 py-16">
       <div class="max-w-3xl mx-auto">
@@ -133,10 +150,18 @@ import CTASection from "../components/CTASection.astro";
     </section>
   </article>
 
-  <CTASection
-    title="Une question sur la phase IV ou notre process ?"
-    description="On répond directement — par mail, téléphone, ou de visu sur place à Rive-de-Gier."
-    primaryCta={{ href: "/agriculteurs#contact-agri", label: "Demander un devis" }}
-    secondaryCta={{ href: "/contact", label: "Nous écrire" }}
-  />
+  <section class="bg-brun text-ivoire px-6 py-20">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl text-ivoire">Une question sur la phase IV ?</h2>
+      <p class="mt-4 text-ivoire/70 leading-relaxed">On répond directement — par mail, téléphone, ou de visu sur place à Rive-de-Gier.</p>
+      <div class="mt-8 flex justify-center">
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-ivoire/40 text-ivoire font-semibold hover:bg-ivoire/10 transition"
+        >
+          Nous écrire
+        </a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
