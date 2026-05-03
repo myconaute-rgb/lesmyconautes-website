@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard.astro";
 import DeliveryGrid from "../components/DeliveryGrid.astro";
 import FAQItem from "../components/FAQItem.astro";
 import CTASection from "../components/CTASection.astro";
+import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { VARIETIES } from "../data/varieties";
 ---
 
@@ -12,6 +13,10 @@ import { VARIETIES } from "../data/varieties";
   title="Kit culture champignon bio &amp; champignons frais à domicile | Les Myconautes"
   description="Cultivez vos champignons à la maison avec nos substrats prêts à l'emploi (pleurote, éryngii, hericium) certifiés FR-BIO-01. Champignons frais bio livrés Lyon, Saint-Étienne, et France entière via Pour de Bon."
 >
+  <BreadcrumbLd items={[
+    { name: "Accueil", url: "/" },
+    { name: "Particuliers" },
+  ]} />
   <PageHero
     theme="lavande"
     label="Cuisine, plaisir & curiosité"

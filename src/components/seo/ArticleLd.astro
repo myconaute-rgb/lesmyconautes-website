@@ -1,0 +1,76 @@
+---
+/**
+ * Schéma Article / TechArticle — pour les pages éditoriales (à propos, futurs
+ * guides experts Vagues 2-3).
+ *
+ * Usage :
+ *   <ArticleLd
+ *     slug="a-propos"
+ *     headline="À propos des Myconautes"
+ *     description="..."
+ *     datePublished="2026-04-01"
+ *     dateModified="2026-05-03"
+ *     type="AboutPage"  // ou "TechArticle" / "Article"
+ *   />
+ */
+
+import JsonLd from "./JsonLd.astro";
+import { ORG, ORG_ID } from "../../data/organization";
+
+interface Props {
+  slug: string;
+  headline: string;
+  description: string;
+  image?: string;
+  datePublished?: string; // ISO date
+  dateModified?: string; // ISO date
+  type?: "Article" | "TechArticle" | "AboutPage";
+  about?: string[];
+}
+
+const {
+  slug,
+  headline,
+  description,
+  image,
+  datePublished,
+  dateModified,
+  type = "Article",
+  about,
+} = Astro.props;
+
+const articleId = `${ORG.url}/${slug}/#article`;
+const pageUrl = `${ORG.url}/${slug}/`;
+const imageUrl = image
+  ? image.startsWith("http")
+    ? image
+    : `${ORG.url}${image}`
+  : undefined;
+
+const data: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": type,
+  "@id": articleId,
+  headline,
+  description,
+  mainEntityOfPage: pageUrl,
+  author: {
+    "@type": "Person",
+    name: ORG.founder,
+    jobTitle: "Producteur de substrat de champignons bio",
+    worksFor: { "@id": ORG_ID },
+  },
+  publisher: { "@id": ORG_ID },
+  audience: {
+    "@type": "BusinessAudience",
+    audienceType: "Myciculteurs professionnels",
+  },
+};
+
+if (imageUrl) data.image = imageUrl;
+if (datePublished) data.datePublished = datePublished;
+if (dateModified) data.dateModified = dateModified;
+if (about && about.length > 0) data.about = about;
+---
+
+<JsonLd data={data} />

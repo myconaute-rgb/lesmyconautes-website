@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard.astro";
 import CTASection from "../components/CTASection.astro";
 import HoneypotField from "../components/HoneypotField.astro";
 import Turnstile from "../components/Turnstile.astro";
+import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { VARIETIES } from "../data/varieties";
 ---
 
@@ -12,6 +13,10 @@ import { VARIETIES } from "../data/varieties";
   title="Champignons bio frais Lyon &amp; Saint-Étienne pour restauration | Les Myconautes"
   description="Champignon frais bio pour cheffes et chefs : pleurote, éryngii, hericium, Black Pearl. Livraison directe Lyon (vendredi) et Saint-Étienne (jeudi). Certifié FR-BIO-01, qualité constante toute l'année. Grille pro sur demande."
 >
+  <BreadcrumbLd items={[
+    { name: "Accueil", url: "/" },
+    { name: "Restaurateurs" },
+  ]} />
   <PageHero
     theme="terracotta"
     label="Pour les pros de la cuisine"

@@ -2,12 +2,26 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
+import ArticleLd from "../components/seo/ArticleLd.astro";
+import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 ---
 
 <BaseLayout
   title="À propos — Champignonnière artisanale FR-BIO-01 | Les Myconautes"
   description="Champignonnière artisanale fondée en 2015 à Rive-de-Gier (Loire). Producteur direct certifié FR-BIO-01, variétés exotiques bio (Hericium, Éryngii, Nameko). Florestan Grange et l'équipe."
 >
+  <ArticleLd
+    slug="a-propos"
+    type="AboutPage"
+    headline="À propos — Champignonnière artisanale FR-BIO-01"
+    description="Champignonnière artisanale fondée en 2015 à Rive-de-Gier (Loire). Producteur direct certifié FR-BIO-01, variétés exotiques bio."
+    about={["Les Myconautes", "Champignonnière artisanale", "Agriculture biologique", "Rive-de-Gier", "FR-BIO-01"]}
+  />
+  <BreadcrumbLd items={[
+    { name: "Accueil", url: "/" },
+    { name: "À propos" },
+  ]} />
+
   <PageHero
     theme="lavande"
     label="Notre histoire"

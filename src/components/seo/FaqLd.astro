@@ -1,0 +1,46 @@
+---
+/**
+ * Schéma FAQPage.
+ *
+ * RÈGLE STRICTE : le contenu Q/R dans le JSON-LD doit être strictement
+ * identique à la version visible sur la page (sinon Google sanctionne pour
+ * cloaking).
+ *
+ * → Toujours alimenter ce composant ET le rendu visible depuis le même
+ *   fichier `src/data/faqs/{slug}.ts` (single source of truth).
+ *
+ * Usage :
+ *   <FaqLd slug="substrat-pleurote-pro" items={faqItems} />
+ */
+
+import JsonLd from "./JsonLd.astro";
+import { ORG } from "../../data/organization";
+
+interface FaqItem {
+  question: string;
+  answer: string; // texte plain — sans HTML — strictement identique à l'affichage
+}
+
+interface Props {
+  slug: string;
+  items: FaqItem[];
+}
+
+const { slug, items } = Astro.props;
+
+const data = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${ORG.url}/${slug}/#faq`,
+  mainEntity: items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<JsonLd data={data} />

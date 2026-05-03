@@ -1,12 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import MailLink from "../components/MailLink.astro";
+import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 ---
 
 <BaseLayout
   title="Mentions légales — Les Myconautes"
   description="Mentions légales du site lesmyconautes.fr. SCEA Grange Champignons, SIRET 902 480 615 00019, certification FR-BIO-01.250-0043443.2026.003."
 >
+  <BreadcrumbLd items={[
+    { name: "Accueil", url: "/" },
+    { name: "Mentions légales" },
+  ]} />
   <article class="px-6 py-16 max-w-3xl mx-auto">
     <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Légal</span>
     <h1 class="mt-2 text-4xl md:text-5xl text-brun">Mentions légales</h1>

@@ -1,0 +1,52 @@
+---
+/**
+ * Schéma BreadcrumbList — fil d'Ariane.
+ *
+ * À placer sur toutes les pages sauf l'accueil.
+ *
+ * Usage :
+ *   <BreadcrumbLd items={[
+ *     { name: "Accueil", url: "/" },
+ *     { name: "Substrats", url: "/agriculteurs" },  // optionnel — niveau intermédiaire
+ *     { name: "Substrat pleurote pro" }              // dernière entrée sans url
+ *   ]} />
+ *
+ * La dernière entrée représente la page courante : par convention Google,
+ * elle est sans `item` (URL). Toutes les autres ont une URL.
+ */
+
+import JsonLd from "./JsonLd.astro";
+import { ORG } from "../../data/organization";
+
+interface BreadcrumbItem {
+  name: string;
+  url?: string; // omettre pour le dernier (page courante)
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const data = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, idx) => {
+    const entry: Record<string, unknown> = {
+      "@type": "ListItem",
+      position: idx + 1,
+      name: item.name,
+    };
+    if (item.url) {
+      // URL absolue (Schema.org recommande)
+      entry.item = item.url.startsWith("http")
+        ? item.url
+        : `${ORG.url}${item.url}`;
+    }
+    return entry;
+  }),
+};
+---
+
+<JsonLd data={data} />

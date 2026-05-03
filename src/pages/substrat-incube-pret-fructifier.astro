@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import ProductLd from "../components/seo/ProductLd.astro";
+import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 ---
 
 <BaseLayout
@@ -15,6 +17,22 @@ import PageHero from "../components/PageHero.astro";
     description="Pourquoi nos ballots arrivent prêts à fructifier dès l'ouverture du carton. Différence phase III / phase IV, choc thermique, gain de temps pour le producteur."
     primaryCta={{ href: "#variantes", label: "Voir nos substrats prêts à fructifier" }}
   />
+
+  <ProductLd
+    slug="substrat-incube-pret-fructifier"
+    name="Substrat de champignon incubé prêt à fructifier (phase IV active)"
+    description="Page pédagogique sur la phase IV active. Pourquoi nos ballots arrivent prêts à fructifier dès l'ouverture du carton. Différence phase III / phase IV, choc thermique, gain de temps pour le producteur."
+    properties={[
+      { name: "Phase à la livraison", value: "Phase IV active (substrat colonisé à 100 %)" },
+      { name: "Fonctionnement", value: "Choc thermique froid en sortie d'incubation, fructification immédiate" },
+      { name: "Variétés concernées", value: "Pleurote, eryngii, hericium (saisonnier)" },
+      { name: "Gain producteur", value: "Pas de salle d'incubation à monter, première récolte 7-12 jours" },
+    ]}
+  />
+  <BreadcrumbLd items={[
+    { name: "Accueil", url: "/" },
+    { name: "Substrat incubé prêt à fructifier" },
+  ]} />
 
   <article class="bg-ivoire">
     <!-- Encart raccourci hub -->

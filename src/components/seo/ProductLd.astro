@@ -1,0 +1,88 @@
+---
+/**
+ * Schéma Product — pages substrat money.
+ *
+ * Décision business validée : pas de bloc `offers` (stratégie grille
+ * tarifaire pro téléchargeable, prix non public).
+ *
+ * Usage :
+ *   <ProductLd
+ *     slug="substrat-pleurote-pro"
+ *     name="Substrat de pleurote professionnel bio"
+ *     description="..."
+ *     image="/photos/agri-pleurote.jpg"
+ *     latinName="Pleurotus ostreatus"
+ *     properties={[
+ *       { name: "Phase", value: "Phase IV active" },
+ *       ...
+ *     ]}
+ *   />
+ */
+
+import JsonLd from "./JsonLd.astro";
+import { ORG, ORG_ID } from "../../data/organization";
+
+interface Property {
+  name: string;
+  value: string;
+}
+
+interface Props {
+  slug: string; // sans slash, ex: "substrat-pleurote-pro"
+  name: string;
+  description: string;
+  image?: string; // path relatif (ex: /photos/...) ou URL absolue
+  latinName?: string;
+  properties: Property[];
+}
+
+const { slug, name, description, image, latinName, properties } = Astro.props;
+
+const productId = `${ORG.url}/${slug}/#product`;
+const imageUrl = image
+  ? image.startsWith("http")
+    ? image
+    : `${ORG.url}${image}`
+  : undefined;
+
+const allProperties: Property[] = [
+  ...(latinName ? [{ name: "Variété", value: latinName }] : []),
+  ...properties,
+  { name: "Certification", value: `${ORG.certification.label} (${ORG.certification.body})` },
+  {
+    name: "Origine",
+    value: `France — ${ORG.productionAddress.addressLocality} (${ORG.productionAddress.postalCode})`,
+  },
+];
+
+const data: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": productId,
+  name,
+  description,
+  brand: {
+    "@type": "Brand",
+    name: ORG.brandName,
+  },
+  manufacturer: {
+    "@id": ORG_ID,
+  },
+  category: "Substrat de champignon professionnel",
+  audience: {
+    "@type": "BusinessAudience",
+    audienceType: "Myciculteurs professionnels",
+  },
+  additionalProperty: allProperties.map((p) => ({
+    "@type": "PropertyValue",
+    name: p.name,
+    value: p.value,
+  })),
+};
+
+if (imageUrl) {
+  data.image = imageUrl;
+}
+---
+
+<JsonLd data={data} />

@@ -1,0 +1,21 @@
+---
+/**
+ * Composant générique d'injection JSON-LD.
+ *
+ * Usage : <JsonLd data={objet schema.org} />
+ *
+ * - Sérialise l'objet en JSON
+ * - Échappe `</` pour éviter de casser le HTML
+ * - Pas d'indentation (compact, gain de poids page)
+ */
+
+interface Props {
+  data: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const { data } = Astro.props;
+
+const json = JSON.stringify(data).replace(/<\//g, "<\\/");
+---
+
+<script type="application/ld+json" set:html={json} />

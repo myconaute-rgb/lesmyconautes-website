@@ -4,6 +4,7 @@ import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
 import HoneypotField from "../components/HoneypotField.astro";
 import Turnstile from "../components/Turnstile.astro";
+import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
 ---
 
@@ -11,6 +12,10 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
   title="Substrat champignon bio FR-BIO-01 — Producteur Rhône-Alpes | Les Myconautes"
   description="Fournisseur direct de substrat champignon bio en France. Éryngii, hericium, pleurote — bientôt nameko, shiitaké et pleurote jaune. Certifié FR-BIO-01 par Ecocert. Sac 2,5 kg, demi-palette 200 kg, palette 500 kg. Devis sur demande."
 >
+  <BreadcrumbLd items={[
+    { name: "Accueil", url: "/" },
+    { name: "Agriculteurs" },
+  ]} />
   <PageHero
     theme="turquoise"
     label="Pour la production"

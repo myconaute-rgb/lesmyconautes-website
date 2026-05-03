@@ -1,0 +1,26 @@
+---
+/**
+ * Référence courte à l'entité Organization via `@id` partagé.
+ *
+ * À placer sur les pages qui ne sont ni / ni /contact, mais qui doivent
+ * quand même rappeler l'entité (sans dupliquer toutes les infos LocalBusiness).
+ *
+ * Pratique : quand `Product` ou `Article` référence `manufacturer`/`publisher`
+ * via `{"@id": ORG_ID}`, le crawler Google sait que les détails complets sont
+ * sur la page d'accueil — pas besoin de les répéter ici.
+ */
+
+import JsonLd from "./JsonLd.astro";
+import { ORG, ORG_ID } from "../../data/organization";
+
+const data = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": ORG_ID,
+  name: ORG.brandName,
+  url: ORG.url,
+  logo: ORG.logo,
+};
+---
+
+<JsonLd data={data} />

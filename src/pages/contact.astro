@@ -5,12 +5,20 @@ import CTASection from "../components/CTASection.astro";
 import MailLink from "../components/MailLink.astro";
 import HoneypotField from "../components/HoneypotField.astro";
 import Turnstile from "../components/Turnstile.astro";
+import LocalBusinessLd from "../components/seo/LocalBusinessLd.astro";
+import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 ---
 
 <BaseLayout
   title="Contact — Les Myconautes | Champignonnière bio Rive-de-Gier"
   description="Une question, un devis, une visite ? Écrivez-nous. Champignonnière artisanale FR-BIO-01 à Rive-de-Gier (Loire), entre Lyon et Saint-Étienne."
 >
+  <LocalBusinessLd />
+  <BreadcrumbLd items={[
+    { name: "Accueil", url: "/" },
+    { name: "Contact" },
+  ]} />
+
   <PageHero
     theme="lavande"
     label="Échangeons"
