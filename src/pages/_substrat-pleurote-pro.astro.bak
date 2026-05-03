@@ -87,7 +87,7 @@ import { toLdItems } from "../data/faqs/_utils";
 
         <div class="mt-5 space-y-4 text-brun-clair leading-relaxed">
           <p>
-            Les grosses unités industrielles font des blocs de 15 kg de substrat pasteurisé, pour des cycles de culture longs en grosses salles. C'est un autre métier, ça fonctionne très bien — mais ce n'est pas le nôtre. Nous, on propose un produit différent&nbsp;: ballot stérilisé en petit format, cycle court de 7 à 12 jours après mise en culture, planning précis, rotation rythmée.
+            Les grandes unités de production travaillent en blocs de 15 kg de substrat pasteurisé, pour des cycles de culture longs en grandes salles. C'est un autre métier, qui répond très bien à ses cibles — ce n'est simplement pas le nôtre. Nous, on propose un produit différent&nbsp;: ballot stérilisé en petit format, cycle court de 7 à 12 jours après mise en culture, planning précis, rotation rythmée.
           </p>
         </div>
       </div>
@@ -293,7 +293,7 @@ import { toLdItems } from "../data/faqs/_utils";
             On fabrique le substrat dans notre atelier de Rive-de-Gier (Loire), avec des matières premières sourcées en local. <strong>Le transport ne dure que 1 à 2, maximum 3 jours</strong> en frigo France métropolitaine. Le substrat ne souffre pas du transport — au contraire, le froid déclenche la fructification dès l'arrivée chez vous.
           </p>
           <p>
-            Comparé à un substrat qui vient de Belgique, d'Allemagne, ou parfois d'Asie, on ne parle pas du même produit ni de la même philosophie de production. Ici, circuit court&nbsp;: producteur direct, pas de courtier, pas de revendeur, pas de jus en transit.
+            Notre choix&nbsp;: circuit court français. Producteur direct, sans intermédiaire, livraison en 1 à 3 jours par transport frigorifique. Un substrat importé de Belgique, d'Allemagne ou d'Asie traverse plus de kilomètres et passe par plus d'étapes — c'est une autre logistique, qui répond à d'autres modèles économiques. Notre approche, à nous, c'est la proximité&nbsp;: on récolte le mycélium en phase IV active, on l'expédie sous 24 à 72 heures, vous le recevez prêt à fructifier.
           </p>
         </div>
       </div>
@@ -307,10 +307,10 @@ import { toLdItems } from "../data/faqs/_utils";
 
         <div class="mt-6 space-y-4 text-brun-clair leading-relaxed">
           <p>
-            Sur les cycles longs des grosses unités, contaminants et insectes ont le temps de s'installer. Acariens, moucherons, moisissures&nbsp;: leur cycle de ponte ou de développement dépasse celui d'un bloc en cycle court.
+            Le cycle court n'est pas qu'une question de planning&nbsp;: c'est aussi un avantage hygiénique structurel. Pendant la phase d'incubation chez nous, le ballot stérilisé reste fermé — le mycélium se développe à l'abri des contaminants ambiants pendant sa période la plus sensible. Une fois en fructification chez vous, la durée courte (7 à 8 semaines maximum) limite naturellement la fenêtre pendant laquelle acariens, moucherons ou moisissures pourraient s'installer durablement dans votre salle.
           </p>
           <p>
-            Concrètement&nbsp;: <strong>quand votre ballot est récolté et recyclé avant que les nuisibles aient pu coloniser la salle, vous gagnez en hygiène sans investir en équipement</strong>. Cet avantage est particulièrement précieux pour les porteurs de projet en cave humide ou en local pas entièrement maîtrisé. Le ballot fermé pendant l'incubation isole le mycélium des contaminants ambiants. Vous avez moins à craindre de votre environnement initial.
+            Concrètement&nbsp;: c'est précieux pour les <strong>porteurs de projet</strong> qui démarrent en cave humide ou dans un local pas entièrement maîtrisé. <strong>Vous gagnez en marge hygiénique sans avoir à investir d'emblée dans un environnement parfaitement contrôlé.</strong> Le ballot fermé pendant l'incubation isole le mycélium, et la rotation rapide en salle laisse moins de temps aux nuisibles pour s'installer — deux protections qui se cumulent.
           </p>
         </div>
       </div>
