@@ -56,12 +56,18 @@ const secondaryClass = isLightTheme
       {label}
     </span>
     <h1 class={`mt-3 text-4xl md:text-5xl leading-[1.1] ${titleText}`}>
-      {highlight ? (
-        <>
-          {title.replace(highlight, "")}
-          <em class="italic">{highlight}</em>
-        </>
-      ) : title}
+      {(() => {
+        if (!highlight) return title;
+        const idx = title.indexOf(highlight);
+        if (idx === -1) return title;
+        return (
+          <>
+            {title.slice(0, idx)}
+            <em class="italic">{highlight}</em>
+            {title.slice(idx + highlight.length)}
+          </>
+        );
+      })()}
     </h1>
     <p class={`mt-5 max-w-2xl mx-auto leading-relaxed ${descriptionText}`}>
       {description}
