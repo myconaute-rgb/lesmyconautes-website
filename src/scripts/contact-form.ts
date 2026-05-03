@@ -20,7 +20,12 @@
 
 const WEBHOOK_URL = "https://api.lesmyconautes.fr/webhook/contact_site";
 
-export type ContactFormType = "contact_home" | "contact" | "contact_pro" | "devis_substrat";
+export type ContactFormType =
+  | "contact_home"
+  | "contact"
+  | "contact_pro"
+  | "devis_substrat"
+  | "grille_tarifaire_pleurote";
 
 export function wireContactForm(
   form: HTMLFormElement,

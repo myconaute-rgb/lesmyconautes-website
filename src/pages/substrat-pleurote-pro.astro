@@ -3,6 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
 import FAQItem from "../components/FAQItem.astro";
+import HoneypotField from "../components/HoneypotField.astro";
+import Turnstile from "../components/Turnstile.astro";
 ---
 
 <BaseLayout
@@ -312,6 +314,82 @@ import FAQItem from "../components/FAQItem.astro";
       </div>
     </section>
 
+    <!-- H2 — Grille tarifaire pro (lead magnet) -->
+    <section id="grille-pleurote" class="px-6 py-16">
+      <div class="max-w-3xl mx-auto">
+        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Grille tarifaire</span>
+        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Grille tarifaire pro — <em class="italic text-terracotta">prix HT/tonne transparent</em></h2>
+
+        <div class="mt-6 space-y-4 text-brun-clair leading-relaxed">
+          <p>
+            Notre grille tarifaire pro est en finalisation. Elle couvre les volumes <strong>demi-palette (200 kg)</strong> et <strong>palette (500 kg)</strong> avec prix HT/tonne, formats sac unitaire pour test, et délais de livraison France métropolitaine.
+          </p>
+          <p>
+            Recevez-la directement quand elle sera publiée. Laissez-nous votre nom, votre email, la variété qui vous intéresse et un volume estimé — on vous l'envoie dès qu'elle est prête, et on prend en compte votre profil pour la version qu'on vous transmet.
+          </p>
+        </div>
+
+        <form class="mt-8 grid gap-4 bg-creme rounded-2xl p-8 ring-1 ring-brun/5" data-grille-form>
+          <HoneypotField />
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="gp-name" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Nom *</label>
+              <input id="gp-name" name="name" type="text" required class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+            </div>
+            <div>
+              <label for="gp-email" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Email *</label>
+              <input id="gp-email" name="email" type="email" required class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-2">Variété(s) d'intérêt *</label>
+            <div class="grid sm:grid-cols-2 gap-2">
+              <label class="flex items-center gap-2 text-sm text-brun-clair px-3 py-2 rounded-xl bg-ivoire border-2 border-brun/10 hover:border-terracotta cursor-pointer">
+                <input type="checkbox" name="varietes" value="pleurote_gris" class="accent-terracotta" />
+                <span>Pleurote gris (Karabella, Purati)</span>
+              </label>
+              <label class="flex items-center gap-2 text-sm text-brun-clair px-3 py-2 rounded-xl bg-ivoire border-2 border-brun/10 hover:border-terracotta cursor-pointer">
+                <input type="checkbox" name="varietes" value="hybride" class="accent-terracotta" />
+                <span>Hybride eryngii × ostreatus</span>
+              </label>
+              <label class="flex items-center gap-2 text-sm text-brun-clair px-3 py-2 rounded-xl bg-ivoire border-2 border-brun/10 hover:border-terracotta cursor-pointer">
+                <input type="checkbox" name="varietes" value="eryngii" class="accent-terracotta" />
+                <span>Eryngii (pleurote du panicaut)</span>
+              </label>
+              <label class="flex items-center gap-2 text-sm text-brun-clair px-3 py-2 rounded-xl bg-ivoire border-2 border-brun/10 hover:border-terracotta cursor-pointer">
+                <input type="checkbox" name="varietes" value="hericium" class="accent-terracotta" />
+                <span>Hericium (saisonnier)</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label for="gp-volume" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Volume estimé</label>
+            <select id="gp-volume" name="volume" class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm">
+              <option value="">— Sélectionnez —</option>
+              <option value="sac_unitaire">Sac unitaire (test)</option>
+              <option value="demi_palette_200kg">Demi-palette 200 kg</option>
+              <option value="palette_500kg">Palette 500 kg</option>
+              <option value="plus_500kg">Plus de 500 kg</option>
+              <option value="ne_sait_pas">Je ne sais pas encore</option>
+            </select>
+          </div>
+          <Turnstile />
+          <button type="submit" class="justify-self-start inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brun text-ivoire font-semibold hover:brightness-110 transition shadow-sm">
+            Recevoir la grille dès publication →
+          </button>
+          <p class="text-xs text-brun-clair/70 leading-relaxed">
+            En envoyant ce formulaire, vous acceptez que vos données (nom, email, variété, volume) soient utilisées pour vous transmettre la grille tarifaire et un éventuel suivi commercial. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
+          </p>
+          <p class="hidden text-sm text-turquoise font-semibold" data-form-success>
+            Merci, votre demande est partie. On vous envoie la grille dès qu'elle est prête.
+          </p>
+          <p class="hidden text-sm text-terracotta font-semibold" data-form-error>
+            Une erreur est survenue. Réessayez, ou écrivez directement à <span class="underline">myconaute &#x40; pm.me</span>.
+          </p>
+        </form>
+      </div>
+    </section>
+
     <!-- H2 11 — Certification AB FR-BIO-01 — produits transmissibles en AB à vos clients -->
     <section class="px-6 py-16">
       <div class="max-w-3xl mx-auto">
@@ -422,3 +500,9 @@ import FAQItem from "../components/FAQItem.astro";
     secondaryCta={{ href: "/agriculteurs", label: "Voir tous nos substrats" }}
   />
 </BaseLayout>
+
+<script>
+  import { wireContactForm } from "../scripts/contact-form";
+  const form = document.querySelector<HTMLFormElement>("[data-grille-form]");
+  if (form) wireContactForm(form, "grille_tarifaire_pleurote");
+</script>
