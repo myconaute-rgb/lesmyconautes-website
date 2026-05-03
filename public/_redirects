@@ -13,3 +13,10 @@
 # Aliases sitemap (réflexes classiques bots SEO)
 /sitemap.xml                                                                     /sitemap-index.xml 301
 /sitemap_index.xml                                                               /sitemap-index.xml 301
+
+# Redirections temporaires (302 — réversibles)
+# Page /substrat-pleurote-pro temporairement retirée le 2026-05-03
+# (formulaire grille tarifaire pas encore finalisé). Réactiver en :
+#   1. Renommant src/pages/_substrat-pleurote-pro.astro.bak en .astro
+#   2. Retirant la ligne ci-dessous
+/substrat-pleurote-pro                                                           /agriculteurs     302
