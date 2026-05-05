@@ -17,3 +17,13 @@
 # Logo SVG : mid-cache (peut changer rarement)
 /scaphandre-logo.svg
   Cache-Control: public, max-age=86400
+
+# Photos produits : long cache 30 jours (nom non hashé, mises à jour rares)
+/photos/*
+  Cache-Control: public, max-age=2592000
+
+# Favicons : long cache 30 jours
+/favicon.ico
+  Cache-Control: public, max-age=2592000
+/favicon.svg
+  Cache-Control: public, max-age=2592000
