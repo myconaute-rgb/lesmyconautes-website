@@ -10,6 +10,7 @@ import FaqLd from "../components/seo/FaqLd.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { FAQ_PLEUROTE } from "../data/faqs/substrat-pleurote-pro";
 import { toLdItems } from "../data/faqs/_utils";
+import agriPleurotePic from "../assets/photos/agri-pleurote.jpg";
 ---
 
 <BaseLayout
@@ -30,7 +31,7 @@ import { toLdItems } from "../data/faqs/_utils";
     slug="substrat-pleurote-pro"
     name="Substrat de pleurote professionnel bio"
     description="Ballot de substrat colonisé en phase IV active pour culture professionnelle de pleurote (Pleurotus ostreatus). Stérilisé en autoclave, densité d'inoculation 2 % maîtrisée, souches sans spore Karabella et Purati, hybride exclusif eryngii × ostreatus. Certifié FR-BIO-01."
-    image="/photos/agri-pleurote.jpg"
+    image={agriPleurotePic}
     latinName="Pleurotus ostreatus (pleurote en huître)"
     properties={[
       { name: "Phase à la livraison", value: "Phase IV active (prêt à fructifier)" },

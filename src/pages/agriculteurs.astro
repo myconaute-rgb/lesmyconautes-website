@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
@@ -6,6 +7,7 @@ import HoneypotField from "../components/HoneypotField.astro";
 import Turnstile from "../components/Turnstile.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
+import substratProPaysagePic from "../assets/photos/substrat-pro-paysage.jpg";
 ---
 
 <BaseLayout
@@ -70,13 +72,16 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {AGRI_SPECIES.map((sp) => (
           <article class={`relative bg-ivoire rounded-2xl ring-1 ring-brun/5 overflow-hidden ${sp.tag ? "opacity-95" : ""}`}>
-            <div class={`aspect-[5/3] relative overflow-hidden ${sp.imagePath ? "bg-creme" : "bg-gradient-to-br from-creme via-brun-clair/20 to-turquoise/20"}`}>
-              {sp.imagePath ? (
-                <img
-                  src={sp.imagePath}
+            <div class={`aspect-[5/3] relative overflow-hidden ${sp.image ? "bg-creme" : "bg-gradient-to-br from-creme via-brun-clair/20 to-turquoise/20"}`}>
+              {sp.image ? (
+                <Image
+                  src={sp.image}
                   alt={sp.imageAlt ?? `${sp.name} (${sp.latin})`}
                   loading="lazy"
                   decoding="async"
+                  widths={[400, 600, 800]}
+                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+                  formats={["avif", "webp"]}
                   class={`w-full h-full object-cover ${sp.tag ? "saturate-50" : ""}`}
                 />
               ) : (
@@ -191,11 +196,14 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
     <div class="max-w-6xl mx-auto">
       <!-- Bandeau visuel substrat pro -->
       <div class="aspect-[5/3] sm:aspect-[16/6] rounded-3xl overflow-hidden mb-12 ring-1 ring-brun/10 shadow-sm">
-        <img
-          src="/photos/substrat-pro-paysage.jpg"
+        <Image
+          src={substratProPaysagePic}
           alt="Substrat pro Les Myconautes — sac inoculé prêt à fructifier"
           loading="lazy"
           decoding="async"
+          widths={[640, 960, 1280, 1600]}
+          sizes="(min-width: 1024px) 1000px, 100vw"
+          formats={["avif", "webp"]}
           class="w-full h-full object-cover"
         />
       </div>
@@ -212,11 +220,14 @@ import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
         {SUBSTRATE_FORMATS.map((fmt) => (
           <div class="rounded-2xl ring-1 ring-brun/5 hover:-translate-y-1 transition overflow-hidden bg-ivoire">
             <div class="aspect-square overflow-hidden">
-              <img
-                src={fmt.imagePath}
+              <Image
+                src={fmt.image}
                 alt={`Substrat ${fmt.label} — ${fmt.weight}`}
                 loading="lazy"
                 decoding="async"
+                widths={[320, 480, 640]}
+                sizes="(min-width: 768px) 280px, 50vw"
+                formats={["avif", "webp"]}
                 class="w-full h-full object-cover"
               />
             </div>

@@ -8,6 +8,7 @@ import FaqLd from "../components/seo/FaqLd.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { FAQ_ERYNGII } from "../data/faqs/substrat-eryngii-panicaut";
 import { toLdItems } from "../data/faqs/_utils";
+import agriEryngiiPic from "../assets/photos/agri-eryngii.jpg";
 ---
 
 <BaseLayout
@@ -28,7 +29,7 @@ import { toLdItems } from "../data/faqs/_utils";
     slug="substrat-eryngii-panicaut"
     name="Substrat de pleurote du panicaut professionnel bio"
     description="Ballot de substrat colonisé en phase IV active pour culture professionnelle de pleurote du panicaut (Pleurotus eryngii). Stérilisé en autoclave, volée unique massive, certifié FR-BIO-01."
-    image="/photos/agri-eryngii.jpg"
+    image={agriEryngiiPic}
     latinName="Pleurotus eryngii (pleurote du panicaut)"
     properties={[
       { name: "Phase à la livraison", value: "Phase IV active (prêt à fructifier)" },

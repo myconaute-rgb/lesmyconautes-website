@@ -19,6 +19,8 @@
  *   />
  */
 
+import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
 import JsonLd from "./JsonLd.astro";
 import { ORG, ORG_ID } from "../../data/organization";
 
@@ -31,7 +33,9 @@ interface Props {
   slug: string; // sans slash, ex: "substrat-pleurote-pro"
   name: string;
   description: string;
-  image?: string; // path relatif (ex: /photos/...) ou URL absolue
+  /** Image typée Astro (auto AVIF/WebP) OU URL absolue string. Le composant résout
+   *  l'URL absolue côté JSON-LD pour que les crawlers puissent fetcher l'image. */
+  image?: ImageMetadata | string;
   latinName?: string;
   properties: Property[];
 }
@@ -39,11 +43,17 @@ interface Props {
 const { slug, name, description, image, latinName, properties } = Astro.props;
 
 const productId = `${ORG.url}/${slug}/#product`;
-const imageUrl = image
-  ? image.startsWith("http")
-    ? image
-    : `${ORG.url}${image}`
-  : undefined;
+
+let imageUrl: string | undefined;
+if (image) {
+  if (typeof image === "string") {
+    imageUrl = image.startsWith("http") ? image : `${ORG.url}${image}`;
+  } else {
+    // ImageMetadata — résout l'URL absolue de l'image (originale, hashée par Astro)
+    const resolved = await getImage({ src: image, format: "webp", width: 1200 });
+    imageUrl = resolved.src.startsWith("http") ? resolved.src : `${ORG.url}${resolved.src}`;
+  }
+}
 
 const allProperties: Property[] = [
   ...(latinName ? [{ name: "Variété", value: latinName }] : []),

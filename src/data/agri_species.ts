@@ -8,6 +8,15 @@
  * Si `tag` absent, l'espèce est en production active et dispo.
  */
 
+import type { ImageMetadata } from "astro";
+import agriPleurotePic from "../assets/photos/agri-pleurote.jpg";
+import agriEryngiiPic from "../assets/photos/agri-eryngii.jpg";
+import agriHericiumPic from "../assets/photos/agri-hericium.jpg";
+import agriBlackPearlPic from "../assets/photos/agri-black-pearl.jpg";
+import substratSacPic from "../assets/photos/substrat-sac-2-5kg.jpg";
+import substratDemiPalettePic from "../assets/photos/substrat-demi-palette.jpg";
+import substratProPic from "../assets/photos/substrat-pro.jpg";
+
 export interface AgriSpecies {
   slug: string;
   /** Clé DB si l'espèce est en production active. */
@@ -18,8 +27,8 @@ export interface AgriSpecies {
   stats: [string, string, string];
   /** Optionnel — badge si pas dispo cette saison ("Bientôt de retour", "À venir"). */
   tag?: string;
-  /** Optionnel — chemin photo dans /public. Si absent, fallback dégradé+emoji. */
-  imagePath?: string;
+  /** Optionnel — image typée Astro (auto AVIF/WebP/srcset). */
+  image?: ImageMetadata;
   imageAlt?: string;
 }
 
@@ -31,7 +40,7 @@ export const AGRI_SPECIES: AgriSpecies[] = [
     latin: "Pleurotus ostreatus",
     blurb: "Cycle très court, grande tolérance aux aléas de culture. Bonne espèce pour démarrer. Entailler le sac, maintenir humide — ça pousse vite.",
     stats: ["Cycle très court", "Haute tolérance", "Rendement élevé"],
-    imagePath: "/photos/agri-pleurote.jpg",
+    image: agriPleurotePic,
     imageAlt: "Pleurote en culture sur sac substrat — Les Myconautes",
   },
   {
@@ -41,7 +50,7 @@ export const AGRI_SPECIES: AgriSpecies[] = [
     latin: "Pleurotus eryngii",
     blurb: "Chair ferme rappelant les coquilles Saint-Jacques, conservation longue. Cycle court, tolérance faible. Sensible aux bactéries — salles propres indispensables.",
     stats: ["Cycle court", "Tolérance faible", "3-4 récoltes"],
-    imagePath: "/photos/agri-eryngii.jpg",
+    image: agriEryngiiPic,
     imageAlt: "Éryngii en culture sur sac substrat — Les Myconautes",
   },
   {
@@ -52,7 +61,7 @@ export const AGRI_SPECIES: AgriSpecies[] = [
     blurb: "Crinière de lion. Texture de chair de crabe ou de homard, parfum de fruits à coque. Besoin d'air frais, ne tolère pas les espaces confinés. Rendement ~15%.",
     stats: ["Cycle court", "Tolérance faible", "2-3 récoltes"],
     tag: "Bientôt de retour",
-    imagePath: "/photos/agri-hericium.jpg",
+    image: agriHericiumPic,
     imageAlt: "Hericium en culture sur sac substrat — Les Myconautes",
   },
   {
@@ -63,7 +72,7 @@ export const AGRI_SPECIES: AgriSpecies[] = [
     blurb: "Pleurote noire à chair dense, parfum naturellement fumé. Cycle court, bonne tolérance — un atout différenciant en restauration et marché.",
     stats: ["Cycle court", "Tolérance moyenne", "Rendement bon"],
     tag: "Bientôt de retour",
-    imagePath: "/photos/agri-black-pearl.jpg",
+    image: agriBlackPearlPic,
     imageAlt: "Pleurote Black Pearl en culture sur sac substrat — Les Myconautes",
   },
   {
@@ -97,7 +106,7 @@ export interface SubstrateFormat {
   label: string;
   weight: string;
   description: string;
-  imagePath: string;
+  image: ImageMetadata;
 }
 
 /**
@@ -110,20 +119,20 @@ export const SUBSTRATE_FORMATS: SubstrateFormat[] = [
     label: "Sac unitaire",
     weight: "2,5 kg",
     description: "Pour tester, démarrer une petite culture, ou compléter un volume.",
-    imagePath: "/photos/substrat-sac-2-5kg.jpg",
+    image: substratSacPic,
   },
   {
     formatCode: "FMT-{VAR}-SUB-DEMI-PAL",
     label: "Demi-palette",
     weight: "200 kg",
     description: "Production régulière à petite échelle. Tarif dégressif.",
-    imagePath: "/photos/substrat-demi-palette.jpg",
+    image: substratDemiPalettePic,
   },
   {
     formatCode: "FMT-{VAR}-SUB-PAL",
     label: "Palette complète",
     weight: "500 kg",
     description: "Production professionnelle. Meilleur tarif unitaire.",
-    imagePath: "/photos/substrat-pro.jpg",
+    image: substratProPic,
   },
 ];

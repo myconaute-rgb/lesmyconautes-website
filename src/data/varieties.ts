@@ -7,6 +7,12 @@
  *                            FROM varieties WHERE is_active = true;
  */
 
+import type { ImageMetadata } from "astro";
+import pleurotePic from "../assets/photos/pleurote.jpg";
+import eryngiiPic from "../assets/photos/eryngii.jpg";
+import hericiumPic from "../assets/photos/hericium.jpg";
+import blackPearlPic from "../assets/photos/black-pearl.jpg";
+
 export type AccentColor = "lavande" | "terracotta" | "turquoise" | "violet-profond";
 
 export interface Variety {
@@ -21,9 +27,9 @@ export interface Variety {
   accent: AccentColor;
   /** Dégradé Tailwind utilisé tant qu'on n'a pas de photo. */
   gradient: string;
-  /** Optionnel — chemin photo dans /public (ex `/photos/pleurote.jpg`). Si absent, fallback dégradé+emoji. */
-  imagePath?: string;
-  /** Texte alternatif accessibilité. Recommandé si imagePath est défini. */
+  /** Optionnel — image typée Astro (auto AVIF/WebP/srcset via composant <Image>). */
+  image?: ImageMetadata;
+  /** Texte alternatif accessibilité. Recommandé si image est défini. */
   imageAlt?: string;
   /** Optionnel — badge affiché sur la card si la variété n'est pas dispo cette saison
    *  (ex "Bientôt de retour", "À venir"). Si absent, pas de badge. */
@@ -40,7 +46,7 @@ export const VARIETIES: Variety[] = [
     blurb: "L'incontournable. Cycle très court, grande tolérance — bon comestible, prix attractif, idéal pour démarrer en cuisine.",
     accent: "terracotta",
     gradient: "from-terracotta/80 via-terracotta/40 to-creme",
-    imagePath: "/photos/pleurote.jpg",
+    image: pleurotePic,
     imageAlt: "Pleurote fraîche cultivée par Les Myconautes",
   },
   {
@@ -52,7 +58,7 @@ export const VARIETIES: Variety[] = [
     blurb: "Pleurote du panicaut, dit « king oyster ». Texture proche des coquilles Saint-Jacques. Burger végétal, lasagnes, grillé.",
     accent: "terracotta",
     gradient: "from-brun-clair/70 via-terracotta/40 to-creme",
-    imagePath: "/photos/eryngii.jpg",
+    image: eryngiiPic,
     imageAlt: "Éryngii frais cultivé par Les Myconautes",
   },
   {
@@ -64,7 +70,7 @@ export const VARIETIES: Variety[] = [
     blurb: "Crinière de lion. Texture rappelant la chair de crabe ou de homard, parfum de fruits à coque. Études récentes sur la mémoire.",
     accent: "lavande",
     gradient: "from-creme via-lavande/30 to-ivoire",
-    imagePath: "/photos/hericium.jpg",
+    image: hericiumPic,
     imageAlt: "Hericium (crinière de lion) cultivé par Les Myconautes",
     tag: "Bientôt de retour",
   },
@@ -77,7 +83,7 @@ export const VARIETIES: Variety[] = [
     blurb: "Pleurote noire, chair dense et fumée naturellement. Sublime grillée, magnifique sur l'assiette.",
     accent: "violet-profond",
     gradient: "from-brun/60 via-violet-profond/40 to-creme",
-    imagePath: "/photos/black-pearl.jpg",
+    image: blackPearlPic,
     imageAlt: "Pleurote Black Pearl cultivée par Les Myconautes",
     tag: "Bientôt de retour",
   },

@@ -8,6 +8,7 @@ import FaqLd from "../components/seo/FaqLd.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { FAQ_HERICIUM } from "../data/faqs/substrat-hericium-pro";
 import { toLdItems } from "../data/faqs/_utils";
+import agriHericiumPic from "../assets/photos/agri-hericium.jpg";
 ---
 
 <BaseLayout
@@ -28,7 +29,7 @@ import { toLdItems } from "../data/faqs/_utils";
     slug="substrat-hericium-pro"
     name="Substrat de hericium professionnel bio"
     description="Ballot de substrat colonisé en phase IV active pour culture professionnelle de hericium (Hericium erinaceus, crinière de lion). Stérilisé en autoclave, méthode propriétaire d'entaille latérale et fructification en cascade. Production saisonnière, certifié FR-BIO-01."
-    image="/photos/agri-hericium.jpg"
+    image={agriHericiumPic}
     latinName="Hericium erinaceus (crinière de lion)"
     properties={[
       { name: "Phase à la livraison", value: "Phase IV active (prêt à fructifier)" },

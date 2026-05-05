@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import ProductCard from "../components/ProductCard.astro";
@@ -8,6 +9,7 @@ import CTASection from "../components/CTASection.astro";
 import DeliveryGrid from "../components/DeliveryGrid.astro";
 import MailLink from "../components/MailLink.astro";
 import HoneypotField from "../components/HoneypotField.astro";
+import eryngiiVracPic from "../assets/photos/eryngii-vrac.jpg";
 import Turnstile from "../components/Turnstile.astro";
 import LocalBusinessLd from "../components/seo/LocalBusinessLd.astro";
 import { VARIETIES } from "../data/varieties";
@@ -83,11 +85,14 @@ import { VARIETIES } from "../data/varieties";
   <section id="about" class="bg-lavande text-ivoire">
     <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
       <div class="aspect-[4/5] rounded-3xl overflow-hidden relative shadow-xl">
-        <img
-          src="/photos/eryngii-vrac.jpg"
+        <Image
+          src={eryngiiVracPic}
           alt="Éryngii fraîchement récolté — Les Myconautes"
           loading="lazy"
           decoding="async"
+          widths={[400, 600, 800, 1000]}
+          sizes="(min-width: 768px) 500px, 100vw"
+          formats={["avif", "webp"]}
           class="w-full h-full object-cover"
         />
         <div class="absolute bottom-4 left-4 px-3 py-1.5 rounded-full bg-ivoire/90 text-brun text-xs font-semibold backdrop-blur-sm">
