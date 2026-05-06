@@ -1,0 +1,195 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MailLink from "../components/MailLink.astro";
+import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
+---
+
+<BaseLayout
+  title="Politique de confidentialité — Les Myconautes"
+  description="Comment Les Myconautes (SCEA Grange Champignons) traitent vos données personnelles : finalités, durées de conservation, sous-traitants, et vos droits RGPD."
+>
+  <BreadcrumbLd items={[
+    { name: "Accueil", url: "/" },
+    { name: "Politique de confidentialité" },
+  ]} />
+  <article class="px-6 py-16 max-w-3xl mx-auto">
+    <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Légal</span>
+    <h1 class="mt-2 text-4xl md:text-5xl text-brun">Politique de confidentialité</h1>
+    <p class="mt-3 text-sm text-brun-clair italic">Dernière mise à jour : 6 mai 2026.</p>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">1. Qui est responsable de vos données ?</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        La <strong>SCEA Grange Champignons</strong> (Les Myconautes), exploitante de la champignonnière artisanale certifiée FR-BIO-01 située à Rive-de-Gier (Loire), est responsable du traitement des données personnelles collectées via ce site et ses outils opérationnels.
+      </p>
+      <dl class="mt-4 grid sm:grid-cols-[max-content_1fr] gap-x-6 gap-y-2 text-sm">
+        <dt class="font-semibold text-brun-clair">Raison sociale</dt><dd>SCEA Grange Champignons</dd>
+        <dt class="font-semibold text-brun-clair">SIRET</dt><dd>902 480 615 00019 — RCS Lyon 902 480 615</dd>
+        <dt class="font-semibold text-brun-clair">Siège</dt><dd>2022 route de Lyon, 69440 Chabanière</dd>
+        <dt class="font-semibold text-brun-clair">Direction de la publication</dt><dd>Florestan Grange (gérant)</dd>
+        <dt class="font-semibold text-brun-clair">Contact RGPD</dt><dd><MailLink email="rgpd@lesmyconautes.fr" /></dd>
+      </dl>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Aucun délégué à la protection des données (DPO) n'est désigné — la structure et les traitements ne franchissent aucun des seuils de désignation obligatoire (art. 37 RGPD).
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">2. Quelles données traitons-nous, pour quoi, et combien de temps ?</h2>
+
+      <h3 class="mt-6 text-lg text-brun font-semibold">2.1 Formulaire de contact du site</h3>
+      <ul class="mt-2 space-y-1 text-sm text-brun-clair leading-relaxed list-disc list-inside">
+        <li><strong>Données</strong> : nom, email, téléphone (facultatif), message.</li>
+        <li><strong>Finalité</strong> : répondre à votre demande et, le cas échéant, préparer une relation commerciale.</li>
+        <li><strong>Base légale</strong> : votre consentement (envoi du formulaire) et notre intérêt légitime à répondre aux sollicitations.</li>
+        <li><strong>Durée</strong> : 3 ans à compter du dernier échange.</li>
+        <li><strong>Destinataires</strong> : équipe Les Myconautes uniquement. Cloudflare Turnstile reçoit uniquement les données strictement nécessaires à l'anti-bot.</li>
+      </ul>
+
+      <h3 class="mt-6 text-lg text-brun font-semibold">2.2 Gestion des commandes (pros et particuliers en retrait/livraison directe)</h3>
+      <ul class="mt-2 space-y-1 text-sm text-brun-clair leading-relaxed list-disc list-inside">
+        <li><strong>Données</strong> : raison sociale ou nom, contact email/téléphone, adresses de livraison et facturation, données transactionnelles (produits, volumes, prix).</li>
+        <li><strong>Finalité</strong> : traiter vos commandes, organiser livraisons et retraits, assurer le suivi commercial.</li>
+        <li><strong>Base légale</strong> : exécution du contrat de vente.</li>
+        <li><strong>Durée</strong> : durée de la relation commerciale + 3 ans en base active.</li>
+        <li><strong>Destinataires</strong> : équipe Les Myconautes, transporteurs frigorifiques mandatés, Pennylane (facturation).</li>
+      </ul>
+
+      <h3 class="mt-6 text-lg text-brun font-semibold">2.3 Facturation et comptabilité</h3>
+      <ul class="mt-2 space-y-1 text-sm text-brun-clair leading-relaxed list-disc list-inside">
+        <li><strong>Données</strong> : identité du client, transactions, règlements.</li>
+        <li><strong>Finalité</strong> : émettre les factures, tenir la comptabilité, répondre aux obligations fiscales et sociales.</li>
+        <li><strong>Base légale</strong> : obligation légale (Code de commerce art. L.123-22, Code général des impôts).</li>
+        <li><strong>Durée</strong> : 10 ans (durée légale de conservation des pièces comptables).</li>
+        <li><strong>Destinataires</strong> : Pennylane, expert-comptable, administration fiscale sur réquisition.</li>
+      </ul>
+
+      <h3 class="mt-6 text-lg text-brun font-semibold">2.4 Achats via la plateforme Pour de Bon</h3>
+      <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+        Les commandes des particuliers passent par la plateforme <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="text-violet-profond hover:underline">pourdebon.com</a>, qui agit comme <strong>responsable de traitement distinct</strong> pour les données collectées sur son site. Nous recevons uniquement les informations nécessaires à la préparation et à l'expédition de votre commande. Consultez la politique de confidentialité de Pour de Bon pour le détail.
+      </p>
+
+      <h3 class="mt-6 text-lg text-brun font-semibold">2.5 Optimisation des tournées de livraison</h3>
+      <ul class="mt-2 space-y-1 text-sm text-brun-clair leading-relaxed list-disc list-inside">
+        <li><strong>Données</strong> : adresse de livraison, nom du destinataire, fenêtre horaire.</li>
+        <li><strong>Finalité</strong> : calculer les itinéraires (outils VROOM/OSRM hébergés en local).</li>
+        <li><strong>Base légale</strong> : exécution du contrat.</li>
+        <li><strong>Durée</strong> : journal opérationnel conservé au maximum 1 an.</li>
+        <li><strong>Destinataires</strong> : équipe Les Myconautes uniquement — aucun transfert de ces données vers un service externe.</li>
+      </ul>
+
+      <h3 class="mt-6 text-lg text-brun font-semibold">2.6 Prospection commerciale BtoB (restaurateurs et revendeurs)</h3>
+      <ul class="mt-2 space-y-1 text-sm text-brun-clair leading-relaxed list-disc list-inside">
+        <li><strong>Données</strong> : raison sociale, nom du contact professionnel, email professionnel, téléphone professionnel, ville.</li>
+        <li><strong>Finalité</strong> : présenter notre offre aux établissements potentiellement intéressés.</li>
+        <li><strong>Base légale</strong> : intérêt légitime (prospection BtoB), avec possibilité de s'opposer à tout moment.</li>
+        <li><strong>Durée</strong> : 3 ans après le dernier contact.</li>
+        <li><strong>Destinataires</strong> : équipe Les Myconautes uniquement.</li>
+        <li><strong>Vos droits</strong> : chaque message commercial inclut un moyen simple de vous y opposer (réponse "stop" ou demande à <MailLink email="rgpd@lesmyconautes.fr" />).</li>
+      </ul>
+
+      <h3 class="mt-6 text-lg text-brun font-semibold">2.7 Sécurité et logs serveur</h3>
+      <ul class="mt-2 space-y-1 text-sm text-brun-clair leading-relaxed list-disc list-inside">
+        <li><strong>Données</strong> : adresse IP, type de navigateur, horodatage, pages consultées.</li>
+        <li><strong>Finalité</strong> : protéger le site contre les attaques, détecter les abus.</li>
+        <li><strong>Base légale</strong> : intérêt légitime (sécurité du système d'information).</li>
+        <li><strong>Durée</strong> : 6 mois.</li>
+        <li><strong>Destinataires</strong> : Cloudflare (filtrage et journalisation), équipe Les Myconautes.</li>
+      </ul>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">3. Cookies et traceurs</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Le site utilise <strong>Cloudflare Web Analytics</strong>, un outil de mesure d'audience <strong>sans cookie</strong> et sans collecte d'identifiant individuel — aucune action n'est requise de votre part.
+      </p>
+      <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+        Le service anti-bot <strong>Cloudflare Turnstile</strong>, utilisé sur le formulaire de contact, peut déposer des cookies strictement nécessaires à la sécurité, exemptés de consentement par la CNIL (recommandation cookies, art. 82 LCEN).
+      </p>
+      <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+        <strong>Aucun outil publicitaire ou de profilage</strong> (Google Analytics, Meta Pixel, etc.) n'est présent sur ce site. Aucun bandeau cookies n'est donc nécessaire.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">4. Sous-traitants et destinataires</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Pour fournir nos services, nous nous appuyons sur les prestataires suivants, qui agissent en tant que sous-traitants au sens de l'article 28 RGPD :
+      </p>
+      <div class="mt-4 overflow-x-auto">
+        <table class="w-full text-sm text-brun-clair leading-relaxed">
+          <thead class="text-left text-xs font-semibold uppercase tracking-wider text-brun">
+            <tr>
+              <th class="py-2 pr-4">Prestataire</th>
+              <th class="py-2 pr-4">Rôle</th>
+              <th class="py-2">Localisation</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brun/10">
+            <tr><td class="py-2 pr-4 font-semibold">Cloudflare Inc.</td><td class="py-2 pr-4">Hébergement, Turnstile, mesure d'audience</td><td class="py-2">USA — clauses contractuelles types</td></tr>
+            <tr><td class="py-2 pr-4 font-semibold">Proton AG</td><td class="py-2 pr-4">Messagerie professionnelle</td><td class="py-2">Suisse — décision d'adéquation</td></tr>
+            <tr><td class="py-2 pr-4 font-semibold">Pennylane</td><td class="py-2 pr-4">Facturation et comptabilité</td><td class="py-2">France</td></tr>
+            <tr><td class="py-2 pr-4 font-semibold">Transporteurs frigorifiques</td><td class="py-2 pr-4">Livraison sous chaîne du froid</td><td class="py-2">France</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        L'usage de <strong>Telegram</strong> (messagerie utilisée pour les communications opérationnelles internes de l'équipe) est limité à la gestion logistique interne ; aucune donnée client n'y est diffusée à l'extérieur de l'équipe.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">5. Vos droits</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Conformément aux articles 15 à 22 du RGPD, vous disposez à tout moment des droits suivants sur vos données :
+      </p>
+      <ul class="mt-3 space-y-2 text-sm text-brun-clair leading-relaxed list-disc list-inside">
+        <li><strong>Droit d'accès</strong> : obtenir la confirmation que des données vous concernant sont traitées et en recevoir une copie.</li>
+        <li><strong>Droit de rectification</strong> : corriger des données inexactes ou incomplètes.</li>
+        <li><strong>Droit à l'effacement</strong> ("droit à l'oubli") : demander la suppression de vos données, dans les limites des obligations légales (notamment comptables).</li>
+        <li><strong>Droit à la limitation</strong> du traitement : geler temporairement l'usage de vos données.</li>
+        <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré pour les transmettre à un autre responsable de traitement.</li>
+        <li><strong>Droit d'opposition</strong> : vous opposer au traitement de vos données pour motif légitime, et sans condition pour la prospection commerciale.</li>
+        <li><strong>Droit de retirer votre consentement</strong> à tout moment, lorsque le traitement est fondé sur celui-ci.</li>
+      </ul>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">6. Comment exercer vos droits</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Adressez votre demande par email à <MailLink email="rgpd@lesmyconautes.fr" /> en précisant la nature de votre demande et vos coordonnées pour la réponse.
+      </p>
+      <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+        Une copie de pièce d'identité pourra être demandée en cas de doute légitime sur votre identité, et sera supprimée dès le traitement de la demande.
+      </p>
+      <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+        Nous répondons dans un délai maximum d'<strong>un mois</strong> à compter de la réception de votre demande. Ce délai peut être prolongé de deux mois pour les demandes complexes ; vous en serez informé dans le mois.
+      </p>
+      <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+        Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) — <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener" class="text-violet-profond hover:underline">cnil.fr/plaindre</a> — 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">7. Sécurité</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Vos données sont protégées par des mesures techniques et organisationnelles adaptées : chiffrement des échanges (TLS), accès restreint à l'équipe, sauvegardes régulières, journalisation des accès, séparation des environnements de production.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">8. Mise à jour de la politique</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Cette politique peut évoluer pour s'adapter à de nouveaux services ou à l'évolution de la réglementation. La date de dernière mise à jour figure en tête du document. Pour toute évolution substantielle, nous vous en informerons par les canaux habituels (site, email si vous êtes en relation commerciale active).
+      </p>
+    </section>
+
+    <p class="mt-16 text-sm">
+      <a href="/mentions-legales" class="text-violet-profond hover:underline">→ Mentions légales</a>
+      <span class="mx-3 text-brun-clair/40">·</span>
+      <a href="/cgv" class="text-violet-profond hover:underline">→ CGV</a>
+      <span class="mx-3 text-brun-clair/40">·</span>
+      <a href="/" class="text-violet-profond hover:underline">← Accueil</a>
+    </p>
+  </article>
+</BaseLayout>
