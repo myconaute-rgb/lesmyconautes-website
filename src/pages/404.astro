@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page introuvable — Les Myconautes"
+  description="Cette page n'existe pas. Retour à l'accueil ou navigation par profil (particuliers, restaurateurs, agriculteurs)."
+  noindex={true}
+>
+  <section class="max-w-3xl mx-auto px-6 py-24 text-center">
+    <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">404</span>
+    <h1 class="mt-4 text-4xl md:text-5xl text-brun leading-tight">
+      Cette page n'existe pas (ou plus)
+    </h1>
+    <p class="mt-6 text-base md:text-lg text-brun-clair leading-relaxed">
+      Le lien est peut-être ancien, mal recopié, ou la page a déménagé.
+      On peut te renvoyer où tu allais.
+    </p>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-terracotta text-ivoire font-semibold hover:brightness-110 transition shadow-sm"
+      >
+        Retour à l'accueil
+      </a>
+      <a
+        href="/contact/"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-brun/15 text-brun font-semibold hover:border-brun/40 transition"
+      >
+        Nous écrire
+      </a>
+    </div>
+
+    <ul class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+      <li>
+        <a href="/particuliers/" class="block p-5 rounded-2xl border border-brun/10 hover:border-terracotta/40 transition">
+          <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Particuliers</span>
+          <p class="mt-2 text-brun">Champignons frais à la commande</p>
+        </a>
+      </li>
+      <li>
+        <a href="/restaurateurs/" class="block p-5 rounded-2xl border border-brun/10 hover:border-terracotta/40 transition">
+          <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Restaurateurs</span>
+          <p class="mt-2 text-brun">Approvisionnement filière courte</p>
+        </a>
+      </li>
+      <li>
+        <a href="/agriculteurs/" class="block p-5 rounded-2xl border border-brun/10 hover:border-terracotta/40 transition">
+          <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Agriculteurs</span>
+          <p class="mt-2 text-brun">Substrats prêts à fructifier</p>
+        </a>
+      </li>
+    </ul>
+  </section>
+</BaseLayout>

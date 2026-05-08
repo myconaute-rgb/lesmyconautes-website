@@ -10,12 +10,14 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
   description = "Champignons bio cultivés à Rive-de-Gier (Loire). Pleurote, shiitaké, éryngii, hericium. Pour la cuisine maison, la restauration et la production agricole.",
   ogImage = "/scaphandre-logo.svg",
+  noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://lesmyconautes.fr").toString();
@@ -28,6 +30,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://lesmyconaut
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <title>{title}</title>
     <meta name="description" content={description} />
