@@ -86,20 +86,33 @@ export function wireContactForm(
         body: JSON.stringify(payload),
       });
 
-      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      if (!resp.ok) {
+        let serverMsg = "";
+        try {
+          const data = await resp.json();
+          if (data && typeof data.message === "string") serverMsg = data.message;
+        } catch {}
+        const err = new Error(`HTTP ${resp.status}`) as Error & { serverMessage?: string };
+        err.serverMessage = serverMsg;
+        throw err;
+      }
 
       // Succès : on affiche la confirmation
       successEl?.classList.remove("hidden");
       form.reset();
     } catch (err) {
       console.error("Contact form error:", err);
+      const serverMsg = (err as { serverMessage?: string })?.serverMessage;
       if (errorEl) {
+        if (serverMsg) errorEl.textContent = serverMsg;
         errorEl.classList.remove("hidden");
       } else {
-        // Fallback si pas de zone d'erreur dans le form
-        alert("Désolé, une erreur s'est produite. Réessayez ou écrivez-nous directement.");
+        alert(serverMsg || "Désolé, une erreur s'est produite. Réessayez ou écrivez-nous directement.");
       }
     } finally {
+      // Reset Turnstile pour forcer un token frais à la prochaine soumission
+      // (un même token n'est validable qu'une seule fois côté Cloudflare)
+      (window as unknown as { turnstile?: { reset: () => void } }).turnstile?.reset();
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.textContent = submitBtn.dataset.originalText ?? "Envoyer →";
