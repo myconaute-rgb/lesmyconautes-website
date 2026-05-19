@@ -411,12 +411,17 @@ import agriPleurotePic from "../assets/photos/agri-pleurote.jpg";
               <option value="ne_sait_pas">Je ne sais pas encore</option>
             </select>
           </div>
+          <div>
+            <label for="gp-postal" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Code postal</label>
+            <input id="gp-postal" name="postal_code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="42800" class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+            <p class="text-xs text-brun-clair/70 mt-1">Sert à estimer les frais de transport (facultatif).</p>
+          </div>
           <Turnstile />
           <button type="submit" class="justify-self-start inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brun text-ivoire font-semibold hover:brightness-110 transition shadow-sm">
             Recevoir la grille dès publication →
           </button>
           <p class="text-xs text-brun-clair/70 leading-relaxed">
-            En envoyant ce formulaire, vous acceptez que vos données (nom, email, variété, volume) soient utilisées pour vous transmettre la grille tarifaire et un éventuel suivi commercial. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
+            En envoyant ce formulaire, vous acceptez que vos données (nom, email, variété, volume, code postal) soient utilisées pour vous transmettre la grille tarifaire et un éventuel suivi commercial. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
           </p>
           <p class="hidden text-sm text-turquoise font-semibold" data-form-success>
             Merci, votre demande est partie. On vous envoie la grille dès qu'elle est prête.

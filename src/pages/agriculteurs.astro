@@ -270,6 +270,11 @@ import substratProPaysagePic from "../assets/photos/substrat-pro-paysage.jpg";
           <input id="af-phone" name="phone" type="tel" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm" />
         </div>
         <div>
+          <label for="af-postal" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Code postal</label>
+          <input id="af-postal" name="postal_code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="42800" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm" />
+          <p class="text-xs text-brun-clair/70 mt-1">Sert à estimer les frais de transport (facultatif).</p>
+        </div>
+        <div>
           <label for="af-species" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Espèces souhaitées</label>
           <input id="af-species" name="species" type="text" required placeholder="Pleurote, éryngii, hericium…" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm" />
         </div>
@@ -286,7 +291,7 @@ import substratProPaysagePic from "../assets/photos/substrat-pro-paysage.jpg";
           Envoyer ma demande →
         </button>
         <p class="text-xs text-brun-clair/70 leading-relaxed">
-          En envoyant ce formulaire, vous acceptez que vos données (nom, email, tél., espèces et volumes) soient utilisées pour établir un devis. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
+          En envoyant ce formulaire, vous acceptez que vos données (nom, email, tél., code postal, espèces et volumes) soient utilisées pour établir un devis. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
         </p>
         <p class="hidden text-sm text-turquoise font-semibold" data-form-success>
           Merci, votre demande est partie. On revient vers vous très vite.
