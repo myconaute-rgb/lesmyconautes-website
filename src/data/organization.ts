@@ -17,7 +17,7 @@ export const ORG = {
   rcs: "Lyon 902 480 615",
   capital: "3000",
   founder: "Florestan Grange",
-  email: "myconaute@pm.me",
+  email: "myconautes@pm.me",
 
   // URLs
   url: "https://lesmyconautes.fr",

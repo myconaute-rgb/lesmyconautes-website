@@ -85,7 +85,7 @@ Variables d'environnement (Phase 1+, dashboard Cloudflare Pages) : voir `.env.ex
 
 ## Contribuer
 
-Issues et PRs bienvenues. Pour toute question : [myconaute@pm.me](mailto:myconaute@pm.me).
+Issues et PRs bienvenues. Pour toute question : [myconautes@pm.me](mailto:myconautes@pm.me).
 
 ## Licence
 
