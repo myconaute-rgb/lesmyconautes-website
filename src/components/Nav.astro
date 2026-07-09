@@ -1,4 +1,11 @@
 ---
+interface Props {
+  /** "refonte" = peau DA accueil 07/2026. Défaut : peau historique (autres pages). */
+  skin?: "v1" | "refonte";
+}
+const { skin = "v1" } = Astro.props;
+const refonte = skin === "refonte";
+
 const links = [
   { href: "/particuliers", label: "Particuliers" },
   { href: "/restaurateurs", label: "Restaurateurs" },
@@ -6,35 +13,41 @@ const links = [
   { href: "/a-propos", label: "À propos" },
 ];
 const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
+
+const navClass = refonte
+  ? "sticky top-0 z-50 bg-page/95 backdrop-blur-sm"
+  : "sticky top-0 z-50 backdrop-blur-md bg-ivoire/85 border-b border-brun/5";
+const wrapClass = refonte
+  ? "max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between"
+  : "max-w-6xl mx-auto px-6 h-16 flex items-center justify-between";
+const brandClass = refonte
+  ? "font-body font-semibold text-lg tracking-tight"
+  : "font-display text-lg font-medium tracking-tight";
+const linkClass = refonte
+  ? "font-body text-sm font-medium tracking-wide uppercase text-brun hover:text-violet transition-colors"
+  : "text-sm font-medium text-brun-clair hover:text-violet-profond transition-colors";
+const orderClass = refonte
+  ? "inline-flex items-center px-6 py-3 rounded-btn bg-violet text-page font-body text-sm font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors"
+  : "inline-flex items-center gap-1 px-4 py-2 rounded-full bg-terracotta text-ivoire text-sm font-semibold hover:brightness-110 transition";
 ---
 
-<nav
-  class="sticky top-0 z-50 backdrop-blur-md bg-ivoire/85 border-b border-brun/5"
->
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+<nav class={navClass}>
+  <div class={wrapClass}>
     <a href="/" class="flex items-center gap-3 text-brun" aria-label="Les Myconautes — accueil">
       <img src="/scaphandre-logo.svg" alt="" width="32" height="32" class="h-8 w-8" />
-      <span class="font-display text-lg font-medium tracking-tight">Les Myconautes</span>
+      <span class={brandClass}>Les Myconautes</span>
     </a>
 
-    <ul class="hidden md:flex items-center gap-8">
+    <ul class={`hidden md:flex items-center ${refonte ? "gap-10" : "gap-8"}`}>
       {links.map((l) => (
         <li>
-          <a
-            href={l.href}
-            class="text-sm font-medium text-brun-clair hover:text-violet-profond transition-colors"
-          >
+          <a href={l.href} class={linkClass}>
             {l.label}
           </a>
         </li>
       ))}
       <li>
-        <a
-          href={orderHref}
-          target="_blank"
-          rel="noopener"
-          class="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-terracotta text-ivoire text-sm font-semibold hover:brightness-110 transition"
-        >
+        <a href={orderHref} target="_blank" rel="noopener" class={orderClass}>
           Commander
         </a>
       </li>
@@ -54,7 +67,7 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
 </nav>
 
 <div
-  class="md:hidden fixed inset-0 z-[60] bg-ivoire flex-col items-center justify-center gap-6 hidden"
+  class={`md:hidden fixed inset-0 z-[60] ${refonte ? "bg-page" : "bg-ivoire"} flex-col items-center justify-center gap-6 hidden`}
   data-mobile-menu
 >
   <button
@@ -68,13 +81,15 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
     </svg>
   </button>
   {links.map((l) => (
-    <a href={l.href} class="font-display text-2xl text-brun">{l.label}</a>
+    <a href={l.href} class={refonte ? "font-title text-3xl text-violet" : "font-display text-2xl text-brun"}>{l.label}</a>
   ))}
   <a
     href={orderHref}
     target="_blank"
     rel="noopener"
-    class="mt-4 px-6 py-3 rounded-full bg-terracotta text-ivoire text-sm font-semibold"
+    class={refonte
+      ? "mt-4 px-8 py-4 rounded-btn bg-violet text-page font-body text-sm font-semibold tracking-wide uppercase"
+      : "mt-4 px-6 py-3 rounded-full bg-terracotta text-ivoire text-sm font-semibold"}
   >
     Commander
   </a>

@@ -1,4 +1,9 @@
 ---
+import "@fontsource/anton";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
@@ -13,286 +18,352 @@ import eryngiiVracPic from "../assets/photos/eryngii-vrac.jpg";
 import Turnstile from "../components/Turnstile.astro";
 import LocalBusinessLd from "../components/seo/LocalBusinessLd.astro";
 import { VARIETIES } from "../data/varieties";
+
+/* Aplat de la zone texte des cartes gamme, en écho à la maquette 4. */
+const CARD_TONES = ["lilas", "paille", "creme", "anis", "lilas"] as const;
 ---
 
 <BaseLayout
   title="Les Myconautes — Champignons bio FR-BIO-01 | Rive-de-Gier, Loire"
   description="Champignonnière artisanale certifiée FR-BIO-01 à Rive-de-Gier (Loire). Pleurote, éryngii, hericium, Black Pearl. Producteur direct pour cuisine maison, restauration et substrats pros."
+  skin="refonte"
 >
   <LocalBusinessLd />
-  <Hero />
 
-  <!-- 3 univers -->
-  <section id="univers" class="bg-creme px-6 py-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Nos univers</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">À chaque univers son champignon</h2>
-        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
-          Que vous cuisiniez à la maison, en restaurant, ou que vous produisiez à la ferme — on a ce qu'il vous faut.
-        </p>
-      </div>
+  <div class="bg-page font-body text-brun">
+    <Hero />
 
-      <div class="grid md:grid-cols-3 gap-6">
-        <a href="/particuliers" class="group bg-ivoire rounded-2xl border-t-4 border-lavande p-8 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md">
-          <div class="w-12 h-12 rounded-full bg-lavande/15 text-violet-profond font-display font-medium flex items-center justify-center text-xl">P</div>
-          <h3 class="mt-5 text-xl text-brun">À la maison</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
-            Champignons frais, séchés, épicerie fine. Et des kits de culture pour cultiver chez vous.
+    <!-- 3 univers -->
+    <section id="univers" class="px-6 md:px-10 py-24 md:py-32">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-16 reveal">
+          <h2 class="font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-violet">
+            À chaque univers <em class="italic">son champignon</em>
+          </h2>
+          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Nos univers</p>
+          <p class="mt-8 max-w-2xl text-brun leading-relaxed">
+            Que vous cuisiniez à la maison, en restaurant, ou que vous produisiez à la ferme — on a ce qu'il vous faut.
           </p>
-          <span class="mt-4 inline-block text-sm font-semibold text-violet-profond group-hover:gap-3">Découvrir →</span>
-        </a>
-
-        <a href="/restaurateurs" class="group bg-ivoire rounded-2xl border-t-4 border-terracotta p-8 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md">
-          <div class="w-12 h-12 rounded-full bg-terracotta/15 text-terracotta font-display font-medium flex items-center justify-center text-xl">R</div>
-          <h3 class="mt-5 text-xl text-brun">Cheffes &amp; chefs</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
-            Frais, en vrac ou en conditionnement pro. Qualité constante, livraison hebdo à Lyon &amp; Saint-Étienne.
-          </p>
-          <span class="mt-4 inline-block text-sm font-semibold text-terracotta group-hover:gap-3">L'offre pro →</span>
-        </a>
-
-        <a href="/agriculteurs" class="group bg-ivoire rounded-2xl border-t-4 border-turquoise p-8 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md">
-          <div class="w-12 h-12 rounded-full bg-turquoise/15 text-turquoise font-display font-medium flex items-center justify-center text-xl">A</div>
-          <h3 class="mt-5 text-xl text-brun">Productrices &amp; producteurs</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">
-            Substrats inoculés certifiés bio, mycélium, conseils techniques. Pleurote, éryngii, hericium, shiitaké, nameko.
-          </p>
-          <span class="mt-4 inline-block text-sm font-semibold text-turquoise group-hover:gap-3">Substrats &amp; mycélium →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Notre gamme -->
-  <section id="gamme" class="px-6 py-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Notre gamme</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Cultivées <em class="italic text-lavande">à la main</em></h2>
-        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
-          Toutes certifiées bio FR-BIO-01. Récoltées le matin, conditionnées dans la foulée.
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-        {VARIETIES.map((v) => <ProductCard variety={v} />)}
-      </div>
-    </div>
-  </section>
-
-  <!-- About pleine largeur lavande -->
-  <section id="about" class="bg-lavande text-ivoire">
-    <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
-      <div class="aspect-[4/5] rounded-3xl overflow-hidden relative shadow-xl">
-        <Image
-          src={eryngiiVracPic}
-          alt="Éryngii fraîchement récolté — Les Myconautes"
-          loading="lazy"
-          decoding="async"
-          widths={[400, 600, 800, 1000]}
-          sizes="(min-width: 768px) 500px, 100vw"
-          formats={["avif", "webp"]}
-          class="w-full h-full object-cover"
-        />
-        <div class="absolute bottom-4 left-4 px-3 py-1.5 rounded-full bg-ivoire/90 text-brun text-xs font-semibold backdrop-blur-sm">
-          🌱 Certifié bio FR-BIO-01
-        </div>
-      </div>
-
-      <div>
-        <span class="text-xs font-semibold tracking-widest uppercase text-ivoire/70">Notre histoire</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-ivoire">Explorer le champignon <em class="italic">depuis 2015</em></h2>
-        <p class="mt-5 text-ivoire/85 leading-relaxed">
-          Florestan a fondé sa première champignonnière en 2015. Dix ans plus tard, c'est un refuge pour la biodiversité de 1,7 hectare niché à Rive-de-Gier, dans la Loire.
-        </p>
-        <p class="mt-3 text-ivoire/85 leading-relaxed">
-          Chaque champignon est cultivé, récolté à la main et conditionné ici même. Circuit court strict — vous savez d'où vient ce que vous mangez.
-        </p>
-
-        <div class="mt-7 flex flex-wrap gap-2">
-          <span class="text-xs px-3 py-1.5 rounded-full bg-ivoire/15 border border-ivoire/20">🛡️ Certifié bio</span>
-          <span class="text-xs px-3 py-1.5 rounded-full bg-ivoire/15 border border-ivoire/20">✋ Récolte à la main</span>
-          <span class="text-xs px-3 py-1.5 rounded-full bg-ivoire/15 border border-ivoire/20">📍 Circuit court</span>
-          <span class="text-xs px-3 py-1.5 rounded-full bg-ivoire/15 border border-ivoire/20">♻️ Pratiques durables</span>
         </div>
 
-        <a
-          href="/a-propos"
-          class="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-ivoire/50 text-ivoire font-semibold hover:bg-ivoire/10 transition"
-        >
-          Notre histoire complète →
-        </a>
-      </div>
-    </div>
-  </section>
+        <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <a href="/particuliers" class="group block reveal">
+            <div class="aspect-[4/3] bg-lilas flex items-center justify-center overflow-hidden">
+              <span class="font-title text-7xl text-violet transition-transform duration-500 group-hover:scale-110" aria-hidden="true">P</span>
+            </div>
+            <h3 class="mt-7 font-title text-2xl text-brun">À la maison</h3>
+            <p class="mt-3 text-sm text-brun leading-relaxed">
+              Champignons frais, séchés, épicerie fine. Et des kits de culture pour cultiver chez vous.
+            </p>
+            <span class="mt-6 inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase group-hover:bg-violet/90 transition-colors">
+              Découvrir →
+            </span>
+          </a>
 
-  <!-- Comment ça marche -->
-  <section id="comment-ca-marche" class="px-6 py-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Comment ça marche</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Trois étapes, c'est tout</h2>
-      </div>
+          <a href="/restaurateurs" class="group block reveal">
+            <div class="aspect-[4/3] bg-creme flex items-center justify-center overflow-hidden">
+              <span class="font-title text-7xl text-cacao transition-transform duration-500 group-hover:scale-110" aria-hidden="true">R</span>
+            </div>
+            <h3 class="mt-7 font-title text-2xl text-brun">Cheffes &amp; chefs</h3>
+            <p class="mt-3 text-sm text-brun leading-relaxed">
+              Frais, en vrac ou en conditionnement pro. Qualité constante, livraison hebdo à Lyon &amp; Saint-Étienne.
+            </p>
+            <span class="mt-6 inline-flex items-center px-7 py-3.5 rounded-btn bg-cacao text-page text-xs font-semibold tracking-wide uppercase group-hover:bg-cacao/90 transition-colors">
+              L'offre pro →
+            </span>
+          </a>
 
-      <div class="grid md:grid-cols-3 gap-10">
-        <StepCard number={1} title="Vous choisissez" color="turquoise">
-          En ligne sur Pour de Bon, ou en direct par mail / Insta pour les volumes pro.
-        </StepCard>
-        <StepCard number={2} title="On récolte le matin" color="lavande">
-          Cueillette à la main, conditionnement dans la foulée. Vos champignons n'attendent pas.
-        </StepCard>
-        <StepCard number={3} title="Livraison ou retrait" color="terracotta">
-          Lyon le vendredi, Saint-Étienne le jeudi, retrait gratuit sur place du lundi au vendredi.
-        </StepCard>
-      </div>
-    </div>
-  </section>
-
-  <DeliveryGrid />
-
-  <!-- FAQ -->
-  <section id="faq" class="px-6 py-20">
-    <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-10">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Questions fréquentes</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Tout savoir sur nos champignons</h2>
-      </div>
-
-      <div class="mb-8">
-        <div class="flex items-center gap-2 pb-2 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta">
-          <span>🍄 Nos produits</span>
+          <a href="/agriculteurs" class="group block reveal">
+            <div class="aspect-[4/3] bg-paille flex items-center justify-center overflow-hidden">
+              <span class="font-title text-7xl text-anis transition-transform duration-500 group-hover:scale-110" aria-hidden="true">A</span>
+            </div>
+            <h3 class="mt-7 font-title text-2xl text-brun">Productrices &amp; producteurs</h3>
+            <p class="mt-3 text-sm text-brun leading-relaxed">
+              Substrats inoculés certifiés bio, mycélium, conseils techniques. Pleurote, éryngii, hericium, shiitaké, nameko.
+            </p>
+            <span class="mt-6 inline-flex items-center px-7 py-3.5 rounded-btn bg-anis text-page text-xs font-semibold tracking-wide uppercase group-hover:bg-anis/90 transition-colors">
+              Substrats &amp; mycélium →
+            </span>
+          </a>
         </div>
-        <FAQItem question="Vos champignons sont-ils bio ?">
-          Tous nos champignons sont issus de l'agriculture biologique (label FR-BIO-01) et cultivés selon des pratiques durables et raisonnées.
-        </FAQItem>
-        <FAQItem question="D'où viennent vos champignons ?">
-          Cultivés, récoltés et conditionnés à Rive-de-Gier (Loire). Circuit court, sans intermédiaire.
-        </FAQItem>
-        <FAQItem question="Faut-il les laver ?">
-          Nos champignons sont propres et parés. Un simple essuyage avec un linge humide suffit.
-        </FAQItem>
       </div>
+    </section>
 
-      <div class="mb-8">
-        <div class="flex items-center gap-2 pb-2 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta">
-          <span>❄️ Conservation</span>
+    <!-- Notre gamme — bande violette signature à gauche (maquette 4) -->
+    <section id="gamme" class="relative py-24 md:py-32 overflow-hidden">
+      <div class="absolute inset-y-0 left-0 w-8 lg:w-20 bg-violet hidden md:block" aria-hidden="true"></div>
+      <div class="max-w-7xl mx-auto px-6 md:px-10 lg:pl-32">
+        <div class="mb-16 reveal">
+          <h2 class="font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-violet">
+            Cultivées <em class="italic">à la main</em>
+          </h2>
+          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Notre gamme</p>
+          <p class="mt-8 max-w-2xl text-brun leading-relaxed">
+            Toutes certifiées bio FR-BIO-01. Récoltées le matin, conditionnées dans la foulée.
+          </p>
         </div>
-        <FAQItem question="Combien de temps se conservent-ils ?">
-          8 à 10 jours au réfrigérateur (0 à 4°C), dans leur emballage d'origine ou un contenant aéré.
-        </FAQItem>
-        <FAQItem question="Puis-je les congeler ?">
-          Préférez les poêler légèrement avant congélation pour préserver texture et goût.
-        </FAQItem>
-      </div>
 
-      <div>
-        <div class="flex items-center gap-2 pb-2 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta">
-          <span>📦 Retrait &amp; livraison</span>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {VARIETIES.map((v, i) => (
+            <div class="reveal">
+              <ProductCard variety={v} variant="editorial" tone={CARD_TONES[i % CARD_TONES.length]} />
+            </div>
+          ))}
         </div>
-        <FAQItem question="Puis-je récupérer ma commande ?">
-          Oui — retrait gratuit au 5 rue Vallée de Couzon, 42800 Rive-de-Gier, du lundi au vendredi de 7h à 13h. Conservation au frais 3 jours.
-        </FAQItem>
-        <FAQItem question="Livrez-vous les particuliers en dehors de Lyon et Saint-Étienne ?">
-          Pour la France entière, passez par Pour de Bon. Pour les volumes pro, on étudie au cas par cas — contactez-nous.
-        </FAQItem>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="bg-creme px-6 py-20">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
-      <div>
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Contact</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Une question ? Écrivez-nous</h2>
-        <p class="mt-3 text-brun-clair leading-relaxed">
-          Pour les pros : recevez notre grille tarifaire et nos conditions de vente sur demande.
-        </p>
+    <!-- Notre histoire (maquette 5) -->
+    <section id="about" class="py-24 md:py-32">
+      <div class="grid md:grid-cols-2">
+        <div class="flex flex-col justify-center">
+          <div class="px-6 md:px-10 lg:pl-20 pb-12 reveal">
+            <h2 class="font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-violet">
+              Explorer le champignon <em class="italic">depuis 2015</em>
+            </h2>
+            <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Notre histoire</p>
+          </div>
 
-        <form class="mt-8 grid gap-4" data-contact-form>
-          <HoneypotField />
-          <div>
-            <label for="cf-name" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Nom</label>
-            <input id="cf-name" name="name" type="text" required class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+          <div class="bg-lilas px-6 md:px-10 lg:pl-20 py-12 md:py-16 reveal">
+            <p class="text-brun leading-relaxed max-w-md">
+              Florestan a fondé sa première champignonnière en 2015. Dix ans plus tard, c'est un refuge pour la biodiversité de 1,7 hectare niché à Rive-de-Gier, dans la Loire.
+            </p>
+            <p class="mt-4 text-brun leading-relaxed max-w-md">
+              Chaque champignon est cultivé, récolté à la main et conditionné ici même. Circuit court strict — vous savez d'où vient ce que vous mangez.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-2">
+              <span class="text-xs px-3 py-1.5 bg-page/70 text-brun">🛡️ Certifié bio</span>
+              <span class="text-xs px-3 py-1.5 bg-page/70 text-brun">✋ Récolte à la main</span>
+              <span class="text-xs px-3 py-1.5 bg-page/70 text-brun">📍 Circuit court</span>
+              <span class="text-xs px-3 py-1.5 bg-page/70 text-brun">♻️ Pratiques durables</span>
+            </div>
+
+            <a
+              href="/a-propos"
+              class="mt-10 inline-flex items-center px-8 py-4 rounded-btn bg-violet text-page text-sm font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors"
+            >
+              Notre histoire complète
+            </a>
           </div>
-          <div>
-            <label for="cf-email" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Email</label>
-            <input id="cf-email" name="email" type="email" required class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
+        </div>
+
+        <div class="relative min-h-[420px] md:min-h-0">
+          <Image
+            src={eryngiiVracPic}
+            alt="Éryngii fraîchement récolté — Les Myconautes"
+            loading="lazy"
+            decoding="async"
+            widths={[400, 600, 800, 1000]}
+            sizes="(min-width: 768px) 50vw, 100vw"
+            formats={["avif", "webp"]}
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+          <div class="absolute inset-y-0 right-0 w-6 lg:w-12 bg-violet" aria-hidden="true"></div>
+          <div class="absolute bottom-6 left-6 px-4 py-2 bg-page text-brun text-xs font-semibold">
+            🌱 Certifié bio FR-BIO-01
           </div>
-          <div>
-            <label for="cf-phone" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Téléphone</label>
-            <input id="cf-phone" name="phone" type="tel" class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
-          </div>
-          <div>
-            <label for="cf-postal" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Code postal</label>
-            <input id="cf-postal" name="postal_code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="42800" class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm" />
-            <p class="text-xs text-brun-clair/70 mt-1">Sert à estimer les frais de transport (facultatif).</p>
-          </div>
-          <div>
-            <label for="cf-msg" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Message</label>
-            <textarea id="cf-msg" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-ivoire border-2 border-brun/10 focus:border-terracotta focus:outline-none text-sm resize-y"></textarea>
-          </div>
-          <Turnstile />
-          <button type="submit" class="justify-self-start inline-flex items-center gap-2 px-6 py-3 rounded-full bg-terracotta text-ivoire font-semibold hover:brightness-110 transition shadow-sm">
-            Envoyer →
-          </button>
-          <p class="text-xs text-brun-clair/70 leading-relaxed">
-            En envoyant ce formulaire, vous acceptez que vos données soient utilisées pour répondre à votre demande. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
-          </p>
-          <p class="hidden text-sm text-turquoise font-semibold" data-form-success>
-            Merci, votre message est parti. On vous répond très vite.
-          </p>
-          <p class="hidden text-sm text-terracotta font-semibold" data-form-error>
-            Une erreur est survenue. Réessayez, ou écrivez directement à <span class="underline">myconaute &#x40; pm.me</span>.
-          </p>
-        </form>
+        </div>
       </div>
+    </section>
 
-      <div>
-        <h3 class="font-display text-2xl text-brun mb-6">Rendez-nous visite</h3>
-        <ul class="space-y-5">
-          <li class="flex items-start gap-3">
-            <span class="w-10 h-10 rounded-full bg-ivoire flex-shrink-0 flex items-center justify-center" aria-hidden="true">📍</span>
-            <div class="text-sm">
-              <h4 class="font-semibold text-brun">Adresse</h4>
-              <p class="text-brun-clair">5 rue Vallée de Couzon<br/>42800 Rive-de-Gier</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="w-10 h-10 rounded-full bg-ivoire flex-shrink-0 flex items-center justify-center" aria-hidden="true">📧</span>
-            <div class="text-sm">
-              <h4 class="font-semibold text-brun">Email</h4>
-              <p class="text-brun-clair"><MailLink email="myconautes@pm.me" /></p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="w-10 h-10 rounded-full bg-ivoire flex-shrink-0 flex items-center justify-center" aria-hidden="true">📸</span>
-            <div class="text-sm">
-              <h4 class="font-semibold text-brun">Instagram</h4>
-              <p class="text-brun-clair"><a href="https://www.instagram.com/les_myconautes/" target="_blank" rel="noopener" class="text-violet-profond hover:underline">@les_myconautes</a></p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="w-10 h-10 rounded-full bg-ivoire flex-shrink-0 flex items-center justify-center" aria-hidden="true">🕐</span>
-            <div class="text-sm">
-              <h4 class="font-semibold text-brun">Horaires</h4>
-              <p class="text-brun-clair">Lun – Ven, 7h à 13h</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="w-10 h-10 rounded-full bg-ivoire flex-shrink-0 flex items-center justify-center" aria-hidden="true">🛒</span>
-            <div class="text-sm">
-              <h4 class="font-semibold text-brun">Commander</h4>
-              <p class="text-brun-clair"><a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="text-violet-profond hover:underline">pourdebon.com/les-myconautes</a></p>
-            </div>
-          </li>
-        </ul>
+    <!-- Comment ça marche (maquette 6, haut) -->
+    <section id="comment-ca-marche" class="px-6 md:px-10 py-24 md:py-32">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-20 reveal">
+          <h2 class="font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-violet">
+            Trois étapes, <em class="italic">c'est tout</em>
+          </h2>
+          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Comment ça marche</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
+          <div class="reveal">
+            <StepCard number={1} title="Vous choisissez">
+              En ligne sur Pour de Bon, ou en direct par mail / Insta pour les volumes pro.
+            </StepCard>
+          </div>
+          <div class="reveal">
+            <StepCard number={2} title="On récolte le matin">
+              Cueillette à la main, conditionnement dans la foulée. Vos champignons n'attendent pas.
+            </StepCard>
+          </div>
+          <div class="reveal">
+            <StepCard number={3} title="Livraison ou retrait">
+              Lyon le vendredi, Saint-Étienne le jeudi, retrait gratuit sur place du lundi au vendredi.
+            </StepCard>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <CTASection />
+    <!-- Livraison (maquette 6, bas) -->
+    <section id="livraison" class="px-6 md:px-10 pb-24 md:pb-32">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-14 reveal">
+          <h2 class="font-title text-[clamp(1.8rem,3.5vw,3rem)] leading-[1.05] text-violet">
+            Comment <em class="italic">recevoir</em> vos champignons
+          </h2>
+          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Livraison</p>
+        </div>
+        <div class="reveal">
+          <DeliveryGrid variant="editorial" />
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ — bande violette signature à gauche (maquette 7) -->
+    <section id="faq" class="relative py-24 md:py-32 overflow-hidden">
+      <div class="absolute inset-y-0 left-0 w-8 lg:w-40 bg-violet hidden md:block" aria-hidden="true"></div>
+      <div class="max-w-4xl mx-auto px-6 md:px-10">
+        <div class="mb-12 reveal">
+          <h2 class="font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-violet">
+            Tout <em class="italic">savoir</em> sur nos champignons
+          </h2>
+          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Questions fréquentes</p>
+        </div>
+
+        <div class="bg-creme/60 px-6 md:px-10 py-8 reveal">
+          <div class="mb-8">
+            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta">
+              <span>🍄 Nos produits</span>
+            </div>
+            <FAQItem variant="editorial" question="Vos champignons sont-ils bio ?">
+              Tous nos champignons sont issus de l'agriculture biologique (label FR-BIO-01) et cultivés selon des pratiques durables et raisonnées.
+            </FAQItem>
+            <FAQItem variant="editorial" question="D'où viennent vos champignons ?">
+              Cultivés, récoltés et conditionnés à Rive-de-Gier (Loire). Circuit court, sans intermédiaire.
+            </FAQItem>
+            <FAQItem variant="editorial" question="Faut-il les laver ?">
+              Nos champignons sont propres et parés. Un simple essuyage avec un linge humide suffit.
+            </FAQItem>
+          </div>
+
+          <div class="mb-8">
+            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta">
+              <span>❄️ Conservation</span>
+            </div>
+            <FAQItem variant="editorial" question="Combien de temps se conservent-ils ?">
+              8 à 10 jours au réfrigérateur (0 à 4°C), dans leur emballage d'origine ou un contenant aéré.
+            </FAQItem>
+            <FAQItem variant="editorial" question="Puis-je les congeler ?">
+              Préférez les poêler légèrement avant congélation pour préserver texture et goût.
+            </FAQItem>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta">
+              <span>📦 Retrait &amp; livraison</span>
+            </div>
+            <FAQItem variant="editorial" question="Puis-je récupérer ma commande ?">
+              Oui — retrait gratuit au 5 rue Vallée de Couzon, 42800 Rive-de-Gier, du lundi au vendredi de 7h à 13h. Conservation au frais 3 jours.
+            </FAQItem>
+            <FAQItem variant="editorial" question="Livrez-vous les particuliers en dehors de Lyon et Saint-Étienne ?">
+              Pour la France entière, passez par Pour de Bon. Pour les volumes pro, on étudie au cas par cas — contactez-nous.
+            </FAQItem>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact (maquette 8) -->
+    <section id="contact" class="px-6 md:px-10 py-24 md:py-32">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20">
+        <div class="reveal">
+          <h2 class="font-title text-[clamp(2.2rem,5vw,4rem)] leading-[1.02] text-cacao">
+            Une question ? <em class="italic">Écrivez-nous</em>
+          </h2>
+          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Contact</p>
+          <p class="mt-8 text-brun leading-relaxed">
+            Pour les pros : recevez notre grille tarifaire et nos conditions de vente sur demande.
+          </p>
+
+          <form class="mt-10 grid gap-5" data-contact-form>
+            <HoneypotField />
+            <div>
+              <label for="cf-name" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Nom</label>
+              <input id="cf-name" name="name" type="text" required class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-violet focus:outline-none text-sm" />
+            </div>
+            <div>
+              <label for="cf-email" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Email</label>
+              <input id="cf-email" name="email" type="email" required class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-violet focus:outline-none text-sm" />
+            </div>
+            <div>
+              <label for="cf-phone" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Téléphone</label>
+              <input id="cf-phone" name="phone" type="tel" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-violet focus:outline-none text-sm" />
+            </div>
+            <div>
+              <label for="cf-postal" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Code postal</label>
+              <input id="cf-postal" name="postal_code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="42800" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-violet focus:outline-none text-sm" />
+              <p class="text-xs text-brun/60 mt-1.5">Sert à estimer les frais de transport (facultatif).</p>
+            </div>
+            <div>
+              <label for="cf-msg" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Message</label>
+              <textarea id="cf-msg" name="message" rows="4" required class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-violet focus:outline-none text-sm resize-y"></textarea>
+            </div>
+            <Turnstile />
+            <button type="submit" class="justify-self-start inline-flex items-center px-8 py-4 rounded-btn bg-cacao text-page text-sm font-semibold tracking-wide uppercase hover:bg-cacao/90 transition-colors">
+              Envoyer
+            </button>
+            <p class="text-xs text-brun/60 leading-relaxed">
+              En envoyant ce formulaire, vous acceptez que vos données soient utilisées pour répondre à votre demande. <a href="/mentions-legales" class="underline hover:text-violet">Plus d'infos</a>.
+            </p>
+            <p class="hidden text-sm text-anis font-semibold" data-form-success>
+              Merci, votre message est parti. On vous répond très vite.
+            </p>
+            <p class="hidden text-sm text-terracotta font-semibold" data-form-error>
+              Une erreur est survenue. Réessayez, ou écrivez directement à <span class="underline">myconaute &#x40; pm.me</span>.
+            </p>
+          </form>
+        </div>
+
+        <div class="reveal">
+          <div class="bg-cacao text-page px-8 md:px-12 py-12 md:py-14 h-full">
+            <h3 class="font-title text-2xl mb-8">Rendez-nous visite</h3>
+            <ul class="space-y-6">
+              <li class="flex items-start gap-4">
+                <span class="w-10 h-10 rounded-full bg-page/15 flex-shrink-0 flex items-center justify-center" aria-hidden="true">📍</span>
+                <div class="text-sm">
+                  <h4 class="font-semibold">Adresse</h4>
+                  <p class="text-page/80">5 rue Vallée de Couzon<br/>42800 Rive-de-Gier</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="w-10 h-10 rounded-full bg-page/15 flex-shrink-0 flex items-center justify-center" aria-hidden="true">📧</span>
+                <div class="text-sm">
+                  <h4 class="font-semibold">Email</h4>
+                  <p class="text-page/80"><MailLink email="myconautes@pm.me" /></p>
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="w-10 h-10 rounded-full bg-page/15 flex-shrink-0 flex items-center justify-center" aria-hidden="true">📸</span>
+                <div class="text-sm">
+                  <h4 class="font-semibold">Instagram</h4>
+                  <p><a href="https://www.instagram.com/les_myconautes/" target="_blank" rel="noopener" class="text-page underline underline-offset-4 hover:text-lilas transition-colors">@les_myconautes</a></p>
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="w-10 h-10 rounded-full bg-page/15 flex-shrink-0 flex items-center justify-center" aria-hidden="true">🕐</span>
+                <div class="text-sm">
+                  <h4 class="font-semibold">Horaires</h4>
+                  <p class="text-page/80">Lun – Ven, 7h à 13h</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="w-10 h-10 rounded-full bg-page/15 flex-shrink-0 flex items-center justify-center" aria-hidden="true">🛒</span>
+                <div class="text-sm">
+                  <h4 class="font-semibold">Commander</h4>
+                  <p><a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="text-page underline underline-offset-4 hover:text-lilas transition-colors">pourdebon.com/les-myconautes</a></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTASection variant="editorial" />
+  </div>
 </BaseLayout>
 
 <script>
@@ -300,3 +371,45 @@ import { VARIETIES } from "../data/varieties";
   const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
   if (form) wireContactForm(form, "contact_home");
 </script>
+
+<script>
+  // Révélation discrète au scroll — fondu + léger déplacement, coupée si
+  // l'utilisateur préfère réduire les animations.
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const items = document.querySelectorAll(".reveal");
+  if (reduced || !("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("is-visible"));
+  } else {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px" }
+    );
+    items.forEach((el) => io.observe(el));
+  }
+</script>
+
+<style is:global>
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
