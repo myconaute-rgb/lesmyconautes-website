@@ -1,13 +1,39 @@
 ---
+interface Props {
+  /** "refonte" = peau DA accueil 07/2026 (aplat violet). Défaut : peau historique. */
+  skin?: "v1" | "refonte";
+}
+const { skin = "v1" } = Astro.props;
+const refonte = skin === "refonte";
+
 const year = new Date().getFullYear();
+
+const footerClass = refonte
+  ? "bg-violet text-page/80 font-body px-6 md:px-10 pt-20 pb-10"
+  : "bg-brun text-ivoire/70 px-6 pt-16 pb-8 mt-24";
+const brandTextClass = refonte ? "font-body font-semibold text-xl text-page" : "font-display text-xl text-ivoire";
+const colTitleClass = refonte
+  ? "font-title text-base tracking-wide text-page mb-4"
+  : "text-xs font-semibold tracking-widest uppercase text-turquoise mb-3";
+const linkClass = refonte ? "hover:text-page underline-offset-4 hover:underline transition" : "hover:text-ivoire transition";
+const bottomClass = refonte
+  ? "max-w-7xl mx-auto mt-16 pt-6 border-t border-page/20 flex flex-col md:flex-row justify-between gap-2 text-xs text-page/60"
+  : "max-w-6xl mx-auto mt-12 pt-6 border-t border-ivoire/10 flex flex-col md:flex-row justify-between gap-2 text-xs text-ivoire/40";
+const bottomLinkClass = refonte ? "hover:text-page transition" : "hover:text-ivoire transition";
 ---
 
-<footer class="bg-brun text-ivoire/70 px-6 pt-16 pb-8 mt-24">
-  <div class="max-w-6xl mx-auto grid gap-10 md:grid-cols-[2fr_1fr_1fr_1fr]">
+<footer class={footerClass}>
+  <div class={`${refonte ? "max-w-7xl" : "max-w-6xl"} mx-auto grid gap-10 md:grid-cols-[2fr_1fr_1fr_1fr]`}>
     <div>
       <div class="flex items-center gap-3 mb-3">
-        <img src="/scaphandre-logo.svg" alt="" width="32" height="32" class="h-8 w-8 brightness-0 invert opacity-80" />
-        <span class="font-display text-xl text-ivoire">Les Myconautes</span>
+        {refonte ? (
+          <span class="flex items-center justify-center h-12 w-12 rounded-full bg-page">
+            <img src="/scaphandre-logo.svg" alt="" width="32" height="32" class="h-8 w-8" />
+          </span>
+        ) : (
+          <img src="/scaphandre-logo.svg" alt="" width="32" height="32" class="h-8 w-8 brightness-0 invert opacity-80" />
+        )}
+        <span class={brandTextClass}>Les Myconautes</span>
       </div>
       <p class="text-sm leading-relaxed max-w-xs">
         Champignonnière artisanale certifiée bio. Cultivés, récoltés à la main et conditionnés à Rive-de-Gier (Loire).
@@ -15,44 +41,44 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
-      <h4 class="text-xs font-semibold tracking-widest uppercase text-turquoise mb-3">
+      <h4 class={colTitleClass}>
         Univers
       </h4>
       <ul class="space-y-2 text-sm">
-        <li><a href="/particuliers" class="hover:text-ivoire transition">Particuliers</a></li>
-        <li><a href="/restaurateurs" class="hover:text-ivoire transition">Restaurateurs</a></li>
-        <li><a href="/agriculteurs" class="hover:text-ivoire transition">Agriculteurs</a></li>
-        <li><a href="/a-propos" class="hover:text-ivoire transition">À propos</a></li>
+        <li><a href="/particuliers" class={linkClass}>Particuliers</a></li>
+        <li><a href="/restaurateurs" class={linkClass}>Restaurateurs</a></li>
+        <li><a href="/agriculteurs" class={linkClass}>Agriculteurs</a></li>
+        <li><a href="/a-propos" class={linkClass}>À propos</a></li>
       </ul>
     </div>
 
     <div>
-      <h4 class="text-xs font-semibold tracking-widest uppercase text-turquoise mb-3">
+      <h4 class={colTitleClass}>
         Commander
       </h4>
       <ul class="space-y-2 text-sm">
-        <li><a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="hover:text-ivoire transition">Pour de Bon</a></li>
-        <li><a href="/contact" class="hover:text-ivoire transition">Contact pro</a></li>
+        <li><a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class={linkClass}>Pour de Bon</a></li>
+        <li><a href="/contact" class={linkClass}>Contact pro</a></li>
       </ul>
     </div>
 
     <div>
-      <h4 class="text-xs font-semibold tracking-widest uppercase text-turquoise mb-3">
+      <h4 class={colTitleClass}>
         Nous suivre
       </h4>
       <ul class="space-y-2 text-sm">
-        <li><a href="https://www.instagram.com/les_myconautes/" target="_blank" rel="noopener" class="hover:text-ivoire transition">Instagram</a></li>
-        <li><a href="https://www.facebook.com/p/Les-Myconautes-61577873314539/" target="_blank" rel="noopener" class="hover:text-ivoire transition">Facebook</a></li>
+        <li><a href="https://www.instagram.com/les_myconautes/" target="_blank" rel="noopener" class={linkClass}>Instagram</a></li>
+        <li><a href="https://www.facebook.com/p/Les-Myconautes-61577873314539/" target="_blank" rel="noopener" class={linkClass}>Facebook</a></li>
       </ul>
     </div>
   </div>
 
-  <div class="max-w-6xl mx-auto mt-12 pt-6 border-t border-ivoire/10 flex flex-col md:flex-row justify-between gap-2 text-xs text-ivoire/40">
+  <div class={bottomClass}>
     <span>© {year} Les Myconautes — SCEA Grange Champignons · FR-BIO-01</span>
     <div class="flex gap-4">
-      <a href="/mentions-legales" class="hover:text-ivoire transition">Mentions légales</a>
-      <a href="/politique-confidentialite" class="hover:text-ivoire transition">Confidentialité</a>
-      <a href="/cgv" class="hover:text-ivoire transition">CGV</a>
+      <a href="/mentions-legales" class={bottomLinkClass}>Mentions légales</a>
+      <a href="/politique-confidentialite" class={bottomLinkClass}>Confidentialité</a>
+      <a href="/cgv" class={bottomLinkClass}>CGV</a>
     </div>
   </div>
 </footer>

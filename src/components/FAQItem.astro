@@ -1,16 +1,19 @@
 ---
 interface Props {
   question: string;
+  /** "editorial" = DA refonte accueil 07/2026 (maquette 7). Défaut : rendu historique. */
+  variant?: "v1" | "editorial";
 }
-const { question } = Astro.props;
+const { question, variant = "v1" } = Astro.props;
+const editorial = variant === "editorial";
 ---
 
-<details class="group border-b border-brun/10 py-2">
-  <summary class="flex items-center justify-between gap-4 py-3 cursor-pointer list-none text-brun font-semibold text-sm hover:text-violet-profond transition-colors">
+<details class={`group ${editorial ? "border-b border-terracotta/25 py-2 font-body" : "border-b border-brun/10 py-2"}`}>
+  <summary class={`flex items-center justify-between gap-4 py-3 cursor-pointer list-none font-semibold text-sm transition-colors ${editorial ? "text-brun hover:text-violet py-4" : "text-brun hover:text-violet-profond"}`}>
     <span>{question}</span>
     <span class="flex-shrink-0 text-terracotta text-xl leading-none transition-transform group-open:rotate-45" aria-hidden="true">+</span>
   </summary>
-  <div class="pb-4 pr-8 text-sm text-brun-clair leading-relaxed">
+  <div class={`pb-4 pr-8 text-sm leading-relaxed ${editorial ? "text-brun/80" : "text-brun-clair"}`}>
     <slot />
   </div>
 </details>

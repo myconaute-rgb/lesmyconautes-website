@@ -8,6 +8,8 @@ import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
+  /** "refonte" = peau DA accueil 07/2026 pour Nav/Footer. Défaut : peau historique. */
+  skin?: "v1" | "refonte";
   description?: string;
   ogImage?: string;
   noindex?: boolean;
@@ -15,6 +17,7 @@ interface Props {
 
 const {
   title,
+  skin = "v1",
   description = "Champignons bio cultivés à Rive-de-Gier (Loire). Pleurote, shiitaké, éryngii, hericium. Pour la cuisine maison, la restauration et la production agricole.",
   ogImage = "/scaphandre-logo.svg",
   noindex = false,
@@ -49,11 +52,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://lesmyconaut
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
-  <body class="bg-ivoire text-brun antialiased">
-    <Nav />
+  <body class={`bg-ivoire text-brun antialiased${skin === "refonte" ? " theme-refonte" : ""}`}>
+    <Nav skin={skin} />
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer skin={skin} />
   </body>
 </html>

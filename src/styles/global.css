@@ -21,6 +21,26 @@
   /* Radius */
   --radius-card: 1rem;
   --radius-lg: 1.5rem;
+
+  /* ============================================================
+     DA « Refonte accueil » — palette extraite de la maquette 07/2026.
+     Tokens additifs : utilisés uniquement par la page d'accueil
+     (via variant/skin). Ne rien retirer au-dessus tant que les
+     autres pages n'ont pas migré. */
+  --color-violet: #8644be;
+  --color-lilas: #d3bfff;
+  --color-page: #fffaf1;
+  --color-paille: #fff6a3;
+  --color-anis: #87b800;
+  --color-cacao: #532213;
+
+  /* Anton : titres-affiches (une seule graisse, italique synthétique
+     assumée comme sur la maquette). Poppins : tout le reste. */
+  --font-title: "Anton", "Arial Narrow", sans-serif;
+  --font-body: "Poppins", system-ui, -apple-system, sans-serif;
+
+  /* Boutons refonte : coins peu arrondis (~10 %) */
+  --radius-btn: 0.625rem;
 }
 
 html {
@@ -44,4 +64,19 @@ h1, h2 {
 h3, h4 {
   font-family: var(--font-display);
   font-weight: 500;
+}
+
+/* Peau « refonte accueil » (class posée sur <body> via BaseLayout skin="refonte").
+   Les règles h1-h4 ci-dessus sont hors layer : elles battent les utilities
+   Tailwind (layerées) quelle que soit la spécificité. On les neutralise donc
+   dans ce scope, puis .font-title reprend la main (spécificité 0,2,0). */
+.theme-refonte :is(h1, h2, h3, h4) {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: normal;
+}
+.theme-refonte .font-title,
+.theme-refonte :is(h1, h2, h3, h4).font-title {
+  font-family: var(--font-title);
+  font-weight: 400;
 }

@@ -1,92 +1,73 @@
 ---
+/**
+ * Hero accueil — DA « refonte » 07/2026 (maquettes 1 & 2).
+ * Titre-affiche Anton pleine largeur, puis bandeau en deux volets :
+ * visuel à gauche (emplacement prêt pour une future photo), aplat
+ * violet à droite avec le texte et les CTA. Contenus inchangés.
+ */
 interface Props {
   badge?: string;
-  badgeColor?: "lavande" | "terracotta" | "turquoise";
   title?: string;
   highlight?: string;
-  highlightColor?: "lavande" | "terracotta" | "turquoise" | "violet-profond";
   description?: string;
   primaryCta?: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
-  /** Couleur du carré décoratif droite. */
-  visualColor?: "lavande" | "terracotta" | "turquoise" | "creme";
 }
 
 const {
   badge = "Frais du jour · Lyon",
-  badgeColor = "turquoise",
   title = "Explorez le monde des",
   highlight = "champignons",
-  highlightColor = "lavande",
   description = "Cultivés, récoltés à la main et conditionnés chaque jour à Rive-de-Gier (Loire). Pour la cuisine maison, la restauration et la production agricole.",
   primaryCta = { href: "https://www.pourdebon.com/les-myconautes-s1527", label: "Commander en ligne" },
   secondaryCta = { href: "#univers", label: "Découvrir nos univers" },
-  visualColor = "lavande",
 } = Astro.props;
-
-const badgeBg = {
-  lavande: "bg-lavande/15 text-violet-profond border-lavande/30",
-  terracotta: "bg-terracotta/15 text-terracotta border-terracotta/30",
-  turquoise: "bg-turquoise/15 text-turquoise border-turquoise/40",
-}[badgeColor];
-
-const highlightClass = {
-  lavande: "text-lavande",
-  terracotta: "text-terracotta",
-  turquoise: "text-turquoise",
-  "violet-profond": "text-violet-profond",
-}[highlightColor];
-
-const visualBg = {
-  lavande: "bg-lavande",
-  terracotta: "bg-terracotta",
-  turquoise: "bg-turquoise",
-  creme: "bg-creme",
-}[visualColor];
 ---
 
-<section class="relative overflow-hidden">
-  <div class="max-w-6xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
-    <div>
-      <span class={`inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-semibold uppercase tracking-widest ${badgeBg}`}>
-        {badge}
-      </span>
+<section class="bg-page font-body">
+  <!-- Titre-affiche -->
+  <div class="max-w-7xl mx-auto px-6 md:px-10 pt-14 md:pt-20 pb-10 md:pb-14">
+    <p class="font-body text-xs font-semibold uppercase tracking-[0.2em] text-anis">
+      {badge}
+    </p>
+    <h1 class="mt-4 font-title text-[clamp(2.6rem,7.5vw,6.5rem)] leading-[0.98] text-violet">
+      {title} <em class="italic">{highlight}</em>
+    </h1>
+  </div>
 
-      <h1 class="mt-5 text-4xl md:text-6xl leading-[1.05] text-brun">
-        {title} <em class={`italic ${highlightClass}`}>{highlight}</em>
-      </h1>
+  <!-- Bandeau deux volets -->
+  <div class="grid md:grid-cols-2">
+    <!-- Volet visuel : aplat lilas, prêt à accueillir une photo pleine hauteur -->
+    <div class="relative bg-lilas min-h-[320px] md:min-h-[520px] flex items-center justify-center overflow-hidden">
+      <img
+        src="/scaphandre-logo.svg"
+        alt="Logo scaphandre Les Myconautes"
+        class="w-2/3 max-w-xs md:max-w-sm object-contain opacity-90"
+      />
+    </div>
 
-      <p class="mt-6 text-base md:text-lg text-brun-clair leading-relaxed max-w-md">
+    <!-- Volet violet : texte + CTA -->
+    <div class="bg-violet text-page px-8 md:px-16 py-14 md:py-20 flex flex-col justify-center">
+      <p class="text-base md:text-lg leading-relaxed max-w-md">
         {description}
       </p>
 
-      <div class="mt-8 flex flex-wrap gap-3">
+      <div class="mt-10 flex flex-wrap gap-4">
         <a
           href={primaryCta.href}
           target={primaryCta.href.startsWith("http") ? "_blank" : undefined}
           rel={primaryCta.href.startsWith("http") ? "noopener" : undefined}
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-terracotta text-ivoire font-semibold hover:brightness-110 transition shadow-sm"
+          class="inline-flex items-center px-8 py-4 rounded-btn bg-page text-violet text-sm font-semibold tracking-wide uppercase hover:bg-page/90 transition-colors"
         >
-          {primaryCta.label} <span aria-hidden="true">→</span>
+          {primaryCta.label}
         </a>
         <a
           href={secondaryCta.href}
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-brun/15 text-brun font-semibold hover:border-brun/40 transition"
+          class="inline-flex items-center px-8 py-4 rounded-btn border-2 border-page/70 text-page text-sm font-semibold tracking-wide uppercase hover:bg-page/10 transition-colors"
         >
           {secondaryCta.label}
         </a>
       </div>
-    </div>
-
-    <div class="relative aspect-square max-w-md mx-auto w-full">
-      <div class={`absolute inset-0 rounded-3xl ${visualBg}`}></div>
-      <div class="absolute -top-6 -left-6 w-28 h-28 rounded-full bg-turquoise/90 mix-blend-multiply"></div>
-      <div class="absolute -bottom-8 -right-8 w-36 h-36 rounded-full bg-terracotta/90 mix-blend-multiply"></div>
-      <img
-        src="/scaphandre-logo.svg"
-        alt="Logo scaphandre Les Myconautes"
-        class="relative w-full h-full object-contain p-10 brightness-0 invert opacity-90"
-      />
     </div>
   </div>
 </section>
