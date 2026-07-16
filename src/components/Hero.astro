@@ -1,24 +1,23 @@
 ---
 /**
- * Hero accueil — DA « refonte » 07/2026 (maquettes 1 & 2).
- * Titre-affiche Anton pleine largeur, puis bandeau en deux volets :
- * visuel à gauche (emplacement prêt pour une future photo), aplat
- * violet à droite avec le texte et les CTA. Contenus inchangés.
+ * Hero accueil — maquette-corps-page-accueil (brief V2 16/07).
+ * Titre-affiche Anton pleine largeur, puis bandeau deux volets :
+ * photo cagette à gauche, aplat violet à droite avec la ligne script
+ * « bio . locaux . délicieux », le texte en deux temps et les CTA.
  */
+import { Image } from "astro:assets";
+import heroCagettePic from "../assets/photos/hero-cagette-eryngii.jpg";
+
 interface Props {
-  badge?: string;
   title?: string;
   highlight?: string;
-  description?: string;
   primaryCta?: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
 }
 
 const {
-  badge = "Frais du jour · Lyon",
   title = "Explorez le monde des",
   highlight = "champignons",
-  description = "Cultivés, récoltés à la main et conditionnés chaque jour à Rive-de-Gier (Loire). Pour la cuisine maison, la restauration et la production agricole.",
   primaryCta = { href: "https://www.pourdebon.com/les-myconautes-s1527", label: "Commander en ligne" },
   secondaryCta = { href: "#univers", label: "Découvrir nos univers" },
 } = Astro.props;
@@ -26,30 +25,38 @@ const {
 
 <section class="bg-page font-body">
   <!-- Titre-affiche -->
-  <div class="max-w-7xl mx-auto px-6 md:px-10 pt-14 md:pt-20 pb-10 md:pb-14">
-    <p class="font-body text-xs font-semibold uppercase tracking-[0.2em] text-anis">
-      {badge}
-    </p>
-    <h1 class="mt-4 font-title text-[clamp(2.6rem,7.5vw,6.5rem)] leading-[0.98] text-violet">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 pt-10 md:pt-14 pb-10 md:pb-14">
+    <h1 class="font-title text-[clamp(2.6rem,7.5vw,6.5rem)] leading-[0.98] text-violet">
       {title} <em class="italic">{highlight}</em>
     </h1>
   </div>
 
   <!-- Bandeau deux volets -->
   <div class="grid md:grid-cols-2">
-    <!-- Volet visuel : aplat lilas, prêt à accueillir une photo pleine hauteur -->
-    <div class="relative bg-lilas min-h-[320px] md:min-h-[520px] flex items-center justify-center overflow-hidden">
-      <img
-        src="/scaphandre-logo.svg"
-        alt="Logo scaphandre Les Myconautes"
-        class="w-2/3 max-w-xs md:max-w-sm object-contain opacity-90"
+    <!-- Volet visuel : cagette d'eryngii sur fond crème (photo maquette) -->
+    <div class="relative bg-page min-h-[320px] md:min-h-[520px] overflow-hidden">
+      <Image
+        src={heroCagettePic}
+        alt="Cagette d'eryngii frais — Les Myconautes"
+        loading="eager"
+        decoding="async"
+        widths={[480, 720, 1024]}
+        sizes="(min-width: 768px) 50vw, 100vw"
+        formats={["avif", "webp"]}
+        class="absolute inset-0 w-full h-full object-cover object-bottom"
       />
     </div>
 
-    <!-- Volet violet : texte + CTA -->
+    <!-- Volet violet : script + texte + CTA -->
     <div class="bg-violet text-page px-8 md:px-16 py-14 md:py-20 flex flex-col justify-center">
-      <p class="text-base md:text-lg leading-relaxed max-w-md">
-        {description}
+      <p class="font-script text-[clamp(1.8rem,3.5vw,2.6rem)] leading-none">
+        bio . locaux . délicieux
+      </p>
+      <p class="mt-8 text-base md:text-lg leading-relaxed max-w-md">
+        Cultivés avec soin, récoltés à la main, conditionnés chaque jour ici, à Rive-de-Gier, dans la Loire.
+      </p>
+      <p class="mt-4 text-base md:text-lg leading-relaxed max-w-md">
+        Pour la cuisine maison, la restauration et la production agricole.
       </p>
 
       <div class="mt-10 flex flex-wrap gap-4">

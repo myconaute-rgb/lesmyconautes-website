@@ -15,37 +15,39 @@ const cardBg = background === "creme" ? "bg-ivoire" : "bg-creme";
 ---
 
 {editorial ? (
-  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 font-body">
-    <div class="bg-lilas p-8">
-      <h3 class="font-title text-xl text-brun">Retrait sur place</h3>
-      <p class="mt-4 text-sm text-brun leading-relaxed">
-        5 rue Vallée de Couzon<br/>42800 Rive-de-Gier<br/>Lun – Ven, 7h à 13h
+  <div class="grid md:grid-cols-3 gap-6 font-body">
+    <div class="bg-lilas p-8 flex flex-col">
+      <h3 class="font-title text-xl text-cacao">Retrait sur place</h3>
+      <p class="mt-5 text-sm text-brun leading-relaxed">
+        5 rue Vallée de Couzon<br/>42800 Rive-de-Gier
       </p>
-      <div class="mt-6 font-title text-lg text-brun">Gratuit</div>
+      <p class="mt-5 text-sm text-brun leading-relaxed">
+        Lundi au vendredi<br/>De 7h à 13h
+      </p>
+      <div class="mt-auto pt-8 font-title text-lg text-cacao">Gratuit</div>
     </div>
 
-    <div class="bg-lilas p-8">
-      <h3 class="font-title text-xl text-brun">Livraison Lyon</h3>
-      <p class="mt-4 text-sm text-brun leading-relaxed">
-        Vendredi 8h – 12h<br/>Rayon 5 km{minOrder && <><br/>Min. {minOrder}</>}
-      </p>
-      <div class="mt-6 font-title text-lg text-brun">2,00 €</div>
+    <div class="bg-lilas p-8 flex flex-col">
+      <h3 class="font-title text-xl text-cacao">Livraison direct producteur</h3>
+      <p class="mt-5 font-title text-base text-cacao">A Lyon</p>
+      <p class="text-sm text-brun leading-relaxed">Tous les vendredis<br/>Entre 8h et 12h</p>
+      <p class="mt-4 font-title text-base text-cacao">A Saint-Etienne</p>
+      <p class="text-sm text-brun leading-relaxed">Tous les jeudis<br/>Entre 8h et 12h</p>
+      <div class="mt-auto pt-8 font-title text-lg text-cacao">4,20€</div>
     </div>
 
-    <div class="bg-lilas p-8">
-      <h3 class="font-title text-xl text-brun">Livraison Saint-Étienne</h3>
-      <p class="mt-4 text-sm text-brun leading-relaxed">
-        Jeudi 8h – 12h<br/>Rayon 5 km{minOrder && <><br/>Min. {minOrder}</>}
+    <div class="bg-lilas p-8 flex flex-col">
+      <h3 class="font-title text-xl text-cacao">Partout en France</h3>
+      <p class="mt-5 font-title text-base text-cacao">Via Pour de Bon</p>
+      <p class="mt-2 text-sm text-brun leading-relaxed">
+        Nous recevons et préparons directement votre commande.
       </p>
-      <div class="mt-6 font-title text-lg text-brun">2,00 €</div>
-    </div>
-
-    <div class="bg-lilas p-8">
-      <h3 class="font-title text-xl text-brun">Partout en France</h3>
       <p class="mt-4 text-sm text-brun leading-relaxed">
-        Via <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="font-semibold underline underline-offset-4 hover:text-violet transition-colors">Pour de Bon</a>
+        Vous êtes livrés par Chronofresh quand vous voulez, que vous soyez un particulier ou un professionnel.
       </p>
-      <div class="mt-6 font-title text-lg text-brun">Voir tarifs</div>
+      <div class="mt-auto pt-8 font-title text-lg text-cacao">
+        <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="hover:underline underline-offset-4">Voir les tarifs</a>
+      </div>
     </div>
   </div>
 ) : (

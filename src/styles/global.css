@@ -34,10 +34,22 @@
   --color-anis: #87b800;
   --color-cacao: #532213;
 
+  /* Charte V2 (brief 16/07) — palette complète des maquettes. */
+  --color-jaune: #ffde59;
+  --color-sable: #e8d0bb;
+  --color-bleu: #06b6d4;
+  --color-orange: #f14902;
+  --color-rose: #ff6868;
+  --color-blanc: #ffffff;
+
   /* Anton : titres-affiches (une seule graisse, italique synthétique
-     assumée comme sur la maquette). Poppins : tout le reste. */
+     assumée comme sur la maquette). Poppins : tout le reste.
+     Script : sous-titres manuscrits de la charte V2. La maquette impose
+     « Bellaboo » (police commerciale TypeFairy) — Caveat en attendant le
+     fichier licencié ; swap = remplacer l'import + cette pile. */
   --font-title: "Anton", "Arial Narrow", sans-serif;
   --font-body: "Poppins", system-ui, -apple-system, sans-serif;
+  --font-script: "Caveat", "Bradley Hand", cursive;
 
   /* Boutons refonte : coins peu arrondis (~10 %) */
   --radius-btn: 0.625rem;
@@ -79,4 +91,17 @@ h3, h4 {
 .theme-refonte :is(h1, h2, h3, h4).font-title {
   font-family: var(--font-title);
   font-weight: 400;
+}
+.theme-refonte .font-script,
+.theme-refonte :is(h1, h2, h3, h4).font-script {
+  font-family: var(--font-script);
+  font-weight: 600;
+}
+
+/* Sous-titre script de la charte V2 : accroché juste sous le titre Anton. */
+.theme-refonte .script-sub {
+  font-family: var(--font-script);
+  font-weight: 600;
+  line-height: 1;
+  margin-top: -0.35em;
 }

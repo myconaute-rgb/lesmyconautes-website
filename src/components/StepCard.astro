@@ -1,20 +1,29 @@
 ---
-/** Étape « comment ça marche » — DA refonte 07/2026 (maquette 6). */
+/** Étape « livraison & retrait » — maquette-corps-page-accueil (brief V2 16/07).
+ *  Icône violette en bulle (extraite de la maquette), titre Anton violet. */
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
-  number: number;
+  icon: ImageMetadata;
   title: string;
-  /** Conservé pour compat d'appel ; la DA refonte est monochrome violet. */
-  color?: "turquoise" | "lavande" | "terracotta";
 }
 
-const { number, title } = Astro.props;
+const { icon, title } = Astro.props;
 ---
 
 <div class="text-center font-body">
-  <div class="w-24 h-24 mx-auto rounded-full bg-violet text-page font-title text-4xl flex items-center justify-center">
-    {number}
-  </div>
-  <h3 class="mt-7 font-title text-2xl text-violet">{title}</h3>
+  <Image
+    src={icon}
+    alt=""
+    loading="lazy"
+    decoding="async"
+    widths={[160, 300]}
+    sizes="160px"
+    formats={["avif", "webp"]}
+    class="w-36 mx-auto"
+  />
+  <h3 class="mt-4 font-title text-2xl text-violet">{title}</h3>
   <div class="mt-3 text-sm text-brun leading-relaxed max-w-xs mx-auto">
     <slot />
   </div>

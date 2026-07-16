@@ -1,0 +1,58 @@
+---
+/**
+ * Encart gamme accueil — maquette-corps-page-accueil (brief V2 16/07).
+ * Pas de lien ni de bouton « découvrir » : photo + zone texte sur aplat
+ * couleur (titre Anton, nom latin/tagline en script, description).
+ */
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  title: string;
+  /** Ligne script sous le titre (nom latin ou tagline). */
+  sub: string;
+  text: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  tone: "mauve" | "jaune" | "bleu" | "sable" | "orange" | "anis";
+  /** Badge posé sur la photo (ex. « Bientôt de retour ! »). */
+  badge?: string;
+  loading?: "lazy" | "eager";
+}
+
+const { title, sub, text, image, imageAlt, tone, badge, loading = "lazy" } = Astro.props;
+
+const toneClass = {
+  mauve: "bg-lilas",
+  jaune: "bg-jaune",
+  bleu: "bg-bleu",
+  sable: "bg-sable",
+  orange: "bg-orange",
+  anis: "bg-anis",
+}[tone];
+---
+
+<article class="bg-page font-body overflow-hidden h-full flex flex-col">
+  <div class="aspect-square relative overflow-hidden">
+    <Image
+      src={image}
+      alt={imageAlt}
+      loading={loading}
+      decoding="async"
+      widths={[320, 480, 640, 800]}
+      sizes="(min-width: 768px) 400px, (min-width: 480px) 480px, 100vw"
+      formats={["avif", "webp"]}
+      class="w-full h-full object-cover"
+    />
+    {badge && (
+      <span class="absolute top-4 right-0 px-4 py-2 bg-lilas text-brun text-xs font-medium">
+        •&nbsp;&nbsp;{badge}
+      </span>
+    )}
+  </div>
+  <div class={`p-7 grow ${toneClass} text-brun`}>
+    <h3 class="font-title text-xl leading-tight text-cacao">{title}</h3>
+    <p class="font-script text-lg leading-tight text-cacao mt-0.5">{sub}</p>
+    <p class="mt-4 text-sm leading-relaxed">{text}</p>
+  </div>
+</article>

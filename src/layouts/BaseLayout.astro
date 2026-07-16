@@ -2,6 +2,13 @@
 import "@fontsource-variable/fraunces";
 import "@fontsource-variable/fraunces/wght-italic.css";
 import "@fontsource-variable/outfit";
+/* DA V2 : Nav/Footer communs (Anton/Poppins) + sous-titres script sur toutes les pages. */
+import "@fontsource/anton";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
+import "@fontsource/caveat/600.css";
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
@@ -53,10 +60,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://lesmyconaut
     <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body class={`bg-ivoire text-brun antialiased${skin === "refonte" ? " theme-refonte" : ""}`}>
-    <Nav skin={skin} />
+    <Nav />
     <main>
       <slot />
     </main>
-    <Footer skin={skin} />
+    <Footer />
   </body>
 </html>

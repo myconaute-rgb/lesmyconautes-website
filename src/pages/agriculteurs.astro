@@ -1,314 +1,342 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
 import HoneypotField from "../components/HoneypotField.astro";
 import Turnstile from "../components/Turnstile.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
-import substratProPaysagePic from "../assets/photos/substrat-pro-paysage.jpg";
+import incubationAlleePic from "../assets/photos/incubation-allee.jpg";
+import certifieAbLogo from "../assets/logos/certifie-ab.png";
+import certifieEuLogo from "../assets/logos/certifie-eu.png";
+
+/* Sur cette page la charte inverse l'accueil : titres VERTS (anis),
+   sous-titres script VIOLETS. */
+const toneClass = {
+  mauve: "bg-lilas",
+  jaune: "bg-jaune",
+  bleu: "bg-bleu",
+  sable: "bg-sable",
+  rose: "bg-rose",
+  orange: "bg-orange",
+} as const;
+
+const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
+
+const FICHES = [
+  { href: "/substrat-pleurote-pro", title: "Substrat de pleurote", text: "Souches Karabella, Purati, hybride Eryngii x Ostreatus" },
+  { href: "/substrat-eryngii-panicaut", title: "Substrat d'eryngii", text: "Gamme premium" },
+  { href: "/substrat-hericium-pro", title: "Substrat d'hericium", text: "Gamme premium" },
+  { href: "/substrat-incube-pret-fructifier", title: "Substrat incubé prêt à fructifier", text: "Phase IV active expliquée, gain de temps." },
+];
+
+const STEPS = [
+  { n: 1, title: "Fabrication", text: "Fabrication et stérilisation par autoclave dans notre atelier. Formulation propre à chaque variété." },
+  { n: 2, title: "Ensemencement", text: "Inoculation avec du mycélium de qualité. Mise en sac stérile dans notre laboratoire." },
+  { n: 3, title: "Incubation", text: "Le mycélium colonise le substrat. On vous le livre prêt à fructifier." },
+  { n: 4, title: "Fructification", text: "Chez vous : ouvrez le sac, maintenez l'humidité et l'air frais. Rendement maximal dès la première volée." },
+];
+
+const FORMAT_EXTRA: Record<string, string> = {
+  "Sac unitaire": "Pour tester, démarrer une petite culture, ou compléter un volume.",
+  "Demi-palette": "Production régulière à petite échelle. Tarif dégressif selon le volume.",
+  "Palette complète": "Production professionnelle. Meilleur tarif unitaire.",
+};
 ---
 
 <BaseLayout
   title="Substrat champignon bio FR-BIO-01 — Producteur Rhône-Alpes | Les Myconautes"
-  description="Fournisseur direct de substrat champignon bio en France. Éryngii, hericium, pleurote — bientôt nameko, shiitaké et pleurote jaune. Certifié FR-BIO-01 par Ecocert. Sac 2,5 kg, demi-palette 200 kg, palette 500 kg. Devis sur demande."
+  description="Fournisseur direct de substrat champignon bio en France. Éryngii, hericium, pleurote — bientôt nameko, shiitaké. Certifié FR-BIO-01 par Ecocert. Sac 2,5 kg, demi-palette 200 kg, palette 500 kg. Devis sur demande."
+  skin="refonte"
 >
   <BreadcrumbLd items={[
     { name: "Accueil", url: "/" },
     { name: "Agriculteurs" },
   ]} />
-  <PageHero
-    theme="turquoise"
-    label="Pour la production"
-    title="Substrats et mycélium bio pour champignonnistes"
-    highlight="champignonnistes"
-    description="Après six ans de culture, on a fabriqué notre propre substrat — et on le rend accessible. Toute la production est certifiée Agriculture Biologique."
-    primaryCta={{ href: "#contact-agri", label: "Demander un devis" }}
-    secondaryCta={{ href: "#especes", label: "Voir le catalogue" }}
-  />
 
-  <!-- Argument FR-BIO-01 (différenciant SEO principal) -->
-  <section class="bg-creme px-6 py-16">
-    <div class="max-w-5xl mx-auto">
-      <div class="grid md:grid-cols-[2fr_1fr] gap-10 items-center">
-        <div>
-          <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Pourquoi nous</span>
-          <h2 class="mt-2 text-3xl md:text-4xl text-brun">Substrat champignon bio certifié <em class="italic text-turquoise">FR-BIO-01</em>, fabriqué en Rhône-Alpes</h2>
-          <div class="mt-6 text-brun-clair leading-relaxed space-y-3">
-            <p>
-              <strong class="text-brun">Bio français, certifié FR-BIO-01.</strong> Cultivé et conditionné en Rhône-Alpes, sous le numéro Ecocert FR-BIO-01.250-0043443.2026.003. Vous savez exactement d'où vient votre substrat.
-            </p>
-            <p>
-              <strong class="text-brun">Producteur direct.</strong> On fabrique nous-mêmes le substrat dans notre atelier — vous ne passez pas par un distributeur.
-            </p>
-            <p>
-              <strong class="text-brun">Bio sans compromis.</strong> Tout le cycle est suivi par Ecocert, du substrat à l'expédition. Nos champignons poussent sans traitement, et dans les salles on mise sur l'hygiène et le soin plutôt que sur la chimie.
-            </p>
-          </div>
-        </div>
-
-        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5 text-center">
-          <div class="text-5xl mb-3" aria-hidden="true">🌱</div>
-          <div class="font-display text-lg text-brun leading-tight">Certifié<br/>FR-BIO-01</div>
-          <div class="mt-2 text-xs text-brun-clair break-words">FR-BIO-01.250-0043443<br/>.2026.003</div>
-          <div class="mt-3 inline-block px-3 py-1 rounded-full bg-turquoise/15 text-turquoise text-xs font-semibold">Ecocert</div>
-        </div>
+  <div class="bg-page font-body text-brun">
+    <!-- Hero : titre vert sur crème, puis bande verte / photo -->
+    <section class="bg-page">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 pt-10 md:pt-14 pb-8">
+        <h1 class="font-title text-[clamp(2.4rem,6.5vw,5.5rem)] leading-[0.98] text-anis">
+          Substrat et mycélium <em class="italic">bio</em><br />
+          <span class="md:ml-[18%]">prêt à fructifier</span>
+        </h1>
       </div>
-    </div>
-  </section>
-
-  <!-- Espèces -->
-  <section id="especes" class="px-6 py-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Nos substrats</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Substrats <em class="italic text-turquoise">prêts à l'emploi</em></h2>
-        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
-          Fabriqués dans notre atelier à Rive-de-Gier. Mycélium ensemencé, stérilisé à l'autoclave, prêts à fructifier.
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {AGRI_SPECIES.map((sp) => (
-          <article class={`relative bg-ivoire rounded-2xl ring-1 ring-brun/5 overflow-hidden ${sp.tag ? "opacity-95" : ""}`}>
-            <div class={`aspect-[5/3] relative overflow-hidden ${sp.image ? "bg-creme" : "bg-gradient-to-br from-creme via-brun-clair/20 to-turquoise/20"}`}>
-              {sp.image ? (
-                <Image
-                  src={sp.image}
-                  alt={sp.imageAlt ?? `${sp.name} (${sp.latin})`}
-                  loading="lazy"
-                  decoding="async"
-                  widths={[400, 600, 800]}
-                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
-                  formats={["avif", "webp"]}
-                  class={`w-full h-full object-cover ${sp.tag ? "saturate-50" : ""}`}
-                />
-              ) : (
-                <span class="absolute inset-0 flex items-center justify-center text-5xl" aria-hidden="true">🍄</span>
-              )}
-              {sp.tag && (
-                <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-lavande/95 text-ivoire text-xs font-semibold uppercase tracking-wider shadow-sm backdrop-blur-sm">
-                  🟣 {sp.tag}
-                </span>
-              )}
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg text-brun">{sp.name}</h3>
-              <p class="font-display italic text-xs text-brun-clair/70 mt-0.5">{sp.latin}</p>
-              <p class="mt-3 text-sm text-brun-clair leading-relaxed">{sp.blurb}</p>
-              <div class="mt-4 flex flex-wrap gap-1.5">
-                {sp.stats.map((stat) => (
-                  <span class="text-xs px-2.5 py-1 rounded-full bg-creme text-brun-clair border border-brun/5">
-                    {stat}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Pages substrat par variété (maillage interne SEO) -->
-  <section class="bg-creme px-6 py-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Fiches techniques par variété</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Substrat <em class="italic text-turquoise">par espèce</em></h2>
-        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
-          Pages dédiées avec paramètres de culture, rendements, méthode propriétaire et FAQ par variété.
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <a href="/substrat-pleurote-pro" class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5 hover:-translate-y-1 transition block">
-          <h3 class="text-base font-display text-brun">Substrat pleurote pro</h3>
-          <p class="mt-2 text-xs text-brun-clair leading-relaxed">Souches Karabella + Purati, hybride eryngii × ostreatus, 25 % de rendement.</p>
-          <span class="mt-3 inline-block text-xs font-semibold text-violet-profond">Voir la fiche →</span>
-        </a>
-        <a href="/substrat-eryngii-panicaut" class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5 hover:-translate-y-1 transition block">
-          <h3 class="text-base font-display text-brun">Substrat eryngii panicaut</h3>
-          <p class="mt-2 text-xs text-brun-clair leading-relaxed">Pleurote du panicaut, volée unique massive, 11–13 °C, gamme premium.</p>
-          <span class="mt-3 inline-block text-xs font-semibold text-violet-profond">Voir la fiche →</span>
-        </a>
-        <a href="/substrat-hericium-pro" class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5 hover:-translate-y-1 transition block">
-          <h3 class="text-base font-display text-brun">Substrat hericium pro</h3>
-          <p class="mt-2 text-xs text-brun-clair leading-relaxed">Crinière de lion. Production saisonnière — manifestez votre intérêt.</p>
-          <span class="mt-3 inline-block text-xs font-semibold text-violet-profond">Voir la fiche →</span>
-        </a>
-        <a href="/substrat-incube-pret-fructifier" class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5 hover:-translate-y-1 transition block">
-          <h3 class="text-base font-display text-brun">Substrat incubé prêt à fructifier</h3>
-          <p class="mt-2 text-xs text-brun-clair leading-relaxed">Phase IV active expliquée — pédagogie, choc thermique, gain de temps.</p>
-          <span class="mt-3 inline-block text-xs font-semibold text-violet-profond">Voir la fiche →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process -->
-  <section class="bg-creme px-6 py-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Notre process</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Du substrat à la récolte</h2>
-        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
-          On vous livre un substrat prêt à l'emploi, pour vous concentrer sur la partie la plus gratifiante : la fructification.
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5 relative">
-          <span class="font-display text-5xl text-turquoise/30 absolute top-2 right-4 leading-none">01</span>
-          <h4 class="text-base text-brun relative">Fabrication</h4>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed relative">
-            Fabrication et stérilisation autoclave dans notre atelier. Formulation propre à chaque variété.
-          </p>
-        </div>
-        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5 relative">
-          <span class="font-display text-5xl text-lavande/30 absolute top-2 right-4 leading-none">02</span>
-          <h4 class="text-base text-brun relative">Ensemencement</h4>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed relative">
-            Inoculation avec du mycélium de qualité. Mise en sac stérile dans notre laboratoire.
-          </p>
-        </div>
-        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5 relative">
-          <span class="font-display text-5xl text-terracotta/30 absolute top-2 right-4 leading-none">03</span>
-          <h4 class="text-base text-brun relative">Incubation</h4>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed relative">
-            Le mycélium colonise le substrat. On vous le livre prêt à fructifier.
-          </p>
-        </div>
-        <div class="bg-ivoire rounded-2xl p-6 ring-1 ring-brun/5 relative">
-          <span class="font-display text-5xl text-turquoise/30 absolute top-2 right-4 leading-none">04</span>
-          <h4 class="text-base text-brun relative">Fructification</h4>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed relative">
-            Chez vous : ouvrez le sac, maintenez l'humidité et l'air frais. Quelques jours plus tard, ça pousse.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Conditionnements -->
-  <section class="px-6 py-20">
-    <div class="max-w-6xl mx-auto">
-      <!-- Bandeau visuel substrat pro -->
-      <div class="aspect-[5/3] sm:aspect-[16/6] rounded-3xl overflow-hidden mb-12 ring-1 ring-brun/10 shadow-sm">
+      <div class="relative h-64 md:h-96 bg-anis overflow-hidden">
         <Image
-          src={substratProPaysagePic}
-          alt="Substrat pro Les Myconautes — sac inoculé prêt à fructifier"
-          loading="lazy"
+          src={incubationAlleePic}
+          alt="Allée d'incubation des sacs de substrat — Les Myconautes"
+          loading="eager"
           decoding="async"
           widths={[640, 960, 1280, 1600]}
-          sizes="(min-width: 1024px) 1000px, 100vw"
+          sizes="100vw"
           formats={["avif", "webp"]}
           class="w-full h-full object-cover"
         />
       </div>
+    </section>
 
-      <div class="text-center mb-12">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Conditionnements</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Du sac unitaire à la palette</h2>
-        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
-          Tarifs dégressifs selon le volume. Devis sur demande, conditions pro.
-        </p>
-      </div>
+    <!-- Pourquoi nous choisir + FR-BIO-01 -->
+    <section class="relative py-20 md:py-28 overflow-hidden">
+      <div class="absolute inset-y-0 right-0 w-8 lg:w-24 bg-violet hidden md:block" aria-hidden="true"></div>
+      <div class="max-w-6xl mx-auto px-6 md:px-10">
+        <div class="mb-10">
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet order-first">pourquoi nous choisir ?</p>
+          <h2 class="mt-1 font-title text-[clamp(1.8rem,4vw,3.4rem)] leading-[1.02] text-anis">
+            Substrat de champignon certifié FR-BIO-01<br />
+            <em class="italic">fabriqué en Rhône-Alpes</em>
+          </h2>
+        </div>
 
-      <div class="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
-        {SUBSTRATE_FORMATS.map((fmt) => (
-          <div class="rounded-2xl ring-1 ring-brun/5 hover:-translate-y-1 transition overflow-hidden bg-ivoire">
-            <div class="aspect-square overflow-hidden">
-              <Image
-                src={fmt.image}
-                alt={`Substrat ${fmt.label} — ${fmt.weight}`}
-                loading="lazy"
-                decoding="async"
-                widths={[320, 480, 640]}
-                sizes="(min-width: 768px) 280px, 50vw"
-                formats={["avif", "webp"]}
-                class="w-full h-full object-cover"
-              />
+        <div class="grid md:grid-cols-2 gap-10 items-start">
+          <div class="text-brun leading-relaxed space-y-4 max-w-xl">
+            <p>Après six ans de culture, on a fabriqué notre propre substrat bio <strong>– et on le rend accessible</strong>.</p>
+            <p><strong>Bio français,</strong> cultivé et conditionné dans la Loire, sous le numéro Ecocert FR-BIO-01.250-0043443.2026.003. Vous savez exactement d'où vient votre substrat.</p>
+          </div>
+          <div class="space-y-4 max-w-xl">
+            <div class="flex items-center gap-6">
+              <Image src={certifieAbLogo} alt="Certifié Agriculture Biologique" loading="lazy" widths={[120, 200]} sizes="110px" formats={["avif", "webp"]} class="h-24 w-auto" />
+              <Image src={certifieEuLogo} alt="Certifié FR-BIO-01 — Agriculture France / UE" loading="lazy" widths={[160, 280]} sizes="150px" formats={["avif", "webp"]} class="h-24 w-auto" />
             </div>
-            <div class="p-6 text-center">
-              <h3 class="text-lg text-brun">{fmt.label}</h3>
-              <div class="mt-1 font-display italic text-sm text-turquoise">{fmt.weight}</div>
-              <p class="mt-3 text-sm text-brun-clair leading-relaxed">{fmt.description}</p>
+            <p class="text-brun leading-relaxed"><strong>Producteur direct :</strong> on le fabrique dans notre atelier, vous ne passez pas par un distributeur.</p>
+            <p class="text-brun leading-relaxed"><strong>Bio sans compromis :</strong> tout le cycle est suivi par Ecocert. Nos champignons poussent sans traitement : dans nos salles, on mise sur l'hygiène et le soin plutôt que sur la chimie.</p>
+            <div class="flex flex-wrap gap-4 pt-2">
+              <a href="#contact-agri" class="inline-flex items-center px-7 py-3.5 rounded-btn bg-anis text-page text-sm font-semibold tracking-wide uppercase hover:bg-anis/90 transition-colors">
+                Demander nos tarifs
+              </a>
+              <a href="#especes" class="inline-flex items-center px-7 py-3.5 rounded-btn border-2 border-anis text-anis text-sm font-semibold tracking-wide uppercase hover:bg-anis/10 transition-colors">
+                Voir le catalogue
+              </a>
             </div>
           </div>
-        ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Devis -->
-  <section id="contact-agri" class="bg-creme px-6 py-20">
-    <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-10">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Devis substrat</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Demandez un devis adapté</h2>
-        <p class="mt-3 text-brun-clair max-w-xl mx-auto">
-          Indiquez les espèces et volumes souhaités. Réponse rapide avec proposition adaptée.
-        </p>
+    <!-- Espèces -->
+    <section id="especes" class="relative py-20 md:py-28 overflow-hidden">
+      <div class="absolute inset-y-0 left-0 w-8 lg:w-24 bg-violet hidden md:block" aria-hidden="true"></div>
+      <div class="max-w-7xl mx-auto px-6 md:px-10 lg:pl-32">
+        <div class="mb-12">
+          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-anis">
+            Substrats <em class="italic">prêts à l'emploi</em>
+          </h2>
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet">nos substrats</p>
+          <p class="mt-6 max-w-xl text-brun leading-relaxed">
+            Fabriqués dans notre atelier à Rive-de-Gier.<br />Mycélium ensemencé, stérilisé à l'autoclave, prêts à fructifier.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {AGRI_SPECIES.map((sp) => (
+            <article class="bg-page overflow-hidden h-full flex flex-col">
+              <div class="aspect-[5/4] relative overflow-hidden bg-page">
+                {sp.image && (
+                  <Image
+                    src={sp.image}
+                    alt={sp.imageAlt ?? `${sp.name} (${sp.latin})`}
+                    loading="lazy"
+                    decoding="async"
+                    widths={[400, 600, 800]}
+                    sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+                    formats={["avif", "webp"]}
+                    class="w-full h-full object-cover"
+                  />
+                )}
+                {sp.tag && (
+                  <span class="absolute top-4 right-0 px-4 py-2 bg-lilas text-brun text-xs font-medium">
+                    •&nbsp;&nbsp;{sp.tag}
+                  </span>
+                )}
+              </div>
+              <div class={`p-6 grow ${toneClass[sp.tone]} text-brun`}>
+                <h3 class="font-title text-lg text-cacao leading-tight">{sp.name}</h3>
+                <p class="font-script text-lg text-cacao leading-tight mt-0.5">{sp.latin}</p>
+                <p class="mt-3 text-sm leading-relaxed">{sp.blurb}</p>
+                <ul class="mt-4 space-y-1 text-sm">
+                  {sp.stats.map((stat) => <li>• {stat}</li>)}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
+    </section>
 
-      <form class="grid gap-4 bg-ivoire rounded-2xl p-8 ring-1 ring-brun/5" data-agri-form>
-        <HoneypotField />
-        <div class="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label for="af-name" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Nom / structure</label>
-            <input id="af-name" name="name" type="text" required class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm" />
+    <!-- Process : du substrat à la récolte -->
+    <section class="py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="mb-12">
+          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-anis">
+            Du substrat à la <em class="italic">récolte</em>
+          </h2>
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet">procédés &amp; expertise</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <ol class="space-y-8">
+            {STEPS.map((s) => (
+              <li class="flex gap-6">
+                <span class="font-title text-5xl md:text-6xl text-anis leading-none w-14 flex-shrink-0">{s.n}</span>
+                <div>
+                  <h3 class="font-title text-xl text-cacao">{s.title}</h3>
+                  <p class="mt-1 text-sm text-brun leading-relaxed">{s.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div class="aspect-[4/5] overflow-hidden">
+            <Image
+              src={incubationAlleePic}
+              alt="Salle d'incubation des substrats — Les Myconautes"
+              loading="lazy"
+              decoding="async"
+              widths={[480, 720, 960]}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              formats={["avif", "webp"]}
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fiches techniques par espèce -->
+    <section class="py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="mb-12">
+          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-anis">
+            Substrat par <em class="italic">espèce</em>
+          </h2>
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet">fiches techniques</p>
+          <p class="mt-6 max-w-2xl text-brun leading-relaxed">
+            Pages dédiées avec, pour chaque variété : les paramètres de culture, les rendements attendus, une méthodologie avancée. Bref, le nécessaire pour répondre à vos questions techniques.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {FICHES.map((f) => (
+            <a href={f.href} class="group flex flex-col bg-lilas p-6 hover:bg-lilas/80 transition-colors">
+              <h3 class="font-title text-base text-cacao leading-tight">{f.title}</h3>
+              <p class="mt-3 text-sm text-brun leading-relaxed grow">{f.text}</p>
+              <span class="mt-6 inline-block text-xs font-semibold uppercase tracking-widest text-cacao">Voir la fiche</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Conditionnements -->
+    <section class="py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="mb-12">
+          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-anis">
+            Du sac unitaire à la <em class="italic">palette</em>
+          </h2>
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet">conditionnements professionnels</p>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-8">
+          {SUBSTRATE_FORMATS.map((fmt) => (
+            <div class="flex flex-col">
+              <h3 class="font-title text-xl text-cacao">{fmt.label}</h3>
+              <div class="font-title text-lg text-violet">{fmt.weight}</div>
+              <p class="mt-2 text-sm text-brun leading-relaxed">{FORMAT_EXTRA[fmt.label] ?? fmt.description}</p>
+              <div class="mt-5 aspect-square overflow-hidden">
+                <Image
+                  src={fmt.image}
+                  alt={`Substrat ${fmt.label} — ${fmt.weight}`}
+                  loading="lazy"
+                  decoding="async"
+                  widths={[320, 480, 640]}
+                  sizes="(min-width: 768px) 340px, 100vw"
+                  formats={["avif", "webp"]}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <a href={orderHref} target="_blank" rel="noopener" class="mt-6 self-start inline-flex items-center px-8 py-3.5 rounded-btn bg-anis text-page text-sm font-semibold tracking-wide uppercase hover:bg-anis/90 transition-colors">
+                Commander
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Devis : des solutions adaptées -->
+    <section id="contact-agri" class="py-20 md:py-28">
+      <div class="max-w-3xl mx-auto px-6 md:px-10">
+        <div class="mb-10">
+          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-anis">
+            Des <em class="italic">solutions</em> adaptées
+          </h2>
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet">tarifs &amp; conditions de vente</p>
+          <p class="mt-6 text-brun leading-relaxed">
+            Indiquez les variétés et volumes souhaités. Partagez toutes vos questions techniques. Réponse rapide avec proposition adaptée.
+          </p>
+        </div>
+
+        <form class="grid gap-4 bg-creme/60 p-8" data-agri-form>
+          <HoneypotField />
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="af-name" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Nom / structure</label>
+              <input id="af-name" name="name" type="text" required class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+            </div>
+            <div>
+              <label for="af-email" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Email</label>
+              <input id="af-email" name="email" type="email" required class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+            </div>
           </div>
           <div>
-            <label for="af-email" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Email</label>
-            <input id="af-email" name="email" type="email" required class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm" />
+            <label for="af-phone" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Téléphone</label>
+            <input id="af-phone" name="phone" type="tel" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
           </div>
-        </div>
-        <div>
-          <label for="af-phone" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Téléphone</label>
-          <input id="af-phone" name="phone" type="tel" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm" />
-        </div>
-        <div>
-          <label for="af-postal" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Code postal</label>
-          <input id="af-postal" name="postal_code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="42800" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm" />
-          <p class="text-xs text-brun-clair/70 mt-1">Sert à estimer les frais de transport (facultatif).</p>
-        </div>
-        <div>
-          <label for="af-species" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Espèces souhaitées</label>
-          <input id="af-species" name="species" type="text" required placeholder="Pleurote, éryngii, hericium…" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm" />
-        </div>
-        <div>
-          <label for="af-volume" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Volume estimé</label>
-          <input id="af-volume" name="volume" type="text" placeholder="Sacs / demi-palette / palette · fréquence" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm" />
-        </div>
-        <div>
-          <label for="af-msg" class="block text-xs font-semibold uppercase tracking-wider text-brun-clair mb-1">Détails</label>
-          <textarea id="af-msg" name="message" rows="4" placeholder="Type de production, calendrier, contraintes…" class="w-full px-4 py-3 rounded-xl bg-creme border-2 border-brun/10 focus:border-turquoise focus:outline-none text-sm resize-y"></textarea>
-        </div>
-        <Turnstile />
-        <button type="submit" class="justify-self-start inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brun text-ivoire font-semibold hover:brightness-110 transition shadow-sm">
-          Envoyer ma demande →
-        </button>
-        <p class="text-xs text-brun-clair/70 leading-relaxed">
-          En envoyant ce formulaire, vous acceptez que vos données (nom, email, tél., code postal, espèces et volumes) soient utilisées pour établir un devis. <a href="/mentions-legales" class="underline hover:text-violet-profond">Plus d'infos</a>.
-        </p>
-        <p class="hidden text-sm text-turquoise font-semibold" data-form-success>
-          Merci, votre demande est partie. On revient vers vous très vite.
-        </p>
-        <p class="hidden text-sm text-terracotta font-semibold" data-form-error>
-          Une erreur est survenue. Réessayez, ou écrivez directement à <span class="underline">myconaute &#x40; pm.me</span>.
-        </p>
-      </form>
-    </div>
-  </section>
+          <div>
+            <label for="af-postal" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Code postal</label>
+            <input id="af-postal" name="postal_code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="42800" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+            <p class="text-xs text-brun/60 mt-1.5">Sert à estimer les frais de transport (facultatif).</p>
+          </div>
+          <div>
+            <label for="af-species" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Espèces souhaitées</label>
+            <input id="af-species" name="species" type="text" required placeholder="Pleurote, éryngii, hericium…" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label for="af-volume" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Volume estimé</label>
+            <input id="af-volume" name="volume" type="text" placeholder="Sacs / demi-palette / palette · fréquence" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label for="af-msg" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Détails</label>
+            <textarea id="af-msg" name="message" rows="4" placeholder="Type de production, calendrier, contraintes…" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm resize-y"></textarea>
+          </div>
+          <Turnstile />
+          <button type="submit" class="justify-self-start inline-flex items-center px-8 py-4 rounded-btn bg-cacao text-page text-sm font-semibold tracking-wide uppercase hover:bg-cacao/90 transition-colors">
+            Envoyer
+          </button>
+          <p class="text-xs text-brun/60 leading-relaxed">
+            En envoyant ce formulaire, vous acceptez que vos données (nom, email, tél., code postal, espèces et volumes) soient utilisées pour établir un devis. <a href="/mentions-legales" class="underline hover:text-violet">Plus d'infos</a>.
+          </p>
+          <p class="hidden text-sm text-anis font-semibold" data-form-success>
+            Merci, votre demande est partie. On revient vers vous très vite.
+          </p>
+          <p class="hidden text-sm text-terracotta font-semibold" data-form-error>
+            Une erreur est survenue. Réessayez, ou écrivez directement à <span class="underline">myconaute &#x40; pm.me</span>.
+          </p>
+        </form>
+      </div>
+    </section>
 
-  <CTASection
-    title="Une question avant de se lancer ?"
-    description="On peut échanger par téléphone, par mail ou de visu sur place."
-    primaryCta={{ href: "#contact-agri", label: "Demander un devis" }}
-    secondaryCta={{ href: "/", label: "Retour accueil" }}
-  />
+    <CTASection
+      variant="editorial"
+      title="Une question ?"
+      description="On peut échanger par téléphone, par mail ou de visu sur place, avant de se lancer."
+      image={incubationAlleePic}
+      imageAlt="Salle d'incubation des substrats — Les Myconautes"
+      primaryCta={{ href: "#contact-agri", label: "Demander un devis" }}
+      secondaryCta={{ href: "/", label: "Retour accueil" }}
+    />
+  </div>
 </BaseLayout>
 
 <script>

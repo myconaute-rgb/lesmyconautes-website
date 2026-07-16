@@ -6,13 +6,27 @@ sur le dossier de la vague la plus récente ; les dossiers antérieurs sont l'hi
 
 ## Vagues
 
-### `v2-2026-07-16/` — corrections DA (en cours)
+### `v2-2026-07-16/` — corrections DA (intégrée le 16/07)
 Brief : `Refonte graphique V2 - corrections haut-pied de page, accueil, agriculteurs.md`
 - `maquette-haut-de-pageV1.png` — header commun à toutes les pages
 - `maquette-bas-de-pageV1.png` — pied de page commun (= « maquette-pied-de-pageV1 » dans le brief)
 - `maquette-corps-page-accueil.png` — corps de la page d'accueil
 - `maquette-corps-page-agriculteurs.png` — corps de la page agriculteurs
-- ⚠️ Manquent encore : logo, bloc photo « contact », nouvelles images des encarts.
+
+**Intégré (16/07)** : header commun (logo seul, nav Pros/Myconautes, redirections 301
+`/restaurateurs→/pros` et `/a-propos→/myconautes`), footer commun, charte
+(Anton/Poppins + sous-titres script, palette étendue, boutons 10 % sans flèches),
+corps accueil (6 encarts sans lien + bloc photo contact) et corps agriculteurs.
+
+⚠️ **Points à finaliser** :
+- Police des sous-titres : la charte impose **Bellaboo** (commerciale TypeFairy) —
+  **Caveat** en attendant le fichier licencié. Swap = `--font-script` dans `global.css`.
+- Le **logo** et plusieurs **photos** (portrait Florestan, univers maison/chef,
+  « envie de goûter », cagette contact, bloc substrat, illustrations shiitaké/nameko)
+  sont **extraits du PNG de la maquette** (basse déf.) — à remplacer par les
+  originaux haute définition quand ils sont fournis.
+- Vérification **pixel** non faite dans l'environnement de dev (navigateur headless
+  indisponible) : validation visuelle sur la preview/prod Cloudflare Pages.
 
 ### `v1-2026-07-09/` — refonte accueil (livrée, merge `d3e9142` du 09/07)
 Brief : `Refonte graphique globale de la pag.md`

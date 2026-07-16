@@ -1,11 +1,17 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
   title?: string;
   description?: string;
   primaryCta?: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
-  /** "editorial" = DA refonte accueil 07/2026 (maquette 9). Défaut : rendu historique. */
+  /** "editorial" = DA refonte 07/2026 (maquette V2 : photo à gauche, texte à droite). */
   variant?: "v1" | "editorial";
+  /** Photo du volet gauche (variante editorial uniquement). */
+  image?: ImageMetadata;
+  imageAlt?: string;
 }
 
 const {
@@ -14,32 +20,50 @@ const {
   primaryCta = { href: "https://www.pourdebon.com/les-myconautes-s1527", label: "Commander en ligne" },
   secondaryCta = { href: "/contact", label: "Nous écrire" },
   variant = "v1",
+  image,
+  imageAlt = "",
 } = Astro.props;
 const editorial = variant === "editorial";
 ---
 
 {editorial ? (
-  <section class="bg-page font-body px-6 md:px-10 py-24 md:py-32">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="font-title text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.02] text-violet">
-        {title.split(" ").slice(0, -2).join(" ")}<em class="italic">{" " + title.split(" ").slice(-2).join(" ")}</em>
-      </h2>
-      <p class="mt-6 text-brun leading-relaxed max-w-md mx-auto">{description}</p>
-      <div class="mt-12 flex flex-wrap justify-center gap-4">
-        <a
-          href={primaryCta.href}
-          target={primaryCta.href.startsWith("http") ? "_blank" : undefined}
-          rel={primaryCta.href.startsWith("http") ? "noopener" : undefined}
-          class="inline-flex items-center px-8 py-4 rounded-btn bg-violet text-page text-sm font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors"
-        >
-          {primaryCta.label}
-        </a>
-        <a
-          href={secondaryCta.href}
-          class="inline-flex items-center px-8 py-4 rounded-btn border-2 border-violet text-violet text-sm font-semibold tracking-wide uppercase hover:bg-violet/10 transition-colors"
-        >
-          {secondaryCta.label}
-        </a>
+  <section class="bg-page font-body">
+    <div class="grid md:grid-cols-2 items-center">
+      <div class="relative min-h-[300px] md:min-h-[460px]">
+        {image && (
+          <Image
+            src={image}
+            alt={imageAlt}
+            loading="lazy"
+            decoding="async"
+            widths={[480, 720, 1024, 1200]}
+            sizes="(min-width: 768px) 50vw, 100vw"
+            formats={["avif", "webp"]}
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
+      </div>
+      <div class="px-8 md:px-16 py-16 md:py-24 md:text-right">
+        <h2 class="font-title text-[clamp(2.4rem,5.5vw,4.5rem)] leading-[1.02] text-violet">
+          {title.split(" ").slice(0, -2).join(" ")}<br /><em class="italic">{title.split(" ").slice(-2).join(" ")}</em>
+        </h2>
+        <p class="mt-6 text-brun leading-relaxed max-w-md md:ml-auto">{description}</p>
+        <div class="mt-10 flex flex-wrap md:justify-end gap-4">
+          <a
+            href={primaryCta.href}
+            target={primaryCta.href.startsWith("http") ? "_blank" : undefined}
+            rel={primaryCta.href.startsWith("http") ? "noopener" : undefined}
+            class="inline-flex items-center px-8 py-4 rounded-btn bg-violet text-page text-sm font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors"
+          >
+            {primaryCta.label}
+          </a>
+          <a
+            href={secondaryCta.href}
+            class="inline-flex items-center px-8 py-4 rounded-btn border-2 border-violet text-violet text-sm font-semibold tracking-wide uppercase hover:bg-violet/10 transition-colors"
+          >
+            {secondaryCta.label}
+          </a>
+        </div>
       </div>
     </div>
   </section>

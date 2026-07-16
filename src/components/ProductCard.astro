@@ -7,20 +7,13 @@ interface Props {
   href?: string;
   /** Lazy par défaut. Mets "eager" pour les cards above-the-fold (hero). */
   loading?: "lazy" | "eager";
-  /** "editorial" = DA refonte accueil 07/2026 (maquette 4). Défaut : carte historique. */
-  variant?: "v1" | "editorial";
-  /** Aplat de la zone texte en variante editorial. */
-  tone?: "lilas" | "paille" | "creme" | "anis";
 }
 
 const {
   variety,
   href = `/varietes/${variety.slug}`,
   loading = "lazy",
-  variant = "v1",
-  tone = "lilas",
 } = Astro.props;
-const editorial = variant === "editorial";
 
 const accentTextClass = {
   lavande: "text-violet-profond",
@@ -29,55 +22,13 @@ const accentTextClass = {
   "violet-profond": "text-violet-profond",
 }[variety.accent];
 
-const toneClass = {
-  lilas: "bg-lilas text-brun",
-  paille: "bg-paille text-brun",
-  creme: "bg-creme text-brun",
-  anis: "bg-anis text-page",
-}[tone];
-
 const hasImage = !!variety.image;
 const altText = variety.imageAlt ?? `${variety.name} (${variety.latin})`;
 const isOffSeason = !!variety.tag;
 ---
 
-{editorial ? (
-  <a href={href} class="group block bg-page font-body overflow-hidden">
-    <div class={`aspect-square relative overflow-hidden ${hasImage ? "bg-page" : "bg-creme"}`}>
-      {hasImage && variety.image ? (
-        <Image
-          src={variety.image}
-          alt={altText}
-          loading={loading}
-          decoding="async"
-          widths={[320, 480, 640, 800]}
-          sizes="(min-width: 768px) 400px, (min-width: 480px) 480px, 100vw"
-          formats={["avif", "webp"]}
-          class={`w-full h-full object-cover transition-transform duration-500 ${isOffSeason ? "saturate-50 group-hover:saturate-75" : "group-hover:scale-[1.03]"}`}
-        />
-      ) : (
-        <span class="absolute inset-0 flex items-center justify-center text-6xl" aria-hidden="true">
-          {variety.emoji}
-        </span>
-      )}
-      {variety.tag && (
-        <span class="absolute top-4 right-0 px-4 py-2 bg-violet text-page text-xs font-semibold tracking-wide">
-          {variety.tag}
-        </span>
-      )}
-    </div>
-    <div class={`p-7 ${toneClass}`}>
-      <h3 class="font-title text-xl leading-tight">{variety.name}</h3>
-      <p class="italic text-xs opacity-80 mt-1">{variety.latin}</p>
-      <p class="mt-4 text-sm leading-relaxed">{variety.blurb}</p>
-      <span class="mt-5 inline-block text-xs font-semibold uppercase tracking-widest">
-        Découvrir →
-      </span>
-    </div>
-  </a>
-) : (
-  <a
-    href={href}
+<a
+  href={href}
     class={`group block bg-ivoire rounded-2xl overflow-hidden ring-1 ring-brun/5 hover:ring-brun/15 hover:-translate-y-1 transition shadow-sm hover:shadow-md ${isOffSeason ? "opacity-95" : ""}`}
   >
     <div class={`aspect-square relative overflow-hidden ${hasImage ? "bg-creme" : `bg-gradient-to-br ${variety.gradient}`}`}>
@@ -111,5 +62,4 @@ const isOffSeason = !!variety.tag;
         Découvrir →
       </span>
     </div>
-  </a>
-)}
+</a>

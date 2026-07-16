@@ -1,26 +1,86 @@
 ---
-import "@fontsource/anton";
-import "@fontsource/poppins/400.css";
-import "@fontsource/poppins/500.css";
-import "@fontsource/poppins/600.css";
-import "@fontsource/poppins/700.css";
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import ProductCard from "../components/ProductCard.astro";
+import GammeCard from "../components/GammeCard.astro";
 import StepCard from "../components/StepCard.astro";
 import FAQItem from "../components/FAQItem.astro";
 import CTASection from "../components/CTASection.astro";
 import DeliveryGrid from "../components/DeliveryGrid.astro";
 import MailLink from "../components/MailLink.astro";
 import HoneypotField from "../components/HoneypotField.astro";
-import eryngiiVracPic from "../assets/photos/eryngii-vrac.jpg";
 import Turnstile from "../components/Turnstile.astro";
 import LocalBusinessLd from "../components/seo/LocalBusinessLd.astro";
 import { VARIETIES } from "../data/varieties";
 
-/* Aplat de la zone texte des cartes gamme, en écho à la maquette 4. */
-const CARD_TONES = ["lilas", "paille", "creme", "anis", "lilas"] as const;
+import universMaisonPic from "../assets/photos/univers-maison.jpg";
+import universChefPic from "../assets/photos/univers-chef.jpg";
+import universSubstratPic from "../assets/photos/univers-substrat.jpg";
+import epiceriePicklesPic from "../assets/photos/epicerie-pickles.jpg";
+import substratBlocPic from "../assets/photos/substrat-bloc.jpg";
+import florestanPic from "../assets/photos/florestan-portrait.jpg";
+import contactCagettePic from "../assets/photos/contact-cagette.jpg";
+import envieGouterPic from "../assets/photos/envie-gouter.jpg";
+import etapeCommandeIcon from "../assets/icons/etape-commande.png";
+import etapeRecolteIcon from "../assets/icons/etape-recolte.png";
+import etapeCartonIcon from "../assets/icons/etape-carton.png";
+
+const byCode = Object.fromEntries(VARIETIES.map((v) => [v.varietyCode, v]));
+
+/* Encarts gamme — maquette V2 : 3 + 3, sans lien, aplats charte.
+   Titres/latins = casse maquette ; descriptions réelles conservées. */
+const GAMME = [
+  {
+    title: "Pleurote gris",
+    sub: "Pleurotus ostreatus",
+    text: byCode.PLEUROTE.blurb,
+    image: byCode.PLEUROTE.image!,
+    imageAlt: byCode.PLEUROTE.imageAlt!,
+    tone: "mauve",
+  },
+  {
+    title: "Eryngii",
+    sub: "Pleurotus eryngii",
+    text: byCode.ERYNGII.blurb,
+    image: byCode.ERYNGII.image!,
+    imageAlt: byCode.ERYNGII.imageAlt!,
+    tone: "jaune",
+  },
+  {
+    title: "Black Pearl",
+    sub: "Pleurotus ostreatus var. black pearl",
+    text: byCode.BLACK_PEARL.blurb,
+    image: byCode.BLACK_PEARL.image!,
+    imageAlt: byCode.BLACK_PEARL.imageAlt!,
+    tone: "bleu",
+    badge: "Bientôt de retour !",
+  },
+  {
+    title: "Hericium",
+    sub: "hericium erinaceus",
+    text: byCode.HERICIUM.blurb,
+    image: byCode.HERICIUM.image!,
+    imageAlt: byCode.HERICIUM.imageAlt!,
+    tone: "sable",
+    badge: "Bientôt de retour !",
+  },
+  {
+    title: "Epicerie fine",
+    sub: "du local en bocal",
+    text: "Nos champignons travaillés en bocal à l'atelier : pickles d'eryngii, séchés et préparations de saison.",
+    image: epiceriePicklesPic,
+    imageAlt: "Pickles d'Eryngii — épicerie fine Les Myconautes",
+    tone: "orange",
+  },
+  {
+    title: "Substrat",
+    sub: "pour cultiver chez soi",
+    text: "Substrats inoculés certifiés bio, prêts à fructifier — pleurote, eryngii, hericium. Pour cultiver chez soi ou à la ferme.",
+    image: substratBlocPic,
+    imageAlt: "Sacs de substrat inoculé prêts à fructifier — Les Myconautes",
+    tone: "anis",
+  },
+] as const;
 ---
 
 <BaseLayout
@@ -33,95 +93,118 @@ const CARD_TONES = ["lilas", "paille", "creme", "anis", "lilas"] as const;
   <div class="bg-page font-body text-brun">
     <Hero />
 
-    <!-- 3 univers -->
+    <!-- Nos univers -->
     <section id="univers" class="px-6 md:px-10 py-24 md:py-32">
       <div class="max-w-7xl mx-auto">
         <div class="mb-16 reveal">
           <h2 class="font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-violet">
-            À chaque univers <em class="italic">son champignon</em>
+            Des champignons <em class="italic">pour tous</em>, toute l'année.
           </h2>
-          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Nos univers</p>
-          <p class="mt-8 max-w-2xl text-brun leading-relaxed">
-            Que vous cuisiniez à la maison, en restaurant, ou que vous produisiez à la ferme — on a ce qu'il vous faut.
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">nos univers</p>
+          <p class="mt-8 max-w-3xl text-brun leading-relaxed">
+            Vous aimez cuisiner à la maison ? Vous êtes Chef.fe d'un restaurant ? Acheteur.se pour une enseigne ? Vous produisez à la ferme ? <strong>On a ce qu'il vous faut !</strong>
           </p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
           <a href="/particuliers" class="group block reveal">
-            <div class="aspect-[4/3] bg-lilas flex items-center justify-center overflow-hidden">
-              <span class="font-title text-7xl text-violet transition-transform duration-500 group-hover:scale-110" aria-hidden="true">P</span>
+            <div class="aspect-square overflow-hidden">
+              <Image
+                src={universMaisonPic}
+                alt="Cuisiner les champignons à la maison"
+                loading="lazy"
+                decoding="async"
+                widths={[320, 480, 640]}
+                sizes="(min-width: 768px) 400px, 100vw"
+                formats={["avif", "webp"]}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
             </div>
-            <h3 class="mt-7 font-title text-2xl text-brun">À la maison</h3>
-            <p class="mt-3 text-sm text-brun leading-relaxed">
-              Champignons frais, séchés, épicerie fine. Et des kits de culture pour cultiver chez vous.
+            <p class="mt-6 text-sm text-brun leading-relaxed">
+              Champignons frais, séchés, produits d'épicerie fine, et même des kits de culture pour les faire pousser …
             </p>
             <span class="mt-6 inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase group-hover:bg-violet/90 transition-colors">
-              Découvrir →
+              À la maison
             </span>
           </a>
 
-          <a href="/restaurateurs" class="group block reveal">
-            <div class="aspect-[4/3] bg-creme flex items-center justify-center overflow-hidden">
-              <span class="font-title text-7xl text-cacao transition-transform duration-500 group-hover:scale-110" aria-hidden="true">R</span>
+          <a href="/pros" class="group block reveal">
+            <div class="aspect-square overflow-hidden">
+              <Image
+                src={universChefPic}
+                alt="Chef en cuisine — l'offre pro Les Myconautes"
+                loading="lazy"
+                decoding="async"
+                widths={[320, 480, 640]}
+                sizes="(min-width: 768px) 400px, 100vw"
+                formats={["avif", "webp"]}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
             </div>
-            <h3 class="mt-7 font-title text-2xl text-brun">Cheffes &amp; chefs</h3>
-            <p class="mt-3 text-sm text-brun leading-relaxed">
-              Frais, en vrac ou en conditionnement pro. Qualité constante, livraison hebdo à Lyon &amp; Saint-Étienne.
+            <p class="mt-6 text-sm text-brun leading-relaxed">
+              Frais, en vrac ou conditionnés pour les rayons. Qualité constante de la production à la livraison.
             </p>
             <span class="mt-6 inline-flex items-center px-7 py-3.5 rounded-btn bg-cacao text-page text-xs font-semibold tracking-wide uppercase group-hover:bg-cacao/90 transition-colors">
-              L'offre pro →
+              Offre pro
             </span>
           </a>
 
           <a href="/agriculteurs" class="group block reveal">
-            <div class="aspect-[4/3] bg-paille flex items-center justify-center overflow-hidden">
-              <span class="font-title text-7xl text-anis transition-transform duration-500 group-hover:scale-110" aria-hidden="true">A</span>
+            <div class="aspect-square overflow-hidden">
+              <Image
+                src={universSubstratPic}
+                alt="Sacs de substrat inoculé en fructification"
+                loading="lazy"
+                decoding="async"
+                widths={[320, 480, 640]}
+                sizes="(min-width: 768px) 400px, 100vw"
+                formats={["avif", "webp"]}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
             </div>
-            <h3 class="mt-7 font-title text-2xl text-brun">Productrices &amp; producteurs</h3>
-            <p class="mt-3 text-sm text-brun leading-relaxed">
-              Substrats inoculés certifiés bio, mycélium, conseils techniques. Pleurote, éryngii, hericium, shiitaké, nameko.
+            <p class="mt-6 text-sm text-brun leading-relaxed">
+              Substrats inoculés certifiés bio, mycélium et conseils techniques. Pleurote, eryngii, hericium, shiitake, nameko.
             </p>
             <span class="mt-6 inline-flex items-center px-7 py-3.5 rounded-btn bg-anis text-page text-xs font-semibold tracking-wide uppercase group-hover:bg-anis/90 transition-colors">
-              Substrats &amp; mycélium →
+              Substrat
             </span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Notre gamme — bande violette signature à gauche (maquette 4) -->
+    <!-- Notre gamme — bande violette signature à gauche -->
     <section id="gamme" class="relative py-24 md:py-32 overflow-hidden">
       <div class="absolute inset-y-0 left-0 w-8 lg:w-20 bg-violet hidden md:block" aria-hidden="true"></div>
       <div class="max-w-7xl mx-auto px-6 md:px-10 lg:pl-32">
         <div class="mb-16 reveal">
           <h2 class="font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-violet">
-            Cultivées <em class="italic">à la main</em>
+            Cultivés avec soin, récoltés <em class="italic">à la main</em>.
           </h2>
-          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Notre gamme</p>
-          <p class="mt-8 max-w-2xl text-brun leading-relaxed">
-            Toutes certifiées bio FR-BIO-01. Récoltées le matin, conditionnées dans la foulée.
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">notre gamme</p>
+          <p class="mt-8 max-w-3xl text-brun leading-relaxed">
+            Traçabilité et fraîcheur garantie ! Toutes nos variétés sont cultivées à partir de notre propre substrat, et certifiées FR-BIO-01. Nos champignons français sont récoltés tous les matins à la main, puis conditionnés dans la foulée.
           </p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {VARIETIES.map((v, i) => (
+          {GAMME.map((c) => (
             <div class="reveal">
-              <ProductCard variety={v} variant="editorial" tone={CARD_TONES[i % CARD_TONES.length]} />
+              <GammeCard {...c} />
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Notre histoire (maquette 5) -->
+    <!-- Explorateurs du champignon depuis 2015 -->
     <section id="about" class="py-24 md:py-32">
       <div class="grid md:grid-cols-2">
         <div class="flex flex-col justify-center">
           <div class="px-6 md:px-10 lg:pl-20 pb-12 reveal">
             <h2 class="font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-violet">
-              Explorer le champignon <em class="italic">depuis 2015</em>
+              Explorateurs du champignon <em class="italic">depuis 2015</em>
             </h2>
-            <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Notre histoire</p>
           </div>
 
           <div class="bg-lilas px-6 md:px-10 lg:pl-20 py-12 md:py-16 reveal">
@@ -129,90 +212,72 @@ const CARD_TONES = ["lilas", "paille", "creme", "anis", "lilas"] as const;
               Florestan a fondé sa première champignonnière en 2015. Dix ans plus tard, c'est un refuge pour la biodiversité de 1,7 hectare niché à Rive-de-Gier, dans la Loire.
             </p>
             <p class="mt-4 text-brun leading-relaxed max-w-md">
-              Chaque champignon est cultivé, récolté à la main et conditionné ici même. Circuit court strict — vous savez d'où vient ce que vous mangez.
+              Chaque champignon est cultivé, récolté à la main et conditionné ici même. Circuit court strict : vous savez d'où vient ce que vous mangez.
             </p>
 
-            <div class="mt-8 flex flex-wrap gap-2">
-              <span class="text-xs px-3 py-1.5 bg-page/70 text-brun">🛡️ Certifié bio</span>
-              <span class="text-xs px-3 py-1.5 bg-page/70 text-brun">✋ Récolte à la main</span>
-              <span class="text-xs px-3 py-1.5 bg-page/70 text-brun">📍 Circuit court</span>
-              <span class="text-xs px-3 py-1.5 bg-page/70 text-brun">♻️ Pratiques durables</span>
-            </div>
-
             <a
-              href="/a-propos"
-              class="mt-10 inline-flex items-center px-8 py-4 rounded-btn bg-violet text-page text-sm font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors"
+              href="/myconautes"
+              class="mt-10 inline-flex items-center text-center px-8 py-4 rounded-btn bg-violet text-page text-sm font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors"
             >
-              Notre histoire complète
+              En apprendre +<br />sur les Myconautes
             </a>
           </div>
         </div>
 
         <div class="relative min-h-[420px] md:min-h-0">
           <Image
-            src={eryngiiVracPic}
-            alt="Éryngii fraîchement récolté — Les Myconautes"
+            src={florestanPic}
+            alt="Florestan, fondateur des Myconautes, avec une brassée de champignons"
             loading="lazy"
             decoding="async"
             widths={[400, 600, 800, 1000]}
             sizes="(min-width: 768px) 50vw, 100vw"
             formats={["avif", "webp"]}
-            class="absolute inset-0 w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-cover object-top"
           />
           <div class="absolute inset-y-0 right-0 w-6 lg:w-12 bg-violet" aria-hidden="true"></div>
-          <div class="absolute bottom-6 left-6 px-4 py-2 bg-page text-brun text-xs font-semibold">
-            🌱 Certifié bio FR-BIO-01
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- Comment ça marche (maquette 6, haut) -->
-    <section id="comment-ca-marche" class="px-6 md:px-10 py-24 md:py-32">
+    <!-- Livraison & retrait -->
+    <section id="livraison" class="px-6 md:px-10 py-24 md:py-32">
       <div class="max-w-7xl mx-auto">
-        <div class="mb-20 reveal">
+        <div class="mb-16 reveal">
           <h2 class="font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-violet">
-            Trois étapes, <em class="italic">c'est tout</em>
+            Comment <em class="italic">recevoir</em> vos champignons ?
           </h2>
-          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Comment ça marche</p>
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">livraison &amp; retrait</p>
+          <p class="mt-4 md:text-right font-title text-[clamp(1.6rem,3.5vw,2.8rem)] leading-[1.05] text-violet">
+            3 étapes, c'est tout !
+          </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
+        <div class="grid md:grid-cols-3 gap-12 lg:gap-16 mb-20">
           <div class="reveal">
-            <StepCard number={1} title="Vous choisissez">
-              En ligne sur Pour de Bon, ou en direct par mail / Insta pour les volumes pro.
+            <StepCard icon={etapeCommandeIcon} title="Vous commandez">
+              En ligne via notre partenaire Pour de Bon ou en direct (mail ou insta) pour les volumes professionnels.
             </StepCard>
           </div>
           <div class="reveal">
-            <StepCard number={2} title="On récolte le matin">
-              Cueillette à la main, conditionnement dans la foulée. Vos champignons n'attendent pas.
+            <StepCard icon={etapeRecolteIcon} title="On récolte le matin">
+              Cueillette quotidienne à la main, et conditionnement dans la foulée. Vos champignons n'attendent pas !
             </StepCard>
           </div>
           <div class="reveal">
-            <StepCard number={3} title="Livraison ou retrait">
-              Lyon le vendredi, Saint-Étienne le jeudi, retrait gratuit sur place du lundi au vendredi.
+            <StepCard icon={etapeCartonIcon} title="Vos champignons sont là">
+              Livraison ou retrait, vous choisissez, on s'adapte !
             </StepCard>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Livraison (maquette 6, bas) -->
-    <section id="livraison" class="px-6 md:px-10 pb-24 md:pb-32">
-      <div class="max-w-7xl mx-auto">
-        <div class="mb-14 reveal">
-          <h2 class="font-title text-[clamp(1.8rem,3.5vw,3rem)] leading-[1.05] text-violet">
-            Comment <em class="italic">recevoir</em> vos champignons
-          </h2>
-          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Livraison</p>
-        </div>
         <div class="reveal">
           <DeliveryGrid variant="editorial" />
         </div>
       </div>
     </section>
 
-    <!-- FAQ — bande violette signature à gauche (maquette 7) -->
+    <!-- FAQ — bande violette signature à gauche -->
     <section id="faq" class="relative py-24 md:py-32 overflow-hidden">
       <div class="absolute inset-y-0 left-0 w-8 lg:w-40 bg-violet hidden md:block" aria-hidden="true"></div>
       <div class="max-w-4xl mx-auto px-6 md:px-10">
@@ -220,7 +285,7 @@ const CARD_TONES = ["lilas", "paille", "creme", "anis", "lilas"] as const;
           <h2 class="font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-violet">
             Tout <em class="italic">savoir</em> sur nos champignons
           </h2>
-          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Questions fréquentes</p>
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">questions fréquentes</p>
         </div>
 
         <div class="bg-creme/60 px-6 md:px-10 py-8 reveal">
@@ -266,16 +331,16 @@ const CARD_TONES = ["lilas", "paille", "creme", "anis", "lilas"] as const;
       </div>
     </section>
 
-    <!-- Contact (maquette 8) -->
+    <!-- Contact -->
     <section id="contact" class="px-6 md:px-10 py-24 md:py-32">
       <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20">
         <div class="reveal">
           <h2 class="font-title text-[clamp(2.2rem,5vw,4rem)] leading-[1.02] text-cacao">
-            Une question ? <em class="italic">Écrivez-nous</em>
+            Encore une <em class="italic">question</em> ?
           </h2>
-          <p class="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-anis">Contact</p>
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">contact</p>
           <p class="mt-8 text-brun leading-relaxed">
-            Pour les pros : recevez notre grille tarifaire et nos conditions de vente sur demande.
+            Que ce soit pour partager une recette, obtenir nos tarifs &amp; conditions de vente, demander des détails techniques sur nos substrats ou nous avouer que vous adorez nos champignons … on vous répond !
           </p>
 
           <form class="mt-10 grid gap-5" data-contact-form>
@@ -317,52 +382,59 @@ const CARD_TONES = ["lilas", "paille", "creme", "anis", "lilas"] as const;
           </form>
         </div>
 
+        <!-- Bloc photo « contact » (maquette V2) : cagette + infos sur aplat cacao -->
         <div class="reveal">
-          <div class="bg-cacao text-page px-8 md:px-12 py-12 md:py-14 h-full">
-            <h3 class="font-title text-2xl mb-8">Rendez-nous visite</h3>
-            <ul class="space-y-6">
-              <li class="flex items-start gap-4">
-                <span class="w-10 h-10 rounded-full bg-page/15 flex-shrink-0 flex items-center justify-center" aria-hidden="true">📍</span>
-                <div class="text-sm">
-                  <h4 class="font-semibold">Adresse</h4>
-                  <p class="text-page/80">5 rue Vallée de Couzon<br/>42800 Rive-de-Gier</p>
-                </div>
-              </li>
-              <li class="flex items-start gap-4">
-                <span class="w-10 h-10 rounded-full bg-page/15 flex-shrink-0 flex items-center justify-center" aria-hidden="true">📧</span>
-                <div class="text-sm">
-                  <h4 class="font-semibold">Email</h4>
-                  <p class="text-page/80"><MailLink email="myconautes@pm.me" /></p>
-                </div>
-              </li>
-              <li class="flex items-start gap-4">
-                <span class="w-10 h-10 rounded-full bg-page/15 flex-shrink-0 flex items-center justify-center" aria-hidden="true">📸</span>
-                <div class="text-sm">
-                  <h4 class="font-semibold">Instagram</h4>
-                  <p><a href="https://www.instagram.com/les_myconautes/" target="_blank" rel="noopener" class="text-page underline underline-offset-4 hover:text-lilas transition-colors">@les_myconautes</a></p>
-                </div>
-              </li>
-              <li class="flex items-start gap-4">
-                <span class="w-10 h-10 rounded-full bg-page/15 flex-shrink-0 flex items-center justify-center" aria-hidden="true">🕐</span>
-                <div class="text-sm">
-                  <h4 class="font-semibold">Horaires</h4>
-                  <p class="text-page/80">Lun – Ven, 7h à 13h</p>
-                </div>
-              </li>
-              <li class="flex items-start gap-4">
-                <span class="w-10 h-10 rounded-full bg-page/15 flex-shrink-0 flex items-center justify-center" aria-hidden="true">🛒</span>
-                <div class="text-sm">
-                  <h4 class="font-semibold">Commander</h4>
-                  <p><a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="text-page underline underline-offset-4 hover:text-lilas transition-colors">pourdebon.com/les-myconautes</a></p>
-                </div>
-              </li>
-            </ul>
+          <div class="h-full flex flex-col">
+            <Image
+              src={contactCagettePic}
+              alt="Cagette de pleurotes fraîchement récoltés — Les Myconautes"
+              loading="lazy"
+              decoding="async"
+              widths={[480, 720, 1040]}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              formats={["avif", "webp"]}
+              class="w-full object-cover aspect-[2/1]"
+            />
+            <div class="bg-cacao text-page px-8 md:px-12 py-12 grow">
+              <ul class="space-y-7">
+                <li class="flex items-center gap-5">
+                  <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <p class="text-base md:text-lg">5 rue vallée de Couzon<br />42800 Rive-de-Gier</p>
+                </li>
+                <li class="flex items-center gap-5">
+                  <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
+                  </svg>
+                  <p class="text-base md:text-lg">Ouvert du lundi au vendredi<br />De 7h à 13h</p>
+                </li>
+                <li class="flex items-center gap-5">
+                  <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" />
+                  </svg>
+                  <p class="text-base md:text-lg"><MailLink email="myconautes@pm.me" /></p>
+                </li>
+                <li class="flex items-center gap-5">
+                  <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" />
+                  </svg>
+                  <p class="text-base md:text-lg"><a href="https://www.instagram.com/les_myconautes/" target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-lilas transition-colors">@les_myconautes</a></p>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <CTASection variant="editorial" />
+    <CTASection
+      variant="editorial"
+      title="Envie de goûter ?"
+      description="Passez-nous commande directement via Pour de Bon, ou contactez-nous pour les volumes pro."
+      image={envieGouterPic}
+      imageAlt="Dégustation de champignons poêlés"
+    />
   </div>
 </BaseLayout>
 

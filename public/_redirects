@@ -11,6 +11,12 @@
 /producteur-champignons/conditions-utilisation                                   /cgv/                       301
 /varietes/eryngii                                                                /substrat-eryngii-panicaut/ 301
 
+# Renommages DA V2 (brief 16/07) — contenu identique, URL renommées
+/restaurateurs                                                                   /pros/                      301
+/restaurateurs/                                                                  /pros/                      301
+/a-propos                                                                        /myconautes/                301
+/a-propos/                                                                       /myconautes/                301
+
 # Aliases sitemap (réflexes classiques bots SEO)
 /sitemap.xml                                                                     /sitemap-index.xml 301
 /sitemap_index.xml                                                               /sitemap-index.xml 301
