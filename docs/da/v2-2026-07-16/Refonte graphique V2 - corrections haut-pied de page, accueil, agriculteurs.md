@@ -3,9 +3,10 @@
 > **Date :** 16/07/2026 · **Auteur :** Florestan · **Statut :** source de vérité pour la vague de corrections
 > Fait suite au brief V1 (`Refonte graphique globale de la pag.md`, refonte accueil mergée le 09/07, commit `6724b00`).
 >
-> **Fichiers maquettes référencés** (à déposer dans le repo, non présents au 16/07) :
-> `maquette-haut-de-pageV1` · `maquette-pied-de-pageV1` · `maquette-corps-page-accueil` ·
-> `maquette-corps-page-agriculteurs` · `contact` (bloc photo) · logo.
+> **Fichiers maquettes référencés** (dans ce dossier) : `maquette-haut-de-pageV1.png` ·
+> `maquette-bas-de-pageV1.png` (= « maquette-pied-de-pageV1 » du brief) ·
+> `maquette-corps-page-accueil.png` · `maquette-corps-page-agriculteurs.png`.
+> **Manquent encore au 16/07** : logo · `contact` (bloc photo) · nouvelles images des encarts.
 
 ## Contexte général
 
