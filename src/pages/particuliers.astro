@@ -1,15 +1,23 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PageHero from "../components/PageHero.astro";
-import GammeCard from "../components/GammeCard.astro";
+import StepCard from "../components/StepCard.astro";
 import FAQItem from "../components/FAQItem.astro";
 import CTASection from "../components/CTASection.astro";
+import DeliveryGrid from "../components/DeliveryGrid.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
-import { VARIETIES } from "../data/varieties";
 
-/* Cartes variétés en style DA (aplat couleur, sans lien : les pages
-   /varietes/<slug> n'existent pas — même décision que sur l'accueil). */
-const CARD_TONES = ["mauve", "jaune", "bleu", "sable"] as const;
+import heroBandPic from "../assets/photos/univers-maison.jpg";
+import fraisPic from "../assets/photos/hero-cagette-eryngii.jpg";
+import epiceriePic from "../assets/photos/epicerie-pickles.jpg";
+import substratPic from "../assets/photos/substrat-bloc.jpg";
+import cultureBandPic from "../assets/photos/substrat-bloc.jpg";
+import envieGouterPic from "../assets/photos/envie-gouter.jpg";
+import etapeCommandeIcon from "../assets/icons/etape-commande.png";
+import etapeRecolteIcon from "../assets/icons/etape-recolte.png";
+import etapeCartonIcon from "../assets/icons/etape-carton.png";
+
+const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
 ---
 
 <BaseLayout
@@ -21,162 +29,139 @@ const CARD_TONES = ["mauve", "jaune", "bleu", "sable"] as const;
     { name: "Accueil", url: "/" },
     { name: "Particuliers" },
   ]} />
-  <PageHero
-    variant="refonte"
-    label="Cuisine, plaisir & curiosité"
-    title="Bienvenue dans le monde extraordinaire des champignons"
-    highlight="champignons"
-    description="Frais, séchés, épicerie fine et substrats en petits volumes — la même qualité que pour les pros, mais à votre échelle."
-    primaryCta={{ href: "https://www.pourdebon.com/les-myconautes-s1527", label: "Commander sur Pour de Bon" }}
-    secondaryCta={{ href: "#culture", label: "Cultiver chez moi" }}
-  />
 
   <div class="bg-page font-body text-brun">
-    <!-- 3 catégories d'offre -->
-    <section class="px-6 md:px-10 py-20 md:py-28">
-      <div class="max-w-7xl mx-auto">
-        <div class="mb-14">
-          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">Tout un monde à explorer</h2>
-          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">notre offre</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6">
-          <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="group flex flex-col bg-lilas p-8 hover:bg-lilas/80 transition-colors">
-            <div class="text-4xl mb-4" aria-hidden="true">🍄</div>
-            <h3 class="font-title text-xl text-cacao">Champignons frais</h3>
-            <p class="mt-3 text-sm text-brun leading-relaxed grow">
-              Hericium, éryngii, pleurotes — récoltés chaque jour, livrés chez vous.
-            </p>
-            <span class="mt-6 inline-block text-xs font-semibold uppercase tracking-widest text-cacao">Commander</span>
-          </a>
-          <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="group flex flex-col bg-jaune p-8 hover:brightness-95 transition">
-            <div class="text-4xl mb-4" aria-hidden="true">🫙</div>
-            <h3 class="font-title text-xl text-cacao">Épicerie fine</h3>
-            <p class="mt-3 text-sm text-brun leading-relaxed grow">
-              Veloutés, champignons séchés, pickles et produits transformés artisanaux.
-            </p>
-            <span class="mt-6 inline-block text-xs font-semibold uppercase tracking-widest text-cacao">Commander</span>
-          </a>
-          <a href="#culture" class="group flex flex-col bg-anis text-page p-8 hover:bg-anis/90 transition-colors">
-            <div class="text-4xl mb-4" aria-hidden="true">🌱</div>
-            <h3 class="font-title text-xl">Faites pousser !</h3>
-            <p class="mt-3 text-sm leading-relaxed grow text-page/90">
-              Substrats en petits volumes pour cultiver vos champignons à la maison.
-            </p>
-            <span class="mt-6 inline-block text-xs font-semibold uppercase tracking-widest">Comment faire</span>
-          </a>
-        </div>
+    <!-- Hero : titre violet + bande violette + 2 boutons -->
+    <section class="bg-page">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 pt-10 md:pt-14 pb-8">
+        <h1 class="font-title text-[clamp(2.4rem,6.5vw,5.5rem)] leading-[0.98] text-violet">
+          Bienvenue dans le monde <em class="italic">extraordinaire</em> des champignons
+        </h1>
+      </div>
+      <div class="relative h-64 md:h-96 bg-violet overflow-hidden">
+        <Image
+          src={heroBandPic}
+          alt="Cuisiner les champignons à la maison"
+          loading="eager"
+          decoding="async"
+          widths={[640, 960, 1280, 1600]}
+          sizes="100vw"
+          formats={["avif", "webp"]}
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div class="max-w-7xl mx-auto px-6 md:px-10 py-10 flex flex-wrap gap-4">
+        <a href={orderHref} target="_blank" rel="noopener" class="inline-flex items-center px-8 py-4 rounded-btn bg-violet text-page text-sm font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">
+          Commander sur Pour de Bon
+        </a>
+        <a href="#culture" class="inline-flex items-center px-8 py-4 rounded-btn border-2 border-violet text-violet text-sm font-semibold tracking-wide uppercase hover:bg-violet/10 transition-colors">
+          Cultiver chez vous
+        </a>
       </div>
     </section>
 
-    <!-- Variétés — bande violette signature à gauche -->
-    <section class="relative py-20 md:py-28 overflow-hidden">
-      <div class="absolute inset-y-0 left-0 w-8 lg:w-20 bg-violet hidden md:block" aria-hidden="true"></div>
-      <div class="max-w-7xl mx-auto px-6 md:px-10 lg:pl-32">
+    <!-- Offre : 3 colonnes photo + bouton -->
+    <section class="px-6 md:px-10 py-16 md:py-24">
+      <div class="max-w-7xl mx-auto">
         <div class="mb-14">
           <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">
-            Une qualité <em class="italic">incomparable</em>
+            Tout un monde <em class="italic">à explorer</em>
           </h2>
-          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">nos champignons</p>
-          <p class="mt-6 max-w-2xl text-brun leading-relaxed">
-            Propres, parés, aucun lavage nécessaire. Envoi frigorifique pour un résultat magnifique.
-          </p>
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">cuisine, plaisir &amp; curiosité</p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {VARIETIES.map((v, i) => (
-            <GammeCard
-              title={v.name}
-              sub={v.latin}
-              text={v.blurb}
-              image={v.image!}
-              imageAlt={v.imageAlt ?? `${v.name} (${v.latin})`}
-              tone={CARD_TONES[i % CARD_TONES.length]}
-              badge={v.tag ? `${v.tag} !` : undefined}
-            />
-          ))}
+        <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div class="flex flex-col">
+            <h3 class="font-title text-xl text-cacao">Champignons frais</h3>
+            <p class="mt-2 text-sm text-brun leading-relaxed">Pleurotes, eryngii, hericium … récoltés chaque jour, livrés chez vous.</p>
+            <div class="mt-6 aspect-[4/3] overflow-hidden">
+              <Image src={fraisPic} alt="Champignons frais en cagette" loading="lazy" decoding="async" widths={[320,480,640]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
+            </div>
+            <a href={orderHref} target="_blank" rel="noopener" class="mt-6 self-start inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
+          </div>
+
+          <div class="flex flex-col">
+            <h3 class="font-title text-xl text-cacao">Epicerie fine</h3>
+            <p class="mt-2 text-sm text-brun leading-relaxed">Pickles, velouté, mouliné : découvrez le champignon autrement !</p>
+            <div class="mt-6 aspect-[4/3] overflow-hidden">
+              <Image src={epiceriePic} alt="Pickles d'Eryngii — épicerie fine" loading="lazy" decoding="async" widths={[320,480,640]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
+            </div>
+            <a href={orderHref} target="_blank" rel="noopener" class="mt-6 self-start inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
+          </div>
+
+          <div class="flex flex-col">
+            <h3 class="font-title text-xl text-cacao">Ca pousse !</h3>
+            <p class="mt-2 text-sm text-brun leading-relaxed">Un sac de substrat, un peu de patience et vous cultivez vos champignons à la maison.</p>
+            <div class="mt-6 aspect-[4/3] overflow-hidden">
+              <Image src={substratPic} alt="Sac de substrat en fructification" loading="lazy" decoding="async" widths={[320,480,640]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
+            </div>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href={orderHref} target="_blank" rel="noopener" class="inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
+              <a href="#culture" class="inline-flex items-center px-7 py-3.5 rounded-btn border-2 border-violet text-violet text-xs font-semibold tracking-wide uppercase hover:bg-violet/10 transition-colors">Comment faire ?</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Livraison & retrait -->
-    <section class="px-6 md:px-10 py-20 md:py-28">
+    <section class="px-6 md:px-10 py-16 md:py-24">
       <div class="max-w-7xl mx-auto">
         <div class="mb-14">
           <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">
-            Comment <em class="italic">recevoir</em> vos champignons
+            Comment <em class="italic">recevoir</em> vos champignons ?
           </h2>
           <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">livraison &amp; retrait</p>
+          <p class="mt-4 md:text-right font-title text-[clamp(1.6rem,3.5vw,2.8rem)] leading-[1.05] text-violet">3 étapes, c'est tout !</p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-lilas p-8 flex flex-col">
-            <h3 class="font-title text-xl text-cacao">Retrait sur place</h3>
-            <p class="mt-5 text-sm text-brun leading-relaxed">
-              5 rue Vallée de Couzon<br/>42800 Rive-de-Gier<br/>Lun – Ven, 7h à 13h
-            </p>
-            <div class="mt-auto pt-8 font-title text-lg text-cacao">Gratuit</div>
-          </div>
-          <div class="bg-lilas p-8 flex flex-col">
-            <h3 class="font-title text-xl text-cacao">Livraison Lyon</h3>
-            <p class="mt-5 text-sm text-brun leading-relaxed">
-              Vendredi 8h – 12h<br/>Rayon 5 km<br/>Min. 25 €
-            </p>
-            <div class="mt-auto pt-8 font-title text-lg text-cacao">4,20 €</div>
-          </div>
-          <div class="bg-lilas p-8 flex flex-col">
-            <h3 class="font-title text-xl text-cacao">Livraison Saint-Étienne</h3>
-            <p class="mt-5 text-sm text-brun leading-relaxed">
-              Jeudi 8h – 12h<br/>Rayon 5 km<br/>Min. 25 €
-            </p>
-            <div class="mt-auto pt-8 font-title text-lg text-cacao">4,20 €</div>
-          </div>
-          <div class="bg-lilas p-8 flex flex-col">
-            <h3 class="font-title text-xl text-cacao">Partout en France</h3>
-            <p class="mt-5 text-sm text-brun leading-relaxed">
-              Via <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="font-semibold underline underline-offset-4 hover:text-violet transition-colors">Pour de Bon</a>
-            </p>
-            <div class="mt-auto pt-8 font-title text-lg text-cacao">Voir tarifs</div>
-          </div>
+        <div class="grid md:grid-cols-3 gap-12 lg:gap-16 mb-20">
+          <StepCard icon={etapeCommandeIcon} title="Vous commandez">
+            En ligne via notre partenaire Pour de Bon ou en direct (mail ou insta) pour les volumes professionnels.
+          </StepCard>
+          <StepCard icon={etapeRecolteIcon} title="On récolte le matin">
+            Cueillette quotidienne à la main, et conditionnement dans la foulée. Vos champignons n'attendent pas !
+          </StepCard>
+          <StepCard icon={etapeCartonIcon} title="Vos champignons sont là">
+            Livraison ou retrait, vous choisissez, on s'adapte !
+          </StepCard>
         </div>
+
+        <DeliveryGrid variant="editorial" />
       </div>
     </section>
 
-    <!-- Cultiver chez soi -->
-    <section id="culture" class="px-6 md:px-10 py-20 md:py-28">
-      <div class="max-w-7xl mx-auto">
-        <div class="mb-14">
-          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">Lancez-vous dans la culture maison</h2>
-          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">cultiver chez vous</p>
-          <p class="mt-6 max-w-2xl text-brun leading-relaxed">
-            La même offre que pour les pros, en petits volumes. Substrat prêt à l'emploi et conseils inclus.
+    <!-- Cultiver chez soi : bande verte + panneau lilas 4 tips -->
+    <section id="culture" class="py-4">
+      <div class="grid md:grid-cols-2">
+        <div class="bg-anis text-page px-6 md:px-10 lg:pl-20 py-14 md:py-20 flex flex-col justify-center">
+          <h2 class="font-title text-[clamp(2.2rem,5vw,4rem)] leading-[1.02] text-cacao">
+            <em class="italic">Lancez vous</em> dans la culture maison !
+          </h2>
+          <p class="mt-6 text-page leading-relaxed max-w-md">
+            C'est facile, même pour les débutants. En appartement ou en maison, aucune installation particulière n'est nécessaire. Chaque sac est vendu avec une fiche d'instructions claire et illustrée, pour vous accompagner pas à pas.
           </p>
+          <div class="mt-8 aspect-[16/9] overflow-hidden max-w-md">
+            <Image src={cultureBandPic} alt="Substrat en fructification à la maison" loading="lazy" decoding="async" widths={[400,600,800]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
+          </div>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-sable p-6">
-            <h4 class="font-title text-lg text-cacao">🌱 Substrat prêt à l'emploi</h4>
-            <p class="mt-3 text-sm text-brun leading-relaxed">
-              Fabriqué et ensemencé chez nous. Vous, vous gardez la partie la plus gratifiante : voir pousser vos champignons.
-            </p>
+        <div class="bg-lilas px-6 md:px-10 lg:pr-20 py-14 md:py-20 space-y-8">
+          <div>
+            <h3 class="font-title text-xl text-cacao">Du substrat prêt à l'emploi</h3>
+            <p class="mt-1 text-sm text-brun leading-relaxed">Fabriqué et ensemencé chez nous. Vous gardez la partie la plus sympa : voir pousser vos champignons.</p>
           </div>
-          <div class="bg-sable p-6">
-            <h4 class="font-title text-lg text-cacao">💧 Maintenez l'humidité</h4>
-            <p class="mt-3 text-sm text-brun leading-relaxed">
-              Munissez-vous d'un brumisateur. L'humidité est primordiale — sans elle, rien ne se passe.
-            </p>
+          <div>
+            <h3 class="font-title text-xl text-cacao">Un bonne humidité</h3>
+            <p class="mt-1 text-sm text-brun leading-relaxed">Munissez-vous d'un brumisateur. Pschiiit pschiiit … maintenir l'humidité est primordial : sans elle, rien ne se passe.</p>
           </div>
-          <div class="bg-sable p-6">
-            <h4 class="font-title text-lg text-cacao">🌬️ Air frais</h4>
-            <p class="mt-3 text-sm text-brun leading-relaxed">
-              Exposez le substrat à l'air frais. Évitez les espaces confinés et la proximité d'un chauffage.
-            </p>
+          <div>
+            <h3 class="font-title text-xl text-cacao">De l'air frais</h3>
+            <p class="mt-1 text-sm text-brun leading-relaxed">Exposez le substrat à l'air frais. Évitez les espaces confinés et la proximité d'un chauffage.</p>
           </div>
-          <div class="bg-sable p-6">
-            <h4 class="font-title text-lg text-cacao">⏱️ Patience</h4>
-            <p class="mt-3 text-sm text-brun leading-relaxed">
-              Laissez le sac fermé jusqu'à l'apparition des primordias (petits pompons blancs), puis ouvrez. Quelques jours plus tard, c'est prêt.
-            </p>
+          <div>
+            <h3 class="font-title text-xl text-cacao">Un peu de patience</h3>
+            <p class="mt-1 text-sm text-brun leading-relaxed">Laissez le sac fermé jusqu'à l'apparition des primordias (petits champignons blancs), puis ouvrez. Quelques jours plus tard, c'est prêt !</p>
           </div>
         </div>
       </div>
@@ -187,29 +172,43 @@ const CARD_TONES = ["mauve", "jaune", "bleu", "sable"] as const;
       <div class="absolute inset-y-0 left-0 w-8 lg:w-40 bg-violet hidden md:block" aria-hidden="true"></div>
       <div class="max-w-4xl mx-auto px-6 md:px-10">
         <div class="mb-10">
-          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">Tout savoir avant de commander</h2>
+          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">
+            Tout <em class="italic">savoir</em> sur nos champignons
+          </h2>
           <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">questions fréquentes</p>
         </div>
 
         <div class="bg-creme/60 px-6 md:px-10 py-8">
-          <FAQItem variant="editorial" question="Vos champignons sont-ils bio ?">
-            Oui. Label FR-BIO-01, cultivés sans pesticide, pratiques durables et raisonnées.
-          </FAQItem>
-          <FAQItem variant="editorial" question="Faut-il les laver ?">
-            Non, ils sont propres et parés. Un simple essuyage suffit si besoin.
-          </FAQItem>
-          <FAQItem variant="editorial" question="Combien de temps se conservent-ils ?">
-            8 à 10 jours au réfrigérateur (0 à 4°C) dans leur emballage d'origine.
-          </FAQItem>
-          <FAQItem variant="editorial" question="Puis-je les congeler ?">
-            Préférez les poêler légèrement avant congélation pour préserver texture et goût.
-          </FAQItem>
-          <FAQItem variant="editorial" question="Y a-t-il un minimum de commande ?">
-            Aucun minimum sur Pour de Bon. Pour la livraison à domicile (Lyon / Saint-Étienne), minimum 25 €.
-          </FAQItem>
-          <FAQItem variant="editorial" question="Comment fonctionne le retrait ?">
-            Récupérez gratuitement le lendemain de votre commande au 5 rue Vallée de Couzon, Rive-de-Gier. Lun – Ven, 7h à 13h. Conservation au frais 3 jours.
-          </FAQItem>
+          <div class="mb-8">
+            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta"><span>🍄 Nos produits</span></div>
+            <FAQItem variant="editorial" question="Vos champignons sont-ils bio ?">
+              Tous nos champignons sont issus de l'agriculture biologique (label FR-BIO-01) et cultivés selon des pratiques durables et raisonnées.
+            </FAQItem>
+            <FAQItem variant="editorial" question="D'où viennent vos champignons ?">
+              Cultivés, récoltés et conditionnés à Rive-de-Gier (Loire). Circuit court, sans intermédiaire.
+            </FAQItem>
+            <FAQItem variant="editorial" question="Faut-il les laver ?">
+              Nos champignons sont propres et parés. Un simple essuyage avec un linge humide suffit.
+            </FAQItem>
+          </div>
+          <div class="mb-8">
+            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta"><span>❄️ Conservation</span></div>
+            <FAQItem variant="editorial" question="Combien de temps se conservent-ils ?">
+              8 à 10 jours au réfrigérateur (0 à 4°C), dans leur emballage d'origine ou un contenant aéré.
+            </FAQItem>
+            <FAQItem variant="editorial" question="Puis-je les congeler ?">
+              Préférez les poêler légèrement avant congélation pour préserver texture et goût.
+            </FAQItem>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta"><span>📦 Retrait &amp; livraison</span></div>
+            <FAQItem variant="editorial" question="Puis-je récupérer ma commande ?">
+              Oui — retrait gratuit au 5 rue Vallée de Couzon, 42800 Rive-de-Gier, du lundi au vendredi de 7h à 13h. Conservation au frais 3 jours.
+            </FAQItem>
+            <FAQItem variant="editorial" question="Livrez-vous les particuliers en dehors de Lyon et Saint-Étienne ?">
+              Pour la France entière, passez par Pour de Bon. Pour les volumes pro, on étudie au cas par cas — contactez-nous.
+            </FAQItem>
+          </div>
         </div>
       </div>
     </section>
@@ -217,8 +216,10 @@ const CARD_TONES = ["mauve", "jaune", "bleu", "sable"] as const;
     <CTASection
       variant="editorial"
       title="Envie de goûter ?"
-      description="Commandez en ligne, ou venez nous rendre visite à Rive-de-Gier."
-      primaryCta={{ href: "https://www.pourdebon.com/les-myconautes-s1527", label: "Commander en ligne" }}
+      description="Passez-nous commande directement via Pour de Bon, ou contactez-nous pour les volumes pro."
+      image={envieGouterPic}
+      imageAlt="Dégustation de champignons poêlés"
+      primaryCta={{ href: orderHref, label: "Commander en ligne" }}
       secondaryCta={{ href: "/contact", label: "Nous écrire" }}
     />
   </div>

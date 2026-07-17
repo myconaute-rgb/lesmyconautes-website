@@ -36,3 +36,13 @@ Brief : `Refonte graphique globale de la pag.md`
 - Nouveaux fichiers d'une même vague → dans le dossier de la vague (pas à la racine du repo).
 - Nouvelle vague = nouveau dossier `vN-AAAA-MM-JJ/` + entrée ici.
 - Ces fichiers ne sont **pas publiés** par le build Astro (seuls `src/` et `public/` le sont).
+
+### `v3-2026-07-17/` — maquettes pages principales (Aline)
+Maquettes de corps pour **particuliers, pro, à-propos (myconautes), contact**.
+Couleur d'accent **par page** (décision Aline) :
+- accueil + **particuliers** : titres violet / scripts vert (anis)
+- **pro** + **contact** : titres cacao / scripts violet ; hero pro = bande cacao
+- **à-propos (myconautes)** : titres violet / scripts vert, hero = bande lilas
+- **agriculteurs** : titres vert / scripts violet (déjà en place)
+Blocs repris de l'accueil (gamme 6 cartes, livraison 3 cartes 4,20€, FAQ catégorisée,
+bloc contact cacao, CTA « Envie de goûter ? » toujours violet). Icônes = bulles violettes.
