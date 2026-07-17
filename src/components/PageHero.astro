@@ -1,7 +1,7 @@
 ---
 interface Props {
-  /** Couleur dominante de la page. */
-  theme: "lavande" | "terracotta" | "turquoise";
+  /** Couleur dominante de la page (variante v1 uniquement). */
+  theme?: "lavande" | "terracotta" | "turquoise";
   label: string;
   title: string;
   /** Mot ou portion mise en italique dans le H1. */
@@ -9,9 +9,25 @@ interface Props {
   description: string;
   primaryCta?: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
+  /** "refonte" = DA 07/2026 (titre Anton violet, sous-titre script vert). Défaut : historique. */
+  variant?: "v1" | "refonte";
+  /** Couleur du titre en variante refonte (agriculteurs = anis). Défaut : violet. */
+  titleTone?: "violet" | "anis";
 }
 
-const { theme, label, title, highlight, description, primaryCta, secondaryCta } = Astro.props;
+const { theme = "lavande", label, title, highlight, description, primaryCta, secondaryCta, variant = "v1", titleTone = "violet" } = Astro.props;
+const refonte = variant === "refonte";
+
+const titleColor = titleTone === "anis" ? "text-anis" : "text-violet";
+const scriptColor = titleTone === "anis" ? "text-violet" : "text-anis";
+
+function splitHighlight(t: string, h?: string) {
+  if (!h) return [t, "", ""];
+  const i = t.indexOf(h);
+  if (i === -1) return [t, "", ""];
+  return [t.slice(0, i), h, t.slice(i + h.length)];
+}
+const [pre, hi, post] = splitHighlight(title, highlight);
 
 const bg = {
   lavande: "bg-lavande",
@@ -46,6 +62,40 @@ const secondaryClass = isLightTheme
   : "border-ivoire/40 text-ivoire hover:bg-ivoire/10";
 ---
 
+{refonte ? (
+  <section class="bg-page font-body px-6 md:px-10 pt-14 md:pt-20 pb-16 md:pb-20">
+    <div class="max-w-7xl mx-auto">
+      <h1 class={`font-title text-[clamp(2.6rem,6.5vw,5.5rem)] leading-[0.98] ${titleColor}`}>
+        {pre}{hi && <em class="italic">{hi}</em>}{post}
+      </h1>
+      <p class={`script-sub text-[clamp(1.6rem,3vw,2.4rem)] ${scriptColor}`}>{label}</p>
+      <p class="mt-8 max-w-2xl text-brun leading-relaxed">{description}</p>
+
+      {(primaryCta || secondaryCta) && (
+        <div class="mt-10 flex flex-wrap gap-4">
+          {primaryCta && (
+            <a
+              href={primaryCta.href}
+              target={primaryCta.href.startsWith("http") ? "_blank" : undefined}
+              rel={primaryCta.href.startsWith("http") ? "noopener" : undefined}
+              class="inline-flex items-center px-8 py-4 rounded-btn bg-violet text-page text-sm font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors"
+            >
+              {primaryCta.label}
+            </a>
+          )}
+          {secondaryCta && (
+            <a
+              href={secondaryCta.href}
+              class="inline-flex items-center px-8 py-4 rounded-btn border-2 border-violet text-violet text-sm font-semibold tracking-wide uppercase hover:bg-violet/10 transition-colors"
+            >
+              {secondaryCta.label}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+) : (
 <section class={`${bg} px-6 py-20 md:py-24 relative overflow-hidden`}>
   <!-- disques décoratifs -->
   <div class="absolute -top-16 -left-16 w-64 h-64 rounded-full bg-ivoire/10 mix-blend-overlay"></div>
@@ -97,3 +147,4 @@ const secondaryClass = isLightTheme
     )}
   </div>
 </section>
+)}
