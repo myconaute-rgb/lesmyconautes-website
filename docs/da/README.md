@@ -46,3 +46,10 @@ Couleur d'accent **par page** (décision Aline) :
 - **agriculteurs** : titres vert / scripts violet (déjà en place)
 Blocs repris de l'accueil (gamme 6 cartes, livraison 3 cartes 4,20€, FAQ catégorisée,
 bloc contact cacao, CTA « Envie de goûter ? » toujours violet). Icônes = bulles violettes.
+
+### Icônes & photos d’Aline (17/07)
+Pictos + photos HD fournis par Aline (dossiers « icone 1 » / « icone 2 »).
+- Pictos traités (blanc transparent) → `src/assets/icons/aline/*.png`, câblés dans `FeatureIcon.astro`.
+- Photos HD → remplacent les extraits basse-def dans `src/assets/photos/` (mêmes noms).
+- Source brute (203 Mo, non versionnée) : `~/uploads/aline-icones` sur le serveur + originaux chez Florestan.
+- Non utilisés pour l’instant : vignettes variétés `square substrat/black pearl/hericium/…`, `tiers-page hor logo bio`, `demi-page contact` (bloc cacao intégré).
