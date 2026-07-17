@@ -1,0 +1,42 @@
+---
+/**
+ * Icône « bulle violette » — pictos d'Aline (DA v3, dossier icone 1/2).
+ * Pictogramme blanc (ou drapeau pour « francais ») dans une bulle violette.
+ * Cercle par défaut (avantages / valeurs), carré arrondi pour les conseils.
+ */
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import bio from "../assets/icons/aline/bio.png";
+import francais from "../assets/icons/aline/francais.png";
+import main from "../assets/icons/aline/main.png";
+import durable from "../assets/icons/aline/durable.png";
+import circuit from "../assets/icons/aline/circuit.png";
+import conditionnement from "../assets/icons/aline/conditionnement.png";
+import volumes from "../assets/icons/aline/volumes.png";
+import livraison from "../assets/icons/aline/livraison.png";
+import tarifs from "../assets/icons/aline/tarifs.png";
+import temperature from "../assets/icons/aline/temperature.png";
+import atmosphere from "../assets/icons/aline/atmosphere.png";
+import duree from "../assets/icons/aline/duree.png";
+import congelation from "../assets/icons/aline/congelation.png";
+
+const ICONS: Record<string, ImageMetadata> = {
+  bio, francais, main, durable, circuit, conditionnement,
+  volumes, livraison, tarifs, temperature, atmosphere, duree, congelation,
+};
+
+interface Props {
+  name: keyof typeof ICONS;
+  shape?: "circle" | "square";
+  size?: "md" | "lg";
+}
+const { name, shape = "circle", size = "lg" } = Astro.props;
+
+const box = size === "lg" ? "w-16 h-16" : "w-12 h-12";
+const radius = shape === "square" ? "rounded-2xl" : "rounded-full";
+const img = ICONS[name];
+---
+
+<span class={`inline-flex items-center justify-center ${box} ${radius} bg-violet`}>
+  <Image src={img} alt="" loading="lazy" decoding="async" widths={[64, 128]} sizes="64px" formats={["avif", "webp"]} class="w-3/5 h-3/5 object-contain" />
+</span>

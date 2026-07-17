@@ -1,14 +1,33 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PageHero from "../components/PageHero.astro";
+import FeatureIcon from "../components/FeatureIcon.astro";
+import FAQItem from "../components/FAQItem.astro";
+import ContactSection from "../components/ContactSection.astro";
 import CTASection from "../components/CTASection.astro";
 import ArticleLd from "../components/seo/ArticleLd.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
+
+import heroBandPic from "../assets/photos/florestan-portrait.jpg";
+import certifieAbLogo from "../assets/logos/certifie-ab.png";
+import certifieEuLogo from "../assets/logos/certifie-eu.png";
+import envieGouterPic from "../assets/photos/envie-gouter.jpg";
+
+const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
+
+const VALEURS = [
+  { icon: "bio", title: "100% bio certifié", text: "Certifié FR-BIO-01 jusqu'aux ingrédients du substrat." },
+  { icon: "francais", title: "Français", text: "Cultivés et récoltés en France, dans la Loire." },
+  { icon: "main", title: "Récolte à la main", text: "Pas de robotisation. Des yeux humains, du soin." },
+  { icon: "durable", title: "Agriculture durable", text: "Gestion raisonnée de l'eau, des emballages, des cycles." },
+  { icon: "circuit", title: "Circuit court", text: "Cultivés, récoltés, conditionnés ici. Zéro intermédiaire." },
+] as const;
 ---
 
 <BaseLayout
   title="À propos — Champignonnière artisanale FR-BIO-01 | Les Myconautes"
   description="Champignonnière artisanale fondée en 2015 à Rive-de-Gier (Loire). Producteur direct certifié FR-BIO-01, variétés exotiques bio (Hericium, Éryngii, Nameko). Florestan Grange et l'équipe."
+  skin="refonte"
 >
   <ArticleLd
     slug="myconautes"
@@ -22,91 +41,125 @@ import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
     { name: "À propos" },
   ]} />
 
-  <PageHero
-    theme="lavande"
-    label="Notre histoire"
-    title="Explorer le champignon depuis 2015"
-    highlight="depuis 2015"
-    description="Une champignonnière artisanale, certifiée bio, ancrée à Rive-de-Gier (Loire). Producteur direct, sans intermédiaire."
-  />
-
-  <!-- Histoire -->
-  <section class="px-6 py-20">
-    <div class="max-w-3xl mx-auto">
-      <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">L'aventure</span>
-      <h2 class="mt-2 text-3xl md:text-4xl text-brun">Une champignonnière, dix ans, et un terrain de 1,7 hectare</h2>
-      <div class="mt-6 prose prose-brun max-w-none text-brun-clair leading-relaxed">
-        <p>
-          Florestan a fondé sa première champignonnière en 2015. Dix ans plus tard, c'est devenu un refuge pour la biodiversité de 1,7 hectare niché à Rive-de-Gier, dans la Loire — entre Lyon et Saint-Étienne.
-        </p>
-        <p class="mt-4">
-          Chaque champignon est cultivé, récolté à la main et conditionné ici même. Circuit court strict, traçabilité totale, et la conviction que le bio en France ne devrait pas se limiter au champignon de Paris.
-        </p>
-        <p class="mt-4">
-          Au catalogue : pleurote, éryngii, hericium, Black Pearl. Et pour les pros qui veulent se lancer dans la culture, des substrats inoculés certifiés FR-BIO-01.
-        </p>
+  <div class="bg-page font-body text-brun">
+    <!-- Hero violet + bande lilas -->
+    <section class="bg-page">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 pt-10 md:pt-14 pb-8">
+        <h1 class="font-title text-[clamp(2.4rem,6.5vw,5.5rem)] leading-[0.98] text-violet">
+          Explorateurs du champignon <em class="italic">depuis 2015</em>
+        </h1>
       </div>
-    </div>
-  </section>
-
-  <!-- Argument bio total -->
-  <section class="bg-creme px-6 py-20">
-    <div class="max-w-3xl mx-auto">
-      <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Bio FR-BIO-01</span>
-      <h2 class="mt-2 text-3xl md:text-4xl text-brun">Bio total, sans compromis</h2>
-      <div class="mt-6 text-brun-clair leading-relaxed">
-        <p>
-          Notre certification FR-BIO-01 couvre tout le cycle : culture, conditionnement, traçabilité — c'est Ecocert qui contrôle. Concrètement, nos champignons poussent sans traitement, et dans les salles, on mise sur l'hygiène et le soin plutôt que sur la chimie.
-        </p>
+      <div class="relative h-64 md:h-96 bg-lilas overflow-hidden">
+        <Image src={heroBandPic} alt="Florestan, fondateur des Myconautes" loading="eager" decoding="async" widths={[640,960,1280,1600]} sizes="100vw" formats={["avif","webp"]} class="w-full h-full object-cover object-top" />
       </div>
+    </section>
 
-      <div class="mt-8 inline-flex items-center gap-3 px-5 py-3 rounded-full bg-ivoire ring-1 ring-brun/10">
-        <span class="text-2xl" aria-hidden="true">🌱</span>
-        <div class="text-sm">
-          <div class="font-semibold text-brun">Certification FR-BIO-01.250-0043443.2026.003</div>
-          <div class="text-brun-clair">Organisme certificateur : Ecocert</div>
+    <!-- Histoire -->
+    <section class="relative py-20 md:py-28 overflow-hidden">
+      <div class="absolute inset-y-0 right-0 w-8 lg:w-24 bg-violet hidden md:block" aria-hidden="true"></div>
+      <div class="max-w-4xl mx-auto px-6 md:px-10">
+        <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">Une champignonnière, dix ans d'expérience, et un terrain de 1,7 hectare</h2>
+        <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">l'aventure</p>
+        <div class="mt-8 text-brun leading-relaxed space-y-4 max-w-2xl">
+          <p>Florestan a fondé sa première champignonnière en 2015. Dix ans plus tard, c'est devenu un refuge pour la biodiversité de 1,7 hectare niché à Rive-de-Gier, dans la Loire — entre Lyon et Saint-Étienne.</p>
+          <p>Chaque champignon est cultivé, récolté à la main et conditionné ici même. Circuit court strict, traçabilité totale, et la conviction que le bio en France ne devrait pas se limiter au champignon de Paris.</p>
+          <p>Au catalogue : pleurote, éryngii, hericium, Black Pearl. Et pour les pros qui veulent se lancer dans la culture, des substrats inoculés certifiés FR-BIO-01.</p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href={orderHref} target="_blank" rel="noopener" class="inline-flex items-center px-8 py-4 rounded-btn bg-violet text-page text-sm font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
+          <a href="/#univers" class="inline-flex items-center px-8 py-4 rounded-btn border-2 border-violet text-violet text-sm font-semibold tracking-wide uppercase hover:bg-violet/10 transition-colors">Découvrir nos univers</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Valeurs -->
-  <section class="px-6 py-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Nos valeurs</span>
-        <h2 class="mt-2 text-3xl md:text-4xl text-brun">Ce qui guide nos choix</h2>
-      </div>
+    <!-- Bio total + valeurs -->
+    <section class="px-6 md:px-10 py-20 md:py-28">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-[1.4fr_1fr] gap-10 items-start mb-16">
+          <div>
+            <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">Bio total, sans compromis</h2>
+            <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">nos valeurs, nos choix</p>
+            <p class="mt-8 text-brun leading-relaxed max-w-xl">
+              Notre certification FR-BIO-01 couvre tout le cycle : culture, conditionnement, traçabilité — c'est Ecocert qui contrôle. Concrètement, nos champignons poussent sans traitement, et dans les salles, on mise sur l'hygiène et le soin plutôt que sur la chimie.
+            </p>
+            <p class="mt-4 text-sm text-brun/80">Certification FR-BIO-01.250-0043443.2026.003<br />Organisme certificateur : Ecocert</p>
+          </div>
+          <div class="flex items-center gap-6">
+            <Image src={certifieAbLogo} alt="Certifié Agriculture Biologique" loading="lazy" widths={[120,200]} sizes="110px" formats={["avif","webp"]} class="h-24 w-auto" />
+            <Image src={certifieEuLogo} alt="Certifié FR-BIO-01 — Agriculture France / UE" loading="lazy" widths={[160,280]} sizes="150px" formats={["avif","webp"]} class="h-24 w-auto" />
+          </div>
+        </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="bg-creme rounded-2xl p-6 ring-1 ring-brun/5">
-          <div class="w-11 h-11 rounded-full bg-turquoise/15 text-turquoise flex items-center justify-center text-xl mb-3">🛡️</div>
-          <h3 class="text-base text-brun">Bio sans compromis</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">Certifié FR-BIO-01 jusqu'aux ingrédients du substrat.</p>
-        </div>
-        <div class="bg-creme rounded-2xl p-6 ring-1 ring-brun/5">
-          <div class="w-11 h-11 rounded-full bg-lavande/20 text-violet-profond flex items-center justify-center text-xl mb-3">✋</div>
-          <h3 class="text-base text-brun">Récolte à la main</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">Pas de robotisation. Des yeux humains, du soin.</p>
-        </div>
-        <div class="bg-creme rounded-2xl p-6 ring-1 ring-brun/5">
-          <div class="w-11 h-11 rounded-full bg-terracotta/15 text-terracotta flex items-center justify-center text-xl mb-3">📍</div>
-          <h3 class="text-base text-brun">Circuit court</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">Cultivés, récoltés, conditionnés ici. Zéro intermédiaire.</p>
-        </div>
-        <div class="bg-creme rounded-2xl p-6 ring-1 ring-brun/5">
-          <div class="w-11 h-11 rounded-full bg-turquoise/15 text-turquoise flex items-center justify-center text-xl mb-3">♻️</div>
-          <h3 class="text-base text-brun">Pratiques durables</h3>
-          <p class="mt-2 text-sm text-brun-clair leading-relaxed">Gestion raisonnée de l'eau, des emballages, des cycles.</p>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-10">
+          {VALEURS.map((v) => (
+            <div class="text-center">
+              <FeatureIcon name={v.icon} />
+              <h3 class="mt-4 font-title text-lg text-cacao">{v.title}</h3>
+              <p class="mt-1 text-sm text-brun leading-relaxed">{v.text}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <CTASection
-    title="Une visite, ça vous tente ?"
-    description="On peut vous faire visiter la champignonnière sur rendez-vous. Lun – Ven, 7h à 13h."
-    primaryCta={{ href: "/contact", label: "Prendre rendez-vous" }}
-    secondaryCta={{ href: "/agriculteurs", label: "Découvrir les substrats" }}
-  />
+    <!-- FAQ — bande violette signature à gauche -->
+    <section class="relative py-20 md:py-28 overflow-hidden">
+      <div class="absolute inset-y-0 left-0 w-8 lg:w-40 bg-violet hidden md:block" aria-hidden="true"></div>
+      <div class="max-w-4xl mx-auto px-6 md:px-10">
+        <div class="mb-10">
+          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">Tout <em class="italic">savoir</em> sur nos champignons</h2>
+          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">questions fréquentes</p>
+        </div>
+        <div class="bg-creme/60 px-6 md:px-10 py-8">
+          <div class="mb-8">
+            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta"><span>🍄 Nos produits</span></div>
+            <FAQItem variant="editorial" question="Vos champignons sont-ils bio ?">
+              Tous nos champignons sont issus de l'agriculture biologique (label FR-BIO-01) et cultivés selon des pratiques durables et raisonnées.
+            </FAQItem>
+            <FAQItem variant="editorial" question="D'où viennent vos champignons ?">
+              Cultivés, récoltés et conditionnés à Rive-de-Gier (Loire). Circuit court, sans intermédiaire.
+            </FAQItem>
+            <FAQItem variant="editorial" question="Faut-il les laver ?">
+              Nos champignons sont propres et parés. Un simple essuyage avec un linge humide suffit.
+            </FAQItem>
+          </div>
+          <div class="mb-8">
+            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta"><span>❄️ Conservation</span></div>
+            <FAQItem variant="editorial" question="Combien de temps se conservent-ils ?">
+              8 à 10 jours au réfrigérateur (0 à 4°C), dans leur emballage d'origine ou un contenant aéré.
+            </FAQItem>
+            <FAQItem variant="editorial" question="Puis-je les congeler ?">
+              Préférez les poêler légèrement avant congélation pour préserver texture et goût.
+            </FAQItem>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta"><span>📦 Retrait &amp; livraison</span></div>
+            <FAQItem variant="editorial" question="Puis-je récupérer ma commande ?">
+              Oui — retrait gratuit au 5 rue Vallée de Couzon, 42800 Rive-de-Gier, du lundi au vendredi de 7h à 13h. Conservation au frais 3 jours.
+            </FAQItem>
+            <FAQItem variant="editorial" question="Livrez-vous les particuliers en dehors de Lyon et Saint-Étienne ?">
+              Pour la France entière, passez par Pour de Bon. Pour les volumes pro, on étudie au cas par cas — contactez-nous.
+            </FAQItem>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <ContactSection
+      formType="contact"
+      messageRequired={true}
+      scriptTone="anis"
+      intro="Que ce soit pour partager une recette, obtenir nos tarifs & conditions de vente, demander des détails techniques sur nos substrats ou nous avouer que vous adorez nos champignons … on vous réponds !"
+    />
+
+    <CTASection
+      variant="editorial"
+      title="Envie de goûter ?"
+      description="Passez-nous commande directement via Pour de Bon, ou contactez-nous pour les volumes pro."
+      image={envieGouterPic}
+      imageAlt="Dégustation de champignons poêlés"
+      primaryCta={{ href: orderHref, label: "Commander en ligne" }}
+      secondaryCta={{ href: "/contact", label: "Nous écrire" }}
+    />
+  </div>
 </BaseLayout>
