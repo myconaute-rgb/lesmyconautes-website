@@ -7,6 +7,7 @@ import Turnstile from "../components/Turnstile.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
 import incubationAlleePic from "../assets/photos/incubation-allee.jpg";
+import bandeauPic from "../assets/photos/bandeau-eryngii.jpg";
 import certifieAbLogo from "../assets/logos/certifie-ab.png";
 import certifieEuLogo from "../assets/logos/certifie-eu.png";
 
@@ -37,6 +38,14 @@ const STEPS = [
   { n: 4, title: "Fructification", text: "Chez vous : ouvrez le sac, maintenez l'humidité et l'air frais. Rendement maximal dès la première volée." },
 ];
 
+/* Patch DA 25/07 : seul le sac unitaire s'achète en ligne ; les palettes
+   renvoient vers le bloc devis « Des solutions adaptées ». */
+const FORMAT_HREF: Record<string, string> = {
+  "Sac unitaire": orderHref,
+  "Demi-palette": "#contact-agri",
+  "Palette complète": "#contact-agri",
+};
+
 const FORMAT_EXTRA: Record<string, string> = {
   "Sac unitaire": "Pour tester, démarrer une petite culture, ou compléter un volume.",
   "Demi-palette": "Production régulière à petite échelle. Tarif dégressif selon le volume.",
@@ -65,8 +74,8 @@ const FORMAT_EXTRA: Record<string, string> = {
       </div>
       <div class="relative h-64 md:h-96 bg-anis overflow-hidden">
         <Image
-          src={incubationAlleePic}
-          alt="Allée d'incubation des sacs de substrat — Les Myconautes"
+          src={bandeauPic}
+          alt="Cagette d'eryngii fraîchement récoltés — Les Myconautes"
           loading="eager"
           decoding="async"
           widths={[640, 960, 1280, 1600]}
@@ -78,7 +87,7 @@ const FORMAT_EXTRA: Record<string, string> = {
     </section>
 
     <!-- Pourquoi nous choisir + FR-BIO-01 -->
-    <section class="relative py-20 md:py-28 overflow-hidden">
+    <section class="relative py-14 md:py-20 overflow-hidden">
       <div class="absolute inset-y-0 right-0 w-8 lg:w-24 bg-violet hidden md:block" aria-hidden="true"></div>
       <div class="max-w-6xl mx-auto px-6 md:px-10">
         <div class="mb-10">
@@ -89,33 +98,34 @@ const FORMAT_EXTRA: Record<string, string> = {
           </h2>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-10 items-start">
-          <div class="text-brun leading-relaxed space-y-4 max-w-xl">
+        <!-- Patch DA 25/07 : 2 cadres côte à côte — tout le texte à gauche,
+             le logo bio occupe le cadre de droite. Boutons centrés dessous. -->
+        <div class="grid md:grid-cols-2 gap-10 items-stretch">
+          <div class="text-brun leading-relaxed space-y-4">
             <p>Après six ans de culture, on a fabriqué notre propre substrat bio <strong>– et on le rend accessible</strong>.</p>
             <p><strong>Bio français,</strong> cultivé et conditionné dans la Loire, sous le numéro Ecocert FR-BIO-01.250-0043443.2026.003. Vous savez exactement d'où vient votre substrat.</p>
+            <p><strong>Producteur direct :</strong> on le fabrique dans notre atelier, vous ne passez pas par un distributeur.</p>
+            <p><strong>Bio sans compromis :</strong> tout le cycle est suivi par Ecocert. Nos champignons poussent sans traitement : dans nos salles, on mise sur l'hygiène et le soin plutôt que sur la chimie.</p>
           </div>
-          <div class="space-y-4 max-w-xl">
-            <div class="flex items-center gap-6">
-              <Image src={certifieAbLogo} alt="Certifié Agriculture Biologique" loading="lazy" widths={[120, 200]} sizes="110px" formats={["avif", "webp"]} class="h-24 w-auto" />
-              <Image src={certifieEuLogo} alt="Certifié FR-BIO-01 — Agriculture France / UE" loading="lazy" widths={[160, 280]} sizes="150px" formats={["avif", "webp"]} class="h-24 w-auto" />
-            </div>
-            <p class="text-brun leading-relaxed"><strong>Producteur direct :</strong> on le fabrique dans notre atelier, vous ne passez pas par un distributeur.</p>
-            <p class="text-brun leading-relaxed"><strong>Bio sans compromis :</strong> tout le cycle est suivi par Ecocert. Nos champignons poussent sans traitement : dans nos salles, on mise sur l'hygiène et le soin plutôt que sur la chimie.</p>
-            <div class="flex flex-wrap gap-4 pt-2">
-              <a href="#contact-agri" class="inline-flex items-center px-7 py-3.5 rounded-btn bg-anis text-page text-sm font-semibold tracking-wide uppercase hover:bg-anis/90 transition-colors">
-                Demander nos tarifs
-              </a>
-              <a href="#especes" class="inline-flex items-center px-7 py-3.5 rounded-btn border-2 border-anis text-anis text-sm font-semibold tracking-wide uppercase hover:bg-anis/10 transition-colors">
-                Voir le catalogue
-              </a>
-            </div>
+          <div class="flex items-center justify-center gap-8 md:gap-10 bg-creme/40 px-6 py-10">
+            <Image src={certifieAbLogo} alt="Certifié Agriculture Biologique" loading="lazy" widths={[240, 400]} sizes="(min-width: 768px) 200px, 40vw" formats={["avif", "webp"]} class="h-40 md:h-56 w-auto" />
+            <Image src={certifieEuLogo} alt="Certifié FR-BIO-01 — Agriculture France / UE" loading="lazy" widths={[320, 560]} sizes="(min-width: 768px) 280px, 50vw" formats={["avif", "webp"]} class="h-40 md:h-56 w-auto" />
           </div>
+        </div>
+
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+          <a href="#contact-agri" class="inline-flex items-center px-7 py-3.5 rounded-btn bg-anis text-page text-sm font-semibold tracking-wide uppercase hover:bg-anis/90 transition-colors">
+            Demander nos tarifs
+          </a>
+          <a href="#especes" class="inline-flex items-center px-7 py-3.5 rounded-btn border-2 border-anis text-anis text-sm font-semibold tracking-wide uppercase hover:bg-anis/10 transition-colors">
+            Voir le catalogue
+          </a>
         </div>
       </div>
     </section>
 
     <!-- Espèces -->
-    <section id="especes" class="relative py-20 md:py-28 overflow-hidden">
+    <section id="especes" class="relative py-14 md:py-20 overflow-hidden">
       <div class="absolute inset-y-0 left-0 w-8 lg:w-24 bg-violet hidden md:block" aria-hidden="true"></div>
       <div class="max-w-7xl mx-auto px-6 md:px-10 lg:pl-32">
         <div class="mb-12">
@@ -123,8 +133,8 @@ const FORMAT_EXTRA: Record<string, string> = {
             Substrats <em class="italic">prêts à l'emploi</em>
           </h2>
           <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet">nos substrats</p>
-          <p class="mt-6 max-w-xl text-brun leading-relaxed">
-            Fabriqués dans notre atelier à Rive-de-Gier.<br />Mycélium ensemencé, stérilisé à l'autoclave, prêts à fructifier.
+          <p class="mt-6 text-brun leading-relaxed">
+            Fabriqués dans notre atelier à Rive-de-Gier. Mycélium ensemencé, stérilisé à l'autoclave, prêts à fructifier.
           </p>
         </div>
 
@@ -165,7 +175,7 @@ const FORMAT_EXTRA: Record<string, string> = {
     </section>
 
     <!-- Process : du substrat à la récolte -->
-    <section class="py-20 md:py-28">
+    <section class="py-14 md:py-20">
       <div class="max-w-7xl mx-auto px-6 md:px-10">
         <div class="mb-12">
           <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-anis">
@@ -203,14 +213,14 @@ const FORMAT_EXTRA: Record<string, string> = {
     </section>
 
     <!-- Fiches techniques par espèce -->
-    <section class="py-20 md:py-28">
+    <section class="py-14 md:py-20">
       <div class="max-w-7xl mx-auto px-6 md:px-10">
         <div class="mb-12">
           <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-anis">
             Substrat par <em class="italic">espèce</em>
           </h2>
           <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet">fiches techniques</p>
-          <p class="mt-6 max-w-2xl text-brun leading-relaxed">
+          <p class="mt-6 text-brun leading-relaxed">
             Pages dédiées avec, pour chaque variété : les paramètres de culture, les rendements attendus, une méthodologie avancée. Bref, le nécessaire pour répondre à vos questions techniques.
           </p>
         </div>
@@ -228,7 +238,7 @@ const FORMAT_EXTRA: Record<string, string> = {
     </section>
 
     <!-- Conditionnements -->
-    <section class="py-20 md:py-28">
+    <section class="py-14 md:py-20">
       <div class="max-w-7xl mx-auto px-6 md:px-10">
         <div class="mb-12">
           <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-anis">
@@ -237,35 +247,47 @@ const FORMAT_EXTRA: Record<string, string> = {
           <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet">conditionnements professionnels</p>
         </div>
 
-        <div class="grid sm:grid-cols-3 gap-8">
-          {SUBSTRATE_FORMATS.map((fmt) => (
-            <div class="flex flex-col">
-              <h3 class="font-title text-xl text-cacao">{fmt.label}</h3>
-              <div class="font-title text-lg text-violet">{fmt.weight}</div>
-              <p class="mt-2 text-sm text-brun leading-relaxed">{FORMAT_EXTRA[fmt.label] ?? fmt.description}</p>
-              <div class="mt-5 aspect-square overflow-hidden">
-                <Image
-                  src={fmt.image}
-                  alt={`Substrat ${fmt.label} — ${fmt.weight}`}
-                  loading="lazy"
-                  decoding="async"
-                  widths={[320, 480, 640]}
-                  sizes="(min-width: 768px) 340px, 100vw"
-                  formats={["avif", "webp"]}
-                  class="w-full h-full object-cover"
-                />
+        <!-- Patch DA 25/07 : subgrid — textes, images et boutons des 3 cartes
+             partagent les mêmes lignes, donc s'alignent quelle que soit la
+             longueur du descriptif. Images en carré strict. -->
+        <div class="grid sm:grid-cols-3 gap-x-8 gap-y-12 sm:grid-rows-[auto_auto_1fr_auto_auto]">
+          {SUBSTRATE_FORMATS.map((fmt) => {
+            const href = FORMAT_HREF[fmt.label] ?? orderHref;
+            const external = href.startsWith("http");
+            return (
+              <div class="grid sm:row-span-5 sm:grid-rows-subgrid">
+                <h3 class="font-title text-xl text-cacao">{fmt.label}</h3>
+                <div class="font-title text-lg text-violet">{fmt.weight}</div>
+                <p class="mt-2 text-sm text-brun leading-relaxed">{FORMAT_EXTRA[fmt.label] ?? fmt.description}</p>
+                <div class="mt-5 aspect-square overflow-hidden">
+                  <Image
+                    src={fmt.image}
+                    alt={`Substrat ${fmt.label} — ${fmt.weight}`}
+                    loading="lazy"
+                    decoding="async"
+                    widths={[320, 480, 640]}
+                    sizes="(min-width: 768px) 340px, 100vw"
+                    formats={["avif", "webp"]}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <a
+                  href={href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener" : undefined}
+                  class="mt-6 self-start justify-self-start inline-flex items-center px-8 py-3.5 rounded-btn bg-anis text-page text-sm font-semibold tracking-wide uppercase hover:bg-anis/90 transition-colors"
+                >
+                  Commander
+                </a>
               </div>
-              <a href={orderHref} target="_blank" rel="noopener" class="mt-6 self-start inline-flex items-center px-8 py-3.5 rounded-btn bg-anis text-page text-sm font-semibold tracking-wide uppercase hover:bg-anis/90 transition-colors">
-                Commander
-              </a>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
 
     <!-- Devis : des solutions adaptées -->
-    <section id="contact-agri" class="py-20 md:py-28">
+    <section id="contact-agri" class="py-14 md:py-20">
       <div class="max-w-3xl mx-auto px-6 md:px-10">
         <div class="mb-10">
           <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-anis">

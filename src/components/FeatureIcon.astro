@@ -19,10 +19,16 @@ import temperature from "../assets/icons/aline/temperature.png";
 import atmosphere from "../assets/icons/aline/atmosphere.png";
 import duree from "../assets/icons/aline/duree.png";
 import congelation from "../assets/icons/aline/congelation.png";
+/* Pictos « culture maison » du patch DA 25/07 (fond lilas détouré au passage). */
+import substrat from "../assets/icons/culture/substrat.png";
+import humidite from "../assets/icons/culture/humidite.png";
+import air from "../assets/icons/culture/air-frais.png";
+import patience from "../assets/icons/culture/patience.png";
 
 const ICONS: Record<string, ImageMetadata> = {
   bio, francais, main, durable, circuit, conditionnement,
   volumes, livraison, tarifs, temperature, atmosphere, duree, congelation,
+  substrat, humidite, air, patience,
 };
 
 interface Props {
@@ -32,11 +38,13 @@ interface Props {
 }
 const { name, shape = "circle", size = "lg" } = Astro.props;
 
-const box = size === "lg" ? "w-16 h-16" : "w-12 h-12";
+/* Patch DA 25/07 : bulles agrandies (lg 64 → 96 px, md 48 → 64 px), les pictos
+   étaient jugés trop petits sur les pages pros et myconautes. */
+const box = size === "lg" ? "w-24 h-24" : "w-16 h-16";
 const radius = shape === "square" ? "rounded-2xl" : "rounded-full";
 const img = ICONS[name];
 ---
 
 <span class={`inline-flex items-center justify-center ${box} ${radius} bg-violet`}>
-  <Image src={img} alt="" loading="lazy" decoding="async" widths={[64, 128]} sizes="64px" formats={["avif", "webp"]} class="w-3/5 h-3/5 object-contain" />
+  <Image src={img} alt="" loading="lazy" decoding="async" widths={[96, 192]} sizes="96px" formats={["avif", "webp"]} class="w-3/5 h-3/5 object-contain" />
 </span>

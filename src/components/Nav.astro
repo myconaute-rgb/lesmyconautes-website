@@ -5,6 +5,9 @@
  * en toutes lettres), onglets Particuliers · Pros · Agriculteurs · Myconautes,
  * bouton Commander violet. La classe theme-refonte scope les règles typo DA.
  */
+import { Image } from "astro:assets";
+import emblemePic from "../assets/logos/embleme-myconautes.png";
+
 const links = [
   { href: "/particuliers", label: "Particuliers" },
   { href: "/pros", label: "Pros" },
@@ -17,7 +20,15 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
 <nav class="theme-refonte sticky top-0 z-50 bg-page/95 backdrop-blur-sm font-body">
   <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
     <a href="/" class="flex items-center text-brun" aria-label="Les Myconautes — accueil">
-      <img src="/logo-myconautes.png" alt="Les Myconautes" width="56" height="56" class="h-14 w-14" />
+      <Image
+        src={emblemePic}
+        alt="Les Myconautes"
+        loading="eager"
+        widths={[56, 112, 168]}
+        sizes="56px"
+        formats={["avif", "webp"]}
+        class="h-14 w-14"
+      />
     </a>
 
     <ul class="hidden md:flex items-center gap-10">

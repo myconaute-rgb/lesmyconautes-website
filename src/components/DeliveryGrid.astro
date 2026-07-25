@@ -6,9 +6,12 @@ interface Props {
   background?: "creme" | "ivoire";
   /** "editorial" = DA refonte accueil 07/2026 (maquette 6). Défaut : rendu historique. */
   variant?: "v1" | "editorial";
+  /** Tarif de la tournée Lyon / Saint-Étienne. 3,50 € sur /particuliers depuis
+   *  le patch DA du 25/07 ; 4,20 € partout ailleurs. */
+  deliveryPrice?: string;
 }
 
-const { minOrder, background = "creme", variant = "v1" } = Astro.props;
+const { minOrder, background = "creme", variant = "v1", deliveryPrice = "4,20€" } = Astro.props;
 const editorial = variant === "editorial";
 const sectionBg = background === "creme" ? "bg-creme" : "bg-ivoire";
 const cardBg = background === "creme" ? "bg-ivoire" : "bg-creme";
@@ -33,7 +36,7 @@ const cardBg = background === "creme" ? "bg-ivoire" : "bg-creme";
       <p class="text-sm text-brun leading-relaxed">Tous les vendredis<br/>Entre 8h et 12h</p>
       <p class="mt-4 font-title text-base text-cacao">A Saint-Etienne</p>
       <p class="text-sm text-brun leading-relaxed">Tous les jeudis<br/>Entre 8h et 12h</p>
-      <div class="mt-auto pt-8 font-title text-lg text-cacao">4,20€</div>
+      <div class="mt-auto pt-8 font-title text-lg text-cacao">{deliveryPrice}</div>
     </div>
 
     <div class="bg-lilas p-8 flex flex-col">

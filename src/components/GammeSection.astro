@@ -1,0 +1,46 @@
+---
+/**
+ * Bloc « notre gamme » — accueil, pros et myconautes (patch DA 25/07 : le bloc
+ * est dupliqué sur la page myconautes, d'où la factorisation ici).
+ * Bande violette signature à gauche, 6 encarts, texte d'introduction sur
+ * toute la largeur de la page.
+ */
+import GammeCard from "./GammeCard.astro";
+import { GAMME } from "../data/gamme";
+
+interface Props {
+  /** Couleur du titre Anton : violet (accueil, myconautes) ou cacao (pros). */
+  titleTone?: "violet" | "cacao";
+  scriptTone?: "anis" | "violet";
+  /** Anime l'apparition au scroll (l'accueil embarque le CSS `.reveal`). */
+  reveal?: boolean;
+  id?: string;
+}
+const { titleTone = "violet", scriptTone = "anis", reveal = false, id } = Astro.props;
+const titleColor = titleTone === "cacao" ? "text-cacao" : "text-violet";
+const scriptColor = scriptTone === "violet" ? "text-violet" : "text-anis";
+const rv = reveal ? "reveal" : "";
+---
+
+<section id={id} class="relative py-14 md:py-20 overflow-hidden">
+  <div class="absolute inset-y-0 left-0 w-8 lg:w-20 bg-violet hidden md:block" aria-hidden="true"></div>
+  <div class="max-w-7xl mx-auto px-6 md:px-10 lg:pl-32">
+    <div class={`mb-12 ${rv}`}>
+      <h2 class={`font-title text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] ${titleColor}`}>
+        Cultivés avec soin, récoltés <em class="italic">à la main</em>.
+      </h2>
+      <p class={`script-sub text-[clamp(1.6rem,3vw,2.2rem)] ${scriptColor}`}>notre gamme</p>
+      <p class="mt-6 text-brun leading-relaxed">
+        Traçabilité et fraîcheur garantie ! Toutes nos variétés sont cultivées à partir de notre propre substrat, et certifiées FR-BIO-01. Nos champignons français sont récoltés tous les matins à la main, puis conditionnés dans la foulée.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {GAMME.map((c) => (
+        <div class={rv}>
+          <GammeCard {...c} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

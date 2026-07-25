@@ -44,12 +44,12 @@
 
   /* Anton : titres-affiches (une seule graisse, italique synthétique
      assumée comme sur la maquette). Poppins : tout le reste.
-     Script : sous-titres manuscrits de la charte V2. La maquette impose
-     « Bellaboo » (police commerciale TypeFairy) — Caveat en attendant le
-     fichier licencié ; swap = remplacer l'import + cette pile. */
+     Script : sous-titres de la charte. Chewy depuis le patch DA du 25/07
+     (remplace Caveat) — une seule graisse 400, d'où le font-weight: 400
+     partout ci-dessous : demander 600 déclencherait un faux gras. */
   --font-title: "Anton", "Arial Narrow", sans-serif;
   --font-body: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-script: "Caveat", "Bradley Hand", cursive;
+  --font-script: "Chewy", "Bradley Hand", cursive;
 
   /* Boutons refonte : coins peu arrondis (~10 %) */
   --radius-btn: 0.625rem;
@@ -95,13 +95,17 @@ h3, h4 {
 .theme-refonte .font-script,
 .theme-refonte :is(h1, h2, h3, h4).font-script {
   font-family: var(--font-script);
-  font-weight: 600;
+  font-weight: 400;
 }
 
-/* Sous-titre script de la charte V2 : accroché juste sous le titre Anton. */
+/* Sous-titre script de la charte V2 : accroché juste sous le titre Anton.
+   Chewy est plus haute et plus large que Caveat : capitales (patch 25/07),
+   interlettrage aéré et remontée moins agressive sous le titre. */
 .theme-refonte .script-sub {
   font-family: var(--font-script);
-  font-weight: 600;
-  line-height: 1;
-  margin-top: -0.35em;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  margin-top: 0.1em;
 }

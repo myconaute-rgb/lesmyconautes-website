@@ -1,6 +1,10 @@
 ---
 /** Étape « livraison & retrait » — maquette-corps-page-accueil (brief V2 16/07).
- *  Icône violette en bulle (extraite de la maquette), titre Anton violet. */
+ *  Pictogramme blanc d'Aline dans une bulle violette, titre Anton violet.
+ *
+ *  Patch DA 25/07 : la bulle était auparavant incluse dans le PNG (extrait de
+ *  maquette, cercle rogné à droite et en bas). Elle est désormais dessinée en
+ *  CSS autour du picto transparent — plus de crop, taille libre. */
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 
@@ -13,16 +17,18 @@ const { icon, title } = Astro.props;
 ---
 
 <div class="text-center font-body">
-  <Image
-    src={icon}
-    alt=""
-    loading="lazy"
-    decoding="async"
-    widths={[160, 300]}
-    sizes="160px"
-    formats={["avif", "webp"]}
-    class="w-36 mx-auto"
-  />
+  <span class="inline-flex items-center justify-center w-36 h-36 rounded-full bg-violet">
+    <Image
+      src={icon}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      widths={[144, 288]}
+      sizes="144px"
+      formats={["avif", "webp"]}
+      class="w-3/5 h-3/5 object-contain"
+    />
+  </span>
   <h3 class="mt-4 font-title text-2xl text-violet">{title}</h3>
   <div class="mt-3 text-sm text-brun leading-relaxed max-w-xs mx-auto">
     <slot />

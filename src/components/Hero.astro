@@ -7,6 +7,7 @@
  */
 import { Image } from "astro:assets";
 import heroCagettePic from "../assets/photos/hero-cagette-eryngii.jpg";
+import bandeauPic from "../assets/photos/bandeau-eryngii.jpg";
 
 interface Props {
   title?: string;
@@ -31,6 +32,20 @@ const {
     </h1>
   </div>
 
+  <!-- Bandeau photo pleine largeur (patch DA 25/07), commun à toutes les pages -->
+  <div class="relative h-64 md:h-96 overflow-hidden">
+    <Image
+      src={bandeauPic}
+      alt="Cagette d'eryngii fraîchement récoltés — Les Myconautes"
+      loading="eager"
+      decoding="async"
+      widths={[768, 1280, 1920, 2560]}
+      sizes="100vw"
+      formats={["avif", "webp"]}
+      class="w-full h-full object-cover"
+    />
+  </div>
+
   <!-- Bandeau deux volets -->
   <div class="grid md:grid-cols-2">
     <!-- Volet visuel : cagette d'eryngii sur fond crème (photo maquette) -->
@@ -40,7 +55,7 @@ const {
         alt="Cagette d'eryngii frais — Les Myconautes"
         loading="eager"
         decoding="async"
-        widths={[480, 720, 1024]}
+        widths={[480, 720, 1024, 1440, 1920]}
         sizes="(min-width: 768px) 50vw, 100vw"
         formats={["avif", "webp"]}
         class="absolute inset-0 w-full h-full object-cover object-bottom"
@@ -49,7 +64,7 @@ const {
 
     <!-- Volet violet : script + texte + CTA -->
     <div class="bg-violet text-page px-8 md:px-16 py-14 md:py-20 flex flex-col justify-center">
-      <p class="font-script text-[clamp(1.8rem,3.5vw,2.6rem)] leading-none">
+      <p class="font-script uppercase tracking-[0.02em] text-[clamp(1.8rem,3.5vw,2.6rem)] leading-tight">
         bio . locaux . délicieux
       </p>
       <p class="mt-8 text-base md:text-lg leading-relaxed max-w-md">

@@ -1,0 +1,73 @@
+---
+/**
+ * FAQ commune — accueil, particuliers, pros, myconautes.
+ *
+ * Le bloc était copié-collé à l'identique sur les 4 pages : il est factorisé ici
+ * depuis le patch DA du 25/07/2026, qui demandait la même réécriture partout
+ * (congélation, retrait, livraison hors Lyon / Saint-Étienne). Les seules
+ * variations d'une page à l'autre sont les couleurs du titre et du sous-titre.
+ */
+import FAQItem from "./FAQItem.astro";
+
+interface Props {
+  /** Couleur du titre Anton : violet (accueil, particuliers, myconautes) ou cacao (pros). */
+  titleTone?: "violet" | "cacao";
+  /** Couleur du sous-titre script. */
+  scriptTone?: "anis" | "violet";
+  /** id d'ancre de la section (l'accueil expose #faq). */
+  id?: string;
+}
+const { titleTone = "violet", scriptTone = "anis", id } = Astro.props;
+const titleColor = titleTone === "cacao" ? "text-cacao" : "text-violet";
+const scriptColor = scriptTone === "violet" ? "text-violet" : "text-anis";
+const catClass =
+  "flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta";
+const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
+---
+
+<section id={id} class="relative py-14 md:py-20 overflow-hidden">
+  <div class="absolute inset-y-0 left-0 w-8 lg:w-40 bg-violet hidden md:block" aria-hidden="true"></div>
+  <div class="max-w-4xl mx-auto px-6 md:px-10">
+    <div class="mb-10">
+      <h2 class={`font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] ${titleColor}`}>
+        Tout <em class="italic">savoir</em> sur nos champignons
+      </h2>
+      <p class={`script-sub text-[clamp(1.6rem,3vw,2.2rem)] ${scriptColor}`}>questions fréquentes</p>
+    </div>
+
+    <div class="bg-creme/60 px-6 md:px-10 py-8">
+      <div class="mb-8">
+        <div class={catClass}><span>🍄 Nos produits</span></div>
+        <FAQItem variant="editorial" question="Vos champignons sont-ils bio ?">
+          Tous nos champignons sont issus de l'agriculture biologique (label FR-BIO-01) et cultivés selon des pratiques durables et raisonnées.
+        </FAQItem>
+        <FAQItem variant="editorial" question="D'où viennent vos champignons ?">
+          Cultivés, récoltés et conditionnés à Rive-de-Gier (Loire). Circuit court, sans intermédiaire.
+        </FAQItem>
+        <FAQItem variant="editorial" question="Faut-il les laver ?">
+          Nos champignons sont propres et parés. Un simple essuyage avec un linge humide suffit.
+        </FAQItem>
+      </div>
+
+      <div class="mb-8">
+        <div class={catClass}><span>❄️ Conservation</span></div>
+        <FAQItem variant="editorial" question="Combien de temps se conservent-ils ?">
+          8 à 10 jours au réfrigérateur (0 à 4°C), dans leur emballage d'origine ou un contenant aéré.
+        </FAQItem>
+        <FAQItem variant="editorial" question="Puis-je les congeler ?">
+          Nous vous recommandons de les poêler légèrement avant congélation pour préserver texture et goût.
+        </FAQItem>
+      </div>
+
+      <div>
+        <div class={catClass}><span>📦 Retrait &amp; livraison</span></div>
+        <FAQItem variant="editorial" question="Puis-je récupérer ma commande ?">
+          Oui — envoyez-nous un message pour commander et attendez notre confirmation :) Retrait gratuit au 5 rue Vallée de Couzon, 42800 Rive-de-Gier, du lundi au vendredi de 7h à 13h pour les particuliers comme les professionnels. Nous conserverons votre commande au frais pendant 3 jours après la date de retrait annoncée.
+        </FAQItem>
+        <FAQItem variant="editorial" question="Livrez-vous en dehors de Lyon et Saint-Étienne ?">
+          Pour la France entière, passez par notre boutique <a href={orderHref} target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-violet">Pour de Bon</a>. Professionnels ? Pour de Bon a un espace dédié mais nous pouvons aussi étudier votre demande en direct — <a href="/contact" class="underline underline-offset-4 hover:text-violet">contactez-nous</a> !
+        </FAQItem>
+      </div>
+    </div>
+  </div>
+</section>

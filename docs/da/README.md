@@ -6,6 +6,28 @@ sur le dossier de la vague la plus récente ; les dossiers antérieurs sont l'hi
 
 ## Vagues
 
+### `v4-2026-07-25/` — patch site (intégré le 25/07)
+Brief : `patch site 25-07-26.md` · Réponses aux specs d'images : `SPECS_IMAGES.md`
+- `Les Myconautes WEB square embleme.png` — emblème rond, header + footer
+- `Les Myconautes WEB bandeau.png` — bandeau photo, hero des 5 pages principales
+- `Les Myconautes WEB demi-page contact.png` — visuel + coordonnées du bloc contact
+- `Les Myconautes WEB picto1..4.png` — substrat / humidité / air frais / patience (bloc culture maison)
+
+**Intégré (25/07)** : sous-titres script en **Chewy** (remplace Caveat) et en capitales,
+espaces entre blocs réduits (~40 %), 3 réponses de FAQ réécrites, 6 descriptions de gamme
+réécrites, bandeau sur les 5 heros, emblème dans le header/footer, bloc contact en visuel
+unique (coordonnées conservées en `sr-only`), pictos agrandis, tarif de tournée 3,50 €
+sur `/particuliers` seulement, bloc « notre gamme » ajouté sur `/myconautes`, cartes de
+conditionnement alignées en subgrid et boutons demi-palette / palette redirigés vers le devis.
+
+Trois blocs dupliqués à l'identique sur plusieurs pages ont été factorisés au passage :
+`FaqCommune.astro` (4 pages), `GammeSection.astro` + `src/data/gamme.ts` (3 pages),
+`ContactSection.astro` désormais aussi utilisé par l'accueil.
+
+⚠️ **En attente** : l'image du bloc « l'aventure » (`/myconautes`) est annoncée dans un
+prochain prompt — le portrait de Florestan tient la place. Logos bio à re-fournir en HD
+(cf. `SPECS_IMAGES.md`).
+
 ### `v2-2026-07-16/` — corrections DA (intégrée le 16/07)
 Brief : `Refonte graphique V2 - corrections haut-pied de page, accueil, agriculteurs.md`
 - `maquette-haut-de-pageV1.png` — header commun à toutes les pages
@@ -19,8 +41,9 @@ Brief : `Refonte graphique V2 - corrections haut-pied de page, accueil, agricult
 corps accueil (6 encarts sans lien + bloc photo contact) et corps agriculteurs.
 
 ⚠️ **Points à finaliser** :
-- Police des sous-titres : la charte impose **Bellaboo** (commerciale TypeFairy) —
-  **Caveat** en attendant le fichier licencié. Swap = `--font-script` dans `global.css`.
+- ~~Police des sous-titres : Caveat en attendant Bellaboo~~ → **tranché le 25/07 :
+  la police script du site est **Chewy** (Google Fonts, une seule graisse 400).
+  Swap = `--font-script` dans `global.css` + l'import dans `BaseLayout.astro`.
 - Le **logo** et plusieurs **photos** (portrait Florestan, univers maison/chef,
   « envie de goûter », cagette contact, bloc substrat, illustrations shiitaké/nameko)
   sont **extraits du PNG de la maquette** (basse déf.) — à remplacer par les

@@ -2,20 +2,21 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import StepCard from "../components/StepCard.astro";
-import FAQItem from "../components/FAQItem.astro";
+import FaqCommune from "../components/FaqCommune.astro";
+import FeatureIcon from "../components/FeatureIcon.astro";
 import CTASection from "../components/CTASection.astro";
 import DeliveryGrid from "../components/DeliveryGrid.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 
-import heroBandPic from "../assets/photos/univers-maison.jpg";
+import heroBandPic from "../assets/photos/bandeau-eryngii.jpg";
 import fraisPic from "../assets/photos/hero-cagette-eryngii.jpg";
 import epiceriePic from "../assets/photos/epicerie-pickles.jpg";
 import substratPic from "../assets/photos/substrat-bloc.jpg";
 import cultureBandPic from "../assets/photos/substrat-bloc.jpg";
 import envieGouterPic from "../assets/photos/envie-gouter.jpg";
-import etapeCommandeIcon from "../assets/icons/etape-commande.png";
-import etapeRecolteIcon from "../assets/icons/etape-recolte.png";
-import etapeCartonIcon from "../assets/icons/etape-carton.png";
+import etapeCommandeIcon from "../assets/icons/aline/clic.png";
+import etapeRecolteIcon from "../assets/icons/aline/pick.png";
+import etapeCartonIcon from "../assets/icons/aline/colis.png";
 
 const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
 ---
@@ -41,7 +42,7 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
       <div class="relative h-64 md:h-96 bg-violet overflow-hidden">
         <Image
           src={heroBandPic}
-          alt="Cuisiner les champignons à la maison"
+          alt="Cagette d'eryngii fraîchement récoltés — Les Myconautes"
           loading="eager"
           decoding="async"
           widths={[640, 960, 1280, 1600]}
@@ -50,7 +51,15 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
           class="w-full h-full object-cover"
         />
       </div>
-      <div class="max-w-7xl mx-auto px-6 md:px-10 py-10 flex flex-wrap gap-4">
+      <div class="max-w-3xl mx-auto px-6 md:px-10 pt-10 text-brun leading-relaxed space-y-4">
+        <p>
+          Bienvenue chez Les Myconautes ! À Rive-de-Gier, nous cultivons des champignons bio d'exception, récoltés à la main chaque jour et produits dans le respect de la nature. Notre mission est simple : vous faire découvrir des champignons frais, savoureux et locaux, cultivés en circuit court selon des pratiques agricoles durables. Certifiés Bio FR-BIO-01, ils sont le reflet d'un savoir-faire artisanal et d'une véritable passion pour le vivant.
+        </p>
+        <p>
+          Cuisine saine, facile et bons petits plats qui changent ? Rejoignez l'équipage des explorateurs du champignon !
+        </p>
+      </div>
+      <div class="max-w-7xl mx-auto px-6 md:px-10 py-10 flex flex-wrap justify-center gap-4">
         <a href={orderHref} target="_blank" rel="noopener" class="inline-flex items-center px-8 py-4 rounded-btn bg-violet text-page text-sm font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">
           Commander sur Pour de Bon
         </a>
@@ -61,7 +70,7 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
     </section>
 
     <!-- Offre : 3 colonnes photo + bouton -->
-    <section class="px-6 md:px-10 py-16 md:py-24">
+    <section class="px-6 md:px-10 py-12 md:py-16">
       <div class="max-w-7xl mx-auto">
         <div class="mb-14">
           <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">
@@ -72,30 +81,30 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
 
         <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
           <div class="flex flex-col">
-            <h3 class="font-title text-xl text-cacao">Champignons frais</h3>
+              <h3 class="font-title text-xl text-cacao">Champignons frais</h3>
             <p class="mt-2 text-sm text-brun leading-relaxed">Pleurotes, eryngii, hericium … récoltés chaque jour, livrés chez vous.</p>
             <div class="mt-6 aspect-[4/3] overflow-hidden">
               <Image src={fraisPic} alt="Champignons frais en cagette" loading="lazy" decoding="async" widths={[320,480,640]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
             </div>
-            <a href={orderHref} target="_blank" rel="noopener" class="mt-6 self-start inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
+            <a href={orderHref} target="_blank" rel="noopener" class="mt-6 self-center inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
           </div>
 
           <div class="flex flex-col">
-            <h3 class="font-title text-xl text-cacao">Epicerie fine</h3>
+              <h3 class="font-title text-xl text-cacao">Epicerie fine</h3>
             <p class="mt-2 text-sm text-brun leading-relaxed">Pickles, velouté, mouliné : découvrez le champignon autrement !</p>
             <div class="mt-6 aspect-[4/3] overflow-hidden">
               <Image src={epiceriePic} alt="Pickles d'Eryngii — épicerie fine" loading="lazy" decoding="async" widths={[320,480,640]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
             </div>
-            <a href={orderHref} target="_blank" rel="noopener" class="mt-6 self-start inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
+            <a href={orderHref} target="_blank" rel="noopener" class="mt-6 self-center inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
           </div>
 
           <div class="flex flex-col">
-            <h3 class="font-title text-xl text-cacao">Ca pousse !</h3>
+              <h3 class="font-title text-xl text-cacao">Ca pousse !</h3>
             <p class="mt-2 text-sm text-brun leading-relaxed">Un sac de substrat, un peu de patience et vous cultivez vos champignons à la maison.</p>
             <div class="mt-6 aspect-[4/3] overflow-hidden">
               <Image src={substratPic} alt="Sac de substrat en fructification" loading="lazy" decoding="async" widths={[320,480,640]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
             </div>
-            <div class="mt-6 flex flex-wrap gap-3">
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
               <a href={orderHref} target="_blank" rel="noopener" class="inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
               <a href="#culture" class="inline-flex items-center px-7 py-3.5 rounded-btn border-2 border-violet text-violet text-xs font-semibold tracking-wide uppercase hover:bg-violet/10 transition-colors">Comment faire ?</a>
             </div>
@@ -105,7 +114,7 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
     </section>
 
     <!-- Livraison & retrait -->
-    <section class="px-6 md:px-10 py-16 md:py-24">
+    <section class="px-6 md:px-10 py-12 md:py-16">
       <div class="max-w-7xl mx-auto">
         <div class="mb-14">
           <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">
@@ -127,91 +136,59 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
           </StepCard>
         </div>
 
-        <DeliveryGrid variant="editorial" />
+        <DeliveryGrid variant="editorial" deliveryPrice="3,50€" />
       </div>
     </section>
 
     <!-- Cultiver chez soi : bande verte + panneau lilas 4 tips -->
     <section id="culture" class="py-4">
       <div class="grid md:grid-cols-2">
-        <div class="bg-anis text-page px-6 md:px-10 lg:pl-20 py-14 md:py-20 flex flex-col justify-center">
+        <div class="bg-anis text-page px-6 md:px-10 lg:pl-20 py-14 md:py-20 flex flex-col justify-center text-right">
           <h2 class="font-title text-[clamp(2.2rem,5vw,4rem)] leading-[1.02] text-cacao">
             <em class="italic">Lancez vous</em> dans la culture maison !
           </h2>
-          <p class="mt-6 text-page leading-relaxed max-w-md">
+          <p class="mt-6 text-page leading-relaxed max-w-md ml-auto">
             C'est facile, même pour les débutants. En appartement ou en maison, aucune installation particulière n'est nécessaire. Chaque sac est vendu avec une fiche d'instructions claire et illustrée, pour vous accompagner pas à pas.
           </p>
-          <div class="mt-8 aspect-[16/9] overflow-hidden max-w-md">
+          <div class="mt-8 aspect-[16/9] overflow-hidden max-w-md ml-auto">
             <Image src={cultureBandPic} alt="Substrat en fructification à la maison" loading="lazy" decoding="async" widths={[400,600,800]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
           </div>
         </div>
 
         <div class="bg-lilas px-6 md:px-10 lg:pr-20 py-14 md:py-20 space-y-8">
-          <div>
-            <h3 class="font-title text-xl text-cacao">Du substrat prêt à l'emploi</h3>
-            <p class="mt-1 text-sm text-brun leading-relaxed">Fabriqué et ensemencé chez nous. Vous gardez la partie la plus sympa : voir pousser vos champignons.</p>
+          <div class="flex items-start gap-5">
+            <FeatureIcon name="substrat" size="md" />
+            <div>
+              <h3 class="font-title text-xl text-cacao">Du substrat prêt à l'emploi</h3>
+              <p class="mt-1 text-sm text-brun leading-relaxed">Fabriqué et ensemencé chez nous. Vous gardez la partie la plus sympa : voir pousser vos champignons.</p>
+            </div>
           </div>
-          <div>
-            <h3 class="font-title text-xl text-cacao">Un bonne humidité</h3>
-            <p class="mt-1 text-sm text-brun leading-relaxed">Munissez-vous d'un brumisateur. Pschiiit pschiiit … maintenir l'humidité est primordial : sans elle, rien ne se passe.</p>
+          <div class="flex items-start gap-5">
+            <FeatureIcon name="humidite" size="md" />
+            <div>
+              <h3 class="font-title text-xl text-cacao">Un bonne humidité</h3>
+              <p class="mt-1 text-sm text-brun leading-relaxed">Munissez-vous d'un brumisateur. Pschiiit pschiiit … maintenir l'humidité est primordial : sans elle, rien ne se passe.</p>
+            </div>
           </div>
-          <div>
-            <h3 class="font-title text-xl text-cacao">De l'air frais</h3>
-            <p class="mt-1 text-sm text-brun leading-relaxed">Exposez le substrat à l'air frais. Évitez les espaces confinés et la proximité d'un chauffage.</p>
+          <div class="flex items-start gap-5">
+            <FeatureIcon name="air" size="md" />
+            <div>
+              <h3 class="font-title text-xl text-cacao">De l'air frais</h3>
+              <p class="mt-1 text-sm text-brun leading-relaxed">Exposez le substrat à l'air frais. Évitez les espaces confinés et la proximité d'un chauffage.</p>
+            </div>
           </div>
-          <div>
-            <h3 class="font-title text-xl text-cacao">Un peu de patience</h3>
-            <p class="mt-1 text-sm text-brun leading-relaxed">Laissez le sac fermé jusqu'à l'apparition des primordias (petits champignons blancs), puis ouvrez. Quelques jours plus tard, c'est prêt !</p>
+          <div class="flex items-start gap-5">
+            <FeatureIcon name="patience" size="md" />
+            <div>
+              <h3 class="font-title text-xl text-cacao">Un peu de patience</h3>
+              <p class="mt-1 text-sm text-brun leading-relaxed">Laissez le sac fermé jusqu'à l'apparition des primordias (petits champignons blancs), puis ouvrez. Quelques jours plus tard, c'est prêt !</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ — bande violette signature à gauche -->
-    <section class="relative py-20 md:py-28 overflow-hidden">
-      <div class="absolute inset-y-0 left-0 w-8 lg:w-40 bg-violet hidden md:block" aria-hidden="true"></div>
-      <div class="max-w-4xl mx-auto px-6 md:px-10">
-        <div class="mb-10">
-          <h2 class="font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] text-violet">
-            Tout <em class="italic">savoir</em> sur nos champignons
-          </h2>
-          <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-anis">questions fréquentes</p>
-        </div>
-
-        <div class="bg-creme/60 px-6 md:px-10 py-8">
-          <div class="mb-8">
-            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta"><span>🍄 Nos produits</span></div>
-            <FAQItem variant="editorial" question="Vos champignons sont-ils bio ?">
-              Tous nos champignons sont issus de l'agriculture biologique (label FR-BIO-01) et cultivés selon des pratiques durables et raisonnées.
-            </FAQItem>
-            <FAQItem variant="editorial" question="D'où viennent vos champignons ?">
-              Cultivés, récoltés et conditionnés à Rive-de-Gier (Loire). Circuit court, sans intermédiaire.
-            </FAQItem>
-            <FAQItem variant="editorial" question="Faut-il les laver ?">
-              Nos champignons sont propres et parés. Un simple essuyage avec un linge humide suffit.
-            </FAQItem>
-          </div>
-          <div class="mb-8">
-            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta"><span>❄️ Conservation</span></div>
-            <FAQItem variant="editorial" question="Combien de temps se conservent-ils ?">
-              8 à 10 jours au réfrigérateur (0 à 4°C), dans leur emballage d'origine ou un contenant aéré.
-            </FAQItem>
-            <FAQItem variant="editorial" question="Puis-je les congeler ?">
-              Préférez les poêler légèrement avant congélation pour préserver texture et goût.
-            </FAQItem>
-          </div>
-          <div>
-            <div class="flex items-center gap-2 pb-3 mb-2 border-b border-terracotta/30 text-xs font-semibold uppercase tracking-widest text-terracotta"><span>📦 Retrait &amp; livraison</span></div>
-            <FAQItem variant="editorial" question="Puis-je récupérer ma commande ?">
-              Oui — retrait gratuit au 5 rue Vallée de Couzon, 42800 Rive-de-Gier, du lundi au vendredi de 7h à 13h. Conservation au frais 3 jours.
-            </FAQItem>
-            <FAQItem variant="editorial" question="Livrez-vous les particuliers en dehors de Lyon et Saint-Étienne ?">
-              Pour la France entière, passez par Pour de Bon. Pour les volumes pro, on étudie au cas par cas — contactez-nous.
-            </FAQItem>
-          </div>
-        </div>
-      </div>
-    </section>
+    <FaqCommune titleTone="violet" scriptTone="anis" />
 
     <CTASection
       variant="editorial"
