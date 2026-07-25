@@ -41,7 +41,14 @@ Format : **JPEG qualité 90** pour les photos, **PNG transparent** pour les pict
   pas être rogné). Les 4 pictos culture livrés avaient un aplat lilas : il a été détouré
   à l'intégration, exactement la couleur du cadre où ils devaient aller, ils y auraient
   été invisibles.
-- **Logos bio** (n° 6) : les fichiers actuels font 250 px de haut et sont désormais
-  affichés à 224 px — donc flous sur écran Retina. Les logos officiels **AB** et
-  **Eurofeuille** sont téléchargeables en vectoriel (SVG/EPS) sur le site de l'Agence Bio
-  et de la Commission européenne : exporter depuis ces sources en 600 px de haut.
+- 🔴 **Logos bio** (n° 6) — **bloquant, plus grave qu'un problème de résolution.** Les deux
+  PNG du repo sont des **extraits de maquette tronqués** : `certifie-ab.png` affiche
+  « CERTIFI », « AGRICULTUR », « BIOLOGIQU », et `certifie-eu.png` affiche « CERTIFIÉ PAR
+  FR- BIO » (sans le -01) et « AGRICULTURE FRAN ». Invisible tant qu'ils étaient petits ;
+  criant dès qu'on les agrandit comme le demandait le brief. On parle de **mentions de
+  certification réglementées**, qui ne doivent être ni déformées ni tronquées.
+  → **En attendant, l'affichage est bridé à 112 px de haut** (au lieu du « plein cadre »
+  demandé). Fournir les originaux **AB** et **Eurofeuille** — ils sont dans le kit de
+  communication Ecocert, et téléchargeables en vectoriel (SVG/EPS) auprès de l'Agence Bio
+  et de la Commission européenne. Exporter en **600 px de haut**, puis repasser les deux
+  pages à `h-40 md:h-56` (`agriculteurs.astro`, `myconautes.astro`).
