@@ -36,11 +36,18 @@ Format : **JPEG qualité 90** pour les photos, **PNG transparent** pour les pict
 
 ## Deux points d'attention
 
-- **Pictos** : les fournir **sur fond transparent**, pictogramme **blanc**, sans le rond
-  violet — le site dessine le rond lui-même (il s'adapte à toutes les tailles et ne peut
-  pas être rogné). Les 4 pictos culture livrés avaient un aplat lilas : il a été détouré
-  à l'intégration, exactement la couleur du cadre où ils devaient aller, ils y auraient
-  été invisibles.
+- ✅ **Pictos** — **réglé le 29/07** : le jeu HD est arrivé **en PNG transparent, pictogramme blanc,
+  sans rond** (2000 × 2000 px), exactement comme demandé. Traitement à l'intégration : blanc pur
+  forcé (le détourage laissait un liseré gris sur trois d'entre eux), recadrage sur le contenu,
+  centrage dans un carré et réduction à 512 × 512 px. Consigne inchangée pour les prochains.
+- ✅ **Logos bio** (n° 6) — **réglé le 29/07** : `logosbio.png` (2880 × 1200, transparent) contient
+  les deux logos complets, mentions entières (« CERTIFIÉ / AGRICULTURE BIOLOGIQUE », « CERTIFIÉ PAR
+  FR- BIO -01 / AGRICULTURE FRANCE »). Découpé à l'intégration en `certifie-ab.png` (409 × 560) et
+  `certifie-eu.png` (695 × 560), **affichage plein cadre rétabli** (`h-40 md:h-56`) sur
+  `agriculteurs.astro` et `myconautes.astro`. Historique du blocage ci-dessous.
+
+<details><summary>Historique — le blocage du 25/07 (résolu)</summary>
+
 - 🔴 **Logos bio** (n° 6) — **bloquant, plus grave qu'un problème de résolution.** Les deux
   PNG du repo sont des **extraits de maquette tronqués** : `certifie-ab.png` affiche
   « CERTIFI », « AGRICULTUR », « BIOLOGIQU », et `certifie-eu.png` affiche « CERTIFIÉ PAR
@@ -52,3 +59,5 @@ Format : **JPEG qualité 90** pour les photos, **PNG transparent** pour les pict
   communication Ecocert, et téléchargeables en vectoriel (SVG/EPS) auprès de l'Agence Bio
   et de la Commission européenne. Exporter en **600 px de haut**, puis repasser les deux
   pages à `h-40 md:h-56` (`agriculteurs.astro`, `myconautes.astro`).
+
+</details>

@@ -105,9 +105,9 @@ const VALEURS = [
             <p class="mt-4 text-sm text-brun/80">Certification FR-BIO-01.250-0043443.2026.003<br />Organisme certificateur : Ecocert</p>
           </div>
           <div class="flex items-center justify-center gap-8 md:gap-10 bg-creme/40 px-6 py-10">
-            <!-- Taille bridée : PNG sources tronqués, cf. agriculteurs.astro. -->
-            <Image src={certifieAbLogo} alt="Certifié Agriculture Biologique" loading="lazy" widths={[164,328]} sizes="110px" formats={["avif","webp"]} class="h-24 md:h-28 w-auto" />
-            <Image src={certifieEuLogo} alt="Certifié FR-BIO-01 — Agriculture France / UE" loading="lazy" widths={[252,504]} sizes="150px" formats={["avif","webp"]} class="h-24 md:h-28 w-auto" />
+            <!-- Plein cadre rétabli le 29/07 (logos complets), cf. agriculteurs.astro. -->
+            <Image src={certifieAbLogo} alt="Certifié Agriculture Biologique" loading="lazy" widths={[240,400]} sizes="(min-width: 768px) 200px, 40vw" formats={["avif","webp"]} class="h-40 md:h-56 w-auto" />
+            <Image src={certifieEuLogo} alt="Certifié FR-BIO-01 — Agriculture France / UE" loading="lazy" widths={[320,560]} sizes="(min-width: 768px) 280px, 50vw" formats={["avif","webp"]} class="h-40 md:h-56 w-auto" />
           </div>
         </div>
 

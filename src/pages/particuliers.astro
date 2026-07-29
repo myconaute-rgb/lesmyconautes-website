@@ -9,10 +9,12 @@ import DeliveryGrid from "../components/DeliveryGrid.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 
 import heroBandPic from "../assets/photos/bandeau-eryngii.jpg";
-import fraisPic from "../assets/photos/hero-cagette-eryngii.jpg";
-import epiceriePic from "../assets/photos/epicerie-pickles.jpg";
-import substratPic from "../assets/photos/substrat-bloc.jpg";
-import cultureBandPic from "../assets/photos/substrat-bloc.jpg";
+/* Visuels détourés d'Aline (vague v5 du 29/07) : fond crème #fffaf1 ou anis #87b800
+   déjà intégré au fichier, donc affichés en object-contain sur le même aplat. */
+import fraisPic from "../assets/photos/barquette-eryngii.jpg";
+import epiceriePic from "../assets/photos/bocal-pickles-eryngii.jpg";
+import substratPic from "../assets/photos/sac-substrat-eryngii.jpg";
+import cultureBandPic from "../assets/photos/substrat-eryngii-fructification.jpg";
 import envieGouterPic from "../assets/photos/envie-gouter.jpg";
 import etapeCommandeIcon from "../assets/icons/aline/clic.png";
 import etapeRecolteIcon from "../assets/icons/aline/pick.png";
@@ -83,8 +85,8 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
           <div class="flex flex-col">
               <h3 class="font-title text-xl text-cacao">Champignons frais</h3>
             <p class="mt-2 text-sm text-brun leading-relaxed">Pleurotes, eryngii, hericium … récoltés chaque jour, livrés chez vous.</p>
-            <div class="mt-6 aspect-[4/3] overflow-hidden">
-              <Image src={fraisPic} alt="Champignons frais en cagette" loading="lazy" decoding="async" widths={[320,480,640]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
+            <div class="mt-6 aspect-square overflow-hidden bg-page">
+              <Image src={fraisPic} alt="Barquette d'eryngii frais" loading="lazy" decoding="async" widths={[400,600,800]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-contain" />
             </div>
             <a href={orderHref} target="_blank" rel="noopener" class="mt-6 self-center inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
           </div>
@@ -92,8 +94,8 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
           <div class="flex flex-col">
               <h3 class="font-title text-xl text-cacao">Epicerie fine</h3>
             <p class="mt-2 text-sm text-brun leading-relaxed">Pickles, velouté, mouliné : découvrez le champignon autrement !</p>
-            <div class="mt-6 aspect-[4/3] overflow-hidden">
-              <Image src={epiceriePic} alt="Pickles d'Eryngii — épicerie fine" loading="lazy" decoding="async" widths={[320,480,640]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
+            <div class="mt-6 aspect-square overflow-hidden bg-page">
+              <Image src={epiceriePic} alt="Bocal de pickles d'eryngii — épicerie fine" loading="lazy" decoding="async" widths={[400,600,800]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-contain" />
             </div>
             <a href={orderHref} target="_blank" rel="noopener" class="mt-6 self-center inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
           </div>
@@ -101,8 +103,8 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
           <div class="flex flex-col">
               <h3 class="font-title text-xl text-cacao">Ca pousse !</h3>
             <p class="mt-2 text-sm text-brun leading-relaxed">Un sac de substrat, un peu de patience et vous cultivez vos champignons à la maison.</p>
-            <div class="mt-6 aspect-[4/3] overflow-hidden">
-              <Image src={substratPic} alt="Sac de substrat en fructification" loading="lazy" decoding="async" widths={[320,480,640]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
+            <div class="mt-6 aspect-square overflow-hidden bg-page">
+              <Image src={substratPic} alt="Sacs de substrat d'eryngii en fructification" loading="lazy" decoding="async" widths={[400,600,800]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-contain" />
             </div>
             <div class="mt-6 flex flex-wrap justify-center gap-3">
               <a href={orderHref} target="_blank" rel="noopener" class="inline-flex items-center px-7 py-3.5 rounded-btn bg-violet text-page text-xs font-semibold tracking-wide uppercase hover:bg-violet/90 transition-colors">Commander</a>
@@ -136,7 +138,7 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
           </StepCard>
         </div>
 
-        <DeliveryGrid variant="editorial" deliveryPrice="3,50€" />
+        <DeliveryGrid variant="editorial" />
       </div>
     </section>
 
@@ -150,35 +152,35 @@ const orderHref = "https://www.pourdebon.com/les-myconautes-s1527";
           <p class="mt-6 text-page leading-relaxed max-w-md ml-auto">
             C'est facile, même pour les débutants. En appartement ou en maison, aucune installation particulière n'est nécessaire. Chaque sac est vendu avec une fiche d'instructions claire et illustrée, pour vous accompagner pas à pas.
           </p>
-          <div class="mt-8 aspect-[16/9] overflow-hidden max-w-md ml-auto">
-            <Image src={cultureBandPic} alt="Substrat en fructification à la maison" loading="lazy" decoding="async" widths={[400,600,800]} sizes="(min-width:768px) 400px, 100vw" formats={["avif","webp"]} class="w-full h-full object-cover" />
+          <div class="mt-8 aspect-[12/5] overflow-hidden max-w-md ml-auto">
+            <Image src={cultureBandPic} alt="Substrat d'eryngii en fructification à la maison" loading="lazy" decoding="async" widths={[480,720,960]} sizes="(min-width:768px) 448px, 100vw" formats={["avif","webp"]} class="w-full h-full object-contain" />
           </div>
         </div>
 
         <div class="bg-lilas px-6 md:px-10 lg:pr-20 py-14 md:py-20 space-y-8">
           <div class="flex items-start gap-5">
-            <FeatureIcon name="substrat" size="md" />
+            <FeatureIcon name="substrat" shape="none" size="md" />
             <div>
               <h3 class="font-title text-xl text-cacao">Du substrat prêt à l'emploi</h3>
               <p class="mt-1 text-sm text-brun leading-relaxed">Fabriqué et ensemencé chez nous. Vous gardez la partie la plus sympa : voir pousser vos champignons.</p>
             </div>
           </div>
           <div class="flex items-start gap-5">
-            <FeatureIcon name="humidite" size="md" />
+            <FeatureIcon name="humidite" shape="none" size="md" />
             <div>
-              <h3 class="font-title text-xl text-cacao">Un bonne humidité</h3>
+              <h3 class="font-title text-xl text-cacao">Une bonne humidité</h3>
               <p class="mt-1 text-sm text-brun leading-relaxed">Munissez-vous d'un brumisateur. Pschiiit pschiiit … maintenir l'humidité est primordial : sans elle, rien ne se passe.</p>
             </div>
           </div>
           <div class="flex items-start gap-5">
-            <FeatureIcon name="air" size="md" />
+            <FeatureIcon name="air" shape="none" size="md" />
             <div>
               <h3 class="font-title text-xl text-cacao">De l'air frais</h3>
               <p class="mt-1 text-sm text-brun leading-relaxed">Exposez le substrat à l'air frais. Évitez les espaces confinés et la proximité d'un chauffage.</p>
             </div>
           </div>
           <div class="flex items-start gap-5">
-            <FeatureIcon name="patience" size="md" />
+            <FeatureIcon name="patience" shape="none" size="md" />
             <div>
               <h3 class="font-title text-xl text-cacao">Un peu de patience</h3>
               <p class="mt-1 text-sm text-brun leading-relaxed">Laissez le sac fermé jusqu'à l'apparition des primordias (petits champignons blancs), puis ouvrez. Quelques jours plus tard, c'est prêt !</p>

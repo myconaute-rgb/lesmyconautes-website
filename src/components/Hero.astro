@@ -6,7 +6,9 @@
  * « bio . locaux . délicieux », le texte en deux temps et les CTA.
  */
 import { Image } from "astro:assets";
-import heroCagettePic from "../assets/photos/hero-cagette-eryngii.jpg";
+/* Visuel détouré d'Aline (v5 29/07), fond crème #fffaf1 = --color-page : affiché
+   en object-contain, le raccord avec le fond de section est invisible. */
+import heroCagettePic from "../assets/photos/cagette-eryngii.jpg";
 import bandeauPic from "../assets/photos/bandeau-eryngii.jpg";
 
 interface Props {
@@ -48,7 +50,7 @@ const {
 
   <!-- Bandeau deux volets -->
   <div class="grid md:grid-cols-2">
-    <!-- Volet visuel : cagette d'eryngii sur fond crème (photo maquette) -->
+    <!-- Volet visuel : cagette d'eryngii détourée sur fond crème (visuel Aline v5) -->
     <div class="relative bg-page min-h-[320px] md:min-h-[520px] overflow-hidden">
       <Image
         src={heroCagettePic}
@@ -58,7 +60,7 @@ const {
         widths={[480, 720, 1024, 1440, 1920]}
         sizes="(min-width: 768px) 50vw, 100vw"
         formats={["avif", "webp"]}
-        class="absolute inset-0 w-full h-full object-cover object-bottom"
+        class="absolute inset-0 w-full h-full object-contain"
       />
     </div>
 

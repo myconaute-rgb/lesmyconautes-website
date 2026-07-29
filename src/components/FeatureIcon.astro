@@ -1,8 +1,9 @@
 ---
 /**
- * Icône « bulle violette » — pictos d'Aline (DA v3, dossier icone 1/2).
- * Pictogramme blanc (ou drapeau pour « francais ») dans une bulle violette.
- * Cercle par défaut (avantages / valeurs), carré arrondi pour les conseils.
+ * Icône — pictos d'Aline (DA v3, dossier icone 1/2 ; pictos HD repris en v5 du 29/07).
+ * Pictogramme blanc (ou drapeau pour « francais ») posé dans une bulle violette.
+ * Cercle par défaut (avantages / valeurs / conseils pro), carré arrondi si demandé,
+ * `shape="none"` pour un picto blanc à même le fond (bloc culture maison, maquette v3).
  */
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
@@ -16,10 +17,8 @@ import volumes from "../assets/icons/aline/volumes.png";
 import livraison from "../assets/icons/aline/livraison.png";
 import tarifs from "../assets/icons/aline/tarifs.png";
 import temperature from "../assets/icons/aline/temperature.png";
-import atmosphere from "../assets/icons/aline/atmosphere.png";
-import duree from "../assets/icons/aline/duree.png";
 import congelation from "../assets/icons/aline/congelation.png";
-/* Pictos « culture maison » du patch DA 25/07 (fond lilas détouré au passage). */
+/* Pictos « culture maison » (patch DA 25/07, jeu HD détouré fourni le 29/07). */
 import substrat from "../assets/icons/culture/substrat.png";
 import humidite from "../assets/icons/culture/humidite.png";
 import air from "../assets/icons/culture/air-frais.png";
@@ -27,13 +26,16 @@ import patience from "../assets/icons/culture/patience.png";
 
 const ICONS: Record<string, ImageMetadata> = {
   bio, francais, main, durable, circuit, conditionnement,
-  volumes, livraison, tarifs, temperature, atmosphere, duree, congelation,
+  volumes, livraison, tarifs, temperature, congelation,
   substrat, humidite, air, patience,
+  /* Alias : les conseils pros réutilisent le picto « tempo » de la culture maison
+     (v5 29/07) — anciens dessins atmosphere.png / duree.png abandonnés. */
+  duree: patience,
 };
 
 interface Props {
   name: keyof typeof ICONS;
-  shape?: "circle" | "square";
+  shape?: "circle" | "square" | "none";
   size?: "md" | "lg";
 }
 const { name, shape = "circle", size = "lg" } = Astro.props;
@@ -42,9 +44,12 @@ const { name, shape = "circle", size = "lg" } = Astro.props;
    étaient jugés trop petits sur les pages pros et myconautes. */
 const box = size === "lg" ? "w-24 h-24" : "w-16 h-16";
 const radius = shape === "square" ? "rounded-2xl" : "rounded-full";
+/* Sans bulle : le picto occupe tout le carré au lieu des 3/5 de la bulle. */
+const bubble = shape === "none" ? "" : `${radius} bg-violet`;
+const inner = shape === "none" ? "w-full h-full" : "w-3/5 h-3/5";
 const img = ICONS[name];
 ---
 
-<span class={`inline-flex items-center justify-center ${box} ${radius} bg-violet`}>
-  <Image src={img} alt="" loading="lazy" decoding="async" widths={[96, 192]} sizes="96px" formats={["avif", "webp"]} class="w-3/5 h-3/5 object-contain" />
+<span class={`inline-flex items-center justify-center flex-shrink-0 ${box} ${bubble}`.trim()}>
+  <Image src={img} alt="" loading="lazy" decoding="async" widths={[96, 192]} sizes="96px" formats={["avif", "webp"]} class={`${inner} object-contain`} />
 </span>

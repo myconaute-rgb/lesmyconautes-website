@@ -108,11 +108,11 @@ const FORMAT_EXTRA: Record<string, string> = {
             <p><strong>Bio sans compromis :</strong> tout le cycle est suivi par Ecocert. Nos champignons poussent sans traitement : dans nos salles, on mise sur l'hygiène et le soin plutôt que sur la chimie.</p>
           </div>
           <div class="flex items-center justify-center gap-8 md:gap-10 bg-creme/40 px-6 py-10">
-            <!-- Taille bridée : les PNG sources sont des extraits de maquette tronqués
-                 (« AGRICULTUR », « CERTIFIÉ PAR FR- BIO »). Passer à h-40/h-56 comme le
-                 demandait le patch DA dès que les originaux Ecocert seront fournis. -->
-            <Image src={certifieAbLogo} alt="Certifié Agriculture Biologique" loading="lazy" widths={[164, 328]} sizes="110px" formats={["avif", "webp"]} class="h-24 md:h-28 w-auto" />
-            <Image src={certifieEuLogo} alt="Certifié FR-BIO-01 — Agriculture France / UE" loading="lazy" widths={[252, 504]} sizes="150px" formats={["avif", "webp"]} class="h-24 md:h-28 w-auto" />
+            <!-- Plein cadre rétabli le 29/07 : logos complets fournis par Aline
+                 (mentions « CERTIFIÉ / AGRICULTURE BIOLOGIQUE » et « CERTIFIÉ PAR
+                 FR- BIO -01 / AGRICULTURE FRANCE » entières). -->
+            <Image src={certifieAbLogo} alt="Certifié Agriculture Biologique" loading="lazy" widths={[240, 400]} sizes="(min-width: 768px) 200px, 40vw" formats={["avif", "webp"]} class="h-40 md:h-56 w-auto" />
+            <Image src={certifieEuLogo} alt="Certifié FR-BIO-01 — Agriculture France / UE" loading="lazy" widths={[320, 560]} sizes="(min-width: 768px) 280px, 50vw" formats={["avif", "webp"]} class="h-40 md:h-56 w-auto" />
           </div>
         </div>
 
@@ -187,7 +187,9 @@ const FORMAT_EXTRA: Record<string, string> = {
           <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet">procédés &amp; expertise</p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <!-- 29/07 : image calée sur la hauteur de la colonne de texte (items-stretch),
+             elle débordait en haut et en bas avec son ratio 4/5 fixe. -->
+        <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-stretch">
           <ol class="space-y-8">
             {STEPS.map((s) => (
               <li class="flex gap-6">
@@ -199,7 +201,7 @@ const FORMAT_EXTRA: Record<string, string> = {
               </li>
             ))}
           </ol>
-          <div class="aspect-[4/5] overflow-hidden">
+          <div class="aspect-[4/5] md:aspect-auto md:h-full overflow-hidden">
             <Image
               src={incubationAlleePic}
               alt="Salle d'incubation des substrats — Les Myconautes"
@@ -253,15 +255,19 @@ const FORMAT_EXTRA: Record<string, string> = {
         <!-- Patch DA 25/07 : subgrid — textes, images et boutons des 3 cartes
              partagent les mêmes lignes, donc s'alignent quelle que soit la
              longueur du descriptif. Images en carré strict. -->
-        <div class="grid sm:grid-cols-3 gap-x-8 gap-y-12 sm:grid-rows-[auto_auto_1fr_auto_auto]">
+        <!-- 29/07 : le gap-y du parent s'appliquait aussi AUX LIGNES DU SUBGRID, d'où
+             les grands blancs entre le titre, le poids et le descriptif. Interligne
+             ramené à 0,25 rem ; la respiration entre cartes empilées passe par pb-12
+             (mobile seulement) et les marges des lignes image / bouton. -->
+        <div class="grid sm:grid-cols-3 gap-x-8 gap-y-1 sm:grid-rows-[auto_auto_1fr_auto_auto]">
           {SUBSTRATE_FORMATS.map((fmt) => {
             const href = FORMAT_HREF[fmt.label] ?? orderHref;
             const external = href.startsWith("http");
             return (
-              <div class="grid sm:row-span-5 sm:grid-rows-subgrid">
+              <div class="grid pb-12 sm:pb-0 sm:row-span-5 sm:grid-rows-subgrid">
                 <h3 class="font-title text-xl text-cacao">{fmt.label}</h3>
                 <div class="font-title text-lg text-violet">{fmt.weight}</div>
-                <p class="mt-2 text-sm text-brun leading-relaxed">{FORMAT_EXTRA[fmt.label] ?? fmt.description}</p>
+                <p class="mt-1 text-sm text-brun leading-relaxed">{FORMAT_EXTRA[fmt.label] ?? fmt.description}</p>
                 <div class="mt-5 aspect-square overflow-hidden">
                   <Image
                     src={fmt.image}

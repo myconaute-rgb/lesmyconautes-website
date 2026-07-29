@@ -6,6 +6,27 @@ sur le dossier de la vague la plus récente ; les dossiers antérieurs sont l'hi
 
 ## Vagues
 
+### `v5-2026-07-29/` — visuels manquants + corrections (intégré le 29/07)
+Brief : `retour et patch site 29-07-26.md` · 12 PNG livrés (logos bio, 5 visuels détourés,
+6 pictos blancs transparents).
+
+**Intégré (29/07)** : logos **AB** et **Eurofeuille** complets (mentions entières) → affichage
+**plein cadre rétabli** (`h-40 md:h-56`) sur `/agriculteurs` et `/myconautes` ; visuels d'Aline
+sur l'accueil (hero) et `/particuliers` (blocs 2 et 4) ; pictos du bloc culture maison **blancs
+sans bulle** sur le lilas (conforme à la maquette v3), pictos des conseils pro **dans des ronds
+violets** ; tarif de tournée **4,20 € sur `/` et `/particuliers`, 3,50 € sur `/pros`** ; image
+« procédés & expertise » calée sur la hauteur du texte ; cartes de conditionnement resserrées
+(le `gap-y` du parent s'appliquait aussi aux lignes du subgrid).
+
+Les visuels sont livrés **détourés sur les aplats exacts du site** (`#fffaf1` = `--color-page`,
+`#87b800` = `--color-anis`) : ils s'affichent en `object-contain` sur le même fond, sans recadrage.
+
+⚠️ **En attente / à trancher** :
+- Image du bloc « l'aventure » (`/myconautes`) : consigne = **ne pas la modifier pour l'instant**.
+- **CGV** (`cgv.astro`) : annoncent encore **2,00 €** pour Lyon et Saint-Étienne alors que les pages
+  vitrine affichent 4,20 € / 3,50 €. Contenu contractuel — à corriger par Florestan.
+- `hero-cagette-eryngii.jpg` n'est plus utilisé (remplacé par `cagette-eryngii.jpg`) ; conservé.
+
 ### `v4-2026-07-25/` — patch site (intégré le 25/07)
 Brief : `patch site 25-07-26.md` · Réponses aux specs d'images : `SPECS_IMAGES.md`
 - `Les Myconautes WEB square embleme.png` — emblème rond, header + footer
