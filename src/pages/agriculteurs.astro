@@ -201,7 +201,9 @@ const FORMAT_EXTRA: Record<string, string> = {
               </li>
             ))}
           </ol>
-          <div class="aspect-[4/5] md:aspect-auto md:h-full overflow-hidden">
+          <!-- md+ : conteneur étiré par la grille (items-stretch) et image en absolu,
+               pour qu'elle épouse la hauteur du texte sans la piloter. -->
+          <div class="aspect-[4/5] md:aspect-auto md:relative overflow-hidden">
             <Image
               src={incubationAlleePic}
               alt="Salle d'incubation des substrats — Les Myconautes"
@@ -210,7 +212,7 @@ const FORMAT_EXTRA: Record<string, string> = {
               widths={[480, 720, 960]}
               sizes="(min-width: 768px) 50vw, 100vw"
               formats={["avif", "webp"]}
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover md:absolute md:inset-0"
             />
           </div>
         </div>
