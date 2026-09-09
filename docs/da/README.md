@@ -6,6 +6,22 @@ sur le dossier de la vague la plus récente ; les dossiers antérieurs sont l'hi
 
 ## Vagues
 
+### `v6-2026-09-09/` — deux photos de production (intégré le 09/09)
+Consigne de Florestan (page `/agriculteurs`) · 2 JPEG livrés · script :
+`docs/da/tools/prep_assets_v6.py` → `src/assets/photos/`.
+
+- `Les Myconautes WEB substrat charriots.jpg` → **`incubation-charriots.jpg`** — bloc
+  « Du substrat à la récolte / procédés & expertise ». Remplace `incubation-allee.jpg`, dont le
+  cadrage centré montrait surtout le **sol** de l'allée ; la nouvelle photo est cadrée sur les
+  chariots. Elle est en **paysage** (1280x896) là où l'ancienne était en portrait : le cadre
+  mobile passe de `aspect-[4/5]` à `aspect-[4/3]` (sur md+ l'image reste calée sur la hauteur
+  de la colonne de texte, inchangé depuis le 29/07).
+- `Les Myconautes WEB substrat culture Florestan GRANGE.jpg` → **`culture-florestan.jpg`** —
+  visuel du bloc final « Une question ? » (`CTASection variant="editorial"`), qui réutilisait
+  lui aussi l'allée d'incubation.
+
+⚠️ `incubation-allee.jpg` n'est **plus utilisé** nulle part depuis cette vague ; conservé.
+
 ### `v5-2026-07-29/` — visuels manquants + corrections (intégré le 29/07)
 Brief : `retour et patch site 29-07-26.md` · 12 PNG livrés (logos bio, 5 visuels détourés,
 6 pictos blancs transparents).

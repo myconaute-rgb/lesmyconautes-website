@@ -6,7 +6,8 @@ import HoneypotField from "../components/HoneypotField.astro";
 import Turnstile from "../components/Turnstile.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
-import incubationAlleePic from "../assets/photos/incubation-allee.jpg";
+import incubationCharriotsPic from "../assets/photos/incubation-charriots.jpg";
+import cultureFlorestanPic from "../assets/photos/culture-florestan.jpg";
 import bandeauPic from "../assets/photos/bandeau-eryngii.jpg";
 import certifieAbLogo from "../assets/logos/certifie-ab.png";
 import certifieEuLogo from "../assets/logos/certifie-eu.png";
@@ -202,14 +203,16 @@ const FORMAT_EXTRA: Record<string, string> = {
             ))}
           </ol>
           <!-- md+ : conteneur étiré par la grille (items-stretch) et image en absolu,
-               pour qu'elle épouse la hauteur du texte sans la piloter. -->
-          <div class="aspect-[4/5] md:aspect-auto md:relative overflow-hidden">
+               pour qu'elle épouse la hauteur du texte sans la piloter.
+               09/09 : photo remplacée (l'allée d'incubation cadrée sur les chariots, plus
+               sur le sol) — elle est en paysage, d'où le cadre 4/3 en mobile. -->
+          <div class="aspect-[4/3] md:aspect-auto md:relative overflow-hidden">
             <Image
-              src={incubationAlleePic}
-              alt="Salle d'incubation des substrats — Les Myconautes"
+              src={incubationCharriotsPic}
+              alt="Chariots de substrat en salle d'incubation — Les Myconautes"
               loading="lazy"
               decoding="async"
-              widths={[480, 720, 960]}
+              widths={[480, 720, 960, 1280]}
               sizes="(min-width: 768px) 50vw, 100vw"
               formats={["avif", "webp"]}
               class="w-full h-full object-cover md:absolute md:inset-0"
@@ -364,8 +367,8 @@ const FORMAT_EXTRA: Record<string, string> = {
       variant="editorial"
       title="Une question ?"
       description="On peut échanger par téléphone, par mail ou de visu sur place, avant de se lancer."
-      image={incubationAlleePic}
-      imageAlt="Salle d'incubation des substrats — Les Myconautes"
+      image={cultureFlorestanPic}
+      imageAlt="Florestan en salle de culture, un bloc de substrat en fructification dans les mains — Les Myconautes"
       primaryCta={{ href: "#contact-agri", label: "Demander un devis" }}
       secondaryCta={{ href: "/", label: "Retour accueil" }}
     />
