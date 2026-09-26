@@ -11,6 +11,8 @@
  *   - Cloudflare Turnstile : token 'cf-turnstile-response' validé côté webhook n8n
  *   - CORS strict côté serveur (Origin = https://lesmyconautes.fr seul)
  *   - CSP connect-src élargi à api.lesmyconautes.fr (cf public/_headers)
+ *   - Sans token Turnstile : rien n'est envoyé, mais un signal /webhook/form_blocked
+ *     (zéro PII) est loggé côté serveur pour ne pas perdre ces leads en silence
  *
  * UX :
  *   - 3 états : idle / sending / success | error
@@ -19,6 +21,7 @@
  */
 
 const WEBHOOK_URL = "https://api.lesmyconautes.fr/webhook/contact_site";
+const BLOCKED_URL = "https://api.lesmyconautes.fr/webhook/form_blocked";
 
 export type ContactFormType =
   | "contact_home"
@@ -26,6 +29,25 @@ export type ContactFormType =
   | "contact_pro"
   | "devis_substrat"
   | "grille_tarifaire_pleurote";
+
+/**
+ * Signal « bloqué par Turnstile » : sans token, rien n'est envoyé et le lead
+ * serait perdu sans trace. On prévient le serveur (une ligne de log, zéro PII :
+ * ni nom ni email). Best-effort, n'affecte jamais l'UX.
+ */
+function reportBlocked(formType: ContactFormType, attempt: number): void {
+  const hasScript = Boolean((window as unknown as { turnstile?: unknown }).turnstile);
+  fetch(BLOCKED_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      form: formType,
+      reason: hasScript ? "token_absent" : "script_absent",
+      attempt,
+    }),
+    keepalive: true,
+  }).catch(() => {});
+}
 
 export function wireContactForm(
   form: HTMLFormElement,
@@ -37,6 +59,7 @@ export function wireContactForm(
 
   // Page load timestamp pour anti-bot rapide
   const loadedAt = Date.now();
+  let blockedAttempts = 0;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -54,6 +77,8 @@ export function wireContactForm(
       .querySelector<HTMLInputElement>('input[name="cf-turnstile-response"]')
       ?.value?.trim();
     if (!turnstileToken) {
+      blockedAttempts += 1;
+      reportBlocked(formType, blockedAttempts);
       if (errorEl) {
         errorEl.textContent =
           "Vérification de sécurité en cours, réessayez dans une seconde.";
