@@ -344,7 +344,7 @@ const FORMAT_EXTRA: Record<string, string> = {
           </div>
           <div>
             <label for="af-msg" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Détails</label>
-            <textarea id="af-msg" name="message" rows="4" placeholder="Type de production, calendrier, contraintes…" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm resize-y"></textarea>
+            <textarea id="af-msg" name="message" rows="4" maxlength="5000" placeholder="Type de production, calendrier, contraintes…" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm resize-y"></textarea>
           </div>
           <Turnstile />
           <button type="submit" class="justify-self-start inline-flex items-center px-8 py-4 rounded-btn bg-cacao text-page text-sm font-semibold tracking-wide uppercase hover:bg-cacao/90 transition-colors">

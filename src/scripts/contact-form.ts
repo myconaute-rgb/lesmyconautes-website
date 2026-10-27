@@ -100,8 +100,12 @@ export function wireContactForm(
       form: formType,
       loaded_at: String(loadedAt),
     };
-    for (const [k, v] of fd.entries()) {
-      if (typeof v === "string") payload[k] = v;
+    // Cases à cocher multiples (variétés de la grille tarifaire) : toutes les valeurs cochées, séparées
+    // par « , » — avant, seule la dernière partait. Le jeton Turnstile reste unique (le dernier).
+    for (const k of new Set(fd.keys())) {
+      const valeurs = fd.getAll(k).filter((v): v is string => typeof v === "string");
+      if (!valeurs.length) continue;
+      payload[k] = k === "cf-turnstile-response" ? valeurs[valeurs.length - 1] : valeurs.join(", ");
     }
 
     try {
