@@ -3,11 +3,11 @@ import type { FaqItem } from "./_utils";
 export const FAQ_ERYNGII: readonly FaqItem[] = [
   {
     question: "Comment faire pousser des eryngiis ?",
-    answerHtml: `<p>Mettre le ballot en culture <strong>dès réception</strong> sans l'ouvrir, à 13 °C pendant une semaine. Entailler le sac pour induire la fructification. Quand les premiers champignons font 2 à 3 cm, ouvrir complètement et maintenir hygrométrie au-dessus de 95 %. Cycle total 3 à 4 semaines.</p>`,
+    answerHtml: `<p>Mettre le ballot en culture <strong>dans les 72 heures après réception</strong> (au froid entre 2 et 4 °C en attendant), sans l'ouvrir, à 13 °C pendant une semaine. Entailler le sac pour induire la fructification. Quand les premiers champignons font 2 à 3 cm, ouvrir complètement et maintenir l'hygrométrie au-dessus de 95 %. Chez nous, le cycle complet prend 3 à 4 semaines.</p>`,
   },
   {
     question: "Comment cultiver le pleurote panicaut en pro ?",
-    answerHtml: `<p>En salle dédiée à 11–13 °C, hygrométrie supérieure à 95 %, brassage d'air continu. Densité maximum 80 kg de substrat par m². Cycle court (3 semaines) pour préserver l'hygiène et le rendement. Volée unique massive — pas de 2<sup>e</sup> volée à attendre.</p>`,
+    answerHtml: `<p>En salle dédiée à 11–13 °C, hygrométrie supérieure à 95 %, brassage d'air continu. Densité maximum 80 kg de substrat par m². Cycle court (3 semaines chez nous) pour préserver l'hygiène. L'essentiel de la récolte vient en une première volée massive — ne comptez pas sur la deuxième.</p>`,
   },
   {
     question: "Quelle température pour fructifier l'eryngii ?",
@@ -15,11 +15,11 @@ export const FAQ_ERYNGII: readonly FaqItem[] = [
   },
   {
     question: "Quel rendement pour un ballot d'eryngii ?",
-    answerHtml: `<p>Notre cible&nbsp;: <strong>20 %</strong> du poids du substrat, en volée unique, stable d'un lot à l'autre. La fourchette 15–20 % est considérée comme une culture réussie. Les annonces concurrentes à 25 % ne correspondent pas à notre expérience terrain — voir notre position assumée plus haut.</p>`,
+    answerHtml: `<p>Dans nos salles, on vise <strong>20 %</strong> du poids du substrat, pour l'essentiel en une première volée. Entre 15 et 20 %, on considère la culture réussie. C'est notre repère, pas un engagement&nbsp;: chez vous, le résultat dépendra de votre conduite de culture.</p>`,
   },
   {
     question: "Différence entre pleurote classique et pleurote panicaut ?",
-    answerHtml: `<p>Le pleurote classique reste en culture longtemps avec plusieurs volées dégressives. Le pleurote panicaut donne <strong>une seule volée massive</strong> qui lessive le substrat — cycle plus court, plus rythmé, planning plus précis. Côté texture et goût, deux univers très différents&nbsp;: huître pour le premier, coquille Saint-Jacques pour le second.</p>`,
+    answerHtml: `<p>Le pleurote classique reste en culture longtemps avec plusieurs volées dégressives. Le pleurote panicaut donne l'essentiel de sa récolte en <strong>une première volée massive</strong> qui lessive le substrat — cycle plus court, plus rythmé, planning plus précis. Côté texture et goût, deux univers très différents&nbsp;: huître pour le premier, coquille Saint-Jacques pour le second.</p>`,
   },
   {
     question: "Combien de récoltes par ballot d'eryngii ?",
@@ -27,10 +27,10 @@ export const FAQ_ERYNGII: readonly FaqItem[] = [
   },
   {
     question: "Êtes-vous certifiés bio ?",
-    answerHtml: `<p>Oui — <strong>certifié AB FR-BIO-01</strong> par Ecocert (n° FR-BIO-01.250-0043443.2026.003). Toute la matière première est tracée dans les audits BIO. Producteur français en circuit court (1 à 3 jours frigo France métropolitaine).</p>`,
+    answerHtml: `<p>Oui — <strong>certifié AB FR-BIO-01</strong> par Ecocert (n° FR-BIO-01.250-0043443.2026.003). Toute la matière première est tracée dans les audits BIO. Producteur français, transport frigorifique en France métropolitaine.</p>`,
   },
   {
     question: "Quelle quantité minimale de commande ?",
-    answerHtml: `<p>À l'unité&nbsp;: pas de minimum (vente expédition via Pour de Bon). Pour la production régulière&nbsp;: <strong>demi-palette 200 kg</strong> ou <strong>palette 500 kg</strong>. Devis personnalisé pour les volumes pros.</p>`,
+    answerHtml: `<p><strong>100 sacs par commande.</strong> On travaille sur programme&nbsp;: au moins trois commandes sur trois mois, après une première commande d'essai si vous le souhaitez. Devis sur demande.</p>`,
   },
 ];

@@ -3,7 +3,7 @@ import type { FaqItem } from "./_utils";
 export const FAQ_PLEUROTE: readonly FaqItem[] = [
   {
     question: "Quel rendement attendre par ballot de pleurote ?",
-    answerHtml: `<p>En production professionnelle sur cycles courts, <strong>20 à 25 % du poids du substrat</strong>, stable sur 2 à 3 volées. Au-delà, on bascule sur des champignons surcalibrés ou déformés, hors usage commercial.</p>`,
+    answerHtml: `<p>Dans nos salles, en cycles courts, on récolte <strong>20 à 25 % du poids du substrat</strong> sur 2 à 3 volées. C'est un repère, pas un engagement&nbsp;: chez vous, tout dépendra de votre conduite de culture. Si un chiffre est décisif pour votre projet, commencez par une commande d'essai et mesurez chez vous.</p>`,
   },
   {
     question: "Différence entre phase III et phase IV ?",
@@ -11,30 +11,30 @@ export const FAQ_PLEUROTE: readonly FaqItem[] = [
   },
   {
     question: "Combien de volées sur un ballot ?",
-    answerHtml: `<p><strong>2 à 3 volées</strong>. Délai mise en culture → primordia&nbsp;: 7 à 12 jours. Délai primordia → récolte&nbsp;: 3 à 5 jours. Durée de vie utile du ballot&nbsp;: 7 à 8 semaines max.</p>`,
+    answerHtml: `<p>Chez nous, <strong>2 à 3 volées</strong>. Les premiers primordia arrivent 7 à 12 jours après la mise en culture, la récolte 3 à 5 jours plus tard, et un ballot reste en culture 7 à 8 semaines. Ce sont nos repères de salle.</p>`,
   },
   {
     question: "Comment se passe la livraison ?",
-    answerHtml: `<p><strong>Transport frigorifique</strong> France métropolitaine en 1 à 3 jours. Transporteur partenaire géré par nos soins, ou votre transporteur si vous en avez un. Voir aussi notre section conditionnement plus haut.</p>`,
+    answerHtml: `<p>On fabrique à la commande&nbsp;: passez commande <strong>au moins 4 semaines avant la semaine de départ souhaitée</strong>. Le <strong>transport frigorifique</strong> se fait avec notre transporteur partenaire, partout en France métropolitaine — ou vous enlevez votre commande à Rive-de-Gier. À réception&nbsp;: au froid entre 2 et 4 °C, et en culture dans les 72 heures.</p>`,
   },
   {
     question: "Quel poids un ballot et un sac ?",
-    answerHtml: `<p><strong>Ballot pleurote</strong>&nbsp;: 2,5 à 2,7 kg, max 2,8 kg. <strong>Demi-palette</strong>&nbsp;: 200 kg de ballots cumulés. <strong>Palette</strong>&nbsp;: 500 kg.</p>`,
+    answerHtml: `<p>Nos sacs sont remplis au volume&nbsp;: leur poids varie d'un lot à l'autre, <strong>entre 1,5 et 2,8 kg</strong>, selon les matières premières et leur humidité. Le poids de votre lot vous est annoncé environ trois semaines avant le départ, et le prix du sac en tient compte. Le jour du départ, on pèse votre commande&nbsp;: s'il manque du poids par rapport à ce que vous avez payé, on ajoute des sacs.</p>`,
   },
   {
     question: "Quelle quantité minimale de commande ?",
-    answerHtml: `<p>À l'unité&nbsp;: pas de minimum (vente expédition pour test ou complément). Pour la production régulière&nbsp;: <strong>200 kg</strong> (demi-palette) ou <strong>500 kg</strong> (palette).</p>`,
+    answerHtml: `<p><strong>100 sacs par commande.</strong> On travaille sur programme&nbsp;: au moins trois commandes sur trois mois, après une première commande d'essai si vous le souhaitez.</p>`,
   },
   {
     question: "Êtes-vous certifiés bio ?",
-    answerHtml: `<p>Oui — <strong>certifié AB FR-BIO-01</strong> par Ecocert (n° FR-BIO-01.250-0043443.2026.003). Vos champignons issus de nos ballots peuvent être vendus en AB.</p>`,
+    answerHtml: `<p>Oui — <strong>certifié AB FR-BIO-01</strong> par Ecocert (n° FR-BIO-01.250-0043443.2026.003). Vos champignons issus de nos ballots peuvent être vendus en AB, dès lors que votre propre production est certifiée.</p>`,
   },
   {
     question: "Pourquoi mes pleurotes ont des chapeaux retournés et de longues tiges ?",
     answerHtml: `<p>C'est un signe typique de <strong>sous-ventilation</strong>&nbsp;: trop de CO₂, pas assez d'oxygène. Un pleurote en bonne forme pousse en grappes serrées (forme d'huître), avec chapeaux enroulés à l'horizontale — pas de tiges verticales. Solution&nbsp;: ventilation continue, brassage d'air, CO₂ maintenu sous 700 ppm.</p>`,
   },
   {
-    question: "Et la vente unitaire pour particuliers ou pour test ?",
-    answerHtml: `<p>Possible via Pour de Bon — voir notre <a href="https://www.pourdebon.com/les-myconautes-s1527" target="_blank" rel="noopener" class="underline hover:text-violet-profond">boutique en ligne</a> pour un essai sur petit volume avant d'engager une demi-palette.</p>`,
+    question: "Peut-on tester avant de s'engager ?",
+    answerHtml: `<p>Oui. Une première commande d'essai, à partir de 100 sacs, vous permet de tester nos sacs dans vos installations avant de convenir d'un programme. Vous cultivez pour le plaisir, à la maison&nbsp;? C'est sur notre <a href="/particuliers" class="underline hover:text-violet-profond">page particuliers</a>.</p>`,
   },
 ];

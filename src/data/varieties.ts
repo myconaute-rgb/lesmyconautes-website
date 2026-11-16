@@ -67,7 +67,7 @@ export const VARIETIES: Variety[] = [
     name: "Hericium",
     latin: "Hericium erinaceus",
     emoji: "🦁",
-    blurb: "Crinière de lion. Texture rappelant la chair de crabe ou de homard, parfum de fruits à coque. Études récentes sur la mémoire.",
+    blurb: "Crinière de lion. Texture rappelant la chair de crabe ou de homard, parfum de fruits à coque.",
     accent: "lavande",
     gradient: "from-creme via-lavande/30 to-ivoire",
     image: hericiumPic,
