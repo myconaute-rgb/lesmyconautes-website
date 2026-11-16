@@ -3,11 +3,11 @@ import type { FaqItem } from "./_utils";
 export const FAQ_PLEUROTE: readonly FaqItem[] = [
   {
     question: "Quel rendement attendre par ballot de pleurote ?",
-    answerHtml: `<p>Dans nos salles, en cycles courts, on récolte <strong>20 à 25 % du poids du substrat</strong> sur 2 à 3 volées. C'est un repère, pas un engagement&nbsp;: chez vous, tout dépendra de votre conduite de culture. Si un chiffre est décisif pour votre projet, commencez par une commande d'essai et mesurez chez vous.</p>`,
+    answerHtml: `<p>Dans nos salles, en cycles courts, on récolte <strong>autour de 20 % du poids du sac à la mise en culture</strong>, sur 2 à 3 volées. C'est un ordre de grandeur, pas un engagement&nbsp;: chez vous, tout dépendra de votre conduite de culture. Si un chiffre est décisif pour votre projet, commencez par une commande d'essai et mesurez chez vous.</p>`,
   },
   {
     question: "Différence entre phase III et phase IV ?",
-    answerHtml: `<p>La <strong>phase III</strong> correspond à l'inoculation et au début de colonisation du substrat par le mycélium. La <strong>phase IV</strong> correspond au substrat colonisé à 100 %, prêt à fructifier — c'est ce que nous livrons. Voir le détail pédagogique sur <a href="/substrat-incube-pret-fructifier" class="underline hover:text-violet-profond">notre page dédiée</a>.</p>`,
+    answerHtml: `<p>La <strong>phase III</strong> correspond à l'inoculation et au début de colonisation du substrat par le mycélium. La <strong>phase IV</strong> correspond au substrat entièrement colonisé, prêt à fructifier — c'est ce que nous livrons. Voir le détail pédagogique sur <a href="/substrat-incube-pret-fructifier" class="underline hover:text-violet-profond">notre page dédiée</a>.</p>`,
   },
   {
     question: "Combien de volées sur un ballot ?",

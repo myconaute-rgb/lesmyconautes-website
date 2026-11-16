@@ -11,7 +11,7 @@ export const FAQ_HERICIUM: readonly FaqItem[] = [
   },
   {
     question: "Quel rendement attendre du hericium ?",
-    answerHtml: `<p>Dans nos salles, on tourne autour de <strong>20 % du poids du substrat</strong> en cumul sur 2 à 3 volées, et on est contents quand un lot atteint 25 %. C'est notre repère, pas un engagement&nbsp;: le hericium est exigeant, et le résultat dépend beaucoup de la conduite de culture. Chercher plus, c'est récolter des champignons gorgés d'eau, visqueux, hors usage gastronomique.</p>`,
+    answerHtml: `<p>Dans nos salles, on tourne autour de <strong>20 % du poids du sac à la mise en culture</strong>, en cumul sur 2 à 3 volées. C'est notre ordre de grandeur, pas un engagement&nbsp;: le hericium est exigeant, et le résultat dépend beaucoup de la conduite de culture. Chercher plus, c'est récolter des champignons gorgés d'eau, visqueux, hors usage gastronomique.</p>`,
   },
   {
     question: "Quelles conditions de fructification ?",

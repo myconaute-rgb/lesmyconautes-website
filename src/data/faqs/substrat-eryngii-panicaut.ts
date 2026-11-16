@@ -15,7 +15,7 @@ export const FAQ_ERYNGII: readonly FaqItem[] = [
   },
   {
     question: "Quel rendement pour un ballot d'eryngii ?",
-    answerHtml: `<p>Dans nos salles, on vise <strong>20 %</strong> du poids du substrat, pour l'essentiel en une première volée. Entre 15 et 20 %, on considère la culture réussie. C'est notre repère, pas un engagement&nbsp;: chez vous, le résultat dépendra de votre conduite de culture.</p>`,
+    answerHtml: `<p>Dans nos salles, on tourne autour de <strong>20 %</strong> du poids du sac à la mise en culture, pour l'essentiel en une première volée. Entre 15 et 20 %, on est dans notre fourchette habituelle. C'est notre ordre de grandeur, pas un engagement&nbsp;: chez vous, le résultat dépendra de votre conduite de culture.</p>`,
   },
   {
     question: "Différence entre pleurote classique et pleurote panicaut ?",
