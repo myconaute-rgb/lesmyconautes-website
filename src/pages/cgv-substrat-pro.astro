@@ -1,0 +1,542 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MailLink from "../components/MailLink.astro";
+import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
+/* Texte : CGV substrat professionnel·les, version 3, en vigueur au 16/11/2026 (articles 1 à 21).
+   Texte contractuel repris tel quel du document diffusé — ne pas reformuler.
+   Les annexes (barème, fiche d'ouverture de compte, modèle d'avis de lot) ne sont PAS publiées :
+   elles sont remises avec le devis et la confirmation de commande (décision du 16/11/2026). */
+---
+
+<BaseLayout
+  title="Conditions générales de vente — Substrat de culture, professionnels — Les Myconautes"
+  description="Conditions générales de vente du substrat de culture Les Myconautes pour les professionnels : commande sur programme, paiement avant le départ, poids des sacs, transport, garanties et réclamations."
+>
+  <BreadcrumbLd items={[
+    { name: "Accueil", url: "/" },
+    { name: "Agriculteurs", url: "/agriculteurs" },
+    { name: "CGV substrat professionnels" },
+  ]} />
+  <article class="px-6 py-16 max-w-3xl mx-auto">
+    <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Légal</span>
+    <h1 class="mt-2 text-4xl md:text-5xl text-brun">Conditions générales de vente<br />Substrat de culture — professionnel·les</h1>
+    <p class="mt-3 text-sm text-brun-clair"><strong>SCEA GRANGE CHAMPIGNONS — Les Myconautes</strong></p>
+    <p class="mt-1 text-sm text-brun-clair italic">Version 3 — en vigueur au 16 novembre 2026.</p>
+    <p class="mt-4 text-sm text-brun-clair leading-relaxed">
+      Les annexes citées dans ce texte (barème, fiche d'ouverture de compte, modèle d'avis de lot) vous sont remises avec notre devis et notre confirmation de commande. Pour les recevoir&nbsp;: <a href="/agriculteurs#contact-agri" class="text-violet-profond hover:underline">demandez un devis</a>.
+    </p>
+
+    <section class="mt-10 bg-creme rounded-2xl p-6 ring-1 ring-brun/5">
+      <h2 class="text-2xl text-brun">L'essentiel en dix lignes</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Ce résumé aide à lire. Seuls les articles engagent.
+      </p>
+      <ol class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-decimal pl-5">
+        <li>Nous travaillons sur programme : au moins trois commandes sur trois mois, de 100 sacs ou plus, après une première commande d'essai si vous le souhaitez. Nous fabriquons pour vous : il faut environ trois semaines.</li>
+        <li>Le substrat se paie <strong>avant le départ</strong>. Sans paiement reçu, la commande ne part pas.</li>
+        <li>Jusqu'à 21 jours avant le départ, vous pouvez modifier ou annuler sans frais. Ensuite la commande est définitive.</li>
+        <li>Le prix d'un sac a deux parts : une part fixe, et une part qui suit le poids du lot.</li>
+        <li>Le poids des sacs varie d'un lot à l'autre. Nous vous l'annonçons, et nous complétons en sacs s'il manque du poids au départ.</li>
+        <li>Le transport et l'emballage sont à votre charge, y compris si la livraison échoue de votre fait.</li>
+        <li>À l'arrivée, vous contrôlez la palette devant le chauffeur et vous écrivez vos réserves.</li>
+        <li>Nous répondons de ce que nous livrons : la bonne variété, le bon nombre, des sacs sains au départ.</li>
+        <li>Nous ne promettons ni rendement ni résultat : la culture se fait chez vous, sous votre responsabilité.</li>
+        <li>Le substrat sert à produire des champignons frais. Il ne se mange pas et ne se transforme pas en aliment.</li>
+      </ol>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 1 — À qui et à quoi s'appliquent ces conditions</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        1.1. Ces conditions générales de vente (« CGV ») s'appliquent à toutes les ventes de <strong>substrat de culture inoculé</strong> par la SCEA GRANGE CHAMPIGNONS (« nous ») à une personne ou une entreprise qui achète pour son activité professionnelle (« vous »).
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        1.1 bis. <strong>Si votre activité n'est pas encore immatriculée</strong>, ces CGV s'appliquent aussi : en commandant, vous déclarez acheter pour créer ou préparer une activité professionnelle de production de champignons, et non pour un usage personnel.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        1.2. Elles forment, avec le barème en vigueur (Annexe 1), nos conditions pour cette catégorie de produits et d'acheteur·euses, au sens de l'article L441-1 du Code de commerce. Nos autres produits (champignons frais, épicerie) et les ventes aux particulier·es ont leurs propres conditions.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        1.3. <strong>Vous acceptez ces CGV</strong> en signant la fiche d'ouverture de compte (Annexe 2) ou en nous écrivant votre accord. Elles sont jointes à notre première confirmation de commande et rappelées sur chaque confirmation et chaque demande de paiement. Le paiement d'une commande vaut aussi acceptation.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        1.4. Vos propres conditions d'achat ne s'appliquent pas, sauf si nous les avons acceptées par écrit.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        1.5. Un accord écrit entre vous et nous (« conditions particulières ») peut déroger à ces CGV. Il l'emporte sur les points qu'il traite. Les CGV s'appliquent pour tout le reste.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        1.6. Les personnes qui nous représentent (agent·es, apporteur·euses d'affaires) ne peuvent pas modifier ces CGV ni le barème. Une commande passée par leur intermédiaire nous engage seulement après notre confirmation écrite.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        1.7. La version applicable à une commande est celle en vigueur le jour de notre confirmation de commande.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 2 — Qui nous sommes</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        SCEA GRANGE CHAMPIGNONS, société civile d'exploitation agricole au capital de 3 000 €, nom commercial <strong>Les Myconautes</strong>.
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>Siège : 2022 route de Lyon, 69440 Chabanière</li>
+        <li>Site de production, d'expédition et d'enlèvement : 5 rue Vallée de Couzon, 42800 Rive-de-Gier</li>
+        <li>RCS Lyon 902 480 615 — TVA intracommunautaire FR70902480615</li>
+        <li>Agriculture biologique : certification Ecocert (FR-BIO-01), certificat n° FR-BIO-01.250-0043443.2026.003</li>
+        <li>Contact : Florestan Grange — <MailLink email="myconautes@pm.me" /></li>
+      </ul>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 3 — Ce que nous vendons</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        3.1. Le produit est un <strong>sac de substrat de culture inoculé</strong> : un mélange stérilisé, ensemencé avec le mycélium de la variété commandée, puis incubé dans nos salles. C'est un <strong>intrant de culture</strong>, destiné à produire des champignons frais (article 17).
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        3.2. <strong>C'est un produit vivant, fabriqué à partir de matières agricoles et forestières.</strong> Son poids, son aspect, sa vitesse de colonisation et son comportement en culture varient d'un lot à l'autre, et d'un sac à l'autre dans un même lot. Ces variations sont normales. Elles ne sont pas un défaut.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        3.3. <strong>Nos matières premières et notre recette peuvent changer</strong> (essence et origine des sciures, compléments, taux d'humidité, format du sac), dans le respect du cahier des charges de l'agriculture biologique. Un changement peut modifier le poids et l'aspect des sacs. Nous vous informons d'un changement important avant votre commande quand nous le connaissons, et au plus tard dans l'avis de lot (article 6).
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        3.4. Les photos, fiches, pages de notre site et échanges avec notre équipe <strong>décrivent</strong> le produit, y compris ceux qui ont précédé votre première commande. Seuls ces CGV, le barème et notre confirmation de commande disent ce à quoi nous nous engageons. Si un chiffre qui vous a été donné compte pour vous, demandez-nous de l'écrire dans la confirmation de commande.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 4 — Ouvrir un compte et commander</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        4.1. <strong>Ouverture de compte.</strong> Avant votre première commande, vous nous communiquez : raison sociale, SIREN (ou la mention « immatriculation en cours »), adresse de facturation, adresse de livraison, contact pour la réception, contraintes d'accès du lieu de livraison (article 9.3). Vous nous signalez tout changement. Nous ne répondons pas d'un retard ou d'un surcoût dû à une information manquante ou fausse.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        4.2. <strong>Un programme de commandes.</strong> Nous travaillons sur programme. Pour commander, vous convenez avec nous, par écrit, d'un <strong>programme d'au moins trois commandes sur trois mois au plus</strong>. En dehors d'un programme, nous servons seulement <strong>une première commande d'essai</strong>, d'au moins 100 sacs, pour vous permettre de tester nos sacs dans vos installations.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        4.2 ter. <strong>Si vous interrompez votre programme</strong>, nous pouvons refuser de vous servir tant que vous ne vous êtes pas engagé·e sur un nouveau programme. Les commandes déjà livrées ne sont pas remises en cause.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        4.2 bis. <strong>Chaque commande</strong> précise, par écrit (courriel, application ou messagerie convenue), un <strong>nombre de sacs par variété</strong> et une semaine de départ souhaitée. Une commande compte au moins <strong>100 sacs</strong>.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        4.3. <strong>Délai.</strong> Nous fabriquons à la commande, et la fabrication prend environ trois semaines. <strong>Commandez au moins 4 semaines avant la semaine de départ souhaitée.</strong> Si vous commandez plus tard, nous ne lançons pas de fabrication pour cette date : nous vous servons seulement si des sacs déjà fabriqués sont disponibles, et sinon nous vous proposons la première date possible.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        4.4. <strong>Confirmation.</strong> Une commande existe quand nous l'avons <strong>confirmée par écrit</strong>. Notre confirmation indique : le nombre de sacs par variété, la date de départ prévue, le prix estimé, les frais de transport et d'emballage, la date limite de paiement et la date jusqu'à laquelle vous pouvez annuler sans frais. Nous pouvons refuser une commande, notamment si une somme reste impayée ou si la production ne le permet pas.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        4.5. <strong>Devis.</strong> Un devis est établi sur demande. Il vaut 15 jours, sous réserve de la disponibilité des matières premières et de nos capacités de production.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        4.6. <strong>Date de départ.</strong> La date de départ confirmée est celle que nous visons. Elle dépend de la vitesse d'incubation, qui ne se commande pas. Nous pouvons l'avancer ou la reculer de 9 jours en vous prévenant. Au-delà, l'article 15 s'applique.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 5 — Prix</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        5.1. <strong>Vente au sac.</strong> Le substrat se vend au sac. Vous commandez et recevez un nombre de sacs.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        5.2. <strong>Un prix en deux parts.</strong> Le prix d'un sac additionne :
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>une <strong>part fixe</strong>, la même pour tous les sacs d'une variété. Elle couvre ce qui ne dépend pas du poids : le sac,</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+         le mycélium, la stérilisation, l'incubation, le travail ;
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>une <strong>part liée au poids</strong>, qui suit le poids annoncé de votre lot (article 6).</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Pour que vous n'ayez rien à calculer, le barème (Annexe 1) donne directement le <strong>prix du sac pour chaque poids annoncé</strong>, par variété.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        5.3. <strong>Tarif.</strong> Le barème donne le tarif de base, qui s'applique à tout programme. <strong>Si votre programme se prolonge au-delà de trois mois, un tarif négocié peut être convenu avec vous</strong>, par accord écrit (article 1.5).
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        5.4. <strong>Barème applicable.</strong> Le prix est celui du barème en vigueur le jour de notre confirmation de commande. Il ne change plus pour cette commande. Nous pouvons modifier le barème à tout moment pour les commandes suivantes.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        5.5. Les prix sont <strong>hors taxes</strong>. La TVA s'ajoute au taux en vigueur. Les frais de transport et d'emballage s'ajoutent (article 9). Nous n'accordons pas d'escompte pour paiement anticipé.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 6 — Poids des sacs et avis de lot</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        6.1. <strong>Le poids varie.</strong> Nos sacs sont remplis au volume. Leur poids dépend des matières premières et de leur humidité. À la date de ce barème, le poids moyen d'un lot se situe entre 1,5 kg et 2,8 kg.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        6.2. <strong>Poids annoncé.</strong> Après l'inoculation, nous pesons chaque chariot de sacs. Nous en déduisons le <strong>poids annoncé</strong> : le poids moyen par sac que votre commande aura au départ, compte tenu de la perte normale de poids pendant l'incubation.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        6.3. <strong>Avis de lot et demande de paiement.</strong> Dès cette pesée, nous vous envoyons <strong>un seul document</strong> : l'avis de lot, qui vaut demande de paiement. Il indique le numéro de lot, la variété, le nombre de sacs, le poids annoncé, le prix par sac, le montant total à payer et la date limite de paiement. <strong>Ce prix est définitif.</strong> Vous le recevez environ trois semaines avant le départ.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        6.4. <strong>Poids minimal.</strong> Nous ne vendons pas les lots dont le poids annoncé est inférieur à <strong>1,5 kg</strong>.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        6.5. <strong>Pesée de départ.</strong> Le jour du départ, nous pesons votre commande assemblée sur une balance contrôlée pour les transactions commerciales. Le poids net (emballages et palette déduits) est comparé au <strong>poids payé</strong> : le nombre de sacs commandés multiplié par le poids annoncé. Le ticket de pesée est joint à la commande.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        6.6. <strong>Si le poids n'y est pas, nous ajoutons des sacs.</strong>
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>Si le poids net est inférieur au poids payé, nous ajoutons <strong>sans frais</strong> des sacs de la même variété jusqu'à</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+         atteindre au moins le poids payé. Si nous n'avons pas ces sacs, nous portons à votre crédit la part du prix qui correspond au poids manquant (article 8).
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>Si le poids net est supérieur au poids payé, nous ne vous demandons rien.</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Notre engagement porte sur le <strong>poids total de la commande au départ</strong>. Le poids annoncé est une moyenne : un sac pris seul peut peser plus ou moins, et il continue de perdre un peu de poids après le départ. Ce n'est pas le poids garanti de chaque sac.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        6.7. Le poids annoncé et le poids net pesé au départ figurent sur le ticket de pesée et sur la facture. Une variation de poids conforme à cet article ne permet ni d'annuler la commande, ni de refuser la livraison, ni de demander une réduction autre que celle du barème.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 7 — Paiement avant le départ</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        7.1. <strong>Principe.</strong> Le substrat, le transport et l'emballage se paient <strong>en totalité avant le départ</strong>, par virement sur le compte indiqué sur notre demande de paiement, en rappelant la référence de la commande. Un paiement est reçu quand les fonds sont sur notre compte. Les sommes versées sont un paiement du prix : ce ne sont pas des arrhes, et y renoncer ne libère pas de la commande.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        7.2. <strong>Déroulement.</strong>
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>Nous fabriquons votre commande dès sa confirmation, sans attendre votre paiement.</li>
+        <li>Environ trois semaines avant le départ, vous recevez l'avis de lot, qui vaut demande de paiement, avec le prix</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+         définitif (article 6.3). Nous pouvons vous envoyer un rappel avant la date limite.
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>Votre paiement doit nous parvenir <strong>au plus tard 4 jours ouvrés avant la date de départ</strong>.</li>
+        <li>Nous réservons le transport à réception de votre paiement.</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        7.3. <strong>Pas de paiement, pas de départ.</strong> Aucune commande ne part et aucun sac n'est remis sans paiement reçu. Si le paiement arrive en retard, le départ est reporté à la première date possible, selon l'état des sacs et nos disponibilités. Sans paiement 7 jours après la date limite, nous pouvons annuler la commande : l'article 12.3 s'applique.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        7.4. <strong>Paiement à la commande.</strong> Nous pouvons demander le paiement dès la confirmation, avant de fabriquer :
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>après un retard de paiement, une annulation hors délai ou un refus de livraison non justifié ;</li>
+        <li>pour une commande inhabituelle par sa taille, sa variété ou sa destination.</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Nous vous le disons avant de confirmer. La fabrication démarre alors à réception du paiement.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        7.5. <strong>Commande servie sur des sacs disponibles</strong> (moins de 21 jours avant le départ) : la commande est définitive dès notre confirmation et se paie à la confirmation.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        7.6. <strong>Facture.</strong> À réception de votre paiement, nous vous adressons la <strong>facture de la commande</strong>. L'avis de lot, qui vaut demande de paiement, n'est pas une facture.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        7.7. <strong>Autres sommes.</strong> Les sommes que nous vous facturons après le départ (frais de l'article 9.5, par exemple) sont payables à réception de la facture. Tout retard entraîne de plein droit des pénalités au taux de <strong>trois fois le taux d'intérêt légal</strong>, à compter du lendemain de l'échéance, et une indemnité forfaitaire de recouvrement de <strong>40 €</strong> (articles L441-10 et D441-5 du Code de commerce). Si nos frais de recouvrement dépassent ce montant, nous pouvons en demander le remboursement sur justificatifs.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        7.8. <strong>Pas de retenue de votre propre initiative.</strong> Vous ne pouvez pas déduire une somme d'un paiement (litige, manquant, pénalité) sans notre accord écrit ou un avoir de notre part.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        7.9. <strong>Contestation d'une facture.</strong> Vous nous écrivez dans les 10 jours ouvrés qui suivent sa réception, en indiquant son numéro et le motif. Passé ce délai, la facture est considérée comme acceptée.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 8 — Votre crédit chez nous</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        8.1. Toute somme payée d'avance qui dépasse le montant finalement dû est inscrite <strong>à votre crédit</strong> : poids manquant que nous n'avons pas pu compléter en sacs (article 6.6), sacs non livrés de notre fait (article 15), geste commercial.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        8.2. Ce crédit vous appartient. Il est déduit de votre commande suivante. <strong>Vous pouvez à tout moment en demander le remboursement</strong> : nous le virons sous 30 jours. Sans commande pendant 6 mois, nous vous le remboursons de nous-mêmes.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        8.3. Le crédit figure sur un avoir ou sur la facture de la commande, puis sur la demande de paiement suivante.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        8.4. À l'inverse, nous pouvons déduire de votre crédit les sommes que vous nous devez au titre de ces CGV, après vous en avoir informé·e.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 9 — Transport, emballage et enlèvement</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        9.1. <strong>Deux modes.</strong> Vous <strong>enlevez</strong> votre commande à Rive-de-Gier (42800), à la date et à l'heure convenues, avec un véhicule adapté. Ou nous l'<strong>expédions</strong> par un transporteur sous température dirigée que nous choisissons.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        9.1 bis. <strong>Chargement en cas d'enlèvement.</strong> Nous mettons la commande à votre disposition sur notre quai ou devant notre atelier. <strong>Le chargement, le calage et l'arrimage dans votre véhicule sont faits par vous, ou par votre chauffeur, sous votre responsabilité.</strong> Si notre équipe vous aide à votre demande, elle agit sous vos instructions : nous ne répondons pas des dommages au véhicule ou au chargement, sauf faute caractérisée de notre part.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        9.2. <strong>Frais.</strong> Le transport est à votre charge <strong>dès le premier sac</strong>. Il est facturé selon le barème de transport en vigueur, établi à partir des tarifs du transporteur et de ses surcharges. L'emballage (palette, suremballage, film) est facturé selon le conditionnement de votre commande. Les montants figurent sur notre confirmation de commande. Ces frais se paient avec la commande (article 7).
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        9.3. <strong>Votre lieu de livraison.</strong> Vous nous indiquez avant la commande ce que le transporteur doit savoir : accès pour un poids lourd, moyen de déchargement, besoin d'un hayon ou d'un rendez-vous, horaires de réception. Les prestations particulières (hayon, rendez-vous, créneau, zone difficile) sont facturées en plus, au tarif du transporteur.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        9.4. <strong>Réception.</strong> Vous êtes présent·e ou représenté·e à la livraison. Vous déchargez sans attendre et vous mettez aussitôt les sacs à la température indiquée dans nos préconisations.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        9.5. <strong>Frais qui restent à votre charge quoi qu'il arrive.</strong> Le transport commandé pour vous reste dû, et vous supportez aussi les frais supplémentaires que le transporteur nous facture, sur justificatif, dans les cas suivants :
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>annulation ou report de votre fait après la réservation du transport ;</li>
+        <li>absence à la livraison, adresse fausse ou incomplète, lieu inaccessible ;</li>
+        <li>attente du véhicule, nouvelle présentation, garde de la marchandise ;</li>
+        <li><strong>refus de la livraison sans motif valable</strong> : transport aller, transport retour et frais annexes.</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        9.6. <strong>Date de livraison.</strong> Le délai de transport annoncé est celui du transporteur. Un retard de transport ne permet ni d'annuler la commande ni de demander une pénalité.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        9.7. <strong>Palettes.</strong> Nous expédions en général sur des <strong>palettes perdues</strong> : elles ne sont pas reprises et sont comprises dans l'emballage facturé. Quand nous utilisons une <strong>palette Europe</strong>, nous vous l'indiquons sur la confirmation de commande. Elle reste notre propriété : vous la rendez <strong>à la livraison suivante</strong>, au transporteur ou lors de votre enlèvement. Une palette Europe non rendue à la livraison suivante, ou dans les 30 jours s'il n'y a pas de livraison suivante, est facturée <strong>10 € HT</strong>.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 10 — Qui supporte les risques du transport</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        10.1. En cas d'<strong>enlèvement</strong>, les risques passent sur vous quand nous vous remettons les sacs. En cas d'<strong>expédition</strong>, ils passent sur vous <strong>quand nous remettons la palette au transporteur</strong> à Rive-de-Gier (42800).
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        10.2. Nous répondons du conditionnement et de la mise sur palette.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        10.3. L'indemnité due par un transporteur en cas de perte, d'avarie ou de retard est limitée par la réglementation et par son contrat. Si vous souhaitez une couverture plus élevée (déclaration de valeur, assurance), dites-le-nous à la commande : elle est à votre charge.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        10.4. <strong>En cas d'incident de transport</strong>, c'est nous qui présentons la réclamation au transporteur, à partir de vos réserves (article 11). <strong>Nous vous indemnisons à hauteur de ce que le transporteur nous verse</strong> pour votre commande, en argent ou en sacs de remplacement. Si le transporteur refuse d'indemniser, notamment faute de réserves valables, nous ne vous devons rien à ce titre.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        10.5. Si le dommage vient d'un défaut de notre conditionnement ou de notre mise sur palette, nous en répondons (article 10.2).
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        10.6. Un incident de transport ne suspend pas ce que vous nous devez.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 11 — Contrôle à l'arrivée</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        11.1. <strong>Devant le chauffeur</strong>, vous vérifiez : le nombre de palettes et de colis, l'état de l'emballage, la température. Vous écrivez toute anomalie sur le document de transport, de façon <strong>précise et chiffrée</strong> (par exemple : « palette renversée, 12 sacs percés », « température relevée 14 °C à 10 h 30 »). Vous faites signer le chauffeur et vous prenez des photos.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        11.2. Une mention vague, comme « sous réserve de déballage », ne protège pas. Une anomalie de température non constatée devant le chauffeur ne peut pas être indemnisée par le transporteur.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        11.3. <strong>Dans les trois jours</strong> qui suivent la livraison, jours fériés non comptés, vous confirmez vos réserves au transporteur par lettre recommandée, comme le prévoit l'article L133-3 du Code de commerce. Vous nous en envoyez une copie par courriel <strong>dans les 48 heures</strong> suivant la livraison, avec les photos.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        11.4. <strong>Dans les 48 heures</strong> suivant la livraison ou l'enlèvement, vous nous signalez par écrit toute erreur que vous pouvez voir : nombre de sacs, variété, sacs abîmés. Passé ce délai, la livraison est réputée conforme sur ces points.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        11.5. Un sac comprimé, déformé ou fissuré par le transport n'est pas pour autant perdu. Vous le mettez en culture selon nos préconisations et vous l'observez avant de conclure.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 12 — Annuler, modifier, ne pas enlever</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        12.1. <strong>Jusqu'à 21 jours avant la date de départ prévue</strong>, vous pouvez modifier ou annuler votre commande <strong>sans frais</strong>, par écrit. Ce que vous avez déjà payé est remboursé ou porté à votre crédit, à votre choix.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        12.1 bis. <strong>Si le poids annoncé est bas.</strong> Si l'avis de lot annonce un poids inférieur à <strong>1,8 kg</strong>, vous pouvez encore annuler sans frais, par écrit, dans les 3 jours ouvrés qui suivent l'avis de lot.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        12.2. <strong>Ensuite, la commande est définitive.</strong> Les sacs sont fabriqués pour vous et ne se stockent pas. Vous ne pouvez plus l'annuler ni la réduire. Vous pouvez nous demander <strong>un</strong> report de la date de départ : nous l'acceptons par écrit si la durée de vie du substrat le permet.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        12.3. <strong>Si vous renoncez malgré tout</strong>, si vous ne payez pas à la date prévue, ou si vous n'enlevez pas ou ne recevez pas la commande dans les <strong>trois jours ouvrés</strong> qui suivent la date convenue, nous pouvons, à notre choix et après vous avoir écrit :
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li><strong>soit maintenir la vente</strong> : le prix entier et les frais restent dus, et les sacs sont à votre disposition, à</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+         vos risques, tant que leur état le permet ;
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li><strong>soit mettre fin à la commande, à vos torts.</strong> Vous nous devez alors, à titre d'indemnité : le prix des sacs</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+         mis en fabrication pour vous, les frais de transport engagés que nous ne pouvons pas annuler, et les frais de l'article 9.5. Nous reprenons la libre disposition des sacs. Les sommes déjà payées sont conservées à hauteur de l'indemnité ; le reste vous est remboursé.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        12.4. Un retard de paiement ou d'enlèvement de votre fait ne peut pas nous être reproché si les sacs ont vieilli entre-temps.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 13 — Ce que nous garantissons, et ce qui dépend de vous</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        13.1. <strong>Notre engagement.</strong> Nous nous engageons à vous livrer :
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>le <strong>nombre de sacs</strong> et la <strong>variété</strong> confirmés ;</li>
+        <li>des sacs <strong>inoculés et incubés selon notre procédé</strong>, issus d'un lot identifié par un numéro ;</li>
+        <li>des sacs <strong>sans contamination visible à notre contrôle de départ</strong> ;</li>
+        <li>un produit certifié en agriculture biologique sous la désignation « mycélium sur substrat », qui figure sur</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+         notre certificat.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        13.2. <strong>Suivi des lots.</strong> Chaque sac porte le numéro de son lot. Chaque commande porte une étiquette de pesée qui la relie à son lot : nous savons qui a reçu quoi, et quand.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        13.3. <strong>Ce que nous ne promettons pas.</strong> La culture se fait chez vous, dans vos installations, selon vos méthodes. Nous n'en avons pas la maîtrise. <strong>Nous ne garantissons donc aucun rendement, aucune date ni durée de récolte, aucun calibre, aucune qualité de champignon, aucun résultat économique.</strong> Les chiffres que nous communiquons (rendements observés chez nous, durées, températures) sont des <strong>repères</strong>, pas des engagements.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        13.4. <strong>Nos conseils.</strong> Nous vous remettons des préconisations de réception et de mise en culture. Nous répondons volontiers à vos questions. Ces conseils sont donnés de bonne foi, d'après notre expérience dans nos propres salles. Ils ne remplacent pas votre savoir-faire et ne nous rendent pas responsables de votre culture.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        13.5. <strong>Ce qui dépend de vous.</strong> Vous êtes un·e professionnel·le. Vous êtes seul·e responsable :
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>du <strong>choix</strong> du produit et de la variété pour votre installation et vos débouchés ;</li>
+        <li>de la <strong>conservation</strong> des sacs dès la livraison, <strong>au froid entre 2 et 4 °C</strong>, et de leur **mise en culture</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+         dans les 72 heures** ;
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>des <strong>conditions de culture</strong> : température, humidité, renouvellement d'air, lumière, arrosage, manipulation ;</li>
+        <li>de l'<strong>hygiène</strong> de vos locaux et de la protection de vos cultures contre les contaminations, moucherons et</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+         autres ravageurs ;
+      </p>
+      <ul class="mt-3 space-y-1.5 text-sm text-brun-clair leading-relaxed list-disc pl-5">
+        <li>du respect des règles de votre propre activité : sécurité sanitaire, étiquetage, certification biologique de</li>
+      </ul>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+         votre production, élimination des déchets.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        13.6. <strong>Ne sont pas des défauts</strong> : les variations décrites aux articles 3 et 6 ; une colonisation d'aspect irrégulier propre à certaines variétés, notamment l'hericium ; les fructifications précoces dans le sac ; les conséquences d'une conservation, d'une mise en culture tardive ou de conditions de culture qui ne suivent pas nos préconisations ; une contamination apparue dans vos locaux.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 14 — Réclamations</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        14.1. <strong>Avant la mise en culture.</strong> Vous nous signalez par écrit, <strong>dans les 72 heures</strong> suivant la livraison et avant d'ouvrir les sacs, tout sac abîmé, pourri ou visiblement contaminé, ainsi que toute erreur de nombre ou de variété (article 11.4). Vous joignez le numéro de lot, le nombre de sacs touchés et des photos datées des sacs et de leur étiquette. Si le défaut est constaté, nous créditons ou remplaçons ces sacs (article 14.4).
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        14.2. <strong>Après la mise en culture.</strong> Une fois les sacs ouverts et mis en culture, leur comportement dépend de vos conditions de culture (article 13.5). Nous ne prenons alors en charge qu'un <strong>défaut qui vient du lot lui-même</strong> : un défaut présent dans les sacs avant leur livraison, et non un effet de la conservation ou de la conduite de culture. C'est à vous d'apporter les éléments qui le montrent (article 14.3).
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        14.3. Pour être examinée, une réclamation de ce type nous parvient par écrit <strong>au plus tard 10 jours ouvrés après la livraison</strong>, quelle que soit la variété. Passé ce délai, aucune réclamation n'est examinée. Elle contient : le numéro de lot, le nombre de sacs touchés, des photos datées, la date de mise en culture et vos relevés de conduite de culture (température, humidité). Vous gardez les sacs concernés à notre disposition, séparés des autres lots, jusqu'à notre réponse. Vous nous laissez les examiner sur place ou en prélever si nous le demandons. Nous vous répondons sous 15 jours.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        14.4. <strong>Ce que nous faisons si le défaut est établi.</strong> Nous portons à votre crédit le prix des sacs concernés (article 8) ou nous les remplaçons, à notre choix. Les sacs de remplacement voyagent avec votre commande suivante. Le transport, facturé à la palette, n'est pas remboursé.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        14.5. <strong>Pas de retour</strong> de substrat sans notre accord écrit, pour des raisons sanitaires.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        14.6. Une réclamation ne vous autorise pas à suspendre un paiement ni à refuser une autre livraison.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 15 — Aléas de production et force majeure</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        15.1. La fabrication de substrat est exposée à des <strong>aléas biologiques et techniques</strong> : contamination d'un lot, colonisation trop lente, défaut d'une matière première, panne de stérilisation, de climatisation ou de froid. Si un tel aléa touche votre commande malgré nos précautions, nous vous prévenons dès que nous le savons. Nous pouvons reporter le départ, livrer en partie ou annuler.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        15.2. Dans ce cas, <strong>vous choisissez</strong> : attendre le lot suivant, ou être remboursé·e des sacs non livrés et de la part de transport correspondante, sous 30 jours. Si le retard dépasse 21 jours, vous pouvez annuler sans frais ce qui n'est pas livré. <strong>Aucune autre indemnité n'est due.</strong>
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        15.3. Aucune des parties ne répond d'une inexécution due à un cas de force majeure au sens de l'article 1218 du Code civil.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 16 — Limite de notre responsabilité</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        16.1. Notre responsabilité au titre d'une commande, quelle qu'en soit la cause, est <strong>limitée au prix hors taxes des sacs concernés</strong>.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        16.2. Nous ne répondons pas des pertes indirectes : perte de récolte, perte d'exploitation, manque à gagner, engagements que vous avez pris envers vos propres client·es, dommages à vos autres cultures.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        16.3. Ces limites ne s'appliquent pas en cas de faute lourde ou intentionnelle de notre part, ni aux dommages corporels. Elles ne retirent rien aux garanties que la loi vous donne et qu'un contrat ne peut pas écarter.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 17 — Usage du substrat</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        17.1. Le substrat est destiné <strong>uniquement à la production de champignons frais</strong>. <strong>Il ne se consomme pas.</strong> Il n'est pas destiné à l'alimentation humaine ou animale, ni à la fabrication de denrées, d'ingrédients ou de compléments alimentaires.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        17.2. Vous vous interdisez de transformer le substrat ou le mycélium qu'il contient (séchage, broyage, extraction, mise en poudre ou en gélules) pour un usage alimentaire. Seuls les champignons récoltés se consomment. Le mycélium transformé, par exemple en poudre, est un « nouvel aliment » qui n'est pas autorisé à la vente au sens du règlement (UE) 2015/2283.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        17.3. <strong>Santé.</strong> Nous ne faisons aucune promesse sur les effets des champignons sur la santé. Vous ne nous en attribuez aucune dans votre communication.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        17.4. <strong>Pas de multiplication.</strong> Vous n'utilisez pas nos sacs pour multiplier le mycélium, produire du blanc ou fabriquer d'autres substrats, pour vous ou pour d'autres. Certaines souches sont protégées par des droits qui appartiennent à des tiers (marque, licence) : vous respectez ces droits.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        17.5. <strong>Pas de revente sans accord.</strong> Nos sacs vous sont vendus pour votre propre production. Vous ne les revendez pas, en l'état ou sous forme de kit, sans notre accord écrit. Vous n'utilisez ni notre nom ni notre marque pour vos propres ventes. Si nous autorisons une revente, vous transmettez par écrit à vos acheteur·euses les règles de cet article, vous laissez notre étiquette sur le sac et vous restez seul·e responsable de vos ventes.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        17.6. <strong>Après la récolte</strong>, le substrat épuisé se valorise par une voie agronomique (compost, amendement), jamais dans une filière alimentaire. Vous éliminez les sacs plastiques selon les règles en vigueur.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        17.7. Un usage contraire à cet article engage votre seule responsabilité. Vous nous garantissez contre les réclamations et sanctions qui en résulteraient. Nous pouvons alors arrêter de vous livrer, y compris les commandes en cours.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 18 — Réserve de propriété</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        18.1. Les sacs restent notre propriété jusqu'au paiement complet du prix et des frais. Cette règle ne change rien au transfert des risques (article 10).
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        18.2. Elle sert surtout dans les cas où une somme reste due après le départ. En cas de procédure collective, nous pouvons revendiquer les sacs impayés encore identifiables, dans les conditions des articles L624-16 et suivants du Code de commerce.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 19 — Vente hors de France Pour une vente hors de France, un devis précise le lieu de remise, les formalités, les documents et les</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        taxes. À défaut, la marchandise est remise à votre transporteur à Rive-de-Gier (42800), et les formalités et taxes d'entrée dans votre pays sont à votre charge.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 20 — Données personnelles</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        Nous utilisons les coordonnées de vos interlocuteur·rices pour gérer les commandes, la facturation et la relation commerciale, selon la politique de confidentialité consultable sur <a href="/politique-confidentialite" class="text-violet-profond hover:underline">notre site internet</a>.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl text-brun">Article 21 — Droit applicable et différends</h2>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        21.1. Ces CGV sont soumises au droit français.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        21.2. En cas de désaccord, nous cherchons d'abord une solution amiable, par écrit, pendant 30 jours. À défaut, le litige est porté devant le tribunal compétent selon les règles habituelles.
+      </p>
+      <p class="mt-3 text-sm text-brun-clair leading-relaxed">
+        21.3. Si une clause de ces CGV est écartée, les autres continuent de s'appliquer.
+      </p>
+    </section>
+
+    <div class="mt-12 text-sm">
+      <a href="/agriculteurs" class="text-violet-profond hover:underline">← Nos substrats</a>
+      <span class="mx-3 text-brun-clair/40">·</span>
+      <a href="/cgv" class="text-violet-profond hover:underline">CGV champignons frais et particuliers</a>
+      <span class="mx-3 text-brun-clair/40">·</span>
+      <a href="/mentions-legales" class="text-violet-profond hover:underline">Mentions légales</a>
+    </div>
+  </article>
+</BaseLayout>
