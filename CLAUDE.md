@@ -24,10 +24,9 @@ src/layouts/ · src/styles/ · src/data/ · public/
 - **Aucun secret dans le repo** (le `TURNSTILE_SECRET_KEY` vit côté serveur/n8n, jamais ici).
 - Contenus légaux : mentions SCEA/SIRET, certification **FR-BIO-01** verbatim — ne pas reformuler.
 
-## Normes transversales (décisions Juger actées 2026-07-02 — `claude_code/docs/fable/DECISIONS.md`)
+## Normes transversales (décisions Juger actées 2026-07-02 — `claude_code/docs/systeme/DECISIONS.md`)
 - Le site reste **découplé** du système : tout nouveau pont (catalogue, dispos…) passe par un webhook n8n
-  dédié et s'inscrit dans `claude_code/SECURITE.md` §3.1 (inventaire des surfaces) + 2 lignes dans
-  `claude_code/docs/fable/DELTAS.md`.
+  dédié et s'inscrit dans `claude_code/SECURITE.md` §3.1 (inventaire des surfaces).
 - Toute modification du **workflow n8n `contact_site`** se fait dans le repo `claude_code`
   (`workflows/comptoir_contact_site.json`) — pas d'export brut commité ici (D15).
 
@@ -35,6 +34,6 @@ src/layouts/ · src/styles/ · src/data/ · public/
 Push sur `main` → Cloudflare Pages build et publie. Pas de serveur à gérer, pas de `.env` de prod dans le repo.
 
 ## Contexte élargi
-- Audit AS-IS du système complet : `claude_code/docs/fable/` (cartes S0–S9 + jugement JUGER_0/1/2).
+- Audit AS-IS du système complet, figé le 22/11/2026 (photo de juillet) : `claude_code/docs/systeme/`.
 - Le pipeline SEO « page-auto » (23 skills, repo `claude_code/comptoir/`) écrit dans ce repo lors des
   vagues — voir ses gardes-fous avant toute vague (`myconautes-skill-17-deploiement` : seul EXECUTOR git).
