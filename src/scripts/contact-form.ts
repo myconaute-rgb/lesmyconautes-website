@@ -12,7 +12,10 @@
  *   - CORS strict côté serveur (Origin = https://lesmyconautes.fr seul)
  *   - CSP connect-src élargi à api.lesmyconautes.fr (cf public/_headers)
  *   - Sans token Turnstile : rien n'est envoyé, mais un signal /webhook/form_blocked
- *     (zéro PII) est loggé côté serveur pour ne pas perdre ces leads en silence
+ *     (zéro PII) est loggé côté serveur pour ne pas perdre ces leads en silence.
+ *     Dès le 2e essai bloqué, le visiteur reçoit un repli : un bouton qui ouvre sa
+ *     messagerie avec sa demande déjà écrite (incident du 22/11/2026 : 13 essais
+ *     bloqués, la demande perdue, le visiteur n'avait que « réessayez »).
  *
  * UX :
  *   - 3 états : idle / sending / success | error
@@ -49,6 +52,94 @@ function reportBlocked(formType: ContactFormType, attempt: number): void {
   }).catch(() => {});
 }
 
+// Adresse du repli, assemblée à l'exécution : jamais en clair dans le code servi (comme <MailLink>).
+const MAIL_REPLI = ["myconautes", "pm.me"].join("@");
+// Ne partent pas dans le mail de repli : jeton anti-robot, piège à robots, accord RGPD.
+const HORS_MAIL = new Set(["cf-turnstile-response", "website", "consent"]);
+// Libellés des champs sans <label for> (cases à cocher, champs ajoutés plus tard).
+const LIBELLES: Record<string, string> = {
+  name: "Nom",
+  email: "Email",
+  phone: "Téléphone",
+  postal_code: "Code postal",
+  species: "Espèces",
+  varietes: "Variétés",
+  volume: "Volume",
+  message: "Message",
+};
+// Un lien mailto trop long est tronqué ou refusé par certaines messageries mobiles.
+const CORPS_MAX = 1800;
+
+function libelleChamp(form: HTMLFormElement, nom: string): string {
+  if (LIBELLES[nom]) return LIBELLES[nom];
+  const champ = form.querySelector<HTMLElement>(`[name="${CSS.escape(nom)}"]`);
+  const label = champ?.id ? form.querySelector(`label[for="${CSS.escape(champ.id)}"]`) : null;
+  return (label?.textContent ?? "").replace(/\*/g, "").replace(/\s+/g, " ").trim() || nom;
+}
+
+/** Lien mailto avec la demande déjà écrite : rien n'est perdu, rien à retaper. */
+function lienMailRepli(form: HTMLFormElement): string {
+  const lignes: string[] = [];
+  const noms = new Set(
+    Array.from(form.querySelectorAll<HTMLInputElement>("[name]"), (c) => c.name),
+  );
+  for (const nom of noms) {
+    if (HORS_MAIL.has(nom)) continue;
+    const valeurs: string[] = [];
+    form.querySelectorAll<HTMLInputElement>(`[name="${CSS.escape(nom)}"]`).forEach((c) => {
+      if ((c.type === "checkbox" || c.type === "radio") && !c.checked) return;
+      // Case cochée : son texte visible (« Eryngii (pleurote du panicaut) »), pas sa valeur technique.
+      // Message : ses retours à la ligne sont gardés tels quels.
+      const v =
+        c.type === "checkbox" || c.type === "radio"
+          ? (c.closest("label")?.textContent ?? c.value).replace(/\s+/g, " ")
+          : c.value;
+      if (v.trim()) valeurs.push(v.trim());
+    });
+    if (!valeurs.length) continue;
+    const texte = valeurs.join(", ");
+    // Texte sur plusieurs lignes : il commence sous son libellé.
+    lignes.push(`${libelleChamp(form, nom)} :${texte.includes("\n") ? "\n" : " "}${texte}`);
+  }
+  let corps = lignes.join("\n");
+  if (corps.length > CORPS_MAX) corps = corps.slice(0, CORPS_MAX) + " […]";
+  return (
+    `mailto:${MAIL_REPLI}?subject=${encodeURIComponent("Demande depuis le site")}` +
+    `&body=${encodeURIComponent(corps)}`
+  );
+}
+
+/** Repli visible après 2 essais bloqués par Turnstile (texte validé par Florestan le 23/11/2026). */
+function afficherRepli(errorEl: HTMLElement, form: HTMLFormElement): void {
+  const ligne = (texte: string, gras = false): HTMLElement => {
+    const el = document.createElement(gras ? "strong" : "span");
+    el.className = "block";
+    el.textContent = texte;
+    return el;
+  };
+  const bouton = document.createElement("a");
+  bouton.href = lienMailRepli(form);
+  bouton.textContent = "Envoyer ma demande par mail";
+  bouton.className =
+    "inline-flex items-center my-2 px-6 py-3 rounded-btn bg-cacao text-page text-sm font-semibold tracking-wide hover:bg-cacao/90 transition-colors";
+  // L'adresse : un vrai lien mailto, au cas où le bouton n'ouvre rien (pas de messagerie configurée).
+  const adresse = document.createElement("a");
+  adresse.href = `mailto:${MAIL_REPLI}`;
+  adresse.className = "underline";
+  adresse.textContent = MAIL_REPLI;
+  const ou = ligne("ou à l'adresse ");
+  ou.append(adresse);
+
+  errorEl.replaceChildren(
+    ligne("La vérification anti-robot ne marche pas sur votre appareil.", true),
+    ligne("Votre demande n'est pas partie. Ce n'est pas de votre faute."),
+    ligne("Écrivez-nous directement :"),
+    bouton,
+    ou,
+  );
+  errorEl.classList.remove("hidden");
+}
+
 export function wireContactForm(
   form: HTMLFormElement,
   formType: ContactFormType,
@@ -79,7 +170,9 @@ export function wireContactForm(
     if (!turnstileToken) {
       blockedAttempts += 1;
       reportBlocked(formType, blockedAttempts);
-      if (errorEl) {
+      if (errorEl && blockedAttempts >= 2) {
+        afficherRepli(errorEl, form);
+      } else if (errorEl) {
         errorEl.textContent =
           "Vérification de sécurité en cours, réessayez dans une seconde.";
         errorEl.classList.remove("hidden");
