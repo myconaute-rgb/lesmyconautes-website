@@ -63,11 +63,10 @@ export function lireFichier<C extends Chemin>(chemin: C): z.infer<(typeof FICHIE
     throw new ErreurContenu(chemin, [`JSON illisible : ${(e as Error).message}`]);
   }
   const r = FICHIERS[chemin].safeParse(brut, { error: enFrancais });
-  if (!r.success) {
-    throw new ErreurContenu(chemin, r.error.issues.map((i) => `champ ${champ(i.path)} : ${i.message}`));
-  }
-  const doubles = idsEnDouble(r.data);
-  if (doubles.length) throw new ErreurContenu(chemin, doubles);
+  // Toutes les fautes d'un coup : celles du schéma, puis les id en double.
+  const fautes = r.success ? [] : r.error.issues.map((i) => `champ ${champ(i.path)} : ${i.message}`);
+  fautes.push(...idsEnDouble(brut));
+  if (fautes.length || !r.success) throw new ErreurContenu(chemin, fautes);
   return r.data as never;
 }
 

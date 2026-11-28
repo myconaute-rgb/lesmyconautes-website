@@ -27,4 +27,27 @@ export type FicheEdition = {
   champs: Record<string, ChampEdition>;
 };
 
-export const FICHES: Record<string, FicheEdition> = {};
+// Limites de confort : au-dessus des textes d'aujourd'hui (titre 33 signes, question 48,
+// réponse 315), bien en dessous des limites du schéma (120, 120, 900).
+export const FICHES: Record<string, FicheEdition> = {
+  faq: {
+    fichier: "site/partages/faq.json",
+    type: "faq",
+    nom: "Questions fréquentes",
+    champs: {
+      titre: {
+        libelle: "Titre du bloc",
+        aide: "Le mot en italique se met en valeur. Affiché sur l'accueil, particuliers, pros et myconautes.",
+        confort: 50,
+      },
+      sousTitre: { libelle: "Petit titre manuscrit", confort: 30 },
+      "rubriques[].titre": { libelle: "Nom de la rubrique", aide: "Un emoji au début, comme aujourd'hui.", confort: 30 },
+      "rubriques[].questions[].question": { libelle: "Question", confort: 70 },
+      "rubriques[].questions[].reponse": {
+        libelle: "Réponse",
+        aide: "Italique, gras et liens permis. Un lien vers la boutique ou une page du site se choisit dans la liste.",
+        confort: 400,
+      },
+    },
+  },
+};

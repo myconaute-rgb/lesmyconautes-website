@@ -32,7 +32,7 @@ const controle = async (nom, fn) => {
    Chaque lot ajoute ici ses composants. `verrouilles` liste les textes
    qui restent volontairement dans le code (verrouillés, hors éditeur). */
 const COMPOSANTS_MIGRES = [
-  // { fichier: "src/components/FaqCommune.astro", verrouilles: [] },   // lot L1
+  { fichier: "src/components/FaqCommune.astro", verrouilles: [] },   // lot L1 : contenu/site/partages/faq.json
 ];
 
 /** Les phrases restées dans le gabarit d'un composant .astro (hors frontmatter, scripts, expressions). */

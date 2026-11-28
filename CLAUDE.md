@@ -31,9 +31,8 @@ scripts/         comparer-html.mjs (preuve « sans effet visible »), verifier.m
 - Contenus légaux : mentions SCEA/SIRET, certification **FR-BIO-01** verbatim — ne pas reformuler.
 
 ## Contenu et éditeur du site (projet 08, `claude_code` : `projets/08_editeur_site/`)
-Les mots sortent du code lot par lot (L0 outillage, L1 FAQ commune, L2… ; liste dans le rendu, fichier 07 § 6).
-Chaque lot est une PR qui prouve que le site reste identique : `npm run comparer -- <dist main> <dist branche>`
-(0 différence ; feuille de style : 0 règle modifiée, des ajouts permis) et `npm run verifier` vert.
+Les mots sortent du code lot par lot ; chaque lot prouve que le site reste identique. Méthode, preuves et
+repères : `src/contenu/CLAUDE.md`, à lire avant de toucher un composant, `contenu/` ou `src/contenu/`.
 
 - **R92** Aucun texte nouveau en dur, nulle part, dès maintenant (décision A). Dans une page migrée : un texte
   se change dans `contenu/`, jamais dans un composant, et un test (« aucun texte en dur ») échoue sinon.
@@ -48,11 +47,6 @@ Chaque lot est une PR qui prouve que le site reste identique : `npm run comparer
 - **R97** JSON : deux espaces, pas de tri des clés.
 - **R98** Jamais un prix ni une donnée métier dans `contenu/`, sauf `donnees/publiques.json`. Ce fichier est
   une copie de la base. Après le pas 8, seule la publication de la copie l'écrit.
-
-Repères : `texte.ts` est la seule fonction texte → HTML (les classes des balises viennent du composant) ;
-une page pas encore migrée continue de passer ses différences en paramètres au bloc partagé déjà migré
-(K15) ; la migration ne corrige rien (fautes, doublons, code mort : après, à part) ; Tailwind ne lit pas
-`contenu/` (`@source not` dans `global.css`), ne jamais retirer cette ligne.
 
 ## Normes transversales (décisions Juger actées 2026-07-02 — `claude_code/docs/systeme/DECISIONS.md`)
 - Le site reste **découplé** du système : tout nouveau pont (catalogue, dispos…) passe par un webhook n8n
