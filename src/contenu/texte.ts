@@ -45,7 +45,7 @@ export type Noeud =
 
 export type Analyse = { noeuds: Noeud[]; erreurs: string[] };
 
-const RE_LIEN = /^\[([^\]\n]+)\]\(([a-z]+):([^)\s]*)\)/;
+const RE_LIEN = /^\[([^\]\n]+)\]\(([a-z]+):([^)\n]*)\)/;
 const RE_JETON = /^\{\{([a-z0-9_]+(?:\.[a-z0-9_]+)*)\}\}/;
 const RE_VARIABLE = /^\{([a-z_]+)\}/;
 const RE_ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -84,6 +84,8 @@ export function analyserTexte(s: string, regles: Regles = {}): Analyse {
     const reste = s.slice(i);
     const c = s[i];
 
+    // « *** » qui ferme : l'italique ouvert en dernier se ferme d'abord, puis le gras.
+    if (reste.startsWith("***") && haut().t === "italique") { basculer("italique", "*"); i += 1; continue; }
     if (reste.startsWith("**")) { basculer("gras", "**"); i += 2; continue; }
     if (c === "*") { basculer("italique", "*"); i += 1; continue; }
 

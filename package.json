@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "comparer": "node scripts/comparer-html.mjs"
+    "comparer": "node scripts/comparer-html.mjs",
+    "verifier": "node scripts/verifier.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
