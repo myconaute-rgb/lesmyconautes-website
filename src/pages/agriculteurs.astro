@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CTASection from "../components/CTASection.astro";
 import HoneypotField from "../components/HoneypotField.astro";
-import Turnstile from "../components/Turnstile.astro";
+import DevisSubstrat from "../components/DevisSubstrat.astro";
 import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
 import { AGRI_SPECIES, SUBSTRATE_FORMATS } from "../data/agri_species";
 import incubationCharriotsPic from "../assets/photos/incubation-charriots.jpg";
@@ -305,57 +305,63 @@ const FORMAT_EXTRA: Record<string, string> = {};
           </h2>
           <p class="script-sub text-[clamp(1.6rem,3vw,2.2rem)] text-violet">tarifs &amp; conditions de vente</p>
           <p class="mt-6 text-brun leading-relaxed">
-            Indiquez les variétés et volumes souhaités. Partagez toutes vos questions techniques. Réponse rapide avec proposition adaptée. On fabrique à la commande&nbsp;: comptez au moins 4 semaines entre votre commande et la semaine de départ. Le substrat sert uniquement à produire des champignons frais, il ne se consomme pas. Voir nos <a href="/cgv-substrat-pro" class="underline hover:text-violet">conditions générales de vente du substrat</a>.
+            Choisissez vos variétés et vos quantités. Vous recevez un code par mail&nbsp;: tapez-le, et votre estimation s'affiche, substrat, emballage et transport compris. Aline vous rappelle ensuite pour l'ajuster et répondre à vos questions techniques. On fabrique à la commande. Le substrat sert uniquement à produire des champignons frais, il ne se consomme pas. Voir nos <a href="/cgv-substrat-pro" class="underline hover:text-violet">conditions générales de vente du substrat</a>.
           </p>
         </div>
 
-        <form class="grid gap-4 bg-creme/60 p-8" data-agri-form>
-          <HoneypotField />
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="af-name" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Nom / structure</label>
-              <input id="af-name" name="name" type="text" required class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+        <DevisSubstrat />
+
+        <!-- Repli : le formulaire d'avant, montré seulement si le calculateur ne charge pas (panne). -->
+        <div class="hidden" data-devis-repli>
+          <form class="grid gap-4 bg-creme/60 p-8" data-agri-form>
+            <p class="text-sm text-brun/80">Le calcul en ligne est indisponible pour l'instant. Laissez-nous votre demande : Aline vous rappelle avec votre prix.</p>
+            <HoneypotField />
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="af-name" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Nom / structure</label>
+                <input id="af-name" name="name" type="text" required class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+              </div>
+              <div>
+                <label for="af-email" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Email</label>
+                <input id="af-email" name="email" type="email" required class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+              </div>
             </div>
             <div>
-              <label for="af-email" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Email</label>
-              <input id="af-email" name="email" type="email" required class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+              <label for="af-phone" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Téléphone</label>
+              <input id="af-phone" name="phone" type="tel" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
             </div>
-          </div>
-          <div>
-            <label for="af-phone" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Téléphone</label>
-            <input id="af-phone" name="phone" type="tel" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
-          </div>
-          <div>
-            <label for="af-postal" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Code postal</label>
-            <input id="af-postal" name="postal_code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="42800" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
-            <p class="text-xs text-brun/60 mt-1.5">Sert à estimer les frais de transport (facultatif).</p>
-          </div>
-          <div>
-            <label for="af-species" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Espèces souhaitées</label>
-            <input id="af-species" name="species" type="text" required placeholder="Pleurote, éryngii, hericium…" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
-          </div>
-          <div>
-            <label for="af-volume" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Volume estimé</label>
-            <input id="af-volume" name="volume" type="text" placeholder="Nombre de sacs · fréquence" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
-          </div>
-          <div>
-            <label for="af-msg" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Détails</label>
-            <textarea id="af-msg" name="message" rows="4" maxlength="5000" placeholder="Type de production, calendrier, contraintes…" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm resize-y"></textarea>
-          </div>
-          <Turnstile />
-          <button type="submit" class="justify-self-start inline-flex items-center px-8 py-4 rounded-btn bg-cacao text-page text-sm font-semibold tracking-wide uppercase hover:bg-cacao/90 transition-colors">
-            Envoyer
-          </button>
-          <p class="text-xs text-brun/60 leading-relaxed">
-            En envoyant ce formulaire, vous acceptez que vos données (nom, email, tél., code postal, espèces et volumes) soient utilisées pour établir un devis. <a href="/mentions-legales" class="underline hover:text-violet">Plus d'infos</a>.
-          </p>
-          <p class="hidden text-sm text-anis font-semibold" data-form-success>
-            Merci, votre demande est partie. On revient vers vous très vite.
-          </p>
-          <p class="hidden text-sm text-terracotta font-semibold" data-form-error>
-            Une erreur est survenue. Réessayez, ou écrivez directement à <span class="underline">myconautes &#x40; pm.me</span>.
-          </p>
-        </form>
+            <div>
+              <label for="af-postal" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Code postal</label>
+              <input id="af-postal" name="postal_code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="42800" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+              <p class="text-xs text-brun/60 mt-1.5">Sert à estimer les frais de transport (facultatif).</p>
+            </div>
+            <div>
+              <label for="af-species" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Espèces souhaitées</label>
+              <input id="af-species" name="species" type="text" required placeholder="Pleurote, éryngii, hericium…" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+            </div>
+            <div>
+              <label for="af-volume" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Volume estimé</label>
+              <input id="af-volume" name="volume" type="text" placeholder="Nombre de sacs · fréquence" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm" />
+            </div>
+            <div>
+              <label for="af-msg" class="block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5">Détails</label>
+              <textarea id="af-msg" name="message" rows="4" maxlength="5000" placeholder="Type de production, calendrier, contraintes…" class="w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm resize-y"></textarea>
+            </div>
+            <div data-turnstile-repli></div>
+            <button type="submit" class="justify-self-start inline-flex items-center px-8 py-4 rounded-btn bg-cacao text-page text-sm font-semibold tracking-wide uppercase hover:bg-cacao/90 transition-colors">
+              Envoyer
+            </button>
+            <p class="text-xs text-brun/60 leading-relaxed">
+              En envoyant ce formulaire, vous acceptez que vos données (nom, email, tél., code postal, espèces et volumes) soient utilisées pour établir un devis. <a href="/mentions-legales" class="underline hover:text-violet">Plus d'infos</a>.
+            </p>
+            <p class="hidden text-sm text-anis font-semibold" data-form-success>
+              Merci, votre demande est partie. On revient vers vous très vite.
+            </p>
+            <p class="hidden text-sm text-terracotta font-semibold" data-form-error>
+              Une erreur est survenue. Réessayez, ou écrivez directement à <span class="underline">myconautes &#x40; pm.me</span>.
+            </p>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -373,6 +379,9 @@ const FORMAT_EXTRA: Record<string, string> = {};
 
 <script>
   import { wireContactForm } from "../scripts/contact-form";
+  import { wireDevisSubstrat } from "../scripts/devis-substrat";
   const form = document.querySelector<HTMLFormElement>("[data-agri-form]");
   if (form) wireContactForm(form, "devis_substrat");
+  const devis = document.querySelector<HTMLElement>("[data-devis]");
+  if (devis) wireDevisSubstrat(devis, document.querySelector<HTMLElement>("[data-devis-repli]"));
 </script>
