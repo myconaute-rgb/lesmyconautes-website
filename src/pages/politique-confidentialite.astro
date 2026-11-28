@@ -15,7 +15,7 @@ import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
   <article class="px-6 py-16 max-w-3xl mx-auto">
     <span class="text-xs font-semibold tracking-widest uppercase text-terracotta">Légal</span>
     <h1 class="mt-2 text-4xl md:text-5xl text-brun">Politique de confidentialité</h1>
-    <p class="mt-3 text-sm text-brun-clair italic">Dernière mise à jour : 30 octobre 2026.</p>
+    <p class="mt-3 text-sm text-brun-clair italic">Dernière mise à jour : 28 novembre 2026.</p>
 
     <section class="mt-12">
       <h2 class="text-2xl text-brun">1. Qui est responsable de vos données ?</h2>
@@ -96,6 +96,15 @@ import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
         <li><strong>Durée</strong> : 6 mois.</li>
         <li><strong>Destinataires</strong> : Cloudflare (filtrage et journalisation), équipe Les Myconautes.</li>
       </ul>
+
+      <h3 class="mt-6 text-lg text-brun font-semibold">2.8 Espace client professionnel (pro.lesmyconautes.fr)</h3>
+      <ul class="mt-2 space-y-1 text-sm text-brun-clair leading-relaxed list-disc list-inside">
+        <li><strong>Données</strong> : l'adresse e-mail professionnelle à laquelle notre équipe ouvre votre accès, une courte note interne (par exemple « cuisine » ou « comptabilité »), les dates d'ouverture et de fermeture de l'accès. À chaque connexion : adresse IP, type de navigateur, dates de connexion et de dernière visite. Un journal garde les demandes de code, les connexions et les pages consultées (prix, commandes, factures) ; votre adresse e-mail n'y figure pas en clair, seulement sous forme d'empreinte. Le code de connexion et la session ne sont jamais conservés en clair.</li>
+        <li><strong>Finalité</strong> : vous permettre de consulter vos prix, vos commandes, vos bons de livraison et vos factures ; protéger cet accès (code à usage unique envoyé par e-mail, limites contre les abus).</li>
+        <li><strong>Base légale</strong> : exécution du contrat (relation commerciale) ; intérêt légitime pour la sécurité de l'accès.</li>
+        <li><strong>Durée</strong> : le code de connexion vaut 10 minutes et sa trace est effacée après 2 jours. Un appareil reste connecté 90 jours au plus. Le journal et les données de connexion (adresse IP, navigateur) sont effacés au plus tard 12 mois après leur date. L'adresse e-mail est gardée tant que l'accès est ouvert ; une fois l'accès fermé, elle suit la durée de la relation commerciale (§2.2). Nous fermons l'accès quand vous cessez d'être client, et à tout moment sur simple demande.</li>
+        <li><strong>Destinataires</strong> : équipe Les Myconautes uniquement. L'espace est hébergé sur nos propres serveurs en France ; Cloudflare l'achemine et fournit l'anti-robot de la page de connexion (Turnstile : un jeton technique et votre adresse IP) ; le code vous est envoyé par notre messagerie Proton, depuis commandes@lesmyconautes.fr.</li>
+      </ul>
     </section>
 
     <section class="mt-12">
@@ -105,6 +114,9 @@ import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
       </p>
       <p class="mt-2 text-sm text-brun-clair leading-relaxed">
         Le service anti-bot <strong>Cloudflare Turnstile</strong>, utilisé sur le formulaire de contact, peut déposer des cookies strictement nécessaires à la sécurité, exemptés de consentement par la CNIL (recommandation cookies, art. 82 LCEN).
+      </p>
+      <p class="mt-2 text-sm text-brun-clair leading-relaxed">
+        L'<strong>espace client professionnel</strong> (pro.lesmyconautes.fr) dépose seulement les cookies nécessaires à la connexion : un pour protéger le formulaire (1 heure), un pour la demande de code (15 minutes) et un pour garder votre appareil connecté (90 jours au plus, effacé quand vous vous déconnectez). Ils sont strictement nécessaires au service que vous demandez et exemptés de consentement.
       </p>
       <p class="mt-2 text-sm text-brun-clair leading-relaxed">
         <strong>Aucun outil publicitaire ou de profilage</strong> (Google Analytics, Meta Pixel, etc.) n'est présent sur ce site. Aucun bandeau cookies n'est donc nécessaire.
@@ -126,8 +138,8 @@ import BreadcrumbLd from "../components/seo/BreadcrumbLd.astro";
             </tr>
           </thead>
           <tbody class="divide-y divide-brun/10">
-            <tr><td class="py-2 pr-4 font-semibold">Cloudflare Inc.</td><td class="py-2 pr-4">Hébergement, Turnstile, mesure d'audience</td><td class="py-2">USA — clauses contractuelles types</td></tr>
-            <tr><td class="py-2 pr-4 font-semibold">Proton AG</td><td class="py-2 pr-4">Messagerie professionnelle</td><td class="py-2">Suisse — décision d'adéquation</td></tr>
+            <tr><td class="py-2 pr-4 font-semibold">Cloudflare Inc.</td><td class="py-2 pr-4">Hébergement, acheminement de l'espace client professionnel, Turnstile, mesure d'audience</td><td class="py-2">USA — clauses contractuelles types</td></tr>
+            <tr><td class="py-2 pr-4 font-semibold">Proton AG</td><td class="py-2 pr-4">Messagerie professionnelle, dont l'envoi du code de connexion à l'espace client</td><td class="py-2">Suisse — décision d'adéquation</td></tr>
             <tr><td class="py-2 pr-4 font-semibold">Pennylane</td><td class="py-2 pr-4">Facturation et comptabilité</td><td class="py-2">France</td></tr>
             <tr><td class="py-2 pr-4 font-semibold">Transporteurs frigorifiques</td><td class="py-2 pr-4">Livraison sous chaîne du froid</td><td class="py-2">France</td></tr>
           </tbody>
