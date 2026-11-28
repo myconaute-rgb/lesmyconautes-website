@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "type": "faq",
+  "nom": "questions fréquentes",
+  "titre": "Tout *savoir* sur nos champignons",
+  "sousTitre": "questions fréquentes",
+  "rubriques": [
+    {
+      "id": "produits",
+      "titre": "🍄 Nos produits",
+      "questions": [
+        {
+          "id": "bio",
+          "question": "Vos champignons sont-ils bio ?",
+          "reponse": "Tous nos champignons sont issus de l'agriculture biologique (label FR-BIO-01) et cultivés selon des pratiques durables et raisonnées."
+        },
+        {
+          "id": "origine",
+          "question": "D'où viennent vos champignons ?",
+          "reponse": "Cultivés, récoltés et conditionnés à Rive-de-Gier (Loire). Circuit court, sans intermédiaire."
+        },
+        {
+          "id": "laver",
+          "question": "Faut-il les laver ?",
+          "reponse": "Nos champignons sont propres et parés. Un simple essuyage avec un linge humide suffit."
+        }
+      ]
+    },
+    {
+      "id": "conservation",
+      "titre": "❄️ Conservation",
+      "questions": [
+        {
+          "id": "duree",
+          "question": "Combien de temps se conservent-ils ?",
+          "reponse": "8 à 10 jours au réfrigérateur (0 à 4°C), dans leur emballage d'origine ou un contenant aéré."
+        },
+        {
+          "id": "congeler",
+          "question": "Puis-je les congeler ?",
+          "reponse": "Nous vous recommandons de les poêler légèrement avant congélation pour préserver texture et goût."
+        }
+      ]
+    },
+    {
+      "id": "retrait",
+      "titre": "📦 Retrait & livraison",
+      "questions": [
+        {
+          "id": "recuperer",
+          "question": "Puis-je récupérer ma commande ?",
+          "reponse": "Oui — envoyez-nous un message pour commander et attendez notre confirmation :) Retrait gratuit au 5 rue Vallée de Couzon, 42800 Rive-de-Gier, du lundi au vendredi de 7h à 13h pour les particuliers comme les professionnels. Nous conserverons votre commande au frais pendant 3 jours après la date de retrait annoncée."
+        },
+        {
+          "id": "hors-zone",
+          "question": "Livrez-vous en dehors de Lyon et Saint-Étienne ?",
+          "reponse": "Pour la France entière, passez par notre boutique [Pour de Bon](externe:pour-de-bon). Professionnels ? Pour de Bon a un espace dédié mais nous pouvons aussi étudier votre demande en direct — [contactez-nous](page:/contact) !"
+        }
+      ]
+    }
+  ]
+}

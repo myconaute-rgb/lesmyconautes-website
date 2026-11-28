@@ -44,12 +44,23 @@ export const texte = (r: Regles & { max: number }) =>
     for (const e of [...a.erreurs, ...ciblesInconnues(a.noeuds)]) ctx.addIssue({ code: "custom", message: e });
   });
 
-export const Libelle    = texte({ max: 60 });
-export const Titre      = texte({ max: 120, italique: true, lignes: true });        // jamais de gras
-export const Script     = texte({ max: 60 });                                       // jamais de gras
-export const Phrase     = texte({ max: 320, italique: true, gras: true, liens: true, jetons: true });
-export const Paragraphe = texte({ max: 900, italique: true, gras: true, liens: true, jetons: true, lignes: true });
-export const Alt        = texte({ max: 200 });
+/** Les règles de chaque sorte de texte : le schéma valide avec, le composant rend avec. */
+export const REGLES = {
+  libelle:    { max: 60 },
+  titre:      { max: 120, italique: true, lignes: true },        // jamais de gras
+  script:     { max: 60 },                                       // jamais de gras
+  phrase:     { max: 320, italique: true, gras: true, liens: true, jetons: true },
+  paragraphe: { max: 900, italique: true, gras: true, liens: true, jetons: true, lignes: true },
+  alt:        { max: 200 },
+  question:   { max: 120 },
+} as const satisfies Record<string, Regles & { max: number }>;
+
+export const Libelle    = texte(REGLES.libelle);
+export const Titre      = texte(REGLES.titre);
+export const Script     = texte(REGLES.script);
+export const Phrase     = texte(REGLES.phrase);
+export const Paragraphe = texte(REGLES.paragraphe);
+export const Alt        = texte(REGLES.alt);
 
 export const Lien = z.union([
   z.object({ page: z.enum(PAGES), ancre: Id.optional() }).strict(),
@@ -91,7 +102,7 @@ export const Liens = z.object({
 export const Faq = z.object({ schema: z.literal(1), type: z.literal("faq"), nom: Libelle, ...entete,
   forme: Forme.optional(),
   rubriques: z.array(z.object({ id: Id, titre: Libelle,
-    questions: z.array(z.object({ id: Id, question: texte({ max: 120 }), reponse: Paragraphe }).strict())
+    questions: z.array(z.object({ id: Id, question: texte(REGLES.question), reponse: Paragraphe }).strict())
                 .min(1).max(10) }).strict()).min(1).max(6) }).strict();
 
 export type Liens = z.infer<typeof Liens>;
