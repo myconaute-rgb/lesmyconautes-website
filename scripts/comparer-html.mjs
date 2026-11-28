@@ -185,6 +185,7 @@ const signature = (n) => {
   if (n.nodeName === "#text") return `texte:${JSON.stringify(n.value)}`;
   if (n.nodeName === "#comment") return `commentaire:${JSON.stringify(n.data)}`;
   if (n.nodeName === "#documentType") return `doctype:${n.name}`;
+  if (!n.tagName) return n.nodeName; // #document, #document-fragment
   return `<${n.tagName} ${n.attrs.map((a) => `${a.name}=${JSON.stringify(a.value)}`).join(" ")}>`;
 };
 const serialiser = (n) => aplatir({ childNodes: [n] }, "", [], (v) => v).map((x) => x.v).join("\n");

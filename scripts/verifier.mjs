@@ -7,6 +7,9 @@
  *   2. « Aucun texte en dur » : les composants migrés n'écrivent aucune phrase (règle R92).
  *   3. Chaque classe de src/contenu/formes.ts existe dans la feuille de style produite.
  *   4. Les tests du moteur de texte (src/contenu/texte.ts).
+ *   5. Chaque fichier de contenu/ est sous la forme « machine » (R97, éditeur pas 2).
+ *   6. La construction publique ne porte ni repère d’aperçu (data-champ…) ni script d’édition.
+ *   7. Les règles d’écriture des gestes (src/contenu/ecriture.ts).
  *
  * Il construit le site d'abord (le contrôle 3 lit dist/). `--sans-construction` saute cette étape.
  * L'atelier lance la même vérification avant chaque publication.
@@ -188,6 +191,90 @@ await controle("Tests du moteur de texte", async () => {
   if (Paragraphe.safeParse("[a](page:/nulle-part)").success) erreurs.push("schéma : page inconnue acceptée");
   if (Paragraphe.safeParse("[a](externe:twitter)").success) erreurs.push("schéma : lien externe inconnu accepté");
   if (!Paragraphe.safeParse("[a](page:/contact)").success) erreurs.push("schéma : lien vers /contact refusé");
+  return erreurs;
+});
+
+/* ── 5. Chaque fichier de contenu/ est sous la forme « machine » (R97) ── */
+await controle("Forme machine des fichiers de contenu/", () => {
+  const erreurs = [];
+  const marcher = (d) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      const p = join(d, e.name);
+      if (e.isDirectory()) { marcher(p); continue; }
+      const t = readFileSync(p, "utf8");
+      let attendu;
+      try { attendu = JSON.stringify(JSON.parse(t), null, 2) + "\n"; } catch { erreurs.push(`${p.slice(RACINE.length + 1)} : JSON illisible`); continue; }
+      // L'atelier réécrit toujours sous cette forme : une autre forme changerait tout le fichier à la première publication.
+      if (t !== attendu) erreurs.push(`${p.slice(RACINE.length + 1)} : pas sous la forme JSON.stringify(x, null, 2) + saut de ligne final`);
+    }
+  };
+  marcher(join(RACINE, "contenu"));
+  return erreurs;
+});
+
+/* ── 6. La construction publique ne porte aucun repère d'aperçu ───── */
+await controle("Construction publique sans repères ni script d'édition", async () => {
+  if (process.env.APERCU_BASE) return ["APERCU_BASE est posée : ce n'est pas une construction publique"];
+  const { parse } = await import("parse5");
+  const erreurs = [];
+  const interdits = ["data-champ", "data-bloc", "data-repere", "data-edition"];
+  const dist = join(RACINE, "dist");
+  if (!existsSync(dist)) return ["dist/ absent : lance npm run build (ou retire --sans-construction)"];
+  let pages = 0;
+  const marcher = (d) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      const p = join(d, e.name);
+      if (e.isDirectory()) { marcher(p); continue; }
+      const f = p.slice(dist.length + 1);
+      if (/\.(html|js|css|json|xml|txt|webmanifest)$/.test(f) && readFileSync(p, "utf8").includes("__editionSite")) erreurs.push(`${f} : contient le script d'édition`);
+      if (!f.endsWith(".html")) continue;
+      pages++;
+      const voir = (n) => {
+        for (const a of n.attrs ?? []) if (interdits.includes(a.name)) erreurs.push(`${f} : attribut ${a.name} (repère d'aperçu)`);
+        for (const c of (n.content ?? n).childNodes ?? []) voir(c);
+      };
+      voir(parse(readFileSync(p, "utf8")));
+    }
+  };
+  marcher(dist);
+  if (pages === 0) erreurs.push("aucune page lue dans dist/");
+  return [...new Set(erreurs)];
+});
+
+/* ── 7. Les règles d'écriture (src/contenu/ecriture.ts) ───────────── */
+await controle("Règles d'écriture des gestes", async () => {
+  const { verifierEcriture, nettoyer } = await import(join(RACINE, "src/contenu/ecriture.ts"));
+  const champ = { max: 900, obligatoire: true };
+  const cas = [
+    // [nom, avant, après, règle attendue (refus), ou "ok", ou "R17" (signalement)]
+    ["texte simple", "Nous vous recommandons…", "Oui. Poêlez-les légèrement avant.", "ok"],
+    ["point médian ajouté", "Pour les chefs", "Pour les chef·fes", "R16"],
+    ["point médian déjà là : rien ne bloque", "Pour les chef·fes de cuisine", "Pour les chef·fes de salle", "ok"],
+    ["signe entouré d'espaces", "Nombre de sacs", "Nombre de sacs · fréquence", "ok"],
+    ["prix", "Livraison", "Livraison : 2 €", "R18"],
+    ["prix en lettres", "Livraison", "Livraison 4,20 euros", "R18"],
+    ["chiffre sans prix", "Conservation", "8 à 10 jours (0 à 4°C)", "ok"],
+    ["FR-BIO-01 exact", "Bio", "Bio (label FR-BIO-01)", "ok"],
+    ["FR-BIO-1", "Bio", "Bio (FR-BIO-1)", "R19"],
+    ["FR BIO 01", "Bio", "Bio, FR BIO 01", "R19"],
+    ["FR-BIO-01 déjà là, on écrit à côté", "label FR-BIO-01 et cultivés", "label FR-BIO-01, cultivés à Rive-de-Gier", "ok"],
+    ["adresse mail", "Écrivez-nous", "Écrivez à contact@lesmyconautes.fr", "R23"],
+    ["texte vidé", "Faut-il les laver ?", "   ", "R14"],
+    ["trop long", "a", "a".repeat(901), "R12"],
+    ["Chef.fe : signalé, pas refusé", "Pour les chefs", "Pour les Chef.fe pressés", "R17"],
+    ["Chef.fe déjà là : rien", "Pour les Chef.fe", "Pour les Chef.fe pressés", "ok"],
+    ["<script> : accepté comme texte", "a", "<script>alert(1)</script>", "ok"],
+  ];
+  const erreurs = [];
+  for (const [nom, avant, apres, attendu] of cas) {
+    const v = verifierEcriture(avant, apres, champ);
+    const obtenu = v.etat === "refuse" ? v.regle : v.signalements.length ? v.signalements.map((s) => s.regle).join(",") : "ok";
+    if (obtenu !== attendu) erreurs.push(`${nom} : attendu ${attendu}, obtenu ${obtenu}`);
+  }
+  assert.equal(nettoyer("  Oui.   Poêlez-les \n\n\n\n avant.  "), "Oui. Poêlez-les\n\navant.");
+  assert.equal(nettoyer("8 jours"), "8 jours"); // l'espace insécable reste
+  const facultatif = verifierEcriture("a", "", { max: 60, obligatoire: false });
+  if (facultatif.etat !== "refuse" || facultatif.regle !== "R14") erreurs.push("champ facultatif vidé : attendu un refus R14 (masquer : plus tard)");
   return erreurs;
 });
 
