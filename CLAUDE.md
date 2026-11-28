@@ -34,6 +34,9 @@ scripts/         comparer-html.mjs (preuve « sans effet visible »), verifier.m
 Les mots sortent du code lot par lot (L0 outillage, L1 FAQ commune, L2… ; liste dans le rendu, fichier 07 § 6).
 Chaque lot est une PR qui prouve que le site reste identique : `npm run comparer -- <dist main> <dist branche>`
 (0 différence ; feuille de style : 0 règle modifiée, des ajouts permis) et `npm run verifier` vert.
+Avant et après la fusion : `npm run photo-en-ligne -- https://lesmyconautes.fr <dist> <dossier>` photographie
+les 15 pages servies (en défaisant la protection des adresses mail de Cloudflare), puis `npm run comparer`
+entre les deux photos.
 
 - **R92** Aucun texte nouveau en dur, nulle part, dès maintenant (décision A). Dans une page migrée : un texte
   se change dans `contenu/`, jamais dans un composant, et un test (« aucun texte en dur ») échoue sinon.
