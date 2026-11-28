@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Les mots du site (contenu/) ne fabriquent jamais de classe : un mot tapé dans
+   l'éditeur (« hidden », « grid ») ne doit pas changer la feuille de style.
+   Les classes de forme sont écrites en toutes lettres dans src/contenu/formes.ts. */
+@source not "../../contenu";
+
 @theme {
   /* Aurore Terracotta — palette validée
      Tokens sémantiques. NE PAS ajouter de couleurs ad hoc dans les composants. */

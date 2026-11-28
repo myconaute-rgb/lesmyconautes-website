@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "verrou": "code",
+  "pour-de-bon": {
+    "nom": "Pour de Bon",
+    "adresse": "https://www.pourdebon.com/les-myconautes-s1527"
+  },
+  "instagram": {
+    "nom": "Instagram",
+    "adresse": "https://www.instagram.com/les_myconautes/"
+  },
+  "facebook": {
+    "nom": "Facebook",
+    "adresse": "https://www.facebook.com/p/Les-Myconautes-61577873314539/"
+  }
+}

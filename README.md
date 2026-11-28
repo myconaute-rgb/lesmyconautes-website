@@ -1,87 +1,88 @@
 # lesmyconautes-website
 
-Site marketing des **Myconautes** — champignonnière artisanale certifiée FR-BIO-01 à Rive-de-Gier (Loire). Quatre variétés (pleurote, éryngii, hericium, Black Pearl), substrats inoculés bio pour la production agricole, kits de culture pour la maison.
+Site marketing des **Myconautes** — champignonnière artisanale certifiée FR-BIO-01 à Rive-de-Gier (Loire). Champignons frais bio, substrats inoculés pour les producteurs, kits de culture pour la maison.
 
 → [lesmyconautes.fr](https://lesmyconautes.fr)
 
 ## Stack
 
-- [Astro](https://astro.build) 6 — site statique, MDX-ready
+- [Astro](https://astro.build) 7 — site statique
 - [Tailwind CSS](https://tailwindcss.com) 4 — config CSS-first via `@theme` dans `src/styles/global.css`
 - [Cloudflare Pages](https://pages.cloudflare.com) — hébergement, build automatique sur push, redirections via `public/_redirects`, headers via `public/_headers`
 - [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) — sitemap-index.xml généré au build
+- Zod (fourni par Astro, `astro/zod`) — schéma du contenu
 
 ## Développement local
 
 ```bash
 npm install
-npm run dev   # serveur dev http://localhost:4321
-npm run build # build statique dans ./dist/
+npm run dev        # serveur dev http://localhost:4321
+npm run build      # build statique dans ./dist/
+npm run verifier   # build + contrôles du contenu (schéma, texte en dur, classes, moteur de texte)
+npm run comparer -- <dist-avant> <dist-apres>   # prouve qu'un changement est sans effet visible
 ```
 
-Node 22+ requis (`engines` dans `package.json`).
+Node 22.18+ requis (`engines` dans `package.json` ; les scripts lisent les fichiers `.ts` directement).
 
 ## Structure
 
 ```
+contenu/                 les mots du site, en JSON (éditeur du site, en cours de migration)
+└── site/partages/       blocs partagés entre pages (liens.json, faq.json…)
+
 src/
-├── components/   composants réutilisables (Nav, Footer, Hero, PageHero, ProductCard, ...)
-├── data/         variétés et catalogue agri (alignés sur business keys de la DB Myconautes)
-├── layouts/      BaseLayout — meta SEO, Google Fonts, slot principal
-├── pages/        routes Astro (index, particuliers, restaurateurs, agriculteurs, contact, a-propos, mentions-legales, cgv)
-└── styles/       global.css — tokens Aurore Terracotta + fontes Fraunces & Outfit
+├── assets/              photos, pictos, logos (optimisés par astro:assets)
+├── components/          blocs des pages (Nav, Footer, Hero, ContactSection, FaqCommune…) et seo/
+├── contenu/             formes.ts, texte.ts, schema.ts, charger.ts, edition.ts (voir plus bas)
+├── data/                variétés, gamme, espèces agri, FAQ des pages substrat, organisation
+├── layouts/             BaseLayout — meta SEO, polices, slot principal
+├── pages/               15 pages + /version.json
+├── scripts/             contact-form.ts (soumission → webhook n8n)
+└── styles/              global.css — tokens de couleur et polices
+
+scripts/
+├── comparer-html.mjs    compare deux constructions (arbre HTML, feuille de style, fichiers)
+└── verifier.mjs         npm run verifier
 
 public/
-├── _headers      headers HTTP (CSP, HSTS, X-Frame, ...) servis par Cloudflare Pages
-├── _redirects    301 préservation SEO (anciennes URLs → nouvelles)
-├── robots.txt    pointe vers /sitemap-index.xml
-└── scaphandre-logo.svg
+├── _headers             headers HTTP (CSP, HSTS, X-Frame, ...) servis par Cloudflare Pages
+├── _redirects           301 préservation SEO (anciennes URLs → nouvelles)
+├── robots.txt           pointe vers /sitemap-index.xml
+└── favicons, manifeste, logos
 ```
 
-## Photos produits
+Les 15 pages : accueil, particuliers, pros, agriculteurs, myconautes, contact ; les quatre pages substrat
+(pleurote pro, eryngii-panicaut, hericium pro, incubé prêt à fructifier) ; cgv, cgv-substrat-pro,
+mentions-legales, politique-confidentialite ; 404.
 
-Les photos de variétés (pour `/`, `/particuliers`, `/restaurateurs`) et d'espèces agri (pour `/agriculteurs`) sont **optionnelles** : tant qu'elles ne sont pas livrées, le site affiche un dégradé Aurore Terracotta + emoji en placeholder.
+## Le contenu et l'éditeur du site
 
-**Pour ajouter une photo :**
+Les mots sortent du code, lot par lot, vers `contenu/` : Aline et Florestan les changeront par l'éditeur
+du site, sans toucher au code. Chaque lot prouve que le site en ligne reste identique (`npm run comparer`).
 
-1. Drop le fichier dans `public/photos/` avec le slug correspondant.
-   Exemple : pour la variété `pleurote` → `public/photos/pleurote.jpg`.
-2. Édite la ligne dans `src/data/varieties.ts` (ou `src/data/agri_species.ts` pour la page agri) :
+- `src/contenu/texte.ts` — la seule fonction texte → HTML. Signes : `*italique*`, `**gras**`, retour à la
+  ligne, `[libellé](page:/contact)`, `[libellé](externe:pour-de-bon)`, `{{jeton}}`. Tout le reste est échappé.
+- `src/contenu/formes.ts` — les réglages de forme, en listes fermées, classes écrites en entier.
+- `src/contenu/schema.ts` — le schéma de chaque fichier de `contenu/`. Un fichier invalide arrête le build.
+- `src/contenu/charger.ts` — lit, valide et donne le contenu aux composants.
+- `src/contenu/edition.ts` — les fiches d'édition (libellés vus dans l'éditeur).
+- `/version.json` — l'identifiant de la version construite (`CF_PAGES_COMMIT_SHA`, ou `local`).
 
-   ```ts
-   {
-     slug: "pleurote",
-     // …
-     imagePath: "/photos/pleurote.jpg",
-     imageAlt: "Pleurote fraîche en grappe sur substrat",
-   },
-   ```
-
-3. Commit + push → CF Pages rebuild auto.
-
-**Specs photo recommandées :**
-
-| Item | Valeur |
-|---|---|
-| Format | JPG (ou WebP si dispo, plus léger) |
-| Aspect ratio | **1:1** carré pour les variétés (`ProductCard`), **5:3** paysage pour les espèces agri |
-| Taille mini | 800×800 (variétés) ou 1000×600 (agri) |
-| Taille idéale | 1200×1200 / 1500×900 |
-| Light | naturelle diffuse, pas de flash dur, pas d'ombres écrasées |
-| Sujet | champignon entier net, fond neutre ou substrat visible |
-| Compression | viser <150 Ko après compression (TinyPNG / Squoosh) |
-| Nommage | `<slug>.jpg` exactement (ex `eryngii.jpg`, pas `Eryngii.JPG`) |
+Tailwind ne lit pas `contenu/` (`@source not` dans `global.css`) : un mot tapé ne change jamais la feuille de style.
 
 ## Identité visuelle
 
-Palette **Aurore Terracotta** : ivoire, crème, lavande, terracotta, turquoise, brun. Tokens dans `src/styles/global.css` (`@theme`).
-Typo : Fraunces (variable, italiques expressives) pour les titres, Outfit (variable) pour le corps.
+Charte d'Aline (accueil, particuliers, pros, agriculteurs, myconautes, contact) : Anton pour les titres,
+Chewy pour les sous-titres, Poppins pour le texte ; aplats violet, lilas, anis, cacao, jaune, sable, bleu,
+rose, orange. Ancienne charte « Aurore Terracotta » (Fraunces, Outfit) : pages substrat et pages légales.
+Tokens dans `src/styles/global.css` (`@theme`).
 
 ## Déploiement
 
 Connecté à Cloudflare Pages. Chaque push sur `main` déclenche un build (`npm run build` → `dist/`).
+Chaque branche poussée a sa préversion.
 
-Variables d'environnement (Phase 1+, dashboard Cloudflare Pages) : voir `.env.example`.
+Variables d'environnement (dashboard Cloudflare Pages) : voir `.env.example`.
 
 ## Contribuer
 
