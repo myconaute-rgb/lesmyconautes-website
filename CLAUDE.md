@@ -17,6 +17,8 @@ src/layouts/ · src/styles/ · src/data/ · public/
 - **Validation des formulaires : `name` + `email` SEULEMENT.** Ne **jamais** exiger `message` ni un autre
   champ — incident 16/06 : les demandes grille tarifaire/devis à message vide étaient droppées **en
   silence** côté n8n, ~6 semaines de leads perdus (`claude_code/ANTI_BUGS.md` §92).
+  Seule exception : le **calculateur de devis** (`DevisSubstrat.astro`) exige le téléphone (décision de Florestan,
+  28/11/2026) ; le refus est montré sous le champ, jamais silencieux, et la demande est gardée avant le code.
 - **Anti-bot = honeypot + Turnstile uniquement.** Jamais d'heuristique (User-Agent, contenu…) qui peut
   bloquer des humains.
 - **Écriture inclusive maline dès la 1re rédaction** : collectifs et verbes plutôt que doublets, doublets

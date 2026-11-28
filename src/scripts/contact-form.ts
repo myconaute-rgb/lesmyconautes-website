@@ -38,7 +38,7 @@ export type ContactFormType =
  * serait perdu sans trace. On prévient le serveur (une ligne de log, zéro PII :
  * ni nom ni email). Best-effort, n'affecte jamais l'UX.
  */
-function reportBlocked(formType: ContactFormType, attempt: number): void {
+export function reportBlocked(formType: ContactFormType, attempt: number): void {
   const hasScript = Boolean((window as unknown as { turnstile?: unknown }).turnstile);
   fetch(BLOCKED_URL, {
     method: "POST",
@@ -78,7 +78,7 @@ function libelleChamp(form: HTMLFormElement, nom: string): string {
 }
 
 /** Lien mailto avec la demande déjà écrite : rien n'est perdu, rien à retaper. */
-function lienMailRepli(form: HTMLFormElement): string {
+export function lienMailRepli(form: HTMLFormElement): string {
   const lignes: string[] = [];
   const noms = new Set(
     Array.from(form.querySelectorAll<HTMLInputElement>("[name]"), (c) => c.name),
@@ -110,7 +110,7 @@ function lienMailRepli(form: HTMLFormElement): string {
 }
 
 /** Repli visible après 2 essais bloqués par Turnstile (texte validé par Florestan le 23/11/2026). */
-function afficherRepli(errorEl: HTMLElement, form: HTMLFormElement): void {
+export function afficherRepli(errorEl: HTMLElement, form: HTMLFormElement): void {
   const ligne = (texte: string, gras = false): HTMLElement => {
     const el = document.createElement(gras ? "strong" : "span");
     el.className = "block";

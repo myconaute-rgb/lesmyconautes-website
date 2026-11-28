@@ -1,0 +1,148 @@
+---
+/**
+ * Calculateur de devis de substrat (cadrage claude_code docs/aide_aline/devis_substrat, étape 5).
+ *
+ * La page ne connaît AUCUN chiffre métier : variétés, mentions, tailles de palette, minimum, délais et CGV sont
+ * chargés à l'ouverture (webhook devis_substrat_variables, aucun prix). Le prix ne s'affiche qu'après le code reçu
+ * par mail. La demande est gardée côté serveur AVANT le code : rien ne se perd.
+ * Logique : src/scripts/devis-substrat.ts. Contrat des appels : claude_code
+ * briefs/fonctionnels/brief_fonctionnel_comptoir_devis_substrat.md § 2.
+ *
+ * Si les variables ne se chargent pas (panne), la page montre le formulaire de demande d'avant (repli) : jamais
+ * moins bien qu'avant.
+ */
+import HoneypotField from "./HoneypotField.astro";
+import Turnstile from "./Turnstile.astro";
+
+const champ =
+  "w-full px-4 py-3.5 rounded-btn bg-ivoire border border-brun/15 focus:border-anis focus:outline-none text-sm";
+const libelle = "block text-xs font-semibold uppercase tracking-wider text-brun mb-1.5";
+const bouton =
+  "inline-flex items-center justify-center px-8 py-4 rounded-btn bg-cacao text-page text-sm font-semibold tracking-wide uppercase hover:bg-cacao/90 transition-colors disabled:opacity-60";
+const boutonLeger =
+  "inline-flex items-center justify-center px-5 py-3 rounded-btn border-2 border-cacao text-cacao text-sm font-semibold tracking-wide hover:bg-cacao/10 transition-colors disabled:opacity-60";
+---
+
+<div data-devis class="bg-creme/60 p-6 md:p-8">
+  <p data-devis-chargement class="text-sm text-brun/70">Chargement du calculateur…</p>
+
+  <!-- Étape 1 : la demande -->
+  <form data-devis-form class="hidden grid gap-7" novalidate>
+    <HoneypotField />
+
+    <fieldset class="grid gap-3" data-devis-champ="lignes">
+      <legend class="font-title text-xl text-cacao mb-1">Vos variétés et quantités</legend>
+      <p class="text-sm text-brun/80 mb-1" data-devis-aide-palette></p>
+      <div data-devis-varietes class="grid gap-3"></div>
+      <p data-devis-total class="text-sm font-semibold text-brun" aria-live="polite"></p>
+      <p data-devis-erreur-champ="lignes" class="hidden text-sm text-terracotta font-semibold"></p>
+    </fieldset>
+
+    <fieldset class="grid gap-3">
+      <legend class="font-title text-xl text-cacao mb-1">Livraison</legend>
+      <label class="flex items-center gap-3 text-sm">
+        <input type="radio" name="livraison" value="expedition" checked class="accent-anis w-4 h-4" />
+        Livrée chez moi, sur palette
+      </label>
+      <div data-devis-bloc-cp class="pl-7">
+        <label for="dv-cp" class={libelle}>Code postal de livraison</label>
+        <input id="dv-cp" name="code_postal" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="10" placeholder="42800" class={`${champ} max-w-48`} />
+        <p data-devis-erreur-champ="code_postal" class="hidden text-sm text-terracotta font-semibold mt-1.5"></p>
+      </div>
+      <label class="flex items-center gap-3 text-sm">
+        <input type="radio" name="livraison" value="retrait" class="accent-anis w-4 h-4" />
+        Je viens chercher à Rive-de-Gier
+      </label>
+    </fieldset>
+
+    <div>
+      <label for="dv-rythme" class={libelle}>Rythme</label>
+      <select id="dv-rythme" name="semaines_entre_envois" class={`${champ} max-w-sm`}>
+        <option value="0">Une seule fois</option>
+        <option value="1">Toutes les semaines</option>
+        <option value="2">Toutes les 2 semaines</option>
+        <option value="3">Toutes les 3 semaines</option>
+        <option value="4">Toutes les 4 semaines</option>
+        <option value="6">Toutes les 6 semaines</option>
+        <option value="8">Toutes les 8 semaines</option>
+      </select>
+      <p data-devis-erreur-champ="semaines_entre_envois" class="hidden text-sm text-terracotta font-semibold mt-1.5"></p>
+    </div>
+
+    <fieldset class="grid gap-4" data-devis-coordonnees>
+      <legend class="font-title text-xl text-cacao mb-1">Vos coordonnées</legend>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="dv-nom" class={libelle}>Nom</label>
+          <input id="dv-nom" name="nom" type="text" autocomplete="name" maxlength="120" class={champ} />
+          <p data-devis-erreur-champ="nom" class="hidden text-sm text-terracotta font-semibold mt-1.5"></p>
+        </div>
+        <div>
+          <label for="dv-etab" class={libelle}>Structure <span class="normal-case font-normal">(facultatif)</span></label>
+          <input id="dv-etab" name="etablissement" type="text" autocomplete="organization" maxlength="200" class={champ} />
+          <p data-devis-erreur-champ="etablissement" class="hidden text-sm text-terracotta font-semibold mt-1.5"></p>
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="dv-email" class={libelle}>Email</label>
+          <input id="dv-email" name="email" type="email" autocomplete="email" maxlength="254" class={champ} />
+          <p class="text-xs text-brun/60 mt-1.5">Le code pour voir votre prix arrive ici.</p>
+          <p data-devis-erreur-champ="email" class="hidden text-sm text-terracotta font-semibold mt-1.5"></p>
+        </div>
+        <div>
+          <label for="dv-tel" class={libelle}>Téléphone</label>
+          <input id="dv-tel" name="telephone" type="tel" autocomplete="tel" maxlength="30" class={champ} />
+          <p class="text-xs text-brun/60 mt-1.5">Pour ajuster votre estimation avec vous.</p>
+          <p data-devis-erreur-champ="telephone" class="hidden text-sm text-terracotta font-semibold mt-1.5"></p>
+        </div>
+      </div>
+      <div>
+        <label for="dv-msg" class={libelle}>Une question, une précision <span class="normal-case font-normal">(facultatif)</span></label>
+        <textarea id="dv-msg" name="message" rows="3" maxlength="5000" placeholder="Type de production, calendrier, contraintes…" class={`${champ} resize-y`}></textarea>
+        <p data-devis-erreur-champ="message" class="hidden text-sm text-terracotta font-semibold mt-1.5"></p>
+      </div>
+      <Turnstile />
+    </fieldset>
+
+    <div class="grid gap-3">
+      <button type="submit" data-devis-envoyer class={`${bouton} justify-self-start`}>Recevoir mon code</button>
+      <p data-devis-erreur class="hidden text-sm text-terracotta font-semibold" role="alert"></p>
+      <p data-devis-rgpd class="text-xs text-brun/60 leading-relaxed">
+        Vos coordonnées et votre demande servent à vous envoyer votre estimation et à vous rappeler pour la préciser.
+        <a href="/politique-confidentialite" class="underline hover:text-violet">Vos données</a>.
+      </p>
+    </div>
+  </form>
+
+  <!-- Étape 2 : le code -->
+  <form data-devis-code class="hidden grid gap-4" novalidate>
+    <h3 class="font-title text-2xl text-cacao">Votre code est parti</h3>
+    <p class="text-sm leading-relaxed">
+      Un code à 6 chiffres vient de partir à <strong data-devis-email-affiche></strong>.
+      Il est valable jusqu'à <strong data-devis-expire></strong>.
+    </p>
+    <div>
+      <label for="dv-code" class={libelle}>Code reçu par mail</label>
+      <input id="dv-code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="123 456" class={`${champ} max-w-48 text-lg tracking-widest`} />
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <button type="submit" data-devis-confirmer class={bouton}>Voir mon estimation</button>
+    </div>
+    <p data-devis-code-message class="hidden text-sm font-semibold" role="alert"></p>
+    <div class="text-sm text-brun/80 leading-relaxed border-t border-brun/10 pt-4 grid gap-2">
+      <p>Pas reçu ? Regardez dans vos indésirables. Votre demande est déjà enregistrée : sinon, Aline vous rappelle.</p>
+      <p>
+        <button type="button" data-devis-renvoyer class={boutonLeger}>Recevoir un nouveau code</button>
+      </p>
+      <p class="text-xs text-brun/60">Seul le dernier code reçu est valable.</p>
+      <p><button type="button" data-devis-retour class="underline text-sm hover:text-violet">Corriger ma demande</button></p>
+    </div>
+  </form>
+
+  <!-- Étape 3 : l'estimation -->
+  <div data-devis-resultat class="hidden grid gap-5" aria-live="polite"></div>
+
+  <!-- Fin sans code (limite, mail en panne, calcul indisponible) : la demande est partie quand même -->
+  <div data-devis-fin class="hidden grid gap-3" role="status"></div>
+</div>
