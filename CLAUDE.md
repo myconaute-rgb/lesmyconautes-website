@@ -14,7 +14,9 @@ src/components/  blocs des pages, dont Turnstile.astro + HoneypotField.astro (an
 src/contenu/     formes.ts, texte.ts, schema.ts, charger.ts, edition.ts, integration.ts
 src/scripts/     contact-form.ts (soumission → webhook n8n)
 src/layouts/ · src/styles/ · src/data/ · src/assets/ · public/
-scripts/         comparer-html.mjs (preuve « sans effet visible »), verifier.mjs (npm run verifier)
+scripts/         comparer-html.mjs (preuve « sans effet visible », modes --apercu et --perimetre),
+                 verifier.mjs (npm run verifier), champ.mjs et fiches.mjs (pour l'atelier de l'éditeur),
+                 editeur-etat.sh (R94), photo-en-ligne.mjs
 ```
 
 ## Règles critiques (héritées d'incidents réels)
@@ -39,7 +41,7 @@ repères : `src/contenu/CLAUDE.md`, à lire avant de toucher un composant, `cont
   Dans une page pas encore migrée : on ne déplace rien hors lot, mais tout texte ajouté va dans `contenu/`.
 - **R93** Un identifiant (`id`) ne se renomme pas et ne se réutilise pas.
 - **R94** Avant de toucher à la structure d'un bloc : `scripts/editeur-etat.sh` dit s'il y a un brouillon
-  ouvert dessus (le script arrive avec l'atelier, au pas 2).
+  ouvert dessus (il lit l'état de l'atelier, `/srv/atelier_site/etat.json`).
 - **R95** Une classe de forme s'écrit en toutes lettres dans `src/contenu/formes.ts`. Jamais de classe
   fabriquée par collage.
 - **R96** Un nouveau type de bloc arrive avec son schéma, sa fiche d'édition et son exemple.

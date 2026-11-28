@@ -15,6 +15,7 @@ import FAQItem from "./FAQItem.astro";
 import { chargerPartage, contexteTexte } from "../contenu/charger.ts";
 import { REGLES } from "../contenu/schema.ts";
 import { rendreTexte } from "../contenu/texte.ts";
+import { repere, repereBloc } from "../contenu/apercu.ts";
 
 interface Props {
   /** Couleur du titre Anton : violet (accueil, particuliers, myconautes) ou cacao (pros). */
@@ -38,24 +39,28 @@ const html = (s: string, regles: (typeof REGLES)[keyof typeof REGLES]) => rendre
 const avantReponse = "\n          ";
 const apresReponse = "\n        ";
 const derniere = faq.rubriques.length - 1;
+// Repères d'édition (aperçu seulement) : chemins par id, jamais par rang (rendu/03 § 9).
+const rub = (r: { id: string }) => `/rubriques/@${r.id}`;
+const qst = (r: { id: string }, q: { id: string }) => `${rub(r)}/questions/@${q.id}`;
 ---
 
-<section id={id} class="relative py-14 md:py-20 overflow-hidden">
+<section id={id} class="relative py-14 md:py-20 overflow-hidden" {...repereBloc("faq", "site/partages/faq.json")}>
   <div class="absolute inset-y-0 left-0 w-8 lg:w-40 bg-violet hidden md:block" aria-hidden="true"></div>
   <div class="max-w-4xl mx-auto px-6 md:px-10">
     <div class="mb-10">
-      <h2 class={`font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] ${titleColor}`} set:html={html(faq.titre, REGLES.titre)} />
+      <h2 class={`font-title text-[clamp(2rem,5vw,4rem)] leading-[1.02] ${titleColor}`} {...repere("/titre")} set:html={html(faq.titre, REGLES.titre)} />
       {faq.sousTitre && (
-        <p class={`script-sub text-[clamp(1.6rem,3vw,2.2rem)] ${scriptColor}`} set:html={html(faq.sousTitre, REGLES.script)} />
+        <p class={`script-sub text-[clamp(1.6rem,3vw,2.2rem)] ${scriptColor}`} {...repere("/sousTitre")} set:html={html(faq.sousTitre, REGLES.script)} />
       )}
     </div>
 
     <div class="bg-creme/60 px-6 md:px-10 py-8">
       {faq.rubriques.map((rubrique, i) => (
         <div class={i < derniere ? "mb-8" : undefined}>
-          <div class={catClass}><span set:html={html(rubrique.titre, REGLES.libelle)} /></div>
+          <div class={catClass}><span {...repere(`${rub(rubrique)}/titre`)} set:html={html(rubrique.titre, REGLES.libelle)} /></div>
           {rubrique.questions.map((q) => (
-            <FAQItem variant="editorial" question={q.question}>
+            <FAQItem variant="editorial" question={q.question}
+              repereQuestion={repere(`${qst(rubrique, q)}/question`)} repereReponse={repere(`${qst(rubrique, q)}/reponse`)}>
               <Fragment set:html={avantReponse + html(q.reponse, REGLES.paragraphe) + apresReponse} />
             </FAQItem>
           ))}

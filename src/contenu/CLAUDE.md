@@ -22,4 +22,13 @@ Conception : dépôt `claude_code`, `projets/08_editeur_site/rendu/` (07 = migra
 - Les blancs du HTML d'avant se reproduisent tels quels (exemple : la réponse de `FaqCommune`).
 - La migration ne corrige rien : fautes, doublons, code mort viennent après, à part.
 - Tailwind ne lit pas `contenu/` (`@source not` dans `global.css`) : ne jamais retirer cette ligne.
-- JSON écrit par `JSON.stringify(x, null, 2)` + retour à la ligne final (R97).
+- JSON écrit par `JSON.stringify(x, null, 2)` + retour à la ligne final (R97). `npm run verifier` le contrôle.
+
+## L'aperçu de l'éditeur (pas 2)
+- `APERCU_BASE=/site/apercu/ npm run build` : même construction, plus les repères (`apercu.ts` : `repere`,
+  `repereBloc`) et le script `apercu/edition.js`, posé en ligne. Sans la variable : rien, à l'octet.
+- Un bloc migré porte `{...repereBloc(nom, fichier)}` ; chaque texte éditable `{...repere(chemin)}`, chemin par
+  `id` (`/rubriques/@conservation/questions/@congeler/reponse`). Jamais d'élément ajouté : des attributs seuls.
+- Preuve : `npm run comparer -- --apercu <public> <apercu>` = 0 différence (E1). Le script d'édition ne va
+  jamais dans `public/` ni dans `_astro/`.
+- `ecriture.ts` : les règles d'un geste (R12, R14, R16 à R19, R23, R27), jouées par `scripts/champ.mjs`.

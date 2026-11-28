@@ -7,6 +7,8 @@ import contenu from "./src/contenu/integration.ts";
 // https://astro.build/config
 export default defineConfig({
   site: "https://lesmyconautes.fr",
+  // Aperçu de l'éditeur (projet 08, pas 2) : servi sous /site/apercu/. Absent = racine, construction publique inchangée.
+  base: process.env.APERCU_BASE ?? "/",
   vite: {
     plugins: [tailwindcss()],
   },
